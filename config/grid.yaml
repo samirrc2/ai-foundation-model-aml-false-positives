@@ -1,0 +1,48 @@
+# Grid & run config — P4
+#
+# The capture grid is K models × seeds × prompt variants over a battery subgrid.
+# Pilot vs full subgrids select which models, how many seeds, and which battery.
+
+seed_master: 20260715      # feeds the per-cell parity seed (with case+variant+idx)
+analysis_seed: 4242        # ANALYSIS_SEED: bootstrap
+
+# ── Budgets (USD) ──────────────────────────────────────────────────────────
+budgets:
+  pilot: 10.00             # BUDGET_PILOT — HARD. Ledger aborts > this. Preflight
+                           # refuses to start if projected pilot cost > this.
+  full: 200.00             # BUDGET_FULL — separate; untouched until explicit go-ahead.
+stop_margin_usd: 0.05      # stop this far below the cap (headroom for in-flight)
+
+# ── Concurrency / rate / retries ───────────────────────────────────────────
+max_workers: 5             # MAX_WORKERS (tier-1 TPM safe)
+max_retries: 10            # MAX_RETRIES; honor Retry-After
+judge_temperature: 0.0     # JUDGE_TEMPERATURE
+rpm_limits:                # per-provider requests/min (0 = unthrottled)
+  openai: 450
+  gemini: 300
+  xai: 60
+daily_limits: {}           # per-model/day caps (circuit-breaker); empty = none
+
+# ── Prompt variants (both supervisory; forbid free text outside JSON) ──────
+prompt_variants:
+  - v_terse                # compliance-officer one-liner + JSON schema (pilot)
+  - v_fatf                 # short FATF-typology-aware instruction + JSON schema (pilot)
+  - v_riskbased            # risk-based-approach framing + JSON schema (full run only)
+
+# ── Subgrids ───────────────────────────────────────────────────────────────
+subgrids:
+  pilot:
+    models: [openai_4o_mini, openai_41_mini, gemini_flash, gemini_flash_lite]
+    variants: [v_terse, v_fatf]
+    seed_indices: [0, 1]
+    battery: pilot         # the 240-case stratified subsample
+  full:
+    models: [openai_4o_mini, openai_41_mini, gemini_flash, gemini_flash_lite,
+             openai_4o, gemini_pro, xai_grok]
+    variants: [v_terse, v_fatf, v_riskbased]
+    seed_indices: [0, 1, 2]
+    battery: full          # the whole 600-case battery
+
+# Guard: the pilot subgrid may reference ONLY models with pilot: true. loader.py
+# enforces this so a flagship can never sneak into a ≤$10 pilot.
+pilot_requires_cheap: true
