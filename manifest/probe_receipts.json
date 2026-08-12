@@ -1,0 +1,91 @@
+{
+  "config_hash": "5b3fa611813d27f7",
+  "receipts": {
+    "gemini_flash": {
+      "api_model": "gemini-flash-latest",
+      "error": null,
+      "family": "google",
+      "input_tokens": 239,
+      "key_id": "0",
+      "measured_call_usd": 0.0002185,
+      "model_key": "gemini_flash",
+      "ok": true,
+      "output_tokens": 33,
+      "probed_utc": "2026-07-15T16:25:25.412577+00:00",
+      "provider": "gemini",
+      "response_preview": "{\"suspicious\": false, \"typology\": \"none\", \"rationale\": \"Single small routine payment between verified accounts with no red flags.\"\n  }"
+    },
+    "gemini_flash_lite": {
+      "api_model": "gemini-flash-lite-latest",
+      "error": null,
+      "family": "google",
+      "input_tokens": 239,
+      "key_id": "1",
+      "measured_call_usd": 6.045e-05,
+      "model_key": "gemini_flash_lite",
+      "ok": true,
+      "output_tokens": 41,
+      "probed_utc": "2026-07-15T16:25:27.150815+00:00",
+      "provider": "gemini",
+      "response_preview": "{\"suspicious\": false, \"typology\": \"null\", \"rationale\": \"The transaction is a single, low-value routine payment with no indicators of illicit activity or complex"
+    },
+    "openai_41_mini": {
+      "api_model": "gpt-4.1-mini-2025-04-14",
+      "error": null,
+      "family": "openai",
+      "input_tokens": 235,
+      "key_id": "1",
+      "measured_call_usd": 0.0001468,
+      "model_key": "openai_41_mini",
+      "ok": true,
+      "output_tokens": 33,
+      "probed_utc": "2026-07-15T16:25:24.093073+00:00",
+      "provider": "openai",
+      "response_preview": "{\"suspicious\": false, \"typology\": null, \"rationale\": \"Single small routine payment from verified personal account; no suspicious patterns detected.\"}"
+    },
+    "openai_4o": {
+      "api_model": "gpt-4o-2024-11-20",
+      "error": null,
+      "family": "openai",
+      "input_tokens": 235,
+      "key_id": "2",
+      "measured_call_usd": 0.0009175,
+      "model_key": "openai_4o",
+      "ok": true,
+      "output_tokens": 33,
+      "probed_utc": "2026-07-15T16:25:28.105549+00:00",
+      "provider": "openai",
+      "response_preview": "{\"suspicious\": false, \"typology\": null, \"rationale\": \"Single small routine payment with verified KYC; no indicators of laundering.\"}"
+    },
+    "openai_4o_mini": {
+      "api_model": "gpt-4o-mini-2024-07-18",
+      "error": null,
+      "family": "openai",
+      "input_tokens": 235,
+      "key_id": "0",
+      "measured_call_usd": 5.445e-05,
+      "model_key": "openai_4o_mini",
+      "ok": true,
+      "output_tokens": 32,
+      "probed_utc": "2026-07-15T16:25:22.186441+00:00",
+      "provider": "openai",
+      "response_preview": "{\"suspicious\": false, \"typology\": null, \"rationale\": \"Routine payment from a verified personal account, no red flags present.\"}"
+    },
+    "xai_grok": {
+      "api_model": "grok-4.5",
+      "error": null,
+      "family": "xai",
+      "input_tokens": 453,
+      "key_id": "0",
+      "measured_call_usd": 0.0013565,
+      "model_key": "xai_grok",
+      "ok": true,
+      "output_tokens": 32,
+      "probed_utc": "2026-07-15T16:25:28.844060+00:00",
+      "provider": "xai",
+      "response_preview": "{\"suspicious\": false, \"typology\": null, \"rationale\": \"Single small routine ACH payment from verified personal account; no ML indicators present.\"}"
+    }
+  },
+  "subgrid": "full",
+  "total_probe_usd": 0.002754
+}

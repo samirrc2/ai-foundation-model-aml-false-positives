@@ -1,4 +1,28 @@
+# Python
 __pycache__/
 *.pyc
 .venv/
-data/raw/*.csv
+venv/
+
+# OS / editor cruft
+.DS_Store
+*.swp
+
+# Git lock/temp leftovers (this tree has hit lock issues on networked mounts)
+*.lock
+.git/**/tmp_obj_*
+
+# Secrets / keys (never commit)
+API Keys/
+*.key
+.env
+
+# Local scratch
+_to_delete/
+_deliver_tmp.zip
+
+# NOTE on frozen capture:
+# data/raw/*.csv are the FROZEN capture and ARE part of reproducibility. They were
+# previously ignored; the Code Ocean capsule (codeocean/data/capture/) also carries them.
+# If you want them tracked in this repo too, remove the line below.
+# data/raw/*.csv

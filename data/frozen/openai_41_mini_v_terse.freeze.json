@@ -1,0 +1,10 @@
+{
+  "model": "openai_41_mini",
+  "variant": "v_terse",
+  "csv": "runs_openai_41_mini_v_terse.csv",
+  "sha256": "5e3d858a2c5dca409d3be87cb20d149d756abd407d639157aeaf6aceeecbd406",
+  "n_rows": 480,
+  "n_error": 0,
+  "error_rate": 0.0,
+  "frozen_utc": "2026-07-15T13:49:25.302775+00:00"
+}

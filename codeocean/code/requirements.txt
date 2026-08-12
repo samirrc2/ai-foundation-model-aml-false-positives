@@ -1,0 +1,11 @@
+# Offline reproduction of "Same Transactions, Different Alarms".
+# Analysis is pure Python + these packages; no network, no API SDKs required.
+# Versions pinned to the tested, byte-identical environment.
+numpy==2.2.6
+scikit-learn==1.7.2      # rules/supervised baselines (deterministic, seeded)
+scipy==1.15.2            # Cochran's Q + McNemar exact P-values (classification.py)
+pyyaml==6.0.3            # config parsing
+pydantic==2.13.4         # config schema validation
+
+# Note: the DATA-COLLECTION harness (code/capture/, not part of the Reproducible
+# Run) additionally uses openai>=1.40 and google-genai>=0.3 and requires API keys.

@@ -1,0 +1,11 @@
+# P4 dependencies.  Python 3.10+.
+#   pip install -r requirements.txt
+#
+# Core — needed for EVERYTHING (battery, offline dry-run, analysis, verdict):
+pydantic>=2,<3
+PyYAML>=6
+
+# Live capture only — the vendor SDKs. Not needed for PILOT_MOCK=1 or analysis.
+#   OpenAI SDK also drives xAI/Grok (OpenAI-compatible endpoint). httpx ships with it.
+openai>=1.40
+google-genai>=1.0

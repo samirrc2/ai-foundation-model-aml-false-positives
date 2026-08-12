@@ -1,0 +1,93 @@
+# Supplementary Information
+
+**The choice of foundation model determines the false-positive burden of large language model anti-money-laundering transaction screening**
+
+Samir Chincholikar, Robin Chawla
+
+*Combine into a single PDF for submission (Scientific Reports requirement). Numbering is separate from the main article; items are Supplementary Table S1–S4 and Supplementary Note.*
+
+---
+
+## Supplementary Note: preregistration and design
+
+The study estimands, battery specification, screening-cell definition, and analysis were fixed in a frozen preregistration prior to the confirmatory analysis (provided in the reproducibility repository as `preregistration_pivot.md`, with the original monoculture preregistration and its amendment). The battery was generated deterministically (seed 20260715) and SHA-256-hashed; the reproducibility capsule regenerates it from the seed and verifies the hash. The confirmatory analysis was run on a fresh capture over the expanded five-model set; the earlier pilot is reported in the preregistration as exploratory/hypothesis-generating.
+
+All analysis is deterministic and reproduces byte-identically from the frozen 12,000-call dataset (2 prompt variants × 2 seeds × 600 cases × 5 models). Overall error rate (unparsable/failed calls) was 0.08%.
+
+---
+
+## Supplementary Table S1. Battery composition (600 cases)
+
+| Class | n | Categories |
+|---|---|---|
+| Suspicious | 300 | structuring, layering, trade-based, mule networks, shell layering, funnel accounts, rapid pass-through, cash-intensive fronts (≈38 each) |
+| Legitimate (hard negatives) | 300 | payroll fan-out, treasury sweeps, genuine trade finance, retail settlement, marketplace payouts, loan disbursement, remittance corridor, subscription billing (≈38 each) |
+
+Difficulty spread ≈ 30% easy / 40% medium / 30% hard within each class. Cases are raw node/edge transaction ledgers with no natural-language label, irregular sub-threshold amounts, typology signal interleaved with legitimate background volume, and realistic temporal dispersion.
+
+---
+
+## Supplementary Table S2. Pairwise McNemar exact tests of false-positive-rate differences
+
+Two-tailed exact (binomial) McNemar tests on the 300 legitimate cases (same cases for all models; b and c are discordant counts). P-values Bonferroni-corrected across the ten model pairs.
+
+| Model pair | b | c | P (Bonferroni) |
+|---|---|---|---|
+| Gemini Flash vs GPT-4o | 1 | 3 | 1.0 |
+| GPT-4.1-mini vs Gemini Flash-Lite | 42 | 45 | 1.0 |
+| Gemini Flash vs GPT-4.1-mini | 1 | 71 | 3.1×10⁻¹⁹ |
+| Gemini Flash vs Gemini Flash-Lite | 1 | 74 | 4.0×10⁻²⁰ |
+| GPT-4o vs GPT-4.1-mini | 0 | 68 | 6.8×10⁻²⁰ |
+| GPT-4o vs Gemini Flash-Lite | 0 | 71 | 8.5×10⁻²¹ |
+| GPT-4.1-mini vs GPT-4o-mini | 1 | 179 | 2.4×10⁻⁵¹ |
+| Gemini Flash-Lite vs GPT-4o-mini | 8 | 183 | 2.5×10⁻⁴³ |
+| Gemini Flash vs GPT-4o-mini | 0 | 248 | 4.4×10⁻⁷⁴ |
+| GPT-4o vs GPT-4o-mini | 0 | 246 | 1.8×10⁻⁷³ |
+
+The two within-tier pairs (top rows) are statistically indistinguishable; all between-tier pairs are separated at P < 10⁻¹⁹. This defines three operating tiers: {Gemini Flash, GPT-4o} (cautious), {GPT-4.1-mini, Gemini Flash-Lite} (intermediate), {GPT-4o-mini} (alert-flooding).
+
+---
+
+## Supplementary Table S3. Per-typology miss rate (pooled across five models)
+
+95% Wilson score confidence intervals; n as indicated.
+
+| Typology | Miss rate | 95% CI | n (model×case) |
+|---|---|---|---|
+| Trade-based | 18.9% | 14.0–25.1 | 190 |
+| Cash-intensive front | 10.3% | 6.7–15.5 | 185 |
+| Rapid pass-through | 1.6% | 0.6–4.7 | 185 |
+| Structuring | 0.5% | 0.1–2.9 | 190 |
+| Funnel account | 0.0% | 0.0–2.0 | 185 |
+| Layering | 0.0% | 0.0–2.0 | 190 |
+| Mule network | 0.0% | 0.0–2.0 | 190 |
+| Shell layering | 0.0% | 0.0–2.0 | 185 |
+
+---
+
+## Supplementary Table S4. Correlated-miss null (preregistered secondary analysis)
+
+Unlike the false-positive side, model misses were rare and did not co-occur: no suspicious case was missed by all five models, and cross-model agreement on the miss label (chance-corrected) was near zero.
+
+| Quantity | Value |
+|---|---|
+| Per-model miss rate | 0.0%–12.0% (Table 1, main text) |
+| Mean pairwise Cohen's κ on misses | 0.072 (range −0.011 to 0.26) |
+| Joint miss by all five models | 0 of 300 suspicious cases |
+| Independence-predicted joint miss | ≈0 |
+
+Interpretation: the algorithmic-monoculture prediction of correlated failure is not supported for false alarms in this setting; the robust effect is divergence (in false positives), not homogenisation. Chance-corrected agreement was additionally summarised with Scott's π and Gwet's AC1, which agree with κ in sign and magnitude (near zero).
+
+---
+
+## Supplementary Methods: baselines
+
+**Rules baseline.** Deterministic FATF red-flag heuristics: (i) ≥3 sub-threshold cash deposits converging on one beneficiary; (ii) fan-in ≥5 low-value senders; (iii) shell entities (no employees / newly incorporated) in a wire chain; (iv) high-risk-jurisdiction wires with limited KYC; (v) rapid same-day large pass-through. Result: false-positive 12.0%, miss 11.3%.
+
+**Supervised baseline.** Logistic-regression and gradient-boosting classifiers on engineered features (counts of cash transfers, sub-threshold amounts, fan-in degree, shell entities, high-risk jurisdictions, limited-KYC nodes, temporal span, transfer counts), evaluated with 5-fold stratified out-of-fold prediction (scikit-learn 1.7.2, seed 4242). Result (gradient boosting): false-positive ≈0.0%, miss ≈0.0%. Because the synthetic battery's structure encodes the typologies, this is an optimistic ceiling and is reported as such.
+
+---
+
+## Data and code availability
+
+All data, code, the preregistration, and a one-command reproducible capsule (regenerates + hash-verifies the battery, recomputes every statistic, and confirms byte-identical outputs across two runs) are available in the public repository / Code Ocean capsule [DOI on acceptance]. A machine-readable `pivot_claims.json` contains every reported number with its confidence interval and the configuration hash that produced it.

@@ -1,0 +1,187 @@
+{
+  "A_false_positive": {
+    "divergence_benign": 0.8566666666666667,
+    "divergence_benign_ci95": [
+      0.7508305647840532,
+      0.9536423841059603
+    ],
+    "fp_rate_max": 0.83,
+    "fp_rate_min": 0.0033333333333333335,
+    "fp_ratio_ci95": [
+      71.66666666666667,
+      273.0
+    ],
+    "fp_ratio_maxmin": 248.99999999999997,
+    "fp_spread_ci95": [
+      0.6920529801324503,
+      0.9531772575250836
+    ],
+    "fp_spread_pp": 0.8266666666666667,
+    "per_model": {
+      "gemini_flash": {
+        "family": "google",
+        "flags": 1,
+        "fp_rate": 0.0033333333333333335,
+        "n": 300,
+        "wilson_ci": [
+          0.0005886425761407379,
+          0.018637164554943353
+        ]
+      },
+      "gemini_flash_lite": {
+        "family": "google",
+        "flags": 74,
+        "fp_rate": 0.24666666666666667,
+        "n": 300,
+        "wilson_ci": [
+          0.20129303378573715,
+          0.29844630407978223
+        ]
+      },
+      "openai_41_mini": {
+        "family": "openai",
+        "flags": 71,
+        "fp_rate": 0.23666666666666666,
+        "n": 300,
+        "wilson_ci": [
+          0.19208795133542217,
+          0.28790425513005197
+        ]
+      },
+      "openai_4o": {
+        "family": "openai",
+        "flags": 3,
+        "fp_rate": 0.01,
+        "n": 300,
+        "wilson_ci": [
+          0.0034065567627181124,
+          0.028984004635062833
+        ]
+      },
+      "openai_4o_mini": {
+        "family": "openai",
+        "flags": 249,
+        "fp_rate": 0.83,
+        "n": 300,
+        "wilson_ci": [
+          0.7833848085580865,
+          0.8682705276434078
+        ]
+      }
+    }
+  },
+  "B_typology_miss": {
+    "cash_intensive_front": {
+      "miss_rate": 0.10270270270270271,
+      "misses": 19,
+      "n": 185,
+      "wilson_ci": [
+        0.06673918450520244,
+        0.15483063909298778
+      ]
+    },
+    "funnel_account": {
+      "miss_rate": 0.0,
+      "misses": 0,
+      "n": 185,
+      "wilson_ci": [
+        0.0,
+        0.02034297527663396
+      ]
+    },
+    "layering": {
+      "miss_rate": 0.0,
+      "misses": 0,
+      "n": 190,
+      "wilson_ci": [
+        0.0,
+        0.019818243349208835
+      ]
+    },
+    "mule_network": {
+      "miss_rate": 0.0,
+      "misses": 0,
+      "n": 190,
+      "wilson_ci": [
+        0.0,
+        0.019818243349208835
+      ]
+    },
+    "rapid_passthrough": {
+      "miss_rate": 0.016216216216216217,
+      "misses": 3,
+      "n": 185,
+      "wilson_ci": [
+        0.0055299415368799225,
+        0.046585694001052405
+      ]
+    },
+    "shell_layering": {
+      "miss_rate": 0.0,
+      "misses": 0,
+      "n": 185,
+      "wilson_ci": [
+        0.0,
+        0.02034297527663396
+      ]
+    },
+    "structuring": {
+      "miss_rate": 0.005263157894736842,
+      "misses": 1,
+      "n": 190,
+      "wilson_ci": [
+        0.0009296576420357184,
+        0.02920628840876039
+      ]
+    },
+    "trade_based": {
+      "miss_rate": 0.18947368421052632,
+      "misses": 36,
+      "n": 190,
+      "wilson_ci": [
+        0.1401171593217027,
+        0.25113838128464805
+      ]
+    }
+  },
+  "C_prompt_flip": {
+    "flip_rate": 0.07534589098183031,
+    "flips": 452,
+    "n_pairs": 5999,
+    "variants": [
+      "v_fatf",
+      "v_terse"
+    ],
+    "wilson_ci": [
+      0.06893488480993352,
+      0.08230042348139306
+    ]
+  },
+  "meta": {
+    "analysis_seed": 4242,
+    "bootstrap_draws": 2000,
+    "config_hash": "13ddae93dec88ed8",
+    "error_rate": 0.0008,
+    "families": {
+      "gemini_flash": "google",
+      "gemini_flash_lite": "google",
+      "openai_41_mini": "openai",
+      "openai_4o": "openai",
+      "openai_4o_mini": "openai"
+    },
+    "mode": "REAL",
+    "models": [
+      "gemini_flash",
+      "gemini_flash_lite",
+      "openai_41_mini",
+      "openai_4o",
+      "openai_4o_mini"
+    ],
+    "n_benign": 300,
+    "n_rows": 12120,
+    "n_suspicious": 300,
+    "paper": "Same Transactions, Different Alarms (P4 pivot)",
+    "status": "EXPLORATORY / hypothesis-generating on the P4 pilot capture; confirmatory test = pre-registered full run on expanded models",
+    "subgrid": "full"
+  }
+}

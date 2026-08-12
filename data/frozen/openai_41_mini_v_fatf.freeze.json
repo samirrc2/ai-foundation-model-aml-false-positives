@@ -1,0 +1,10 @@
+{
+  "model": "openai_41_mini",
+  "variant": "v_fatf",
+  "csv": "runs_openai_41_mini_v_fatf.csv",
+  "sha256": "f0b9893f31a240f38ea0f2540fb2a5ea635c78bddb1b3594951a469d25d6dcc1",
+  "n_rows": 480,
+  "n_error": 0,
+  "error_rate": 0.0,
+  "frozen_utc": "2026-07-15T13:49:25.523097+00:00"
+}

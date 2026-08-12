@@ -1,0 +1,79 @@
+{
+  "all_ok": true,
+  "battery": {
+    "full": {
+      "manifest_sha256": "012d57b2a3384bb76144160e7f468446bd6adb67317f91e3da79c99c7dc52ce9",
+      "match": true,
+      "regenerated_sha256": "012d57b2a3384bb76144160e7f468446bd6adb67317f91e3da79c99c7dc52ce9",
+      "shipped_sha256": "012d57b2a3384bb76144160e7f468446bd6adb67317f91e3da79c99c7dc52ce9"
+    },
+    "pilot": {
+      "manifest_sha256": "518115ac0e0690bfebcdf73abafba291ab4b2933f4212bd0d55e4bb28489a307",
+      "match": true,
+      "regenerated_sha256": "518115ac0e0690bfebcdf73abafba291ab4b2933f4212bd0d55e4bb28489a307",
+      "shipped_sha256": "518115ac0e0690bfebcdf73abafba291ab4b2933f4212bd0d55e4bb28489a307"
+    }
+  },
+  "capture": {
+    "runs_full_gemini_flash_lite_v_fatf.csv": {
+      "actual_sha256": "ae4a228db166c80df46de8824919b2db9871ce1b12cef9d04813b9787ab3eee7",
+      "match": true,
+      "n_rows": 1200,
+      "receipt_sha256": "ae4a228db166c80df46de8824919b2db9871ce1b12cef9d04813b9787ab3eee7"
+    },
+    "runs_full_gemini_flash_lite_v_terse.csv": {
+      "actual_sha256": "5d4573232a277571e51058736351c2f9aaa3ae58ad0171b2518230aa925d422b",
+      "match": true,
+      "n_rows": 1200,
+      "receipt_sha256": "5d4573232a277571e51058736351c2f9aaa3ae58ad0171b2518230aa925d422b"
+    },
+    "runs_full_gemini_flash_v_fatf.csv": {
+      "actual_sha256": "9434f2b9a947caebf014826ac84c8a45142bcf94baea99b8966a91c51e2efeb3",
+      "match": true,
+      "n_rows": 1200,
+      "receipt_sha256": "9434f2b9a947caebf014826ac84c8a45142bcf94baea99b8966a91c51e2efeb3"
+    },
+    "runs_full_gemini_flash_v_terse.csv": {
+      "actual_sha256": "be04328767a815c0da888d2c6923249146d586e74ad587a6f486c399732c3683",
+      "match": true,
+      "n_rows": 1200,
+      "receipt_sha256": "be04328767a815c0da888d2c6923249146d586e74ad587a6f486c399732c3683"
+    },
+    "runs_full_openai_41_mini_v_fatf.csv": {
+      "actual_sha256": "ca982a62cbc70401284ef5a47dea1638008f96695b50371092e3eb79eae5dbf2",
+      "match": true,
+      "n_rows": 1200,
+      "receipt_sha256": "ca982a62cbc70401284ef5a47dea1638008f96695b50371092e3eb79eae5dbf2"
+    },
+    "runs_full_openai_41_mini_v_terse.csv": {
+      "actual_sha256": "3378b6c8d154996c4114f15928b54315203fd8bdfa2f9506b3dbca73b01e33a3",
+      "match": true,
+      "n_rows": 1200,
+      "receipt_sha256": "3378b6c8d154996c4114f15928b54315203fd8bdfa2f9506b3dbca73b01e33a3"
+    },
+    "runs_full_openai_4o_mini_v_fatf.csv": {
+      "actual_sha256": "be44185f2b5c80d2a9fa9770ce6b239cb21144c7f0ef874b44ba498e0a25fc76",
+      "match": true,
+      "n_rows": 1200,
+      "receipt_sha256": "be44185f2b5c80d2a9fa9770ce6b239cb21144c7f0ef874b44ba498e0a25fc76"
+    },
+    "runs_full_openai_4o_mini_v_terse.csv": {
+      "actual_sha256": "bfe8db85ccf85c38bd49fb5d9658dc62f87b34503dc15d95d7883a2f58e94550",
+      "match": true,
+      "n_rows": 1200,
+      "receipt_sha256": "bfe8db85ccf85c38bd49fb5d9658dc62f87b34503dc15d95d7883a2f58e94550"
+    },
+    "runs_full_openai_4o_v_fatf.csv": {
+      "actual_sha256": "f11423e204272be9dd2115808fb3afb8c58c945be41a96e930312c42d7336e0a",
+      "match": true,
+      "n_rows": 1200,
+      "receipt_sha256": "f11423e204272be9dd2115808fb3afb8c58c945be41a96e930312c42d7336e0a"
+    },
+    "runs_full_openai_4o_v_terse.csv": {
+      "actual_sha256": "fe953415ff5cd0693e429aace2f897fbfed4e2d6c4da11eb1ee5f5b3021746c3",
+      "match": true,
+      "n_rows": 1200,
+      "receipt_sha256": "fe953415ff5cd0693e429aace2f897fbfed4e2d6c4da11eb1ee5f5b3021746c3"
+    }
+  }
+}

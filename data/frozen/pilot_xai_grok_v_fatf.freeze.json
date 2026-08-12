@@ -1,0 +1,11 @@
+{
+  "subgrid": "pilot",
+  "model": "xai_grok",
+  "variant": "v_fatf",
+  "csv": "runs_pilot_xai_grok_v_fatf.csv",
+  "sha256": "8391addf2c8caebb57431c182ac8974e75dced2e2c508912bb7a9b3e43730428",
+  "n_rows": 480,
+  "n_error": 0,
+  "error_rate": 0.0,
+  "frozen_utc": "2026-07-15T14:04:19.954809+00:00"
+}

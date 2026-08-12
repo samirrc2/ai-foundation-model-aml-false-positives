@@ -1,0 +1,14 @@
+metadata_version: 1
+name: "Same Transactions, Different Alarms"
+description: >
+  Reproducibility capsule for "Same Transactions, Different Alarms:
+  Foundation-Model Choice as an Ungoverned Driver of False-Positive Burden in LLM
+  Anti-Money-Laundering Screening." From the frozen 12,000-call capture over five
+  foundation LLMs on a FATF/SAML-D-anchored 600-case battery, it regenerates and
+  verifies the battery (SHA-256), then reproduces every headline number: per-model
+  false-positive rates with cluster-bootstrap confidence intervals, the 82.7-point
+  false-positive spread and 85.7% cross-model disagreement, the rules and supervised
+  baselines, the operational alert-volume projection, the trade-based blind spot,
+  and prompt-robustness — plus a byte-identical reproducibility check.
+authors:
+  - name: "Samir Chincholikar"

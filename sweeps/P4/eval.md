@@ -1,7 +1,20 @@
 # killshot eval — P4 · "One Screener to Miss Them All" (AML monoculture)
 
-**Topic:** P4 · **Swept:** 2026-07-15 · **Novelty:** CLEAR · **Feasibility:** FEASIBLE (provisional)
-**Status line:** `Novelty: CLEAR · Feasibility: FEASIBLE (provisional — P2/P3/P5 counts pending live index sweep)`
+> ## ⛔ EMPIRICAL KILL — 2026-07-16 (supersedes the provisional feasibility below)
+> Two pre-registered pilots (v1 leaky battery; v2 hardened per `PREREGISTRATION_AMENDMENT.md`,
+> H1–H4 from FATF/SAML-D) both KILLED on criterion 2 (measurable base rate).
+> **v2 hardened result (REAL, config `45a398838805f39d`, spend $1.10, 0 ERROR):**
+> pooled per-model miss = **4.4%**, bounded **≤ 6.6% (Wilson 95%)**, 21/480 misses.
+> The few misses are **essentially uncorrelated** (miss-κ within 0.056 vs cross 0.060,
+> contrast ≈ 0). **Feasibility FALSIFIED:** misses are too rare *and* too uncorrelated
+> to estimate a joint-miss ratio affordably under BUDGET_FULL. Per the pre-committed
+> outcome map (Amendment A4 §2): **P4 → drawer; T4-A "From Flips to Dollars" swaps in
+> as P4.** The bounded negative is available as an optional post-filing short note.
+> Novelty was never the problem; the phenomenon does not exist at measurable scale
+> on realistically-serialized FATF typologies for these models.
+
+**Topic:** P4 · **Swept:** 2026-07-15 · **Novelty:** CLEAR · **Feasibility:** ❌ FALSIFIED (empirical, 2026-07-16)
+**Status line:** `Novelty: CLEAR · Feasibility: KILLED (2 pilots, pooled miss ≤6.6% CI95, misses uncorrelated) → T4-A swaps in`
 
 > Provenance note: literature-index APIs (OpenAlex / Semantic Scholar / arXiv /
 > Crossref) were unreachable from this environment, so the novelty axis was run

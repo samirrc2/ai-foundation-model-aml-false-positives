@@ -39,34 +39,72 @@ def _amt(r: random.Random, lo: int, hi: int, step: int = 10) -> int:
     return int(round(r.randint(lo, hi) / step) * step)
 
 
-def _day(r: random.Random, span: int = 120) -> str:
+def _day(r: random.Random, span: int = 150) -> str:
+    # H4: realistic temporal dispersion — irregular spacing across a wide window.
     return (_BASE_DATE + timedelta(days=r.randint(0, span))).isoformat()
+
+
+def _irregular_subthreshold(r: random.Random) -> int:
+    """H2: an irregular sub-$10k amount. Only a minority sit just under the CTR
+    line; most are dispersed, mixed round and non-round. No uniform tell."""
+    if r.random() < 0.30:
+        return int(r.randint(9000, 9950))                 # minority just-under
+    step = r.choice([1, 10, 50, 100])                     # single rounding factor
+    return int(round(r.randint(1200, 8600) / step) * step)
 
 
 def _acct(prefix: str, i: int) -> str:
     return f"{prefix}{i}"
 
 
-# ── serialization (label-free; this is what the screener sees) ──────────────
-def serialize(nodes: list[dict], edges: list[dict], context: str) -> str:
+# H3: benign background counterparties injected among the case accounts so the
+# typology signal is interleaved with ordinary volume (no isolated-signal tell).
+_BG_KINDS = [
+    ("PAYROLL", "employer_ach", "payroll", 1800, 5200),
+    ("VENDOR", "business_account", "invoice_payment", 400, 9000),
+    ("UTILITY", "biller", "utility_bill", 60, 900),
+    ("CARD", "card_acquirer", "card_settlement", 200, 4000),
+    ("RENT", "property_mgr", "rent", 900, 3500),
+    ("TAX", "tax_authority", "tax_payment", 300, 6000),
+]
+
+
+def _inject_background(r: random.Random, nodes: list[dict], edges: list[dict], diff: str) -> None:
+    n_bg = {"easy": 2, "medium": 5, "hard": 9}[diff]
+    acct_ids = [n["id"] for n in nodes
+                if str(n.get("type", "")).endswith("account") or n.get("type") in (
+                    "business_account", "personal_account", "corporate_treasury")]
+    if not acct_ids:
+        acct_ids = [nodes[0]["id"]]
+    for i in range(n_bg):
+        prefix, ntype, chan, lo, hi = r.choice(_BG_KINDS)
+        cp = _acct(prefix, i + 1)
+        nodes.append({"id": cp, "type": ntype})
+        a = r.choice(acct_ids)
+        inbound = r.random() < 0.5
+        src, dst = (cp, a) if inbound else (a, cp)
+        edges.append({"id": f"BG{i+1}", "src": src, "dst": dst,
+                      "amount": _amt(r, lo, hi), "date": _day(r), "channel": chan})
+
+
+# ── serialization (label-free, RAW LOGS ONLY — H1: no NL summary line) ───────
+def serialize(nodes: list[dict], edges: list[dict]) -> str:
     lines = ["NODES:"]
     for n in nodes:
         attrs = " ".join(f"{k}={v}" for k, v in n.items() if k != "id")
         lines.append(f"  {n['id']}  {attrs}")
     lines.append("EDGES (transfers, USD):")
     for e in edges:
-        note = f"  note={e['note']}" if e.get("note") else ""
         lines.append(f"  {e['id']}  {e['src']} -> {e['dst']}  amount={e['amount']:,}"
-                     f"  date={e['date']}  channel={e['channel']}{note}")
-    lines.append(f"CONTEXT: {context}")
+                     f"  date={e['date']}  channel={e['channel']}")
     return "\n".join(lines)
 
 
 # ── suspicious typology generators ──────────────────────────────────────────
 def gen_structuring(r, diff):
-    # sub-threshold deposits dodging the $10k CTR; hard => closer to threshold, fewer
+    # sub-threshold cash deposits dodging the $10k CTR (H2: irregular amounts across
+    # locations/dates, only a minority near the threshold — no uniform tell).
     n = {"easy": 9, "medium": 6, "hard": 4}[diff]
-    hi = {"easy": 9600, "medium": 9800, "hard": 9950}[diff]
     tgt = {"id": "ACC1", "type": "personal_account", "kyc": "basic", "country": "US",
            "opened": 2025}
     nodes = [tgt]
@@ -74,12 +112,11 @@ def gen_structuring(r, diff):
     for i in range(n):
         src = _acct("CASH", i + 1)
         nodes.append({"id": src, "type": "cash_deposit", "location": r.choice(
-            ["branch_A", "branch_B", "atm_7", "branch_C"])})
+            ["branch_A", "branch_B", "atm_7", "branch_C", "atm_2", "branch_E"])})
         edges.append({"id": f"E{i+1}", "src": src, "dst": "ACC1",
-                      "amount": _amt(r, hi - 400, hi), "date": _day(r, 20),
-                      "channel": "cash", "note": "just-below-threshold" if diff != "hard" else ""})
-    ctx = f"Single beneficiary receives {n} sub-$10,000 cash deposits within weeks."
-    return nodes, edges, ctx
+                      "amount": _irregular_subthreshold(r), "date": _day(r),
+                      "channel": "cash"})
+    return nodes, edges, ""
 
 
 def gen_layering(r, diff):
@@ -365,10 +402,16 @@ def _counts(total: int, keys: list[str], mix: dict[str, float], seed: int, tag: 
 def build_case(kind: str, key: str, diff: str, idx: int, seed: int) -> dict:
     r = _rng(seed, kind, key, diff, idx)
     gen = (SUSPICIOUS_GENS if kind == "suspicious" else BENIGN_GENS)[key]
-    nodes, edges, ctx = gen(r, diff)
+    nodes, edges, _ctx = gen(r, diff)              # H1: NL summary discarded
+    _inject_background(r, nodes, edges, diff)      # H3: interleave benign volume
+    # H3/H4: present as a single chronological ledger so the typology signal is
+    # interleaved with background volume rather than appearing first in isolation.
+    edges.sort(key=lambda e: (e["date"], e["id"]))
+    for i, e in enumerate(edges, 1):
+        e["id"] = f"T{i}"
     prefix = "S" if kind == "suspicious" else "B"
     case_id = f"{prefix}-{key}-{diff[:1]}-{idx:03d}"
-    body = serialize(nodes, edges, ctx)
+    body = serialize(nodes, edges)
     return {
         "case_id": case_id,
         "label": kind,                                   # suspicious | benign

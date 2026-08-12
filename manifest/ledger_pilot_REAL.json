@@ -1,0 +1,30 @@
+{
+  "cap": 10.0,
+  "cum_usd": 1.098076,
+  "per_model": {
+    "gemini_flash": {
+      "calls": 960,
+      "in_tok": 739552,
+      "out_tok": 47026,
+      "usd": 0.510867
+    },
+    "gemini_flash_lite": {
+      "calls": 960,
+      "in_tok": 739552,
+      "out_tok": 49406,
+      "usd": 0.140579
+    },
+    "openai_41_mini": {
+      "calls": 960,
+      "in_tok": 658936,
+      "out_tok": 39513,
+      "usd": 0.3268
+    },
+    "openai_4o_mini": {
+      "calls": 960,
+      "in_tok": 658936,
+      "out_tok": 35016,
+      "usd": 0.119844
+    }
+  }
+}

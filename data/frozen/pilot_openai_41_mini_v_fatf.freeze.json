@@ -1,0 +1,11 @@
+{
+  "subgrid": "pilot",
+  "model": "openai_41_mini",
+  "variant": "v_fatf",
+  "csv": "runs_pilot_openai_41_mini_v_fatf.csv",
+  "sha256": "c0e5ea093de3a1174ac7db1fde53469ce8a076c14365894d835fc227696910ab",
+  "n_rows": 480,
+  "n_error": 0,
+  "error_rate": 0.0,
+  "frozen_utc": "2026-07-15T15:21:03.835975+00:00"
+}

@@ -1,0 +1,355 @@
+{
+  "defense_in_depth": {
+    "heterogeneous_recovery_ci95": [
+      null,
+      null
+    ],
+    "heterogeneous_recovery_mean": null,
+    "homogeneous_recovery_mean": null,
+    "n_heterogeneous_pairs": 0,
+    "n_homogeneous_pairs": 0,
+    "pairs": [
+      {
+        "family_primary": "google",
+        "family_second": "google",
+        "heterogeneous": false,
+        "n": 120,
+        "p_primary": 0.0,
+        "p_second": 0.0,
+        "primary": "gemini_flash",
+        "recovery": null,
+        "reduction_observed": 0.0,
+        "reduction_promised": 0.0,
+        "residual_independence": 0.0,
+        "residual_observed": 0.0,
+        "second": "gemini_flash_lite"
+      },
+      {
+        "family_primary": "google",
+        "family_second": "openai",
+        "heterogeneous": true,
+        "n": 120,
+        "p_primary": 0.0,
+        "p_second": 0.0,
+        "primary": "gemini_flash",
+        "recovery": null,
+        "reduction_observed": 0.0,
+        "reduction_promised": 0.0,
+        "residual_independence": 0.0,
+        "residual_observed": 0.0,
+        "second": "openai_41_mini"
+      },
+      {
+        "family_primary": "google",
+        "family_second": "openai",
+        "heterogeneous": true,
+        "n": 120,
+        "p_primary": 0.0,
+        "p_second": 0.0,
+        "primary": "gemini_flash",
+        "recovery": null,
+        "reduction_observed": 0.0,
+        "reduction_promised": 0.0,
+        "residual_independence": 0.0,
+        "residual_observed": 0.0,
+        "second": "openai_4o_mini"
+      },
+      {
+        "family_primary": "google",
+        "family_second": "google",
+        "heterogeneous": false,
+        "n": 120,
+        "p_primary": 0.0,
+        "p_second": 0.0,
+        "primary": "gemini_flash_lite",
+        "recovery": null,
+        "reduction_observed": 0.0,
+        "reduction_promised": 0.0,
+        "residual_independence": 0.0,
+        "residual_observed": 0.0,
+        "second": "gemini_flash"
+      },
+      {
+        "family_primary": "google",
+        "family_second": "openai",
+        "heterogeneous": true,
+        "n": 120,
+        "p_primary": 0.0,
+        "p_second": 0.0,
+        "primary": "gemini_flash_lite",
+        "recovery": null,
+        "reduction_observed": 0.0,
+        "reduction_promised": 0.0,
+        "residual_independence": 0.0,
+        "residual_observed": 0.0,
+        "second": "openai_41_mini"
+      },
+      {
+        "family_primary": "google",
+        "family_second": "openai",
+        "heterogeneous": true,
+        "n": 120,
+        "p_primary": 0.0,
+        "p_second": 0.0,
+        "primary": "gemini_flash_lite",
+        "recovery": null,
+        "reduction_observed": 0.0,
+        "reduction_promised": 0.0,
+        "residual_independence": 0.0,
+        "residual_observed": 0.0,
+        "second": "openai_4o_mini"
+      },
+      {
+        "family_primary": "openai",
+        "family_second": "google",
+        "heterogeneous": true,
+        "n": 120,
+        "p_primary": 0.0,
+        "p_second": 0.0,
+        "primary": "openai_41_mini",
+        "recovery": null,
+        "reduction_observed": 0.0,
+        "reduction_promised": 0.0,
+        "residual_independence": 0.0,
+        "residual_observed": 0.0,
+        "second": "gemini_flash"
+      },
+      {
+        "family_primary": "openai",
+        "family_second": "google",
+        "heterogeneous": true,
+        "n": 120,
+        "p_primary": 0.0,
+        "p_second": 0.0,
+        "primary": "openai_41_mini",
+        "recovery": null,
+        "reduction_observed": 0.0,
+        "reduction_promised": 0.0,
+        "residual_independence": 0.0,
+        "residual_observed": 0.0,
+        "second": "gemini_flash_lite"
+      },
+      {
+        "family_primary": "openai",
+        "family_second": "openai",
+        "heterogeneous": false,
+        "n": 120,
+        "p_primary": 0.0,
+        "p_second": 0.0,
+        "primary": "openai_41_mini",
+        "recovery": null,
+        "reduction_observed": 0.0,
+        "reduction_promised": 0.0,
+        "residual_independence": 0.0,
+        "residual_observed": 0.0,
+        "second": "openai_4o_mini"
+      },
+      {
+        "family_primary": "openai",
+        "family_second": "google",
+        "heterogeneous": true,
+        "n": 120,
+        "p_primary": 0.0,
+        "p_second": 0.0,
+        "primary": "openai_4o_mini",
+        "recovery": null,
+        "reduction_observed": 0.0,
+        "reduction_promised": 0.0,
+        "residual_independence": 0.0,
+        "residual_observed": 0.0,
+        "second": "gemini_flash"
+      },
+      {
+        "family_primary": "openai",
+        "family_second": "google",
+        "heterogeneous": true,
+        "n": 120,
+        "p_primary": 0.0,
+        "p_second": 0.0,
+        "primary": "openai_4o_mini",
+        "recovery": null,
+        "reduction_observed": 0.0,
+        "reduction_promised": 0.0,
+        "residual_independence": 0.0,
+        "residual_observed": 0.0,
+        "second": "gemini_flash_lite"
+      },
+      {
+        "family_primary": "openai",
+        "family_second": "openai",
+        "heterogeneous": false,
+        "n": 120,
+        "p_primary": 0.0,
+        "p_second": 0.0,
+        "primary": "openai_4o_mini",
+        "recovery": null,
+        "reduction_observed": 0.0,
+        "reduction_promised": 0.0,
+        "residual_independence": 0.0,
+        "residual_observed": 0.0,
+        "second": "openai_41_mini"
+      }
+    ],
+    "recovery_below_1": null
+  },
+  "marginal_miss_rates": {
+    "per_model": {
+      "gemini_flash": {
+        "family": "google",
+        "miss_rate": 0.0,
+        "n": 120,
+        "wilson_ci": [
+          -3.469446951953614e-18,
+          0.031020271055929513
+        ]
+      },
+      "gemini_flash_lite": {
+        "family": "google",
+        "miss_rate": 0.0,
+        "n": 120,
+        "wilson_ci": [
+          -3.469446951953614e-18,
+          0.031020271055929513
+        ]
+      },
+      "openai_41_mini": {
+        "family": "openai",
+        "miss_rate": 0.0,
+        "n": 120,
+        "wilson_ci": [
+          -3.469446951953614e-18,
+          0.031020271055929513
+        ]
+      },
+      "openai_4o_mini": {
+        "family": "openai",
+        "miss_rate": 0.0,
+        "n": 120,
+        "wilson_ci": [
+          -3.469446951953614e-18,
+          0.031020271055929513
+        ]
+      }
+    },
+    "pooled": 0.0
+  },
+  "meta": {
+    "analysis_seed": 4242,
+    "battery_sha256": {
+      "full": "12169c5d467abdfff5ab1e235042d8ea018918877660de7051391e4d54a7007f",
+      "pilot": "48ee5fead84358fdb1fd991adabbb8abd1ebdeb5bc5bfb950b83dc1e84bf9bfa"
+    },
+    "bootstrap_draws": 2000,
+    "budget_cap_usd": 10.0,
+    "config_hash": "44d182dea86c0285",
+    "error_rate": 0.0,
+    "families": {
+      "gemini_flash": "google",
+      "gemini_flash_lite": "google",
+      "openai_41_mini": "openai",
+      "openai_4o_mini": "openai"
+    },
+    "mode": "REAL",
+    "models": [
+      "gemini_flash",
+      "gemini_flash_lite",
+      "openai_41_mini",
+      "openai_4o_mini"
+    ],
+    "n_common_support": 120,
+    "n_error": 0,
+    "n_rows": 3840,
+    "n_suspicious_cases": 120,
+    "prompt_variants": [
+      "v_fatf",
+      "v_terse"
+    ],
+    "seed_indices": [
+      0,
+      1
+    ],
+    "spend_usd": 0.887105,
+    "subgrid": "pilot"
+  },
+  "pairwise_agreement_on_misses": {
+    "gwet_ac1_matrix": {
+      "gemini_flash_lite|openai_41_mini": 1.0,
+      "gemini_flash_lite|openai_4o_mini": 1.0,
+      "gemini_flash|gemini_flash_lite": 1.0,
+      "gemini_flash|openai_41_mini": 1.0,
+      "gemini_flash|openai_4o_mini": 1.0,
+      "openai_41_mini|openai_4o_mini": 1.0
+    },
+    "kappa_matrix": {
+      "gemini_flash_lite|openai_41_mini": null,
+      "gemini_flash_lite|openai_4o_mini": null,
+      "gemini_flash|gemini_flash_lite": null,
+      "gemini_flash|openai_41_mini": null,
+      "gemini_flash|openai_4o_mini": null,
+      "openai_41_mini|openai_4o_mini": null
+    },
+    "scott_pi_matrix": {
+      "gemini_flash_lite|openai_41_mini": null,
+      "gemini_flash_lite|openai_4o_mini": null,
+      "gemini_flash|gemini_flash_lite": null,
+      "gemini_flash|openai_41_mini": null,
+      "gemini_flash|openai_4o_mini": null,
+      "openai_41_mini|openai_4o_mini": null
+    }
+  },
+  "pilot_gate": {
+    "criterion_1_ran_clean": true,
+    "criterion_2_base_rate_in_band": false,
+    "criterion_3_contrast_computable": false,
+    "criterion_3_signal": false,
+    "error_rate": 0.0,
+    "joint_miss_ratio": null,
+    "pooled_miss_rate": 0.0,
+    "spend_usd": 0.887105
+  },
+  "primary_joint_miss": {
+    "ci_excludes_1": null,
+    "j_independence": 0.0,
+    "j_observed": 0.0,
+    "j_observed_ci95": [
+      0.0,
+      0.0
+    ],
+    "n_strata": 8,
+    "ratio": null,
+    "ratio_ci95": [
+      null,
+      null
+    ]
+  },
+  "robustness": {
+    "per_variant": {
+      "v_fatf": "pooled into modal vote (see PREREGISTRATION \u00a76)",
+      "v_terse": "pooled into modal vote (see PREREGISTRATION \u00a76)"
+    },
+    "prevalence_churn": {
+      "marginal_miss_spread": 0.0,
+      "mean_churn_component": 0.0,
+      "mean_disagreement": 0.0,
+      "mean_prevalence_component": 0.0
+    }
+  },
+  "systemic_failure_ratio": {
+    "note": "Bommasani homogenization metric (== primary ratio for the full set)",
+    "value": null
+  },
+  "within_vs_cross_family": {
+    "contrast": null,
+    "contrast_ci95": [
+      null,
+      null
+    ],
+    "cross_family_joint_ratio_mean": null,
+    "cross_family_mean": null,
+    "n_cross_pairs": 4,
+    "n_within_pairs": 2,
+    "stat": "kappa",
+    "within_family_joint_ratio_mean": null,
+    "within_family_mean": null
+  }
+}

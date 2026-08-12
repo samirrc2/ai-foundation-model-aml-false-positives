@@ -1,0 +1,11 @@
+{
+  "subgrid": "pilot",
+  "model": "gemini_flash_lite",
+  "variant": "v_fatf",
+  "csv": "runs_pilot_gemini_flash_lite_v_fatf.csv",
+  "sha256": "32bd41fc1d586ae740bdf6bf2b8c94d6cdd067aae2e872259ec4ce2ac350c245",
+  "n_rows": 480,
+  "n_error": 0,
+  "error_rate": 0.0,
+  "frozen_utc": "2026-07-15T15:48:17.565264+00:00"
+}

@@ -1,0 +1,10 @@
+{
+  "model": "gemini_flash_lite",
+  "variant": "v_terse",
+  "csv": "runs_gemini_flash_lite_v_terse.csv",
+  "sha256": "2d4c352b93105f1fda1d480924bfe9784ee2ad15474442d38ac9ae2fdc11c523",
+  "n_rows": 480,
+  "n_error": 0,
+  "error_rate": 0.0,
+  "frozen_utc": "2026-07-15T13:49:26.177111+00:00"
+}

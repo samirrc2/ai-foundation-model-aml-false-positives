@@ -1,0 +1,10 @@
+{
+  "model": "gemini_flash",
+  "variant": "v_fatf",
+  "csv": "runs_gemini_flash_v_fatf.csv",
+  "sha256": "686d3058ed010923eff5d88002ff8a9b160f16c827db178cfc689766366015f2",
+  "n_rows": 480,
+  "n_error": 0,
+  "error_rate": 0.0,
+  "frozen_utc": "2026-07-15T13:49:25.960482+00:00"
+}
