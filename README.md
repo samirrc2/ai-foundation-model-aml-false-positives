@@ -98,7 +98,7 @@ Dependencies are in `capsule/code/requirements.txt`, pinned to the tested, byte-
 
 - `numpy==2.2.6` — analysis (required)
 - `scikit-learn==1.7.2` — rules/supervised baselines (required)
-- `scipy==1.15.2` — Cochran's Q + McNemar exact P-values (required)
+- `scipy==1.18.0` — Cochran's Q + McNemar exact P-values (required)
 - `pyyaml==6.0.3` — configuration parsing (required)
 - `pydantic==2.13.4` — configuration schema validation (required)
 - `matplotlib` — optional, figure regeneration only

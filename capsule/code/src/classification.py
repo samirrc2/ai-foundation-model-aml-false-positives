@@ -113,6 +113,20 @@ def mcnemar_exact(b, c):
     return min(1.0, 2 * sum(_sp.binom.pmf(i, n, 0.5) for i in range(k + 1)))
 
 
+def _round4(obj):
+    """Round floats to 4 decimal places so JSON is bit-identical across scipy/OS."""
+    if isinstance(obj, float):
+        v = round(obj, 4)
+        return 0.0 if v == 0.0 else v
+    if isinstance(obj, dict):
+        return {k: _round4(v) for k, v in obj.items()}
+    if isinstance(obj, list):
+        return [_round4(v) for v in obj]
+    if isinstance(obj, tuple):
+        return type(obj)(_round4(v) for v in obj)
+    return obj
+
+
 def run():
     cap = _capture_dir(); out = _results_dir()
     rows = _load(cap)
@@ -184,13 +198,13 @@ def run():
             w.writerow([NICE[m], d["family"]] + [f"{d[k]*100:.1f}" for k in
                        ("precision", "recall", "specificity", "f1", "balanced_accuracy")] +
                        [f"{d['mcc']:.3f}"] + [f"{d[k]*100:.1f}" for k in ("accuracy", "npv", "fpr", "miss_rate")])
-    (out / "stats_tests.json").write_text(json.dumps(
-        {"tie_rule": "ties->flag (D4), applied to tables AND figures",
+    (out / "stats_tests.json").write_text(json.dumps(_round4(
+        {"tie_rule": "ties->flag (D4), applied to tables AND figures; floats rounded to 4 d.p.",
          "cochran_q": {"Q": Q, "df": df, "p": pq, "n_cases": len(bcases), "k_models": len(models)},
          "pairwise_mcnemar": pairs,
          "per_model_fp_miss": {NICE[m]: {"fp": per_model[NICE[m]]["fpr"],
                                          "miss": per_model[NICE[m]]["miss_rate"]} for m in models},
-         "per_typology_miss": typ_stats}, indent=2, sort_keys=True, default=float))
+         "per_typology_miss": typ_stats}), indent=2, sort_keys=True, default=float))
     (out / "prompt_sensitivity.json").write_text(json.dumps(psens, indent=2, sort_keys=True))
     with (out / "prompt_sensitivity.csv").open("w", newline="") as f:
         w = csv.writer(f); w.writerow(["Model"] + variants + ["delta_pp"])

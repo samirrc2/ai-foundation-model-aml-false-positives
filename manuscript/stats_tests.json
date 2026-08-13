@@ -1,6 +1,6 @@
 {
   "cochran_q": {
-    "Q": 131.55297906602254,
+    "Q": 131.553,
     "df": 4,
     "k_models": 5,
     "n_cases": 300,
@@ -10,38 +10,38 @@
     "GPT-4.1-mini vs GPT-4o-mini": {
       "b": 1,
       "c": 179,
-      "p_bonferroni": 2.3621602174154475e-51,
-      "p_exact": 2.3621602174154473e-52
+      "p_bonferroni": 0.0,
+      "p_exact": 0.0
     },
     "GPT-4.1-mini vs Gemini Flash-Lite": {
       "b": 42,
       "c": 45,
       "p_bonferroni": 1.0,
-      "p_exact": 0.8303730096857536
+      "p_exact": 0.8304
     },
     "GPT-4o vs GPT-4.1-mini": {
       "b": 0,
       "c": 68,
-      "p_bonferroni": 6.776263578034371e-20,
-      "p_exact": 6.776263578034372e-21
+      "p_bonferroni": 0.0,
+      "p_exact": 0.0
     },
     "GPT-4o vs GPT-4o-mini": {
       "b": 0,
       "c": 246,
-      "p_bonferroni": 1.7686873200833542e-73,
-      "p_exact": 1.768687320083354e-74
+      "p_bonferroni": 0.0,
+      "p_exact": 0.0
     },
     "GPT-4o vs Gemini Flash-Lite": {
       "b": 0,
       "c": 71,
-      "p_bonferroni": 8.470329472542969e-21,
-      "p_exact": 8.470329472542969e-22
+      "p_bonferroni": 0.0,
+      "p_exact": 0.0
     },
     "Gemini Flash vs GPT-4.1-mini": {
       "b": 1,
       "c": 71,
-      "p_bonferroni": 3.0916702574782184e-19,
-      "p_exact": 3.0916702574782185e-20
+      "p_bonferroni": 0.0,
+      "p_exact": 0.0
     },
     "Gemini Flash vs GPT-4o": {
       "b": 1,
@@ -52,58 +52,58 @@
     "Gemini Flash vs GPT-4o-mini": {
       "b": 0,
       "c": 248,
-      "p_bonferroni": 4.421718300208333e-74,
-      "p_exact": 4.4217183002083326e-75
+      "p_bonferroni": 0.0,
+      "p_exact": 0.0
     },
     "Gemini Flash vs Gemini Flash-Lite": {
       "b": 1,
       "c": 74,
-      "p_bonferroni": 4.0234064994579435e-20,
-      "p_exact": 4.023406499457943e-21
+      "p_bonferroni": 0.0,
+      "p_exact": 0.0
     },
     "Gemini Flash-Lite vs GPT-4o-mini": {
       "b": 8,
       "c": 183,
-      "p_bonferroni": 2.5218615682949298e-43,
-      "p_exact": 2.52186156829493e-44
+      "p_bonferroni": 0.0,
+      "p_exact": 0.0
     }
   },
   "per_model_fp_miss": {
     "GPT-4.1-mini": {
-      "fp": 0.23666666666666666,
-      "miss": 0.03666666666666667
+      "fp": 0.2367,
+      "miss": 0.0367
     },
     "GPT-4o": {
       "fp": 0.01,
-      "miss": 0.03333333333333333
+      "miss": 0.0333
     },
     "GPT-4o-mini": {
       "fp": 0.83,
       "miss": 0.0
     },
     "Gemini Flash": {
-      "fp": 0.0033333333333333335,
+      "fp": 0.0033,
       "miss": 0.12
     },
     "Gemini Flash-Lite": {
-      "fp": 0.24666666666666667,
-      "miss": 0.006666666666666667
+      "fp": 0.2467,
+      "miss": 0.0067
     }
   },
   "per_typology_miss": {
     "cash_intensive_front": {
       "ci": [
-        0.06673918450520244,
-        0.15483063909298778
+        0.0667,
+        0.1548
       ],
       "k": 19,
-      "miss": 0.10270270270270271,
+      "miss": 0.1027,
       "n": 185
     },
     "funnel_account": {
       "ci": [
         0.0,
-        0.02034297527663396
+        0.0203
       ],
       "k": 0,
       "miss": 0.0,
@@ -112,7 +112,7 @@
     "layering": {
       "ci": [
         0.0,
-        0.019818243349208835
+        0.0198
       ],
       "k": 0,
       "miss": 0.0,
@@ -121,7 +121,7 @@
     "mule_network": {
       "ci": [
         0.0,
-        0.019818243349208835
+        0.0198
       ],
       "k": 0,
       "miss": 0.0,
@@ -129,17 +129,17 @@
     },
     "rapid_passthrough": {
       "ci": [
-        0.0055299415368799225,
-        0.046585694001052405
+        0.0055,
+        0.0466
       ],
       "k": 3,
-      "miss": 0.016216216216216217,
+      "miss": 0.0162,
       "n": 185
     },
     "shell_layering": {
       "ci": [
         0.0,
-        0.02034297527663396
+        0.0203
       ],
       "k": 0,
       "miss": 0.0,
@@ -147,22 +147,22 @@
     },
     "structuring": {
       "ci": [
-        0.0009296576420357184,
-        0.02920628840876039
+        0.0009,
+        0.0292
       ],
       "k": 1,
-      "miss": 0.005263157894736842,
+      "miss": 0.0053,
       "n": 190
     },
     "trade_based": {
       "ci": [
-        0.1401171593217027,
-        0.25113838128464805
+        0.1401,
+        0.2511
       ],
       "k": 36,
-      "miss": 0.18947368421052632,
+      "miss": 0.1895,
       "n": 190
     }
   },
-  "tie_rule": "ties->flag (D4), applied to tables AND figures"
+  "tie_rule": "ties->flag (D4), applied to tables AND figures; floats rounded to 4 d.p."
 }

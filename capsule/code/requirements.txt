@@ -4,7 +4,7 @@
 # Versions pinned to the tested, byte-identical environment (see environment/Dockerfile).
 numpy==2.2.6
 scikit-learn==1.7.2      # rules/supervised baselines (deterministic, seeded)
-scipy==1.15.2            # Cochran's Q + McNemar exact P-values (classification.py)
+scipy==1.18.0            # Cochran's Q + McNemar exact P-values (classification.py)
 pyyaml==6.0.3            # config parsing
 pydantic==2.13.4         # config schema validation
 pytest==8.3.5            # optional: code/tests sanity checks on the reproduced numbers

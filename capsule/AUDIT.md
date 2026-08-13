@@ -38,10 +38,10 @@ the estimands and the modal-vote tie rule were fixed in advance — see
 - No `.env` / `keys.env` committed; `.gitignore` blocks them.
 
 ## 5. Environment
-- `environment/Dockerfile` pins numpy 2.2.6, scikit-learn 1.7.2, scipy 1.15.2,
+- `environment/Dockerfile` pins numpy 2.2.6, scikit-learn 1.7.2, scipy 1.18.0,
   pyyaml 6.0.3, pydantic 2.13.4 (and pytest 8.3.5 for the optional tests) on a Code
   Ocean base image; matches `code/requirements.txt`. scipy backs the Cochran's Q and
-  McNemar exact P-values in `classification.py`.
+  McNemar exact P-values in `classification.py` (floats rounded to 4 d.p.).
 - Analysis uses only these + the Python standard library. No network, no API keys,
   no cost. The data-collection SDKs (openai, google-genai) are **not** installed in
   the Reproducible Run environment — capture is out of scope for this capsule.
