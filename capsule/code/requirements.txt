@@ -1,0 +1,13 @@
+# Offline reproduction of "The choice of foundation model determines the
+# false-positive burden of LLM anti-money-laundering transaction screening".
+# Analysis is pure Python + these packages; no network, no API SDKs required.
+# Versions pinned to the tested, byte-identical environment (see environment/Dockerfile).
+numpy==2.2.6
+scikit-learn==1.7.2      # rules/supervised baselines (deterministic, seeded)
+scipy==1.15.2            # Cochran's Q + McNemar exact P-values (classification.py)
+pyyaml==6.0.3            # config parsing
+pydantic==2.13.4         # config schema validation
+pytest==8.3.5            # optional: code/tests sanity checks on the reproduced numbers
+
+# Note: the DATA-COLLECTION harness (code/capture/, not part of the Reproducible
+# Run) additionally uses openai>=1.40 and google-genai>=0.3 and requires API keys.

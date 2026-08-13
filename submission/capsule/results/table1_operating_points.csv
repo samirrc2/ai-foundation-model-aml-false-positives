@@ -1,6 +1,0 @@
-model,family,fp_rate,fp_ci95_low,fp_ci95_high,miss_rate
-Gemini Flash,google,0.0033,0.0006,0.0186,0.12
-GPT-4o,openai,0.01,0.0034,0.029,0.0333
-GPT-4.1-mini,openai,0.2367,0.1921,0.2879,0.0367
-Gemini Flash-Lite,google,0.2467,0.2013,0.2984,0.0067
-GPT-4o-mini,openai,0.83,0.7834,0.8683,0.0

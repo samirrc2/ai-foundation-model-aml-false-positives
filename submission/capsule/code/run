@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-# Code Ocean "Reproducible Run" entry point.
-# On Code Ocean: /code/run -> repo root is / ; locally -> repo root is code/..
-set -euo pipefail
-cd "$(dirname "$0")/.."
-exec bash code/scripts/reproduce.sh "$@"

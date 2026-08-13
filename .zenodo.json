@@ -1,0 +1,15 @@
+{
+  "title": "Same Transactions, Different Alarms: reproducibility capsule and manuscript package",
+  "upload_type": "software",
+  "description": "Frozen 12,000-call dataset and deterministic, offline analysis pipeline that reproduces every quantitative result in \"The choice of foundation model determines the false-positive burden of large language model anti-money-laundering transaction screening\" (Discover Artificial Intelligence). Five foundation LLMs are evaluated as zero-shot AML screeners over an identical, pre-registered 600-case FATF/SAML-D-anchored battery; per-model false-positive rates span 0.3%-83.0% on identical legitimate transactions. Includes battery generator, frozen capture, paired inferential statistics (Cochran's Q, McNemar exact, Wilson and cluster-bootstrap CIs), SHA-256 integrity receipts, byte-identical replication check, pre-registration, and the manuscript package.",
+  "access_right": "open",
+  "license": "MIT",
+  "keywords": ["anti-money laundering", "large language models", "false positives", "model risk", "foundation models", "transaction monitoring", "reproducibility", "AI governance"],
+  "creators": [
+    {"name": "Chincholikar, Samir", "orcid": "0009-0007-2779-3492"},
+    {"name": "Chawla, Robin", "orcid": "0009-0007-2807-3948"}
+  ],
+  "related_identifiers": [
+    {"relation": "isSupplementTo", "identifier": "10.24433/CO.4804007.v1", "scheme": "doi"}
+  ]
+}

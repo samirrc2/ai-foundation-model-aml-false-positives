@@ -1,0 +1,43 @@
+cff-version: 1.2.0
+message: "If you use this artifact, please cite the article and the Code Ocean capsule."
+title: "Same Transactions, Different Alarms: reproducibility capsule (Discover Artificial Intelligence)"
+abstract: >-
+  Frozen dataset and deterministic analysis pipeline that reproduces every
+  quantitative claim in "The choice of foundation model determines the
+  false-positive burden of large language model anti-money-laundering
+  transaction screening," including SHA-256 data integrity and byte-identical
+  replication checks.
+type: software
+authors:
+  - family-names: Chincholikar
+    given-names: Samir
+    orcid: "https://orcid.org/0009-0007-2779-3492"
+  - family-names: Chawla
+    given-names: Robin
+    orcid: "https://orcid.org/0009-0007-2807-3948"
+repository-code: "https://github.com/samirrc2/same-transactions-different-alarms"
+identifiers:
+  - type: doi
+    value: "10.24433/CO.4804007.v1"
+    description: "Code Ocean compute capsule"
+url: "https://doi.org/10.24433/CO.4804007.v1"
+license: MIT
+keywords:
+  - anti-money laundering
+  - large language models
+  - false positives
+  - foundation models
+  - transaction monitoring
+  - reproducibility
+preferred-citation:
+  type: article
+  title: "The choice of foundation model determines the false-positive burden of large language model anti-money-laundering transaction screening"
+  authors:
+    - family-names: Chincholikar
+      given-names: Samir
+      orcid: "https://orcid.org/0009-0007-2779-3492"
+    - family-names: Chawla
+      given-names: Robin
+      orcid: "https://orcid.org/0009-0007-2807-3948"
+  journal: "Discover Artificial Intelligence"
+  year: 2026
