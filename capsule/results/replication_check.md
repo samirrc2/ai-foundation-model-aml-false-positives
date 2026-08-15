@@ -12,7 +12,7 @@
 | metrics_summary.md | `a2900058e5e624e2…` | ✓ |
 | pivot_claims.json | `637fbc2f521ed63b…` | ✓ |
 | prompt_sensitivity.csv | `776443ed3de48667…` | ✓ |
-| stats_tests.json | `7154a7b0e9a143ab…` | ✓ |
+| stats_tests.json | `3d99a869b38ff6f9…` | ✓ |
 | table1_operating_points.csv | `e7db52d90e637294…` | ✓ |
 | table2_alert_volume.csv | `7e79c57df58e3e85…` | ✓ |
 
