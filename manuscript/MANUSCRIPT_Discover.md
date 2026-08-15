@@ -1,4 +1,4 @@
-# The choice of foundation model determines the false-positive burden of large language model anti-money-laundering transaction screening
+# Same Transactions, Different Alarms: Foundation-Model Choice and AML False Positives
 
 *Prepared for **Discover Artificial Intelligence** (Springer Nature). Research article.*
 

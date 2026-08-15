@@ -3,9 +3,8 @@ message: "If you use this artifact, please cite the article and the Code Ocean c
 title: "Same Transactions, Different Alarms: reproducibility capsule (Discover Artificial Intelligence)"
 abstract: >-
   Frozen dataset and deterministic analysis pipeline that reproduces every
-  quantitative claim in "The choice of foundation model determines the
-  false-positive burden of large language model anti-money-laundering
-  transaction screening," including SHA-256 data integrity and byte-identical
+  quantitative claim in "Same Transactions, Different Alarms: Foundation-Model
+  Choice and AML False Positives," including SHA-256 data integrity and byte-identical
   replication checks.
 type: software
 authors:
@@ -31,7 +30,7 @@ keywords:
   - reproducibility
 preferred-citation:
   type: article
-  title: "The choice of foundation model determines the false-positive burden of large language model anti-money-laundering transaction screening"
+  title: "Same Transactions, Different Alarms: Foundation-Model Choice and AML False Positives"
   authors:
     - family-names: Chincholikar
       given-names: Samir

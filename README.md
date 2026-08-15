@@ -2,7 +2,7 @@
 
 Computational artifact for the Discover Artificial Intelligence article:
 
-**The choice of foundation model determines the false-positive burden of large language model anti-money-laundering transaction screening**
+**Same Transactions, Different Alarms: Foundation-Model Choice and AML False Positives**
 
 ### Paper summary
 
@@ -24,7 +24,7 @@ This repository is the frozen dataset and deterministic analysis pipeline that r
 
 | Field | Value |
 |-------|-------|
-| **Article title** | The choice of foundation model determines the false-positive burden of large language model anti-money-laundering transaction screening |
+| **Article title** | Same Transactions, Different Alarms: Foundation-Model Choice and AML False Positives |
 | **Authors** | Samir Chincholikar, Robin Chawla |
 | **Affiliations** | Independent researchers |
 | **Code repository** | https://github.com/samirrc2/same-transactions-different-alarms |

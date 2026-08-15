@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<style xmlns="http://purl.org/net/xbiblio/csl" class="in-text" version="1.0" default-locale="en-US">
+  <info>
+    <title>SN Numeric (alphabetical)</title>
+    <id>sn-numeric-alpha</id>
+    <category citation-format="numeric"/>
+    <updated>2026-01-01T00:00:00+00:00</updated>
+  </info>
+  <macro name="author">
+    <names variable="author">
+      <name and="text" initialize-with="" delimiter=", " name-as-sort-order="all"/>
+      <substitute><text variable="title"/></substitute>
+    </names>
+  </macro>
+  <citation collapse="citation-number">
+    <sort><key variable="citation-number"/></sort>
+    <layout prefix="[" suffix="]" delimiter=", ">
+      <text variable="citation-number"/>
+    </layout>
+  </citation>
+  <bibliography second-field-align="flush">
+    <sort>
+      <key macro="author"/>
+      <key variable="issued"/>
+    </sort>
+    <layout>
+      <text variable="citation-number" prefix="[" suffix="] "/>
+      <group delimiter=". " suffix=".">
+        <text macro="author"/>
+        <text variable="title"/>
+        <group delimiter=" ">
+          <text variable="container-title"/>
+          <text variable="volume"/>
+          <text variable="page"/>
+          <date variable="issued"><date-part name="year" prefix="(" suffix=")"/></date>
+        </group>
+      </group>
+      <text variable="DOI" prefix=" https://doi.org/"/>
+    </layout>
+  </bibliography>
+</style>

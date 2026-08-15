@@ -1,6 +1,6 @@
 # Code Ocean capsule environment for
-# "The choice of foundation model determines the false-positive burden of large
-#  language model anti-money-laundering transaction screening" (Discover AI).
+# "Same Transactions, Different Alarms: Foundation-Model Choice and AML False
+#  Positives" (Discover AI).
 #
 # Offline reproduction only: no network, no API keys, no cost. The pinned pip
 # packages match code/requirements.txt exactly. The data-collection SDKs

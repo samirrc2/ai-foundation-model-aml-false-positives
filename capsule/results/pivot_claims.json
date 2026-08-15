@@ -180,7 +180,7 @@
     "n_benign": 300,
     "n_rows": 12120,
     "n_suspicious": 300,
-    "paper": "The choice of foundation model determines the false-positive burden of LLM anti-money-laundering transaction screening",
+    "paper": "Same Transactions, Different Alarms: Foundation-Model Choice and AML False Positives",
     "status": "CONFIRMATORY: pre-registered full run over the five foundation models (see docs/PREREGISTRATION.md and docs/DECISIONS.md)",
     "subgrid": "full"
   }

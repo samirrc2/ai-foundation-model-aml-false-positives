@@ -157,8 +157,8 @@ def analyse(subgrid: str, draws: int, seed: int, allow_unfrozen: bool) -> dict:
     rates = [fp[m]["fp_rate"] for m in mt.models if fp[m]["fp_rate"] is not None]
     return {
         "meta": {
-            "paper": "The choice of foundation model determines the false-positive "
-                     "burden of LLM anti-money-laundering transaction screening",
+            "paper": "Same Transactions, Different Alarms: Foundation-Model Choice "
+                     "and AML False Positives",
             "status": "CONFIRMATORY: pre-registered full run over the five foundation "
                       "models (see docs/PREREGISTRATION.md and docs/DECISIONS.md)",
             "subgrid": subgrid, "mode": mt.mode, "config_hash": cfg.config_hash(),

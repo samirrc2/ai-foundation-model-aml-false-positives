@@ -1,7 +1,7 @@
 # Same Transactions, Different Alarms — reproducibility capsule
 
 **Journal:** *Discover Artificial Intelligence* (Springer Nature)  
-**Paper:** *The choice of foundation model determines the false-positive burden of large language model anti-money-laundering transaction screening.*  
+**Paper:** *Same Transactions, Different Alarms: Foundation-Model Choice and AML False Positives.*  
 **Authors:** Samir Chincholikar; Robin Chawla (corresponding)  
 **Code Ocean DOI:** https://doi.org/10.24433/CO.4804007 (this build supersedes v1; mint a new version on re-upload)  
 **GitHub:** https://github.com/samirrc2/same-transactions-different-alarms

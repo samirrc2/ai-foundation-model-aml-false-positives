@@ -1,4 +1,4 @@
-\begin{thebibliography}{34}
+\begin{thebibliography}{43}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{{#1}}
 \providecommand{\urlprefix}{URL }
@@ -6,23 +6,49 @@
 \providecommand{\eprint}[2][]{\url{#2}}
  \bibcommenthead
 
+\bibitem[{Al-Hashedi and Magalingam(2021)}]{alhashedi}
+Al-Hashedi KG, Magalingam P (2021) Financial fraud detection applying data
+  mining techniques: a comprehensive review from 2009 to 2019. Comput Sci Rev
+  40:100402. \doi{10.1016/j.cosrev.2021.100402}
+
+\bibitem[{Alshatri et~al.(2026)Alshatri, Ghannam, and Hussain}]{disc-alshatri}
+Alshatri N, Ghannam S, Hussain FK (2026) Intelligent data-driven models for the
+  accurate multi-factor prediction of carbon credit prices. Discov Artif Intell
+  6:571. \doi{10.1007/s44163-026-00894-0}
+
+\bibitem[{Altman et~al.(2023)Altman, Blanu{\v s}a, von Niederh{\"a}usern,
+  Egressy, Anghel, and Atasu}]{altman}
+Altman E, Blanu{\v s}a J, von Niederh{\"a}usern L, et~al (2023) Realistic
+  synthetic financial transactions for anti-money laundering models. In: Adv.
+  Neural Inf. Process. Syst.
+
+\bibitem[{Bekkaye et~al.(2025)Bekkaye, Oukhouya, Zari, and
+  Guerbaz}]{disc-bekkaye}
+Bekkaye C, Oukhouya H, Zari T, et~al (2025) Generative hybrid models for fraud
+  detection in auto insurance with a comparative analysis of {VAE}, {GAN}, and
+  diffusion approaches. Discov Artif Intell 5:313.
+  \doi{10.1007/s44163-025-00574-5}
+
 \bibitem[{Bender et~al.(2021)Bender, Gebru, McMillan-Major, and
   Shmitchell}]{parrots}
 Bender EM, Gebru T, McMillan-Major A, et~al (2021) On the dangers of stochastic
   parrots: can language models be too big? In: Proc. ACM Conf. Fairness,
-  Accountability, and Transparency, pp 610--623
+  Accountability, and Transparency, pp 610--623, \doi{10.1145/3442188.3445922}
 
-\bibitem[{{Board of Governors of the Federal Reserve System} and {Office of the
-  Comptroller of the Currency}(2011)}]{srguidance}
+\bibitem[{{Board of Governors of the Federal Reserve System} et~al.(2026){Board
+  of Governors of the Federal Reserve System}, {Office of the Comptroller of
+  the Currency}, and {Federal Deposit Insurance Corporation}}]{srguidance}
 {Board of Governors of the Federal Reserve System}, {Office of the Comptroller
-  of the Currency} (2011) Supervisory guidance on model risk management (sr
-  11-7 / occ bulletin 2011-12). Tech. rep., Federal Reserve and OCC
+  of the Currency}, {Federal Deposit Insurance Corporation} (2026) Model risk
+  management: Revised interagency guidance (sr 26-2; occ bulletin 2026-13; fdic
+  fil-15-2026). Tech. rep., Federal Reserve, OCC and FDIC,
+  https://www.federalreserve.gov/supervisionreg/srletters/SR2602.pdf
 
 \bibitem[{Bommasani et~al.(2022)Bommasani, Creel, Wang, Li, and
   Liang}]{homogenization}
 Bommasani R, Creel KA, Wang D, et~al (2022) Picking on the same person: does
   algorithmic monoculture lead to outcome homogenization? In: Adv. Neural Inf.
-  Process. Syst.
+  Process. Syst., preprint at https://arxiv.org/abs/2211.13972
 
 \bibitem[{Bommasani et~al.(2021)}]{foundation}
 Bommasani R, et~al (2021) On the opportunities and risks of foundation models.
@@ -30,84 +56,115 @@ Bommasani R, et~al (2021) On the opportunities and risks of foundation models.
 
 \bibitem[{Brown et~al.(2020)}]{fewshot}
 Brown T, et~al (2020) Language models are few-shot learners. In: Adv. Neural
-  Inf. Process. Syst., pp 1877--1901
+  Inf. Process. Syst., pp 1877--1901, preprint at
+  https://arxiv.org/abs/2005.14165
 
 \bibitem[{Chawla et~al.(2002)Chawla, Bowyer, Hall, and Kegelmeyer}]{smote}
 Chawla NV, Bowyer KW, Hall LO, et~al (2002) {SMOTE}: synthetic minority
-  over-sampling technique. J Artif Intell Res 16:321--357
+  over-sampling technique. J Artif Intell Res 16:321--357.
+  \doi{10.1613/jair.953}
 
 \bibitem[{Cochran(1950)}]{cochran}
 Cochran WG (1950) The comparison of percentages in matched samples. Biometrika
-  37:256--266
+  37:256--266. \doi{10.1093/biomet/37.3-4.256}
 
 \bibitem[{Creel and Hellman(2022)}]{leviathan}
 Creel K, Hellman D (2022) The algorithmic leviathan: arbitrariness, fairness,
-  and opportunity in algorithmic decision-making. Can J Philos 52:26--43
+  and opportunity in algorithmic decision-making. Can J Philos 52:26--43.
+  \doi{10.1017/can.2022.3}
+
+\bibitem[{Deprez et~al.(2025)Deprez, Wei, Verbeke, Baesens, Mets, and
+  Verdonck}]{deprez}
+Deprez B, Wei W, Verbeke W, et~al (2025) Advances in continual graph learning
+  for anti-money laundering systems: a comprehensive review. WIREs Comput Stat
+  \doi{10.1002/wics.70040}
 
 \bibitem[{Efron(1979)}]{bootstrap}
 Efron B (1979) Bootstrap methods: another look at the jackknife. Ann Stat
-  7:1--26
+  7:1--26. \doi{10.1214/aos/1176344552}
 
 \bibitem[{{European Parliament and Council}(2024)}]{aiact}
 {European Parliament and Council} (2024) Regulation (eu) 2024/1689 laying down
   harmonised rules on artificial intelligence (artificial intelligence act)
 
-\bibitem[{{Financial Action Task Force}(2020)}]{fatf-tbml}
-{Financial Action Task Force} (2020) Trade-based money laundering: Trends and
-  developments. Tech. rep., FATF
+\bibitem[{{Financial Action Task Force}(2012)}]{fatf-recs}
+{Financial Action Task Force} (2012) International standards on combating money
+  laundering and the financing of terrorism and proliferation: The {FATF}
+  recommendations. Tech. rep., FATF, updated 2023
 
-\bibitem[{Gamal et~al.(2026)Gamal, Younis, and Makram}]{srfraud1}
-Gamal N, Younis EMG, Makram WM (2026) Enhancing credit card fraud detection
-  with a hybrid approach using machine and deep learning. Sci Rep
-  Https://doi.org/10.1038/s41598-026-42891-4
+\bibitem[{{Financial Action Task Force}(2021)}]{fatf-datapooling}
+{Financial Action Task Force} (2021) Stocktake on data pooling, collaborative
+  analytics and data protection. Tech. rep., FATF
 
 \bibitem[{Gebru et~al.(2021)}]{datasheets}
-Gebru T, et~al (2021) Datasheets for datasets. Commun ACM 64:86--92
+Gebru T, et~al (2021) Datasheets for datasets. Commun ACM 64:86--92.
+  \doi{10.1145/3458723}
 
-\bibitem[{{Gemini Team, Google}(2023)}]{gemini}
-{Gemini Team, Google} (2023) Gemini: a family of highly capable multimodal
-  models. Preprint at https://arxiv.org/abs/2312.11805
+\bibitem[{Goecks et~al.(2022)Goecks, Korzenowski, Terra~Neto, de~Souza, and
+  Mareth}]{goecks}
+Goecks LS, Korzenowski AL, Terra~Neto PG, et~al (2022) Anti-money laundering
+  and financial fraud detection: a systematic literature review. Intell Syst
+  Account Finance Manag 29:71--85. \doi{10.1002/isaf.1509}
+
+\bibitem[{{Google}(2026)}]{google-models}
+{Google} (2026) Gemini {API} models --- google {AI} for developers
+  documentation. Https://ai.google.dev/gemini-api/docs/models
 
 \bibitem[{Gwet(2008)}]{gwet}
 Gwet KL (2008) Computing inter-rater reliability and its variance in the
-  presence of high agreement. Br J Math Stat Psychol 61:29--48
+  presence of high agreement. Br J Math Stat Psychol 61:29--48.
+  \doi{10.1348/000711006X126600}
 
 \bibitem[{He and Garcia(2009)}]{imbalance}
 He H, Garcia EA (2009) Learning from imbalanced data. IEEE Trans Knowl Data Eng
-  21:1263--1284
+  21:1263--1284. \doi{10.1109/TKDE.2008.239}
 
-\bibitem[{Juyal et~al.(2026)Juyal, Kolluri, and Siripuri}]{srfraud4}
-Juyal PK, Kolluri J, Siripuri K (2026) Federated generative adversarial network
-  with hybrid transformer-{GRU} and explainable {AI} for financial fraud
-  detection. Sci Rep Https://doi.org/10.1038/s41598-026-61476-9
+\bibitem[{Jensen et~al.(2023)Jensen, Ferwerda, J{\o}rgensen et~al.}]{jensen}
+Jensen RIT, Ferwerda J, J{\o}rgensen KS, et~al (2023) A synthetic data set to
+  benchmark anti-money laundering methods. Sci Data 10:661.
+  \doi{10.1038/s41597-023-02569-2}
+
+\bibitem[{Jullum et~al.(2020)Jullum, L{\o}land, Huseby, {\AA}nonsen, and
+  Lorentzen}]{jullum}
+Jullum M, L{\o}land A, Huseby RB, et~al (2020) Detecting money laundering
+  transactions with machine learning. J Money Laund Control 23:173--186.
+  \doi{10.1108/JMLC-07-2019-0055}
 
 \bibitem[{Kleinberg and Raghavan(2021)}]{monoculture}
 Kleinberg J, Raghavan M (2021) Algorithmic monoculture and social welfare. Proc
-  Natl Acad Sci USA 118:e2018340118
+  Natl Acad Sci USA 118:e2018340118. \doi{10.1073/pnas.2018340118}
 
 \bibitem[{Liang et~al.(2023)}]{helm}
 Liang P, et~al (2023) Holistic evaluation of language models. Trans Mach Learn
-  Res
+  Res Preprint at https://arxiv.org/abs/2211.09110
 
 \bibitem[{Lundberg and Lee(2017)}]{shap}
 Lundberg SM, Lee SI (2017) A unified approach to interpreting model
-  predictions. In: Adv. Neural Inf. Process. Syst.
+  predictions. In: Adv. Neural Inf. Process. Syst., preprint at
+  https://arxiv.org/abs/1705.07874
 
 \bibitem[{McNemar(1947)}]{mcnemar}
 McNemar Q (1947) Note on the sampling error of the difference between
-  correlated proportions or percentages. Psychometrika 12:153--157
+  correlated proportions or percentages. Psychometrika 12:153--157.
+  \doi{10.1007/BF02295996}
 
 \bibitem[{Mitchell et~al.(2019)}]{modelcards}
 Mitchell M, et~al (2019) Model cards for model reporting. In: Proc. ACM Conf.
-  Fairness, Accountability, and Transparency, pp 220--229
+  Fairness, Accountability, and Transparency, pp 220--229,
+  \doi{10.1145/3287560.3287596}
+
+\bibitem[{Najem et~al.(2026)Najem, Bahnasse, and Talea}]{disc-najem}
+Najem R, Bahnasse A, Talea M (2026) A hybrid prophet-based framework for
+  multimodal forecasting with market sentiment signals. Discov Artif Intell
+  6:383. \doi{10.1007/s44163-026-00866-4}
 
 \bibitem[{{National Institute of Standards and Technology}(2023)}]{nistrmf}
 {National Institute of Standards and Technology} (2023) Artificial intelligence
-  risk management framework (ai rmf 1.0). Tech. rep., NIST
+  risk management framework (ai rmf 1.0). Tech. rep., NIST, nIST AI 100-1
 
-\bibitem[{{OpenAI}(2023)}]{gpt4}
-{OpenAI} (2023) {GPT-4} technical report. Preprint at
-  https://arxiv.org/abs/2303.08774
+\bibitem[{{OpenAI}(2026)}]{openai-models}
+{OpenAI} (2026) Models --- {OpenAI} {API} documentation.
+  Https://platform.openai.com/docs/models
 
 \bibitem[{Oztas et~al.(2023)}]{samld}
 Oztas B, et~al (2023) Enhancing anti-money laundering through a synthetic
@@ -116,32 +173,40 @@ Oztas B, et~al (2023) Enhancing anti-money laundering through a synthetic
 
 \bibitem[{Pedregosa et~al.(2011)}]{sklearn}
 Pedregosa F, et~al (2011) Scikit-learn: machine learning in {Python}. J Mach
-  Learn Res 12:2825--2830
+  Learn Res 12:2825--2830. Preprint at https://arxiv.org/abs/1201.0490
+
+\bibitem[{Pourhabibi et~al.(2020)Pourhabibi, Ong, Kam, and Boo}]{pourhabibi}
+Pourhabibi T, Ong KL, Kam BH, et~al (2020) Fraud detection: a systematic
+  literature review of graph-based anomaly detection approaches. Decis Support
+  Syst 133:113303. \doi{10.1016/j.dss.2020.113303}
 
 \bibitem[{Raji et~al.(2020)}]{accountability}
 Raji ID, et~al (2020) Closing the {AI} accountability gap: defining an
   end-to-end framework for internal algorithmic auditing. In: Proc. ACM Conf.
-  Fairness, Accountability, and Transparency, pp 33--44
+  Fairness, Accountability, and Transparency, pp 33--44,
+  \doi{10.1145/3351095.3372873}
 
 \bibitem[{Ribeiro et~al.(2016)Ribeiro, Singh, and Guestrin}]{lime}
 Ribeiro MT, Singh S, Guestrin C (2016) ``{W}hy should {I} trust you?'':
   explaining the predictions of any classifier. In: Proc. ACM SIGKDD Int. Conf.
-  Knowledge Discovery and Data Mining, pp 1135--1144
+  Knowledge Discovery and Data Mining, pp 1135--1144,
+  \doi{10.1145/2939672.2939778}
 
 \bibitem[{Sclar et~al.(2024)Sclar, Choi, Tsvetkov, and Suhr}]{promptsens}
 Sclar M, Choi Y, Tsvetkov Y, et~al (2024) Quantifying language models'
   sensitivity to spurious features in prompt design. In: Int. Conf. Learning
-  Representations
-
-\bibitem[{Shi et~al.(2026)Shi, Zhang, Yu, and Chen}]{srfraud2}
-Shi X, Zhang Y, Yu M, et~al (2026) Advanced fraud detection in financial
-  systems: a comparative study of machine learning models on imbalanced data.
-  Sci Rep Https://doi.org/10.1038/s41598-026-55224-2
+  Representations, preprint at https://arxiv.org/abs/2310.11324
 
 \bibitem[{{United Nations Office on Drugs and Crime}(2011)}]{unodc}
 {United Nations Office on Drugs and Crime} (2011) Estimating illicit financial
   flows resulting from drug trafficking and other transnational organized
   crimes. Tech. rep., UNODC
+
+\bibitem[{Weber et~al.(2018)Weber, Chen, Suzumura, Pareja, Ma, Kanezashi,
+  Kaler, Leiserson, and Schardl}]{weber2018}
+Weber M, Chen J, Suzumura T, et~al (2018) Scalable graph learning for
+  anti-money laundering: a first look. Preprint at
+  https://arxiv.org/abs/1812.00076
 
 \bibitem[{Weber et~al.(2019)}]{amlsim}
 Weber M, et~al (2019) Anti-money laundering in bitcoin: experimenting with
@@ -150,11 +215,11 @@ Weber M, et~al (2019) Anti-money laundering in bitcoin: experimenting with
 
 \bibitem[{Wilson(1927)}]{wilson}
 Wilson EB (1927) Probable inference, the law of succession, and statistical
-  inference. J Am Stat Assoc 22:209--212
+  inference. J Am Stat Assoc 22:209--212. \doi{10.1080/01621459.1927.10502953}
 
-\bibitem[{Zuberi et~al.(2026)Zuberi, Rahman, Rashid et~al.}]{srfraud3}
-Zuberi N, Rahman MM, Rashid SU, et~al (2026) A robust machine learning
-  framework for detecting temporal drift in financial fraud prevention. Sci Rep
-  Https://doi.org/10.1038/s41598-026-58285-5
+\bibitem[{Yang(2026)}]{disc-yang}
+Yang J (2026) Enterprise financial risk prediction model based on machine
+  learning algorithm. Discov Artif Intell 6:731.
+  \doi{10.1007/s44163-026-01283-3}
 
 \end{thebibliography}
