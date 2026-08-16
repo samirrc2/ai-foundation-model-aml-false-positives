@@ -10,13 +10,13 @@ Large language models (LLMs) are increasingly proposed as anti-money-laundering 
 
 **Main findings:**
 
-- On identical legitimate transactions, per-model false-positive rates span **0.3% → 83.0%** — an 82.7-percentage-point spread (95% CI [69.2, 95.3], cluster bootstrap) — and the five models form three statistically distinct tiers (Cochran's Q = 131.6, df = 4, *P* ≈ 2×10⁻²⁷; pairwise McNemar exact, Bonferroni-corrected).
+- On identical legitimate transactions, per-model false-positive rates span **0.3% → 83.0%** — an 82.7-percentage-point spread (95% CI [69.2, 95.3], cluster bootstrap) — and the five models differ far beyond chance (Cochran's Q = 131.6, df = 4, *P* ≈ 2×10⁻²⁷; pairwise McNemar exact, Bonferroni-corrected: all between-group comparisons significant, the two within-group comparisons not).
 - The models disagree on **85.7%** of legitimate cases (95% CI [75.1, 95.4]).
 - Within each provider, the false-positive rate falls monotonically as model capability (and price) rises: the cheapest models over-flag (83.0%) while their flagship siblings do not (1.0%). In the standard classification view the Matthews correlation coefficient ranges 0.96→0.31 on identical data.
 - Projected to a realistic 0.1% suspicious prevalence over 1,000,000 transactions/day, model choice swings daily alert volume **~4,200 → ~830,000** (~197×), with alert precision collapsing from 20.9% to 0.12%.
 - Shared blind spot: trade-based laundering is missed **18.9%** of the time (95% CI [14.0, 25.1]); structural typologies are caught near-perfectly.
 
-This repository is the frozen dataset and deterministic analysis pipeline that regenerates those numerical results, tables, and figures, plus the Discover Artificial Intelligence manuscript package. Every miss-side statistic uses the pre-registered **ties→flag** modal rule, applied identically to tables and figures.
+This repository is the frozen dataset and deterministic analysis pipeline that regenerates those numerical results, tables, and figures, plus the Discover Artificial Intelligence manuscript package. Per-case decisions use the pre-registered modal-vote rule (decision D4): on legitimate cases a 2–2 tie is **not** counted as a false positive (strict majority required), and on suspicious cases a 2–2 tie **is** counted as caught. The rule is applied identically to every model, table, and figure.
 
 ---
 
@@ -219,8 +219,8 @@ The determinism check must confirm byte-identical results across two independent
 
 - **Pre-registration and design records:** `capsule/docs/preregistration.md`, `preregistration_pivot.md`, `preregistration_amendment.md`, `decisions_log.md`.
 - **Provenance:** every capture is SHA-256-stamped in `capsule/data/frozen/*.freeze.json`; the frozen CSVs are the object of record and must not be regenerated.
-- **Tie rule:** per-(model, case) decisions are the modal vote over the four replicates, with ties resolved toward flagging (pre-registered; never over-counts misses). This rule is applied identically to every table and figure.
-- **Manuscript source:** the current manuscript is `manuscript/MANUSCRIPT_Discover.md` with `manuscript/references_discover.bib` (56 references) and `manuscript/figures/` (fig1–fig7). The `manuscript/latex/` Springer Nature source is retained from the prior Scientific Reports draft; a Discover-styled LaTeX compile is pending.
+- **Tie rule (pre-registered D4):** per-(model, case) decisions are the modal vote over the valid (non-ERROR) replicates. On legitimate cases a 2–2 tie is **not** counted as a false positive (strict majority required); on suspicious cases a 2–2 tie **is** counted as caught. Applied identically to every model, table, and figure.
+- **Manuscript source:** the manuscript is the Springer Nature LaTeX in `manuscript/latex/` (`main.tex` + `references_discover.bib`, 43 references, `sn-basic.bst`, figures fig1–fig5), compiled to `manuscript/MANUSCRIPT_Discover_compiled.pdf` and `manuscript/MANUSCRIPT_Discover.docx` via `manuscript/latex/build_both.sh`.
 - **Issues and support:** GitHub Issues, or the author emails in Section 1.
 
 ### Repository structure
@@ -251,11 +251,12 @@ same-transactions-different-alarms/
 │                     prompt_sensitivity.*, baselines.json, alert_volume.json, tables, hashes
 │
 └── manuscript/                       # Discover Artificial Intelligence package
-    ├── MANUSCRIPT_Discover.md        # current manuscript
-    ├── references_discover.bib       # 56 references
-    ├── classification_metrics.{md,csv,json}
-    ├── figures/                      # fig1–fig7 (PDF + PNG)
-    └── latex/                        # Springer Nature sn-jnl source (Discover compile pending)
+    ├── MANUSCRIPT_Discover_compiled.pdf   # compiled manuscript (submission PDF)
+    ├── MANUSCRIPT_Discover.docx           # Word version (same numbering, embedded figures)
+    ├── COVER_LETTER.{tex,pdf,docx}        # cover letter
+    ├── SUPPLEMENTARY_INFORMATION.md       # supplementary notes
+    ├── figures/                           # fig1–fig5 (PDF + PNG)
+    └── latex/                             # Springer Nature sn-jnl source (main.tex, .bib, .bbl, .cls, .bst) — compiles PDF + DOCX via build_both.sh
 ```
 
 Generated artifacts (`.venv/`, `__pycache__/`) are gitignored. Committed analysis outputs live under `capsule/results/`.

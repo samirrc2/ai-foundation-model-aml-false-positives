@@ -90,7 +90,7 @@ All models were evaluated as zero-shot screeners. We did not fine-tune any model
 
 To assess whether the wording of the instructions had a meaningful effect---a known source of variation in LLM behaviour \cite{promptsens}---each case was tested with two versions of the supervisory prompt: a short instruction for a compliance officer, and a more elaborate instruction aware of the FATF typologies. Each prompt setting was run twice with different random seeds. The complete design therefore comprised $5 \text{ models} \times 2 \text{ prompt formulations} \times 2 \text{ seeds} \times 600 \text{ cases} = 12{,}000$ screening calls.
 
-The models were run at temperature 0 and returned a constrained JSON object with the suspicious/not-suspicious decision. Calls that failed or produced unparsable output were logged as errors rather than silently coerced into a valid class; the overall call-level error rate was 0.08\%. For the primary per-case analysis, valid replicate decisions were aggregated at the case level according to the prespecified voting procedure, and failed calls were excluded from the aggregation. The exact voting rule---including the treatment of ties and failed calls---is given in Appendix~A (Table~\ref{tab:vote}).
+The models were run at temperature 0 and returned a constrained JSON object with the suspicious/not-suspicious decision. Calls that failed or produced unparsable output were logged as errors rather than silently coerced into a valid class; the overall call-level error rate was 0.08\%. For the primary per-case analysis, valid replicate decisions were aggregated at the case level according to the prespecified voting procedure, and failed calls were excluded from the aggregation. The exact voting rule---including the treatment of ties and failed calls---is given in Appendix~A.
 
 Because foundation models and commercial interfaces can be updated or retired by providers, model identifiers and access conditions were recorded at the time of data collection. During the study, one provider deprecated a selected model snapshot, which had to be substituted during data collection. This event is recorded because it directly illustrates the model-lifecycle risk studied in this paper.
 
@@ -126,7 +126,7 @@ and the expected alert precision was the expected number of true suspicious aler
 
 \subsection{Software, preregistration and reproducibility}
 
-The analysis was performed in Python 3.12 with NumPy 2.2.6, scikit-learn 1.7.2 \cite{sklearn}, SciPy 1.15 and Matplotlib 3.10; the OpenAI and Google Python software development kits were used in data collection. The experimental design and main analyses were preregistered prior to data collection. The reproducibility package includes the case generator, the frozen battery of 600 cases, the full corpus of model responses, configuration information, statistical-analysis code, relevant hashes, and preregistration materials. The analysis pipeline is deterministic and reproduces the reported results from the frozen data.
+The analysis was performed in Python 3.12 with NumPy 2.2.6, scikit-learn 1.7.2 \cite{sklearn}, SciPy 1.18.0 and Matplotlib 3.10; the OpenAI and Google Python software development kits were used in data collection. The experimental design and main analyses were preregistered prior to data collection. The reproducibility package includes the case generator, the frozen battery of 600 cases, the full corpus of model responses, configuration information, statistical-analysis code, relevant hashes, and preregistration materials. The analysis pipeline is deterministic and reproduces the reported results from the frozen data.
 
 The study distinguishes two types of reproducibility. The analysis is fully reproducible from the archived response corpus, whereas re-querying commercial foundation models at a later date may not reproduce the original responses, because providers can update, replace or retire the underlying models. This distinction is itself pertinent to the model-governance problem studied here.
 
@@ -228,53 +228,38 @@ The controlled experiment in this study used a synthetic design to measure this 
 
 Table~\ref{tab:vote} specifies the preregistered rule (decision~D4) used to reduce the replicate model calls for each case to the single per-case decision underlying Table~\ref{tab:ops} and the statistical tests. Because preregistered decision~D4 resolves exact splits with reference to the known case label, it is an evaluation aggregation rule rather than a deployable screening rule; it was fixed before the full evaluation and applied identically across models.
 
-\begin{table}[h]
-\caption{\textbf{Per-case endpoint aggregation rule.} The rule was fixed in advance (preregistration decision~D4); it was applied identically to every model.}\label{tab:vote}
-\begin{tabular}{@{}p{0.27\textwidth}p{0.63\textwidth}@{}}
-\toprule
-Element & Rule \\
-\midrule
-Replicate calls per case & The valid (non-ERROR) calls for each (model, case): four by design (two prompt phrasings $\times$ two seeds); a small number of cases carry one additional retried call \\
-Failed / unparsable calls & Recorded as ERROR and excluded from the vote (the denominator is reduced accordingly); overall ERROR rate 0.08\% \\
-Legitimate (benign) case & Counted as a false positive only if a strict majority of valid calls flagged it (flags $>$ half); a 2--2 tie is not counted as a false positive \\
-Suspicious case & Counted as caught (not missed) if at least half of valid calls flagged it (flags $\geq$ half); a 2--2 tie is counted as caught \\
-Even-split ties & Occurred and were resolved as above, affecting 132 of the 1{,}500 benign and 48 of the 1{,}500 suspicious model--case decisions \\
-\botrule
-\end{tabular}
-\end{table}
-
 \begin{figure}[t]
 \centering
 \includegraphics[width=0.72\textwidth]{fig1_fp_by_model.pdf}
-\caption{\textbf{False-positive rate of five foundation models on identical legitimate transactions.} Bars show the percentage of 300 legitimate cases each model flagged as suspicious; error bars are 95\% Wilson score confidence intervals. Rates span 0.3--83.0\% (Cochran's $Q=131.6$, degrees of freedom $=4$, $P\approx2\times10^{-27}$).}
+\caption{\textbf{False-positive rate of five foundation models on identical legitimate transactions.} Bars show the percentage of 300 legitimate cases each model flagged as suspicious; error bars are 95\% Wilson score confidence intervals. Rates span 0.3--83.0\% (Cochran's $Q=131.6$, degrees of freedom $=4$, $P\approx2\times10^{-27}$)}
 \label{fig:fp}
 \end{figure}
 
 \begin{figure}[t]
 \centering
 \includegraphics[width=0.62\textwidth]{fig2_operating_points.pdf}
-\caption{\textbf{Each model occupies a different operating point.} Sensitivity (percentage of 300 suspicious cases caught) versus false-positive rate (percentage of 300 legitimate cases flagged) for the five foundation models (circles) and the two non-LLM baselines (triangles: rules heuristic; supervised classifier). Within each provider in the evaluated model set, the more capable model is consistently associated with a lower false-positive rate.}
+\caption{\textbf{Each model occupies a different operating point.} Sensitivity (percentage of 300 suspicious cases caught) versus false-positive rate (percentage of 300 legitimate cases flagged) for the five foundation models (circles) and the two non-LLM baselines (triangles: rules heuristic; supervised classifier). Within each provider in the evaluated model set, the more capable model is consistently associated with a lower false-positive rate}
 \label{fig:ops}
 \end{figure}
 
 \begin{figure}[t]
 \centering
 \includegraphics[width=0.72\textwidth]{fig3_alert_volume.pdf}
-\caption{\textbf{Projected daily alert workload under an illustrative low-prevalence scenario.} Expected daily alerts for each screener at a suspicious prevalence of 0.1\% over 1,000,000 transactions per day (logarithmic axis). Model choice changes the queue from about 4,200 to about 830,000 alerts on identical activity.}
+\caption{\textbf{Projected daily alert workload under an illustrative low-prevalence scenario.} Expected daily alerts for each screener at a suspicious prevalence of 0.1\% over 1,000,000 transactions per day (logarithmic axis). Model choice changes the queue from about 4,200 to about 830,000 alerts on identical activity}
 \label{fig:vol}
 \end{figure}
 
 \begin{figure}[t]
 \centering
 \includegraphics[width=0.75\textwidth]{fig4_typology_miss.pdf}
-\caption{\textbf{A shared blind spot for trade-based laundering.} Miss rate by laundering typology, pooled across the five models; error bars are 95\% Wilson score confidence intervals. Trade-based laundering and cash-intensive fronts are missed substantially more often than structural typologies.}
+\caption{\textbf{A shared blind spot for trade-based laundering.} Miss rate by laundering typology, pooled across the five models; error bars are 95\% Wilson score confidence intervals. Trade-based laundering and cash-intensive fronts are missed substantially more often than structural typologies}
 \label{fig:typ}
 \end{figure}
 
 \begin{figure}[t]
 \centering
 \includegraphics[width=0.66\textwidth]{fig5_typology_model_heatmap.pdf}
-\caption{\textbf{Miss rate by laundering typology and model.} Percentage of suspicious cases of each typology (rows) missed by each model (columns); darker cells indicate more misses. The cautious models (Gemini Flash, GPT-4o) concentrate their misses in trade-based laundering and cash-intensive fronts, while the alert-flooding GPT-4o-mini misses almost nothing---the per-typology signature of the operating-point trade-off in Fig.~\ref{fig:ops}.}
+\caption{\textbf{Miss rate by laundering typology and model.} Percentage of suspicious cases of each typology (rows) missed by each model (columns); darker cells indicate more misses. The cautious models (Gemini Flash, GPT-4o) concentrate their misses in trade-based laundering and cash-intensive fronts, while the alert-flooding GPT-4o-mini misses almost nothing---the per-typology signature of the operating-point trade-off in Fig.~\ref{fig:ops}}
 \label{fig:heat}
 \end{figure}
 
@@ -289,6 +274,26 @@ GPT-4o            & OpenAI & 1.0 [0.3--2.9]   & 3.3 [1.8--6.0] \\
 GPT-4.1-mini      & OpenAI & 23.7 [19.2--28.8]& 3.7 [2.1--6.4] \\
 Gemini Flash-Lite & Google & 24.7 [20.1--29.8]& 0.7 [0.2--2.4] \\
 GPT-4o-mini       & OpenAI & 83.0 [78.3--86.8]& 0.0 [0.0--1.3] \\
+\botrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\caption{\textbf{Pairwise comparison of false-positive rates.} McNemar's exact (binomial) test on the 300 legitimate cases (same cases for all models); $b$ and $c$ are the discordant counts. $P$-values are two-tailed and Bonferroni-corrected across the ten model pairs. The two within-group pairs (top) were not statistically significant after correction, whereas every between-group pair was significant ($P<10^{-18}$).}\label{tab:mcnemar}
+\begin{tabular}{@{}lrrl@{}}
+\toprule
+Model pair & $b$ & $c$ & $P$ (Bonferroni) \\
+\midrule
+Gemini Flash vs GPT-4o                & 1 & 3   & 1.0 \\
+GPT-4.1-mini vs Gemini Flash-Lite     & 42 & 45 & 1.0 \\
+Gemini Flash vs GPT-4.1-mini          & 1 & 71  & $3.1\times10^{-19}$ \\
+Gemini Flash vs Gemini Flash-Lite     & 1 & 74  & $4.0\times10^{-20}$ \\
+GPT-4o vs GPT-4.1-mini                 & 0 & 68  & $6.8\times10^{-20}$ \\
+GPT-4o vs Gemini Flash-Lite            & 0 & 71  & $8.5\times10^{-21}$ \\
+GPT-4.1-mini vs GPT-4o-mini            & 1 & 179 & $2.4\times10^{-51}$ \\
+Gemini Flash-Lite vs GPT-4o-mini       & 8 & 183 & $2.5\times10^{-43}$ \\
+Gemini Flash vs GPT-4o-mini            & 0 & 248 & $4.4\times10^{-74}$ \\
+GPT-4o vs GPT-4o-mini                  & 0 & 246 & $1.8\times10^{-73}$ \\
 \botrule
 \end{tabular}
 \end{table}
@@ -311,21 +316,16 @@ GPT-4o-mini          & 83.0 & 830{,}000 (784{,}000--868{,}000) & 0.1 \\
 \end{table}
 
 \begin{table}[t]
-\caption{\textbf{Pairwise comparison of false-positive rates.} McNemar's exact (binomial) test on the 300 legitimate cases (same cases for all models); $b$ and $c$ are the discordant counts. $P$-values are two-tailed and Bonferroni-corrected across the ten model pairs. The two within-group pairs (top) were not statistically significant after correction, whereas every between-group pair was significant ($P<10^{-18}$).}\label{tab:mcnemar}
-\begin{tabular}{@{}lrrl@{}}
+\caption{\textbf{Per-case endpoint aggregation rule.} The rule was fixed in advance (preregistration decision~D4); it was applied identically to every model.}\label{tab:vote}
+\begin{tabular}{@{}p{0.27\textwidth}p{0.63\textwidth}@{}}
 \toprule
-Model pair & $b$ & $c$ & $P$ (Bonferroni) \\
+Element & Rule \\
 \midrule
-Gemini Flash vs GPT-4o                & 1 & 3   & 1.0 \\
-GPT-4.1-mini vs Gemini Flash-Lite     & 42 & 45 & 1.0 \\
-Gemini Flash vs GPT-4.1-mini          & 1 & 71  & $3.1\times10^{-19}$ \\
-Gemini Flash vs Gemini Flash-Lite     & 1 & 74  & $4.0\times10^{-20}$ \\
-GPT-4o vs GPT-4.1-mini                 & 0 & 68  & $6.8\times10^{-20}$ \\
-GPT-4o vs Gemini Flash-Lite            & 0 & 71  & $8.5\times10^{-21}$ \\
-GPT-4.1-mini vs GPT-4o-mini            & 1 & 179 & $2.4\times10^{-51}$ \\
-Gemini Flash-Lite vs GPT-4o-mini       & 8 & 183 & $2.5\times10^{-43}$ \\
-Gemini Flash vs GPT-4o-mini            & 0 & 248 & $4.4\times10^{-74}$ \\
-GPT-4o vs GPT-4o-mini                  & 0 & 246 & $1.8\times10^{-73}$ \\
+Replicate calls per case & The valid (non-ERROR) calls for each (model, case): four by design (two prompt phrasings $\times$ two seeds); a small number of cases carry one additional retried call \\
+Failed / unparsable calls & Recorded as ERROR and excluded from the vote (the denominator is reduced accordingly); overall ERROR rate 0.08\% \\
+Legitimate (benign) case & Counted as a false positive only if a strict majority of valid calls flagged it (flags $>$ half); a 2--2 tie is not counted as a false positive \\
+Suspicious case & Counted as caught (not missed) if at least half of valid calls flagged it (flags $\geq$ half); a 2--2 tie is counted as caught \\
+Even-split ties & Occurred and were resolved as above, affecting 132 of the 1{,}500 benign and 48 of the 1{,}500 suspicious model--case decisions \\
 \botrule
 \end{tabular}
 \end{table}
