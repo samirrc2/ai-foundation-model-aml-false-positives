@@ -4,7 +4,7 @@
 
 Samir Chincholikar, Robin Chawla
 
-*Combine into a single PDF for submission (Discover Artificial Intelligence requirement). Numbering is separate from the main article; items are Supplementary Table S1–S4 and Supplementary Note.*
+*Submitted as a single PDF (Discover Artificial Intelligence requirement). Numbering is separate from the main article; items are Supplementary Table S1–S3, Supplementary Note, and Supplementary Methods.*
 
 ---
 
@@ -12,7 +12,7 @@ Samir Chincholikar, Robin Chawla
 
 The study estimands, battery specification, screening-cell definition, and analysis were fixed in a frozen preregistration prior to the confirmatory analysis (provided in the reproducibility repository as `preregistration_pivot.md`, with the original monoculture preregistration and its amendment). The battery was generated deterministically (seed 20260715) and SHA-256-hashed; the reproducibility capsule regenerates it from the seed and verifies the hash. The confirmatory analysis was run on a fresh capture over the expanded five-model set; the earlier pilot is reported in the preregistration as exploratory/hypothesis-generating.
 
-All analysis is deterministic and reproduces byte-identically from the frozen 12,000-call dataset (2 prompt variants × 2 seeds × 600 cases × 5 models). Overall error rate (unparsable/failed calls) was 0.08%.
+All analysis is deterministic and reproduces byte-identically from the frozen 12,000-call dataset (2 prompt variants × 2 seeds × 600 cases × 5 models). Overall error rate (unparsable/failed calls) was 0.08%. The full pairwise McNemar comparison of per-model false-positive rates is reported in the main article (Table 2).
 
 ---
 
@@ -27,28 +27,7 @@ Difficulty spread ≈ 30% easy / 40% medium / 30% hard within each class. Cases 
 
 ---
 
-## Supplementary Table S2. Pairwise McNemar exact tests of false-positive-rate differences
-
-Two-tailed exact (binomial) McNemar tests on the 300 legitimate cases (same cases for all models; b and c are discordant counts). P-values Bonferroni-corrected across the ten model pairs.
-
-| Model pair | b | c | P (Bonferroni) |
-|---|---|---|---|
-| Gemini Flash vs GPT-4o | 1 | 3 | 1.0 |
-| GPT-4.1-mini vs Gemini Flash-Lite | 42 | 45 | 1.0 |
-| Gemini Flash vs GPT-4.1-mini | 1 | 71 | 3.1×10⁻¹⁹ |
-| Gemini Flash vs Gemini Flash-Lite | 1 | 74 | 4.0×10⁻²⁰ |
-| GPT-4o vs GPT-4.1-mini | 0 | 68 | 6.8×10⁻²⁰ |
-| GPT-4o vs Gemini Flash-Lite | 0 | 71 | 8.5×10⁻²¹ |
-| GPT-4.1-mini vs GPT-4o-mini | 1 | 179 | 2.4×10⁻⁵¹ |
-| Gemini Flash-Lite vs GPT-4o-mini | 8 | 183 | 2.5×10⁻⁴³ |
-| Gemini Flash vs GPT-4o-mini | 0 | 248 | 4.4×10⁻⁷⁴ |
-| GPT-4o vs GPT-4o-mini | 0 | 246 | 1.8×10⁻⁷³ |
-
-The two within-tier pairs (top rows) are statistically indistinguishable; all between-tier pairs are separated at P < 10⁻¹⁹. This defines three operating tiers: {Gemini Flash, GPT-4o} (cautious), {GPT-4.1-mini, Gemini Flash-Lite} (intermediate), {GPT-4o-mini} (alert-flooding).
-
----
-
-## Supplementary Table S3. Per-typology miss rate (pooled across five models)
+## Supplementary Table S2. Per-typology miss rate (pooled across five models)
 
 95% Wilson score confidence intervals; n as indicated.
 
@@ -65,13 +44,13 @@ The two within-tier pairs (top rows) are statistically indistinguishable; all be
 
 ---
 
-## Supplementary Table S4. Correlated-miss null (preregistered secondary analysis)
+## Supplementary Table S3. Correlated-miss null (preregistered secondary analysis)
 
 Unlike the false-positive side, model misses were rare and did not co-occur: no suspicious case was missed by all five models, and cross-model agreement on the miss label (chance-corrected) was near zero.
 
 | Quantity | Value |
 |---|---|
-| Per-model miss rate | 0.0%–12.0% (Table 1, main text) |
+| Per-model miss rate | 0.0%–12.0% (main text, Table 1) |
 | Mean pairwise Cohen's κ on misses | 0.072 (range −0.011 to 0.26) |
 | Joint miss by all five models | 0 of 300 suspicious cases |
 | Independence-predicted joint miss | ≈0 |

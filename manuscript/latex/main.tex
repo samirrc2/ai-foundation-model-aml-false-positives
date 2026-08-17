@@ -66,7 +66,7 @@ The study was designed to isolate the effect of foundation-model identity on AML
 
 We created a deterministic offline battery of 600 synthetic cases with seed \texttt{20260715}. The cases were derived from recognised FATF laundering typologies and from the structure of established synthetic-AML datasets, including SAML-D and the IBM AMLSim lineage \cite{samld,weber2018}. Each case was a small transaction sub-network, serialised as a plain-text ledger with account-level attributes (including know-your-customer and jurisdiction information) and transaction-level attributes (amount, date, direction and payment channel).
 
-The battery was balanced by design. Three hundred cases represented suspicious activity, spread across eight laundering typologies: structuring, layering, trade-based laundering, mule networks, shell layering, funnel accounts, rapid pass-through activity, and cash-intensive fronts. The other 300 cases were legitimate hard negatives. These benign cases included patterns such as payroll processing, treasury sweeps, documented trade-finance activity and marketplace payouts that might appear superficially similar to traditional AML red flags. Hard negatives were included deliberately to prevent a model from performing well simply by flagging every case as suspicious.
+The battery was balanced by design. Three hundred cases represented suspicious activity, spread across eight laundering typologies: structuring, layering, trade-based laundering, mule networks, shell layering, funnel accounts, rapid pass-through activity, and cash-intensive fronts. The other 300 cases were legitimate hard negatives (the full battery composition is given in Supplementary Table~S1). These benign cases included patterns such as payroll processing, treasury sweeps, documented trade-finance activity and marketplace payouts that might appear superficially similar to traditional AML red flags. Hard negatives were included deliberately to prevent a model from performing well simply by flagging every case as suspicious.
 
 Several design features were incorporated to mitigate trivial label leakage. The cases were raw transaction records rather than natural-language summaries; suspicious cases used irregular sub-threshold amounts rather than mechanically uniform ones; laundering signals were interleaved with legitimate background transactions; and relevant activity was temporally dispersed. We retained the generator, the case battery it produced, and its SHA-256 hash as part of the reproducibility package. The reproduction workflow regenerates the battery from the fixed seed and checks the resulting file against the stored hash.
 
@@ -162,13 +162,13 @@ The strong supervised performance is consistent with the construction of the con
 
 \subsection{Misses by typology, prompt sensitivity, and cross-model agreement}\label{sec:typology}
 
-When model errors were analysed by laundering typology (Fig.~\ref{fig:typ}), they were not evenly distributed across the suspicious cases. Trade-based laundering had the highest pooled miss rate, at 18.9\% (95\% CI 14.0--25.1), followed by cash-intensive fronts at 10.3\%. Pooled miss rates for structuring, layering, mule networks, funnel accounts, shell layering and rapid pass-through activity were 1.6\% or less.
+When model errors were analysed by laundering typology (Fig.~\ref{fig:typ}), they were not evenly distributed across the suspicious cases. Trade-based laundering had the highest pooled miss rate, at 18.9\% (95\% CI 14.0--25.1), followed by cash-intensive fronts at 10.3\%. Pooled miss rates for structuring, layering, mule networks, funnel accounts, shell layering and rapid pass-through activity were 1.6\% or less (per-typology rates in Supplementary Table~S2).
 
 The typology-level pattern also differed between models (Fig.~\ref{fig:heat}). Most of the misses in trade-based laundering and cash-intensive-front cases came from the more conservative models, particularly Gemini Flash and GPT-4o. By contrast, GPT-4o-mini missed very few suspicious cases but paid for this sensitivity with its much higher false-positive rate. The typology-level results thus reflect the larger operating-point trade-off seen in the aggregate analysis.
 
 The formulation of the prompt changed the aggressiveness of screening but did not remove the cross-model ordering. Under the FATF-typology-aware prompt, every model had a higher false-positive rate than under the short compliance-officer prompt: Gemini Flash 0.3\%$\rightarrow$2.3\%, GPT-4o 0.3\%$\rightarrow$7.7\%, GPT-4.1-mini 20.7\%$\rightarrow$36.7\%, Gemini Flash-Lite 24.7\%$\rightarrow$44.0\%, and GPT-4o-mini 78.7\%$\rightarrow$85.0\%. The mean overall prompt-related decision-flip rate was 7.5\% (95\% CI 6.9--8.2). Changes in prompt wording shifted individual operating points by about 2--19 percentage points, but these shifts were smaller than the divergence between models and preserved the relative model ordering. The main result therefore did not depend on a particular prompt formulation.
 
-Finally, the preregistered secondary analysis found no evidence of strong correlated misses across the five foundation models. No suspicious case was missed by all five models, and per-model miss rates ranged from 0.0\% to 12.0\%. Chance-corrected agreement on the miss outcome was low, with a mean pairwise Cohen's $\kappa = 0.072$ (range $-0.011$ to $0.26$); Scott's $\pi$ and Gwet's AC1 gave consistent conclusions. The dominant cross-model phenomenon was therefore not a common set of missed suspicious cases, but a large divergence in the aggressiveness with which legitimate activity was escalated.
+Finally, the preregistered secondary analysis found no evidence of strong correlated misses across the five foundation models. No suspicious case was missed by all five models, and per-model miss rates ranged from 0.0\% to 12.0\%. Chance-corrected agreement on the miss outcome was low, with a mean pairwise Cohen's $\kappa = 0.072$ (range $-0.011$ to $0.26$); Scott's $\pi$ and Gwet's AC1 gave consistent conclusions (Supplementary Table~S3). The dominant cross-model phenomenon was therefore not a common set of missed suspicious cases, but a large divergence in the aggressiveness with which legitimate activity was escalated.
 
 \section{Discussion}\label{sec:discussion}
 
@@ -332,6 +332,9 @@ Even-split ties & Occurred and were resolved as above, affecting 132 of the 1{,}
 
 \clearpage
 \backmatter
+
+\bmhead{Supplementary information}
+Supplementary Information is provided as a single PDF and contains a Supplementary Note (preregistration and design), Supplementary Table~S1 (battery composition), Supplementary Table~S2 (per-typology miss rate), Supplementary Table~S3 (correlated-miss null), and Supplementary Methods (baselines).
 
 \bmhead{Acknowledgements}
 Analyses used open-source software (Python, NumPy, scikit-learn, SciPy, Matplotlib); the authors thank the maintainers of these open-source projects.
