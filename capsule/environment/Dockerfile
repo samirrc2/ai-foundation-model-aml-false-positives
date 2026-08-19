@@ -1,6 +1,6 @@
 # Code Ocean capsule environment for
-# "Same Transactions, Different Alarms: Foundation-Model Choice and AML False
-#  Positives" (Discover AI).
+# "AI foundation model choice and false positive variation in Anti Money Laundering
+#  transaction screening" (Discover AI).
 #
 # Offline reproduction only: no network, no API keys, no cost. The pinned pip
 # packages match code/requirements.txt exactly. The data-collection SDKs

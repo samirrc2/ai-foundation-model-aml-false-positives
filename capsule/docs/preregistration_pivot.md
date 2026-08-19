@@ -1,4 +1,4 @@
-# PREREGISTRATION — P4′ "Same Transactions, Different Alarms"
+# PREREGISTRATION — P4′ "AI foundation model choice and false positive variation in Anti Money Laundering transaction screening"
 ### Foundation-model choice as an uncontrolled driver of AML false-positive burden
 
 **Date:** 2026-07-16. **Kill-shot:** CLEAR & FEASIBLE (see the AML-pivot sweep,

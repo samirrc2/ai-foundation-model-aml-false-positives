@@ -1,5 +1,5 @@
-# Offline reproduction of "Same Transactions, Different Alarms: Foundation-Model
-# Choice and AML False Positives".
+# Offline reproduction of "AI foundation model choice and false positive variation
+# in Anti Money Laundering transaction screening".
 # Analysis is pure Python + these packages; no network, no API SDKs required.
 # Versions pinned to the tested, byte-identical environment (see environment/Dockerfile).
 numpy==2.2.6

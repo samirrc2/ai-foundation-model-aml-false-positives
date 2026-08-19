@@ -1,10 +1,10 @@
-# Same Transactions, Different Alarms — reproducibility capsule
+# AI foundation model choice and false positive variation in Anti Money Laundering transaction screening — reproducibility capsule
 
 **Journal:** *Discover Artificial Intelligence* (Springer Nature)  
-**Paper:** *Same Transactions, Different Alarms: Foundation-Model Choice and AML False Positives.*  
+**Paper:** *AI foundation model choice and false positive variation in Anti Money Laundering transaction screening.*  
 **Authors:** Samir Chincholikar; Robin Chawla (corresponding)  
 **Code Ocean DOI:** https://doi.org/10.24433/CO.4804007 (this build supersedes v1; mint a new version on re-upload)  
-**GitHub:** https://github.com/samirrc2/same-transactions-different-alarms
+**GitHub:** https://github.com/samirrc2/ai-foundation-model-aml-false-positives
 
 This capsule reproduces **every quantitative claim in the paper** from the frozen
 data, offline, deterministically, at zero cost. The one-click **Reproducible Run**

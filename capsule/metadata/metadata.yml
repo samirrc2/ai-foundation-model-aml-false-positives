@@ -1,9 +1,9 @@
 metadata_version: 1
-name: "Same Transactions, Different Alarms"
+name: "AI foundation model choice and false positive variation in Anti Money Laundering transaction screening"
 description: >
-  Reproducibility capsule for the Discover Artificial Intelligence manuscript "Same
-  Transactions, Different Alarms: Foundation-Model Choice and AML False Positives."
-  From the frozen 12,000-call
+  Reproducibility capsule for the Discover Artificial Intelligence manuscript "AI
+  foundation model choice and false positive variation in Anti Money Laundering
+  transaction screening." From the frozen 12,000-call
   capture over five foundation LLMs on a FATF/SAML-D-anchored 600-case battery, it
   regenerates and verifies the battery (SHA-256), then reproduces every headline
   number: per-model false-positive rates with Wilson and cluster-bootstrap

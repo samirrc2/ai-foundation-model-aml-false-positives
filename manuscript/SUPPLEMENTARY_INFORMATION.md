@@ -1,6 +1,6 @@
 # Supplementary Information
 
-**Same Transactions, Different Alarms: Foundation-Model Choice and AML False Positives**
+**AI foundation model choice and false positive variation in Anti Money Laundering transaction screening**
 
 Samir Chincholikar, Robin Chawla
 
@@ -69,4 +69,4 @@ Interpretation: the algorithmic-monoculture prediction of correlated failure is 
 
 ## Data and code availability
 
-All data, code, the preregistration, and a one-command reproducible capsule (regenerates + hash-verifies the battery, recomputes every statistic, and confirms byte-identical outputs across two runs) are available at https://github.com/samirrc2/same-transactions-different-alarms and in the Code Ocean capsule https://doi.org/10.24433/CO.4804007.v1. A machine-readable `pivot_claims.json` contains every reported number with its confidence interval and the configuration hash that produced it.
+All data, code, the preregistration, and a one-command reproducible capsule (regenerates + hash-verifies the battery, recomputes every statistic, and confirms byte-identical outputs across two runs) are available in the Code Ocean capsule at https://doi.org/10.24433/CO.4804007.v1. A machine-readable `pivot_claims.json` contains every reported number with its confidence interval and the configuration hash that produced it.

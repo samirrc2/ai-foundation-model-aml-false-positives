@@ -1,4 +1,4 @@
-"""Pivot analysis — "Same Transactions, Different Alarms" (model-risk audit of LLM
+"""Pivot analysis — "AI foundation model choice and false positive variation in Anti Money Laundering transaction screening" (model-risk audit of LLM
 AML screening). Pure, $0, reads FROZEN CSVs only. Emits pivot_claims.json with the
 Candidate-A/B/C estimands, each with a cluster-bootstrap CI over strata.
 
@@ -157,8 +157,8 @@ def analyse(subgrid: str, draws: int, seed: int, allow_unfrozen: bool) -> dict:
     rates = [fp[m]["fp_rate"] for m in mt.models if fp[m]["fp_rate"] is not None]
     return {
         "meta": {
-            "paper": "Same Transactions, Different Alarms: Foundation-Model Choice "
-                     "and AML False Positives",
+            "paper": "AI foundation model choice and false positive variation in Anti "
+                     "Money Laundering transaction screening",
             "status": "CONFIRMATORY: pre-registered full run over the five foundation "
                       "models (see docs/PREREGISTRATION.md and docs/DECISIONS.md)",
             "subgrid": subgrid, "mode": mt.mode, "config_hash": cfg.config_hash(),

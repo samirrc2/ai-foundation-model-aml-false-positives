@@ -1,10 +1,10 @@
 cff-version: 1.2.0
 message: "If you use this artifact, please cite the article and the Code Ocean capsule."
-title: "Same Transactions, Different Alarms: reproducibility capsule (Discover Artificial Intelligence)"
+title: "AI foundation model choice and false positive variation in Anti Money Laundering transaction screening: reproducibility capsule (Discover Artificial Intelligence)"
 abstract: >-
   Frozen dataset and deterministic analysis pipeline that reproduces every
-  quantitative claim in "Same Transactions, Different Alarms: Foundation-Model
-  Choice and AML False Positives," including SHA-256 data integrity and byte-identical
+  quantitative claim in "AI foundation model choice and false positive variation in
+  Anti Money Laundering transaction screening," including SHA-256 data integrity and byte-identical
   replication checks.
 type: software
 authors:
@@ -14,7 +14,7 @@ authors:
   - family-names: Chawla
     given-names: Robin
     orcid: "https://orcid.org/0009-0007-2807-3948"
-repository-code: "https://github.com/samirrc2/same-transactions-different-alarms"
+repository-code: "https://github.com/samirrc2/ai-foundation-model-aml-false-positives"
 identifiers:
   - type: doi
     value: "10.24433/CO.4804007.v1"
@@ -30,7 +30,7 @@ keywords:
   - reproducibility
 preferred-citation:
   type: article
-  title: "Same Transactions, Different Alarms: Foundation-Model Choice and AML False Positives"
+  title: "AI foundation model choice and false positive variation in Anti Money Laundering transaction screening"
   authors:
     - family-names: Chincholikar
       given-names: Samir

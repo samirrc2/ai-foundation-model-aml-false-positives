@@ -1,4 +1,4 @@
-# Capsule audit — Same Transactions, Different Alarms
+# Capsule audit — AI foundation model choice and false positive variation in Anti Money Laundering transaction screening
 
 Independent verification performed on the assembled capsule. All checks pass.
 

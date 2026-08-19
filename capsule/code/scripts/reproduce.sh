@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Offline, deterministic reproduction of "Same Transactions, Different Alarms".
+# Offline, deterministic reproduction of "AI foundation model choice and false positive variation in Anti Money Laundering transaction screening".
 # Verifies data integrity, runs the analysis, and (by default) the byte-identical
 # reproducibility check. No network, no API keys, no cost.
 #
@@ -27,7 +27,7 @@ if ! "$PYBIN" -c "import numpy, sklearn, yaml, pydantic" 2>/dev/null; then
 fi
 
 MODE="${1:-all}"
-echo "== Reproducing: Same Transactions, Different Alarms =="
+echo "== Reproducing: AI foundation model choice and false positive variation in Anti Money Laundering transaction screening =="
 echo "   data=$DATA"
 echo "   results=$RESULTS"
 echo "   python=$("$PYBIN" --version 2>&1)"

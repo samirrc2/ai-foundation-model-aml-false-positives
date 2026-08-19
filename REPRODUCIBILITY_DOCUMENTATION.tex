@@ -1,0 +1,200 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{ragged2e}
+\usepackage{seqsplit}
+\usepackage[hidelinks]{hyperref}
+\usepackage{titlesec}
+
+\setlength{\parindent}{0pt}\setlength{\parskip}{6pt}
+\titleformat{\section}{\normalfont\large\bfseries}{\thesection.}{0.5em}{}
+\titleformat{\subsection}{\normalfont\bfseries}{\thesubsection}{0.5em}{}
+\titlespacing*{\section}{0pt}{14pt}{6pt}
+
+% ragged-right fixed-width column
+\newcolumntype{L}[1]{>{\RaggedRight\arraybackslash}p{#1}}
+% inline code, breakable so long paths never overflow the margin
+\newcommand{\code}[1]{\texttt{\seqsplit{#1}}}
+% long paths/identifiers that may need to break inside narrow table cells
+\newcommand{\pc}[1]{{\ttfamily\seqsplit{#1}}}
+\renewcommand{\arraystretch}{1.2}
+\pagestyle{plain}
+
+\begin{document}
+\RaggedRight
+
+\begin{center}
+{\Large\bfseries Supporting Data and Code: Reproducibility Documentation}\\[5pt]
+{\itshape AI foundation model choice and false positive variation in Anti Money Laundering transaction screening}\\[3pt]
+{\small Companion to the \emph{Discover Artificial Intelligence} submission}
+\end{center}
+
+\vspace{4pt}
+
+\section{Purpose and scope}
+
+This document describes the supporting data-and-code archive that accompanies the manuscript (the reproducibility capsule under \code{capsule/}). The archive is a self-contained, offline, deterministic reproduction: from a single command it regenerates every reported number, table, and figure and verifies each result by re-running the analysis and comparing byte for byte. No network access, no API keys, and no paid model calls are required. The permanent citable version is the Code Ocean capsule at \url{https://doi.org/10.24433/CO.4804007.v1} (MIT licence); the same tree is mirrored in the project repository.
+
+The study uses only \emph{synthetic} transaction data. A strict wall separates two phases: an offline \emph{analysis} that reproduces every claim from frozen inputs (documented here), and a live \emph{capture} phase that originally queried commercial model APIs and is retained for transparency only (Section~8). Because commercial models change over time, the capture is deliberately not part of the reproducible core; the frozen model-response corpus it produced is shipped and hash-verified.
+
+\section{Quick start}
+
+\begin{verbatim}
+cd capsule
+pip install -r code/requirements.txt
+bash reproduce.sh
+\end{verbatim}
+
+Or, for a byte-identical run in the pinned container:
+
+\begin{verbatim}
+cd capsule/environment
+docker build -t repro . && docker run --rm repro
+\end{verbatim}
+
+On Code Ocean, press \textbf{Reproducible Run} (which executes \code{code/run}).
+
+\textbf{Expected result:} the integrity check passes, the full analysis regenerates the committed outputs, the second independent run is byte-identical (SHA-256 of every result file matches), and the run prints \code{\#\# REPRODUCIBLE} and exits~0. Total runtime is well under a minute on a standard laptop.
+
+\section{Archive layout}
+
+\begin{longtable}{@{}L{0.32\textwidth}L{0.60\textwidth}@{}}
+\pc{reproduce.sh} & one-command offline reproduction + integrity + byte-identical check \\
+\pc{code/run} & Code Ocean entry point ($\rightarrow$ \pc{code/scripts/reproduce.sh}) \\
+\pc{code/requirements.txt} & pinned Python dependencies (analysis only) \\
+\pc{code/src/} & all analysis code (see Section~5) \\
+\pc{code/capture/} & live data-collection harness (reference only; not run here) \\
+\pc{code/tests/} & pytest sanity checks on the reproduced numbers \\
+\pc{environment/Dockerfile} & pinned image for a byte-identical run (no network) \\
+\pc{metadata/metadata.yml} & capsule metadata \\
+\pc{docs/} & frozen pre-registration, amendment, pivot, decisions log, data-collection note, model manifest \\
+\addlinespace
+\pc{data/} & all inputs \\
+\quad\pc{battery/full.jsonl} & PRIMARY 600-case synthetic battery (\pc{pilot.jsonl} is the seeded subset) \\
+\quad\pc{capture/runs\_full\_*.csv} & frozen model-response corpus, 10 files \\
+\quad\pc{frozen/*.freeze.json} & per-file SHA-256 receipts for each capture CSV \\
+\quad\pc{configs/} & \pc{battery.yaml}, \pc{models.yaml}, \pc{grid.yaml} \\
+\quad\pc{manifest/battery\_manifest.json} & content hash + counts for the battery \\
+\quad\pc{README.md} & data provenance + schema \\
+\addlinespace
+\pc{results/} & all generated outputs (see Section~6) \\
+\end{longtable}
+
+\section{Data (inputs and metadata)}
+
+\subsection{Frozen inputs}
+Every input the pipeline reads is a frozen artifact under \code{data/}. The analysis is a pure, seeded function of these files.
+
+{\small
+\begin{longtable}{@{}L{0.26\textwidth}L{0.10\textwidth}L{0.54\textwidth}@{}}
+\toprule
+File & Rows & Unit of observation / key fields \\
+\midrule
+\endhead
+\pc{battery/full.jsonl} (PRIMARY) & 600 & one synthetic case = a small transaction sub-network; 300 legitimate hard negatives + 300 suspicious across eight FATF/SAML-D typologies. Fields: \pc{case\_id}, \pc{label}, \pc{typology}, \pc{difficulty}, \pc{stratum}, \pc{benign\_pattern}, \pc{n\_nodes}, \pc{n\_edges}, \pc{serialized} (raw node/edge ledger), \pc{content\_sha256} \\
+\addlinespace
+\pc{capture/runs\_full\_<model>\_<variant>.csv} & 12{,}120 & one row = one model call. The confirmatory design is 5 models $\times$ 2 prompt variants $\times$ 2 seeds $\times$ 600 cases = 12{,}000 cells; the frozen CSVs hold 12{,}120 rows, the extra 120 being retried calls after transient API errors. Fields: \pc{model\_key}, \pc{api\_model}, \pc{provider}, \pc{prompt\_variant}, \pc{seed\_index}, \pc{case\_id}, \pc{label}, \pc{typology}, \pc{decision} (\pc{flag} / \pc{no\_flag} / \pc{ERROR}), \pc{rationale}, \pc{input\_tokens}, \pc{output\_tokens}, \pc{cost\_usd}, \pc{raw\_response} \\
+\addlinespace
+\pc{configs/battery.yaml} & --- & battery specification (typologies, counts, difficulty spread, seed \pc{20260715}) \\
+\pc{configs/models.yaml} & --- & model registry: provider, API snapshot/alias, list price per 1M tokens, tier \\
+\pc{configs/grid.yaml} & --- & capture grid (models $\times$ prompt variants $\times$ seeds) \\
+\bottomrule
+\end{longtable}
+}
+
+The primary panel is the frozen response corpus in \code{data/capture/}. Each per-case screening decision is reduced from its valid (non-ERROR) replicate calls by the pre-registered modal-vote rule (decision~D4): on legitimate cases a 2--2 tie is not counted as a false positive (strict majority required); on suspicious cases a 2--2 tie is counted as caught.
+
+\subsection{Provenance and integrity}
+\code{data/frozen/*.freeze.json} records the SHA-256 of each of the ten capture CSVs, and \code{data/manifest/battery\_manifest.json} records the content hash and case counts of the battery. \code{docs/} holds the frozen pre-registration and its amendment and pivot, so any silent change to an input or to the design is detected before the analysis runs (Section~7). \code{docs/data\_collection.md} documents how the corpus was captured; \code{docs/model\_manifest.md} and \code{docs/probe\_receipts.json} record the served-model identifiers.
+
+\subsection{Data sources}
+All analysis inputs are synthetic and self-contained: the battery is generated deterministically (seed \code{20260715}) from typologies anchored to the FATF catalogue and to established synthetic-AML data structures (SAML-D; the AMLSim lineage). No external, proprietary, or personal data are used or distributed, and no download is required to reproduce any result. The original capture queried the OpenAI and Google model APIs; those responses are frozen in \code{data/capture/} and are the only trace of the live phase the reproduction consumes.
+
+\section{Code (what it consumes and runs)}
+
+\subsection{Analysis scripts}
+All code is in \code{code/src/}. Each module is deterministic and writes only the outputs listed. Path resolution (Code Ocean \code{/data}, \code{/results} vs.\ a local checkout) is handled centrally in \code{io\_paths.py}.
+
+{\footnotesize
+\begin{longtable}{@{}L{0.17\textwidth}L{0.33\textwidth}L{0.17\textwidth}L{0.20\textwidth}@{}}
+\toprule
+Script & Purpose & Consumes & Produces \\
+\midrule
+\endhead
+\pc{build\_battery.py} & Regenerate the 600-case battery from the fixed seed and verify its SHA-256 & \pc{configs/battery.yaml} & \pc{battery/full.jsonl} (verified) \\
+\pc{loader.py} & Load the frozen capture corpus and configs & \pc{capture/*.csv}, \pc{configs/} & in-memory panel \\
+\pc{miss.py} & Reduce replicate calls to a per-(model,\,case) modal decision (D4 rule) & capture rows & miss/flag table \\
+\pc{stats.py} & Wilson score intervals; cluster bootstrap over the eight typology strata (2{,}000 draws, seed 4242) & rates & confidence intervals \\
+\pc{classification.py} & Per-model false-positive and miss rates; Cochran's $Q$; McNemar exact (Bonferroni); classification metrics; prompt sensitivity & \pc{capture/*.csv} & \pc{classification\_metrics.*}, \pc{stats\_tests.json}, \pc{prompt\_sensitivity.*} \\
+\pc{altrisk.py} & Primary analysis: false-positive spread, cross-model divergence, per-typology miss, prompt flip, correlated-miss null & miss table, capture rows & \pc{pivot\_claims.json} \\
+\pc{baselines.py} & FATF rules baseline and a supervised baseline (5-fold out-of-fold) & \pc{battery/full.jsonl} & \pc{baselines.json} \\
+\pc{alertvolume.py} & Alert-volume projection at 0.1\% prevalence over 1M tx/day & per-model rates & \pc{alert\_volume.json} \\
+\pc{reproduce.py} & Orchestrator: verify integrity, run the analysis, write the result tables and summary & frozen data + all modules & \pc{results/*} \\
+\pc{replication\_check.py} & Re-run the analysis in a second output directory and compare the SHA-256 of every result & \pc{results/} & \pc{replication\_check.md}, \pc{output\_hashes.json} \\
+\bottomrule
+\end{longtable}
+}
+
+\code{schema.py} defines the constrained-JSON screening schema; \code{io\_paths.py} resolves input/output locations. The modules under \code{code/capture/} (Section~8) are not part of the reproduction.
+
+\subsection{Pipeline order}
+\code{reproduce.sh} runs the modules in dependency order. All outputs are timestamp-free, so re-runs are byte-identical:
+
+\begin{verbatim}
+verify_data (battery hash + capture freeze receipts)
+  -> altrisk -> baselines -> alertvolume -> classification
+  -> table1/table2 + metrics_summary
+  -> replication_check (byte-identical re-run)
+\end{verbatim}
+
+\section{Results (generated outputs)}
+
+Running the pipeline regenerates the following under \code{results/}. In a clean checkout these already exist; the reproduction overwrites them and confirms they are unchanged.
+
+{\small
+\begin{longtable}{@{}L{0.34\textwidth}L{0.58\textwidth}@{}}
+\toprule
+Output & Contents \\
+\midrule
+\endhead
+\pc{pivot\_claims.json} & every reported number with its 95\% confidence interval and the configuration hash that produced it (the single source of truth for in-text numbers) \\
+\pc{classification\_metrics.\{json,csv\}} & per-model precision, recall, specificity, F1, balanced accuracy, MCC, and false-positive / miss rates with Wilson intervals \\
+\pc{stats\_tests.json} & Cochran's $Q$ and the pairwise McNemar exact tests (Bonferroni-corrected) \\
+\pc{baselines.json} & rules and supervised baseline false-positive and miss rates \\
+\pc{alert\_volume.json} & projected daily alert workload and precision per screener \\
+\pc{prompt\_sensitivity.\{json,csv\}} & per-model false-positive rate under each prompt variant and the decision-flip rate \\
+\pc{table1\_operating\_points.\{csv,md\}}, \pc{table2\_alert\_volume.\{csv,md\}} & the manuscript result tables \\
+\pc{metrics\_summary.md} & human-readable summary of the headline numbers \\
+\pc{data\_integrity.json}, \pc{output\_hashes.json} & input-hash verification and output-hash record \\
+\pc{replication\_check.md} & the PASS/FAIL byte-identical audit \\
+\pc{figures/fig1\_...\,--\,fig5\_....pdf} & the five manuscript display items (static; excluded from the byte-identical check) \\
+\bottomrule
+\end{longtable}
+}
+
+\section{Reproduction and verification}
+
+\code{reproduce.sh} performs the following stages and exits non-zero if any fails:
+
+\begin{enumerate}\setlength{\itemsep}{2pt}
+\item \textbf{Integrity.} Regenerates the 600-case battery from seed \code{20260715} and confirms its SHA-256 matches \code{data/manifest/battery\_manifest.json}; confirms each of the ten capture CSVs matches its \code{data/frozen/*.freeze.json} receipt. (The freeze step that produced those receipts refuses any capture file with an ERROR rate above 2\%; the observed rate is 0.08\%, i.e.\ 10 of 12{,}120 rows.)
+\item \textbf{Regeneration.} Runs the full analysis (Section~5.2) from the frozen inputs only.
+\item \textbf{Byte-identical re-run.} \code{replication\_check.py} re-runs the whole analysis in a second, isolated output directory and confirms the SHA-256 of every result file is identical.
+\end{enumerate}
+
+\textbf{Determinism.} Analysis seed \code{4242}; the cluster bootstrap uses 2{,}000 fixed-seed resamples over the eight typology strata, so its intervals are exactly reproducible. The reproduction makes no network calls.
+
+\textbf{Environment.} The pinned analysis environment is \code{numpy==2.2.6}, \code{scikit-learn==1.7.2}, \code{scipy==1.18.0}, \code{pyyaml==6.0.3}, and \code{pydantic==2.13.4} (with \code{pytest==8.3.5} for the optional test suite), on Python~3.12. Exact pins are in \code{code/requirements.txt}; \code{environment/Dockerfile} builds the same environment for a byte-identical run on any machine. The figures are shipped as static artifacts and are excluded from the byte-identical check; regenerating them is optional and needs \code{matplotlib}, which is not part of the pinned analysis dependencies.
+
+\section{Live data collection (not part of the reproduction)}
+
+\code{code/capture/} documents how the model-response corpus was originally collected: \code{orchestrator.py} drives the capture grid; \code{agent.py} issues the constrained-JSON screening calls; \code{probe.py} pins the served-model identifier; \code{ledger.py} and \code{check\_limits.py} enforce a hard spend cap; \code{freeze.py} writes the SHA-256 freeze receipts; \code{secrets.py} loads API keys. This phase requires internet access, OpenAI and Google API keys, and incurs cost, and is intentionally excluded from the reproducible core: all reported results derive only from the frozen captures in \code{data/capture/}.
+
+\section{Licensing and data availability}
+
+Code and data are released under the MIT Licence (see \code{LICENSE}). All data are synthetic; no proprietary, personal, or confidential data are used or distributed. The permanent citable archive is the Code Ocean capsule at \url{https://doi.org/10.24433/CO.4804007.v1}, which reproduces every reported number, table, and figure offline, deterministically, and at zero cost.
+
+\end{document}

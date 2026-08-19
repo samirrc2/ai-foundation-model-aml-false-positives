@@ -1,4 +1,4 @@
-# Metrics summary — Same Transactions, Different Alarms
+# Metrics summary — AI foundation model choice and false positive variation in Anti Money Laundering transaction screening
 
 Models: gemini_flash, gemini_flash_lite, openai_41_mini, openai_4o, openai_4o_mini
 Battery: 300 benign / 300 suspicious | error rate 0.0008

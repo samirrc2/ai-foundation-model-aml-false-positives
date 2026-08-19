@@ -1,8 +1,18 @@
-# Same Transactions, Different Alarms
+# AI foundation model choice and false positive variation in Anti Money Laundering transaction screening
 
 Computational artifact for the Discover Artificial Intelligence article:
 
-**Same Transactions, Different Alarms: Foundation-Model Choice and AML False Positives**
+**AI foundation model choice and false positive variation in Anti Money Laundering transaction screening**
+
+---
+
+## 📄 Start here: Reproducibility Documentation
+
+### ➡️ [Supporting Data and Code — Reproducibility Documentation (PDF)](REPRODUCIBILITY_DOCUMENTATION.pdf)
+
+This is the complete guide to the repository — **read it first.** It explains, section by section, *what this repository contains and how to use it*: every data input and its schema, every analysis script (what it consumes and what it produces), all generated outputs, how the data were collected, and the single-command offline reproduction and byte-identical verification. Anyone reviewing, reproducing, or reusing the artifact should begin there.
+
+---
 
 ### Paper summary
 
@@ -24,10 +34,10 @@ This repository is the frozen dataset and deterministic analysis pipeline that r
 
 | Field | Value |
 |-------|-------|
-| **Article title** | Same Transactions, Different Alarms: Foundation-Model Choice and AML False Positives |
+| **Article title** | AI foundation model choice and false positive variation in Anti Money Laundering transaction screening |
 | **Authors** | Samir Chincholikar, Robin Chawla |
 | **Affiliations** | Independent researchers |
-| **Code repository** | https://github.com/samirrc2/same-transactions-different-alarms |
+| **Code repository** | https://github.com/samirrc2/ai-foundation-model-aml-false-positives |
 | **Persistent DOI** | https://doi.org/10.24433/CO.4804007.v1 (`10.24433/CO.4804007.v1`) |
 | **Contact** | Samir Chincholikar: samir.chincholikar@gmail.com; Robin Chawla: robin.chawla.cse14@iitbhu.ac.in |
 | **ORCID** | Samir Chincholikar: https://orcid.org/0009-0007-2779-3492; Robin Chawla: https://orcid.org/0009-0007-2807-3948 |
@@ -94,15 +104,16 @@ The frozen dataset is committed to the repository, so the capsule reproduces eve
 
 ### Software libraries
 
-Dependencies are in `capsule/code/requirements.txt`, pinned to the tested, byte-identical environment:
+The pinned analysis environment is `capsule/code/requirements.txt`:
 
 - `numpy==2.2.6` — analysis (required)
 - `scikit-learn==1.7.2` — rules/supervised baselines (required)
 - `scipy==1.18.0` — Cochran's Q + McNemar exact P-values (required)
 - `pyyaml==6.0.3` — configuration parsing (required)
 - `pydantic==2.13.4` — configuration schema validation (required)
-- `matplotlib` — optional, figure regeneration only
-- `openai>=1.40`, `google-genai>=0.3` — optional, live re-collection only
+- `pytest==8.3.5` — optional, `capsule/code/tests/` sanity checks
+
+Not part of the pinned analysis environment (so **not** in `requirements.txt`): `matplotlib`, needed only if you choose to regenerate the static figures, and the `openai` / `google-genai` SDKs, needed only for optional live re-collection under `capsule/code/capture/`. Neither is required to reproduce any reported number.
 
 ### Input data included with the artifact
 
@@ -136,8 +147,8 @@ API credentials for OpenAI and Google Gemini are required **only** for live re-c
 ### Installation
 
 ```bash
-git clone https://github.com/samirrc2/same-transactions-different-alarms.git
-cd same-transactions-different-alarms/capsule
+git clone https://github.com/samirrc2/ai-foundation-model-aml-false-positives.git
+cd ai-foundation-model-aml-false-positives/capsule
 python3 -m venv .venv && source .venv/bin/activate   # Windows: .venv\Scripts\activate
 pip install -r code/requirements.txt
 bash reproduce.sh
@@ -226,7 +237,7 @@ The determinism check must confirm byte-identical results across two independent
 ### Repository structure
 
 ```text
-same-transactions-different-alarms/
+ai-foundation-model-aml-false-positives/
 ├── README.md   LICENSE   CITATION.cff   .gitignore
 │
 ├── capsule/                          # Code Ocean compute capsule (keys-free reproduce)
@@ -264,8 +275,8 @@ Generated artifacts (`.venv/`, `__pycache__/`) are gitignored. Committed analysi
 ### Reviewer quick start
 
 ```bash
-git clone https://github.com/samirrc2/same-transactions-different-alarms.git
-cd same-transactions-different-alarms/capsule
+git clone https://github.com/samirrc2/ai-foundation-model-aml-false-positives.git
+cd ai-foundation-model-aml-false-positives/capsule
 python3 -m venv .venv && source .venv/bin/activate
 pip install -r code/requirements.txt
 bash reproduce.sh          # ~1 min, no keys, no cost
