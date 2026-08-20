@@ -265,7 +265,6 @@ ai-foundation-model-aml-false-positives/
     ├── MANUSCRIPT_Discover_compiled.pdf   # compiled manuscript (submission PDF)
     ├── MANUSCRIPT_Discover.docx           # Word version (same numbering, embedded figures)
     ├── COVER_LETTER.{tex,pdf,docx}        # cover letter
-    ├── SUPPLEMENTARY_INFORMATION.md       # supplementary notes
     ├── figures/                           # fig1–fig5 (PDF + PNG)
     └── latex/                             # Springer Nature sn-jnl source (main.tex, .bib, .bbl, .cls, .bst) — compiles PDF + DOCX via build_both.sh
 ```
