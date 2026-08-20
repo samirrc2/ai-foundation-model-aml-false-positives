@@ -69,4 +69,4 @@ Interpretation: the algorithmic-monoculture prediction of correlated failure is 
 
 ## Data and code availability
 
-All data, code, the preregistration, and a one-command reproducible capsule (regenerates + hash-verifies the battery, recomputes every statistic, and confirms byte-identical outputs across two runs) are available in the Code Ocean capsule at https://doi.org/10.24433/CO.4804007.v1. A machine-readable `pivot_claims.json` contains every reported number with its confidence interval and the configuration hash that produced it.
+All data, code, the preregistration, and a one-command reproducible capsule (regenerates + hash-verifies the battery, recomputes every statistic, and confirms byte-identical outputs across two runs) are available in the public GitHub repository at https://github.com/samirrc2/ai-foundation-model-aml-false-positives (MIT licence), documented in REPRODUCIBILITY_DOCUMENTATION.pdf at the repository root. A machine-readable `pivot_claims.json` contains every reported number with its confidence interval and the configuration hash that produced it.
