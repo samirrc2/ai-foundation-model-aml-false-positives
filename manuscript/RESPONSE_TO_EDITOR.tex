@@ -1,0 +1,93 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[hidelinks]{hyperref}
+\usepackage{seqsplit}
+\usepackage{enumitem}
+\setlength{\parindent}{0pt}\setlength{\parskip}{6pt}\pagestyle{empty}
+\sloppy\setlength{\emergencystretch}{3em}
+\newcommand{\code}[1]{\texttt{\seqsplit{#1}}}
+\begin{document}
+
+\begin{center}
+{\large\bfseries Point-by-point response to the Quality Check}\\[3pt]
+{\itshape AI foundation model choice and false positive variation in Anti Money Laundering transaction screening}\\[2pt]
+{\small \emph{Discover Artificial Intelligence} \textbullet\ Submission ID: be7bd75c-daba-4386-ad14-beac2bbcac64}
+\end{center}
+
+\vspace{4pt}
+
+Dear Ms Kalai,
+
+Thank you for the Quality Check. We have made all requested changes directly in the manuscript file. Our responses are given point by point below; editorial comments are shown in \emph{italics}.
+
+\vspace{4pt}
+\hrule
+\vspace{6pt}
+
+\textbf{1. Revise title}
+
+\emph{The title should read as one concise sentence, without punctuation, and be informative and appropriate.}
+
+We have rewritten the title as a single, informative, punctuation-free sentence (no colons, commas, hyphens, or question marks):
+
+\begin{quote}
+AI foundation model choice and false positive variation in Anti Money Laundering transaction screening
+\end{quote}
+
+The title has been updated throughout the manuscript file.
+
+\vspace{6pt}
+\hrule
+\vspace{6pt}
+
+\textbf{2. Clarification: research vs review/perspective}
+
+\emph{Kindly clarify whether this manuscript is a research or a review/perspective manuscript.}
+
+This is a \textbf{Research} article; it is not a review or perspective. It reports an original, pre-registered empirical study: we generated a synthetic 600-case benchmark and collected 12,000 model screening decisions across five foundation models from two providers, and we report new quantitative results with inferential statistics (Cochran's $Q$, McNemar's exact test with Bonferroni correction, and Wilson and cluster-bootstrap confidence intervals), together with non-LLM baselines. Accordingly, we provide the Research-article Data Availability Statement under point~3.
+
+For completeness, the manuscript's Declarations section already contains the following standardised statements:
+
+\begin{itemize}[nosep]
+\item \textbf{Funding} --- No funding was received for this study.
+\item \textbf{Competing interests} --- The authors declare no competing interests.
+\item \textbf{Ethics approval and consent to participate} --- Not applicable (synthetic data only; no human participants, human tissue, or animals).
+\item \textbf{Consent for publication} --- Not applicable.
+\item \textbf{Data availability} --- as stated under point~3.
+\item \textbf{Author contributions} --- provided in the manuscript.
+\end{itemize}
+
+\vspace{6pt}
+\hrule
+\vspace{6pt}
+
+\textbf{3. Data Availability Statement}
+
+\emph{The statement in the system and in the manuscript were mismatching; and the repository link returned a ``Page Not Found'' error. Kindly give the same statement in both and provide a currently accessible link.}
+
+We have corrected the inaccessible link and made the statement identical in the manuscript file and in the submission system. The repository has been renamed and is now publicly accessible; the previous URL is no longer in use. The corrected, accessible location is:
+
+\begin{quote}
+\code{https://github.com/samirrc2/ai-foundation-model-aml-false-positives}
+\end{quote}
+
+The Data Availability Statement, now identical in the manuscript and the system, reads:
+
+\begin{quote}
+All data and code required to reproduce the study are openly available in the public GitHub repository at \code{https://github.com/samirrc2/ai-foundation-model-aml-false-positives} (MIT licence); the repository root includes \code{REPRODUCIBILITY\_DOCUMENTATION.pdf}, a section-by-section guide to every input, script, and output and to the one-command offline reproduction. The study uses only synthetic transaction data; no human participants, proprietary records, or live model access are required to reproduce any result.
+\end{quote}
+
+\vspace{6pt}
+\hrule
+\vspace{6pt}
+
+In accordance with your instructions, all revisions have been made directly in the original manuscript file, and we have not uploaded any separate response or changes file into the system. Please let us know if anything further is required.
+
+\vspace{10pt}
+Kind regards,\\[2pt]
+Robin Chawla\\
+Corresponding author, on behalf of Samir Chincholikar and Robin Chawla\\
+\href{mailto:robin.chawla.cse14@iitbhu.ac.in}{robin.chawla.cse14@iitbhu.ac.in}
+
+\end{document}
