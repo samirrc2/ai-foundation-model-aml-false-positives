@@ -1,0 +1,55 @@
+{
+  "N": 1000000,
+  "prevalence": 0.001,
+  "rows": [
+    {
+      "daily_alerts": 1000,
+      "false_alerts": 0,
+      "fp_rate": 0.0,
+      "precision": 1.0,
+      "screener": "Supervised (ceiling)"
+    },
+    {
+      "daily_alerts": 24190,
+      "false_alerts": 23310,
+      "fp_rate": 0.0233,
+      "precision": 0.036379,
+      "screener": "Gemini Flash"
+    },
+    {
+      "daily_alerts": 77557,
+      "false_alerts": 76590,
+      "fp_rate": 0.0767,
+      "precision": 0.012468,
+      "screener": "GPT-4o"
+    },
+    {
+      "daily_alerts": 120767,
+      "false_alerts": 119880,
+      "fp_rate": 0.12,
+      "precision": 0.007342,
+      "screener": "Rules baseline"
+    },
+    {
+      "daily_alerts": 370593,
+      "false_alerts": 369630,
+      "fp_rate": 0.37,
+      "precision": 0.002599,
+      "screener": "GPT-4.1-mini"
+    },
+    {
+      "daily_alerts": 440553,
+      "false_alerts": 439560,
+      "fp_rate": 0.44,
+      "precision": 0.002254,
+      "screener": "Gemini Flash-Lite"
+    },
+    {
+      "daily_alerts": 856810,
+      "false_alerts": 855810,
+      "fp_rate": 0.8567,
+      "precision": 0.001167,
+      "screener": "GPT-4o-mini"
+    }
+  ]
+}

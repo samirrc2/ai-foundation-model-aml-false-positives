@@ -1,0 +1,187 @@
+{
+  "A_false_positive": {
+    "divergence_benign": 0.8866666666666667,
+    "divergence_benign_ci95": [
+      0.8221476510067114,
+      0.95
+    ],
+    "fp_rate_max": 0.8566666666666667,
+    "fp_rate_min": 0.023333333333333334,
+    "fp_ratio_ci95": [
+      14.200000000000001,
+      134.0
+    ],
+    "fp_ratio_maxmin": 36.714285714285715,
+    "fp_spread_ci95": [
+      0.7181208053691276,
+      0.9366666666666666
+    ],
+    "fp_spread_pp": 0.8333333333333334,
+    "per_model": {
+      "gemini_flash": {
+        "family": "google",
+        "flags": 7,
+        "fp_rate": 0.023333333333333334,
+        "n": 300,
+        "wilson_ci": [
+          0.01134751559829571,
+          0.04737255433287896
+        ]
+      },
+      "gemini_flash_lite": {
+        "family": "google",
+        "flags": 132,
+        "fp_rate": 0.44,
+        "n": 300,
+        "wilson_ci": [
+          0.3849382095794712,
+          0.49657900202025707
+        ]
+      },
+      "openai_41_mini": {
+        "family": "openai",
+        "flags": 111,
+        "fp_rate": 0.37,
+        "n": 300,
+        "wilson_ci": [
+          0.3173308011545093,
+          0.42595649064490193
+        ]
+      },
+      "openai_4o": {
+        "family": "openai",
+        "flags": 23,
+        "fp_rate": 0.07666666666666666,
+        "n": 300,
+        "wilson_ci": [
+          0.05162723750301175,
+          0.11241086656173778
+        ]
+      },
+      "openai_4o_mini": {
+        "family": "openai",
+        "flags": 257,
+        "fp_rate": 0.8566666666666667,
+        "n": 300,
+        "wilson_ci": [
+          0.8124985303950185,
+          0.8918158228732633
+        ]
+      }
+    }
+  },
+  "B_typology_miss": {
+    "cash_intensive_front": {
+      "miss_rate": 0.10270270270270271,
+      "misses": 19,
+      "n": 185,
+      "wilson_ci": [
+        0.06673918450520244,
+        0.15483063909298778
+      ]
+    },
+    "funnel_account": {
+      "miss_rate": 0.0,
+      "misses": 0,
+      "n": 185,
+      "wilson_ci": [
+        0.0,
+        0.02034297527663396
+      ]
+    },
+    "layering": {
+      "miss_rate": 0.0,
+      "misses": 0,
+      "n": 190,
+      "wilson_ci": [
+        0.0,
+        0.019818243349208835
+      ]
+    },
+    "mule_network": {
+      "miss_rate": 0.0,
+      "misses": 0,
+      "n": 190,
+      "wilson_ci": [
+        0.0,
+        0.019818243349208835
+      ]
+    },
+    "rapid_passthrough": {
+      "miss_rate": 0.016216216216216217,
+      "misses": 3,
+      "n": 185,
+      "wilson_ci": [
+        0.0055299415368799225,
+        0.046585694001052405
+      ]
+    },
+    "shell_layering": {
+      "miss_rate": 0.0,
+      "misses": 0,
+      "n": 185,
+      "wilson_ci": [
+        0.0,
+        0.02034297527663396
+      ]
+    },
+    "structuring": {
+      "miss_rate": 0.005263157894736842,
+      "misses": 1,
+      "n": 190,
+      "wilson_ci": [
+        0.0009296576420357184,
+        0.02920628840876039
+      ]
+    },
+    "trade_based": {
+      "miss_rate": 0.18947368421052632,
+      "misses": 36,
+      "n": 190,
+      "wilson_ci": [
+        0.1401171593217027,
+        0.25113838128464805
+      ]
+    }
+  },
+  "C_prompt_flip": {
+    "flip_rate": 0.07534589098183031,
+    "flips": 452,
+    "n_pairs": 5999,
+    "variants": [
+      "v_fatf",
+      "v_terse"
+    ],
+    "wilson_ci": [
+      0.06893488480993352,
+      0.08230042348139306
+    ]
+  },
+  "meta": {
+    "analysis_seed": 4242,
+    "bootstrap_draws": 2000,
+    "config_hash": "13ddae93dec88ed8",
+    "error_rate": 0.0008,
+    "families": {
+      "gemini_flash": "google",
+      "gemini_flash_lite": "google",
+      "openai_41_mini": "openai",
+      "openai_4o": "openai",
+      "openai_4o_mini": "openai"
+    },
+    "mode": "REAL",
+    "models": [
+      "gemini_flash",
+      "gemini_flash_lite",
+      "openai_41_mini",
+      "openai_4o",
+      "openai_4o_mini"
+    ],
+    "n_benign": 300,
+    "n_rows": 12120,
+    "n_suspicious": 300,
+    "paper": "AI foundation model choice and false positive variation in Anti Money Laundering transaction screening",
+    "status": "CONFIRMATORY: pre-registered full run over the five foundation models (see docs/PREREGISTRATION.md and docs/DECISIONS.md)",
+    "subgrid": "full"
+  }
+}

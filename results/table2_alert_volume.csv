@@ -1,0 +1,8 @@
+screener,fp_rate,daily_alerts,false_alerts,precision
+Supervised (ceiling),0.0,1000,0,1.0
+Gemini Flash,0.0233,24190,23310,0.036379
+GPT-4o,0.0767,77557,76590,0.012468
+Rules baseline,0.12,120767,119880,0.007342
+GPT-4.1-mini,0.37,370593,369630,0.002599
+Gemini Flash-Lite,0.44,440553,439560,0.002254
+GPT-4o-mini,0.8567,856810,855810,0.001167

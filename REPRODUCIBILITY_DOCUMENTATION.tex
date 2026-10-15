@@ -36,14 +36,13 @@
 
 \section{Purpose and scope}
 
-This document describes the supporting data-and-code archive that accompanies the manuscript (the reproducibility capsule under \code{capsule/}). The archive is a self-contained, offline, deterministic reproduction: from a single command it regenerates every reported number, table, and figure and verifies each result by re-running the analysis and comparing byte for byte. No network access, no API keys, and no paid model calls are required. The permanent citable version is the Code Ocean capsule at \url{https://doi.org/10.24433/CO.4804007.v1} (MIT licence); the same tree is mirrored in the project repository.
+This document describes the supporting data-and-code archive that accompanies the manuscript (this repository). The archive is a self-contained, offline, deterministic reproduction: from a single command it regenerates every reported number, table, and figure and verifies each result by re-running the analysis and comparing byte for byte. No network access, no API keys, and no paid model calls are required. The permanent citable version is the Zenodo archive of this repository (MIT licence for code, CC-BY-4.0 for data and text), minted at archive time.
 
 The study uses only \emph{synthetic} transaction data. A strict wall separates two phases: an offline \emph{analysis} that reproduces every claim from frozen inputs (documented here), and a live \emph{capture} phase that originally queried commercial model APIs and is retained for transparency only (Section~8). Because commercial models change over time, the capture is deliberately not part of the reproducible core; the frozen model-response corpus it produced is shipped and hash-verified.
 
 \section{Quick start}
 
 \begin{verbatim}
-cd capsule
 pip install -r code/requirements.txt
 bash reproduce.sh
 \end{verbatim}
@@ -51,11 +50,11 @@ bash reproduce.sh
 Or, for a byte-identical run in the pinned container:
 
 \begin{verbatim}
-cd capsule/environment
+cd environment
 docker build -t repro . && docker run --rm repro
 \end{verbatim}
 
-On Code Ocean, press \textbf{Reproducible Run} (which executes \code{code/run}).
+The archive is a plain source release, so there is no container to press a button in: \code{bash reproduce.sh} is the whole procedure.
 
 \textbf{Expected result:} the integrity check passes, the full analysis regenerates the committed outputs, the second independent run is byte-identical (SHA-256 of every result file matches), and the run prints \code{\#\# REPRODUCIBLE} and exits~0. Total runtime is well under a minute on a standard laptop.
 
@@ -63,13 +62,11 @@ On Code Ocean, press \textbf{Reproducible Run} (which executes \code{code/run}).
 
 \begin{longtable}{@{}L{0.32\textwidth}L{0.60\textwidth}@{}}
 \pc{reproduce.sh} & one-command offline reproduction + integrity + byte-identical check \\
-\pc{code/run} & Code Ocean entry point ($\rightarrow$ \pc{code/scripts/reproduce.sh}) \\
 \pc{code/requirements.txt} & pinned Python dependencies (analysis only) \\
-\pc{code/src/} & all analysis code (see Section~5) \\
-\pc{code/capture/} & live data-collection harness (reference only; not run here) \\
-\pc{code/tests/} & pytest sanity checks on the reproduced numbers \\
+\pc{analysis/} & all analysis code (see Section~5) \\
+\pc{capture/} & live data-collection harness (reference only; not run here) \\
+\pc{tests/} & pytest sanity checks on the reproduced numbers \\
 \pc{environment/Dockerfile} & pinned image for a byte-identical run (no network) \\
-\pc{metadata/metadata.yml} & capsule metadata \\
 \pc{docs/} & frozen pre-registration, amendment, pivot, decisions log, data-collection note, model manifest \\
 \addlinespace
 \pc{data/} & all inputs \\
@@ -116,7 +113,7 @@ All analysis inputs are synthetic and self-contained: the battery is generated d
 \section{Code (what it consumes and runs)}
 
 \subsection{Analysis scripts}
-All code is in \code{code/src/}. Each module is deterministic and writes only the outputs listed. Path resolution (Code Ocean \code{/data}, \code{/results} vs.\ a local checkout) is handled centrally in \code{io\_paths.py}.
+All code is in \code{analysis/}. Each module is deterministic and writes only the outputs listed. Path resolution is handled centrally in \code{io\_paths.py}: the repository is flat, so \code{analysis/}, \code{data/} and \code{results/} all sit beside each other and nothing hard-codes a location.
 
 {\footnotesize
 \begin{longtable}{@{}L{0.17\textwidth}L{0.33\textwidth}L{0.17\textwidth}L{0.20\textwidth}@{}}
@@ -138,7 +135,7 @@ Script & Purpose & Consumes & Produces \\
 \end{longtable}
 }
 
-\code{schema.py} defines the constrained-JSON screening schema; \code{io\_paths.py} resolves input/output locations. The modules under \code{code/capture/} (Section~8) are not part of the reproduction.
+\code{schema.py} defines the constrained-JSON screening schema; \code{io\_paths.py} resolves input/output locations. The modules under \code{capture/} (Section~8) are not part of the reproduction.
 
 \subsection{Pipeline order}
 \code{reproduce.sh} runs the modules in dependency order. All outputs are timestamp-free, so re-runs are byte-identical:
@@ -191,10 +188,10 @@ Output & Contents \\
 
 \section{Live data collection (not part of the reproduction)}
 
-\code{code/capture/} documents how the model-response corpus was originally collected: \code{orchestrator.py} drives the capture grid; \code{agent.py} issues the constrained-JSON screening calls; \code{probe.py} pins the served-model identifier; \code{ledger.py} and \code{check\_limits.py} enforce a hard spend cap; \code{freeze.py} writes the SHA-256 freeze receipts; \code{secrets.py} loads API keys. This phase requires internet access, OpenAI and Google API keys, and incurs cost, and is intentionally excluded from the reproducible core: all reported results derive only from the frozen captures in \code{data/capture/}.
+\code{capture/} documents how the model-response corpus was originally collected: \code{orchestrator.py} drives the capture grid; \code{agent.py} issues the constrained-JSON screening calls; \code{probe.py} pins the served-model identifier; \code{ledger.py} and \code{check\_limits.py} enforce a hard spend cap; \code{freeze.py} writes the SHA-256 freeze receipts; \code{secrets.py} loads API keys. This phase requires internet access, OpenAI and Google API keys, and incurs cost, and is intentionally excluded from the reproducible core: all reported results derive only from the frozen captures in \code{data/capture/}.
 
 \section{Licensing and data availability}
 
-Code and data are released under the MIT Licence (see \code{LICENSE}). All data are synthetic; no proprietary, personal, or confidential data are used or distributed. The permanent citable archive is the Code Ocean capsule at \url{https://doi.org/10.24433/CO.4804007.v1}, which reproduces every reported number, table, and figure offline, deterministically, and at zero cost.
+Code and data are released under the MIT Licence (see \code{LICENSE}). All data are synthetic; no proprietary, personal, or confidential data are used or distributed. The permanent citable archive is the Zenodo deposit of this repository, which reproduces every reported number, table, and figure offline, deterministically, and at zero cost.
 
 \end{document}

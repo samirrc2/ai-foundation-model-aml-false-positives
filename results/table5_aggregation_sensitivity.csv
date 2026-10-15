@@ -1,0 +1,10 @@
+Rule,Gemini Flash FP%,GPT-4o FP%,GPT-4.1-mini FP%,Gemini Flash-Lite FP%,GPT-4o-mini FP%,FP spread pp,Gemini Flash miss%,GPT-4o miss%,GPT-4.1-mini miss%,Gemini Flash-Lite miss%,GPT-4o-mini miss%
+ties_to_flag_preregistered_D4,2.3,7.7,37.0,44.0,85.7,83.3,12.0,3.3,3.7,0.7,0.0
+ties_to_no_flag_strict_majority,0.3,1.0,23.7,24.7,83.0,82.7,18.3,8.3,7.0,2.0,0.0
+ties_as_abstention,0.3,1.1,27.3,30.6,85.3,84.9,12.8,3.5,3.8,0.7,0.0
+unanimity_required,0.3,0.3,20.3,24.7,78.0,77.7,19.0,10.0,8.7,2.0,0.0
+label_dependent_as_published,0.3,1.0,23.7,24.7,83.0,82.7,12.0,3.3,3.7,0.7,0.0
+single call: v_fatf|seed0,2.3,9.3,40.3,44.0,87.7,85.3,13.3,3.0,2.7,0.7,0.0
+single call: v_fatf|seed1,2.3,8.0,39.0,44.0,87.3,85.0,13.0,2.0,3.0,0.7,0.0
+single call: v_terse|seed0,0.3,0.7,23.7,24.7,80.7,80.3,17.7,9.3,7.3,2.0,0.0
+single call: v_terse|seed1,0.3,0.7,21.0,24.7,81.7,81.3,16.7,8.7,8.0,2.0,0.0

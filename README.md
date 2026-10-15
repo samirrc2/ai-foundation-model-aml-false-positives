@@ -38,7 +38,7 @@ This repository is the frozen dataset and deterministic analysis pipeline that r
 | **Authors** | Samir Chincholikar, Robin Chawla |
 | **Affiliations** | Independent researchers |
 | **Code repository** | https://github.com/samirrc2/ai-foundation-model-aml-false-positives |
-| **Persistent DOI** | https://doi.org/10.24433/CO.4804007.v1 (`10.24433/CO.4804007.v1`) |
+| **Persistent DOI** | minted on Zenodo at archive time |
 | **Contact** | Samir Chincholikar: samir.chincholikar@gmail.com; Robin Chawla: robin.chawla.cse14@iitbhu.ac.in |
 | **ORCID** | Samir Chincholikar: https://orcid.org/0009-0007-2779-3492; Robin Chawla: https://orcid.org/0009-0007-2807-3948 |
 
@@ -48,32 +48,31 @@ This artifact accompanies a **pre-registered** study of cross-foundation-model f
 
 The artifact enables independent reproduction of the article's computational results. Specifically, it provides:
 
-1. The frozen confirmatory dataset (`capsule/data/capture/runs_full_<model>_<variant>.csv`, each row carrying the model's raw response) with SHA-256 receipts (`capsule/data/frozen/`), the deterministic 600-case battery (`capsule/data/battery/full.jsonl`, content-hashed in `capsule/data/manifest/battery_manifest.json`), and the study configuration (`capsule/data/configs/`).
-2. A deterministic analysis pipeline that regenerates the primary false-positive-variance endpoints with cluster-bootstrap and Wilson CIs, the standard per-model classification metrics with paired inferential tests (Cochran's Q, McNemar exact + Bonferroni), the per-typology miss rates, the prompt-sensitivity decomposition, two non-LLM baselines, and the operational alert-volume projection, into `capsule/results/`.
-3. Pre-registration, its amendment and pivot, and the append-only decisions log (`capsule/docs/`).
-4. The capture harness used for live collection (`capsule/code/capture/`).
+1. The frozen confirmatory dataset (`data/capture/runs_full_<model>_<variant>.csv`, each row carrying the model's raw response) with SHA-256 receipts (`data/frozen/`), the deterministic 600-case battery (`data/battery/full.jsonl`, content-hashed in `data/manifest/battery_manifest.json`), and the study configuration (`data/configs/`).
+2. A deterministic analysis pipeline that regenerates the primary false-positive-variance endpoints with cluster-bootstrap and Wilson CIs, the standard per-model classification metrics with paired inferential tests (Cochran's Q, McNemar exact + Bonferroni), the per-typology miss rates, the prompt-sensitivity decomposition, two non-LLM baselines, and the operational alert-volume projection, into `results/`.
+3. Pre-registration, its amendment and pivot, and the append-only decisions log (`docs/`).
+4. The capture harness used for live collection (`capture/`).
 5. The Discover Artificial Intelligence manuscript package (`manuscript/`).
 
 **Default workflow (this README):** regenerate all analysis outputs from the frozen dataset. This path requires **no API keys** and incurs **no inference cost**. Re-collecting the 12,000 API calls is optional, incurs cost, and is **not required** to verify the numerical claims in the article.
 
 ---
 
-## Code Ocean
+## Zenodo
 
-A [Code Ocean](https://codeocean.com/) compute capsule for this artifact is available at
-[https://doi.org/10.24433/CO.4804007.v1](https://doi.org/10.24433/CO.4804007.v1)
-(DOI `10.24433/CO.4804007.v1`).
+This artifact is archived on Zenodo as a plain source release. There is no container image and
+no compute capsule: the repository is flat, and everything reproduces from the frozen data with
+a single command.
 
-| Status | Detail |
-|--------|--------|
-| Capsule | Keys-free Reproducible Run via `/code/run` → `code/scripts/reproduce.sh` |
-| Environment | `capsule/environment/Dockerfile` (Code Ocean base + pinned pip) |
-| Public link / DOI | https://doi.org/10.24433/CO.4804007.v1 |
-| Local reproduce | `cd capsule && bash reproduce.sh` |
+| | |
+|---|---|
+| Reproduce | `bash reproduce.sh` from the repository root |
+| Environment | `requirements.txt` (pinned); `environment/Dockerfile` is optional |
+| Verify | `bash build/build_all.sh` rebuilds every deliverable and runs every gate |
+| Tests | `pytest tests -q` |
 
-The frozen dataset is committed to the repository, so the capsule reproduces every number with **no external download, no API keys, and no inference cost**.
-
-> **Note:** this artifact adds two deterministic outputs (`classification_metrics.json`, `stats_tests.json`) beyond the original capsule. Re-run `bash reproduce.sh` and re-upload as a **new capsule version** so the persistent DOI resolves to matching output hashes.
+The frozen dataset is committed, so every number reproduces with **no external download, no API
+keys and no inference cost**. Two independent runs are byte-identical.
 
 ---
 
@@ -91,8 +90,8 @@ The frozen dataset is committed to the repository, so the capsule reproduces eve
 ### Operating system
 
 - macOS, Linux, or Windows with WSL2
-- `bash` required for `capsule/reproduce.sh` and `capsule/code/run`
-- Containerized review environments (e.g., Code Ocean): Linux
+- `bash` required for `reproduce.sh` and `reproduce.sh`
+- Containerized review environments (e.g. a container): Linux
 
 ### Software
 
@@ -104,32 +103,32 @@ The frozen dataset is committed to the repository, so the capsule reproduces eve
 
 ### Software libraries
 
-The pinned analysis environment is `capsule/code/requirements.txt`:
+The pinned analysis environment is `requirements.txt`:
 
 - `numpy==2.2.6` — analysis (required)
 - `scikit-learn==1.7.2` — rules/supervised baselines (required)
 - `scipy==1.18.0` — Cochran's Q + McNemar exact P-values (required)
 - `pyyaml==6.0.3` — configuration parsing (required)
 - `pydantic==2.13.4` — configuration schema validation (required)
-- `pytest==8.3.5` — optional, `capsule/code/tests/` sanity checks
+- `pytest==8.3.5` — optional, `tests/` sanity checks
 
-Not part of the pinned analysis environment (so **not** in `requirements.txt`): `matplotlib`, needed only if you choose to regenerate the static figures, and the `openai` / `google-genai` SDKs, needed only for optional live re-collection under `capsule/code/capture/`. Neither is required to reproduce any reported number.
+Not part of the pinned analysis environment (so **not** in `requirements.txt`): `matplotlib`, needed only if you choose to regenerate the static figures, and the `openai` / `google-genai` SDKs, needed only for optional live re-collection under `capture/`. Neither is required to reproduce any reported number.
 
 ### Input data included with the artifact
 
 | Path | Description | Approx. size |
 |------|-------------|--------------|
-| `capsule/data/capture/runs_full_<model>_<variant>.csv` | Frozen confirmatory call logs (incl. raw response) — 10 files | 8.1 MB |
-| `capsule/data/battery/full.jsonl`, `pilot.jsonl` | Deterministic 600-case battery (and pilot subsample) | 1.4 MB |
-| `capsule/data/frozen/*.freeze.json` | Per-capture SHA-256 receipts | < 1 MB |
-| `capsule/data/configs/` | Frozen battery, model, and grid configuration | < 1 MB |
-| `capsule/docs/` | Pre-registration, amendment, pivot, decisions log | < 1 MB |
+| `data/capture/runs_full_<model>_<variant>.csv` | Frozen confirmatory call logs (incl. raw response) — 10 files | 8.1 MB |
+| `data/battery/full.jsonl`, `pilot.jsonl` | Deterministic 600-case battery (and pilot subsample) | 1.4 MB |
+| `data/frozen/*.freeze.json` | Per-capture SHA-256 receipts | < 1 MB |
+| `data/configs/` | Frozen battery, model, and grid configuration | < 1 MB |
+| `docs/` | Pre-registration, amendment, pivot, decisions log | < 1 MB |
 
-**Integrity (frozen confirmatory captures):** the SHA-256 of every capture CSV is recorded in its `capsule/data/frozen/*.freeze.json` receipt, and the battery hash in `capsule/data/manifest/battery_manifest.json`. The reproduction pipeline regenerates the battery from its seed and verifies the hash before analysis.
+**Integrity (frozen confirmatory captures):** the SHA-256 of every capture CSV is recorded in its `data/frozen/*.freeze.json` receipt, and the battery hash in `data/manifest/battery_manifest.json`. The reproduction pipeline regenerates the battery from its seed and verifies the hash before analysis.
 
 ### Optional dependencies (live re-collection only)
 
-API credentials for OpenAI and Google Gemini are required **only** for live re-collection (`capsule/code/capture/`) and are read from a local keys file. They are **not** required for the default reproduction path, which runs entirely from the committed frozen dataset.
+API credentials for OpenAI and Google Gemini are required **only** for live re-collection (`capture/`) and are read from a local keys file. They are **not** required for the default reproduction path, which runs entirely from the committed frozen dataset.
 
 ---
 
@@ -154,19 +153,19 @@ pip install -r code/requirements.txt
 bash reproduce.sh
 ```
 
-No compilation step is required. On Code Ocean, packages come from `environment/Dockerfile` — no venv step. Capsule entry is `/code/run`.
+No compilation step is required. Install the pinned dependencies with `pip install -r requirements.txt`, or build `environment/Dockerfile` if you prefer a container. The entry point is `bash reproduce.sh`.
 
 ### Deployment / execution
 
 | Goal | Command |
 |------|---------|
-| Verify data integrity + regenerate all results (default) | `cd capsule && bash reproduce.sh` |
+| Verify data integrity + regenerate all results (default) | `bash reproduce.sh` |
 | Analysis only (skip replication check) | `bash reproduce.sh --analyze-only` |
 | Determinism check only (hash-compare) | `bash reproduce.sh --check-only` |
-| Code Ocean entry point | `./code/run` |
-| Live re-collection (optional; **not** required to verify the paper) | see `capsule/code/capture/README.md` |
+| Entry point | `bash reproduce.sh` |
+| Live re-collection (optional; **not** required to verify the paper) | see `capture/README.md` |
 
-Outputs are written under `capsule/results/`.
+Outputs are written under `results/`.
 
 ---
 
@@ -175,10 +174,10 @@ Outputs are written under `capsule/results/`.
 ### Workflow
 
 ```text
-capsule/data/battery/full.jsonl + capsule/data/capture/runs_full_*.csv + capsule/data/configs/
+data/battery/full.jsonl + data/capture/runs_full_*.csv + data/configs/
         │
         ▼
-  cd capsule && bash reproduce.sh
+  bash reproduce.sh
   (→ code/src/reproduce.py: verify integrity → altrisk + classification + baselines + alertvolume
      → code/src/replication_check.py: byte-identical re-run)
         │
@@ -220,7 +219,7 @@ The determinism check must confirm byte-identical results across two independent
 
 ### Out of scope for the default workflow
 
-- Re-issuing live model API calls (`capsule/code/capture/`)
+- Re-issuing live model API calls (`capture/`)
 - Any inference or API spend
 - Figure regeneration (requires matplotlib; not needed to verify the numbers)
 
@@ -228,8 +227,8 @@ The determinism check must confirm byte-identical results across two independent
 
 ## 5. Other Notes
 
-- **Pre-registration and design records:** `capsule/docs/preregistration.md`, `preregistration_pivot.md`, `preregistration_amendment.md`, `decisions_log.md`.
-- **Provenance:** every capture is SHA-256-stamped in `capsule/data/frozen/*.freeze.json`; the frozen CSVs are the object of record and must not be regenerated.
+- **Pre-registration and design records:** `docs/preregistration.md`, `preregistration_pivot.md`, `preregistration_amendment.md`, `decisions_log.md`.
+- **Provenance:** every capture is SHA-256-stamped in `data/frozen/*.freeze.json`; the frozen CSVs are the object of record and must not be regenerated.
 - **Tie rule (pre-registered D4):** per-(model, case) decisions are the modal vote over the valid (non-ERROR) replicates. On legitimate cases a 2–2 tie is **not** counted as a false positive (strict majority required); on suspicious cases a 2–2 tie **is** counted as caught. Applied identically to every model, table, and figure.
 - **Manuscript source:** the manuscript is the Springer Nature LaTeX in `manuscript/latex/` (`main.tex` + `references_discover.bib`, 43 references, `sn-basic.bst`, figures fig1–fig5), compiled to `manuscript/MANUSCRIPT_Discover_compiled.pdf` and `manuscript/MANUSCRIPT_Discover.docx` via `manuscript/latex/build_both.sh`.
 - **Issues and support:** GitHub Issues, or the author emails in Section 1.
@@ -240,36 +239,23 @@ The determinism check must confirm byte-identical results across two independent
 ai-foundation-model-aml-false-positives/
 ├── README.md   LICENSE   CITATION.cff   .gitignore
 │
-├── capsule/                          # Code Ocean compute capsule (keys-free reproduce)
-│   ├── reproduce.sh                  # verify integrity → analysis → replication check
-│   ├── code/
-│   │   ├── run                       # Code Ocean entry → scripts/reproduce.sh
-│   │   ├── requirements.txt
-│   │   ├── src/                      # reproduce.py, altrisk, classification, baselines,
-│   │   │                             #   alertvolume, miss, stats, build_battery, …
-│   │   ├── scripts/reproduce.sh
-│   │   ├── capture/                  # live-collection harness (agent, orchestrator, freeze, probe)
-│   │   └── tests/
-│   ├── data/
-│   │   ├── battery/  full.jsonl, pilot.jsonl        # frozen, hashed
-│   │   ├── capture/  runs_full_*.csv (10)           # frozen confirmatory capture
-│   │   ├── frozen/   *.freeze.json                  # SHA-256 receipts
-│   │   └── configs/  battery.yaml, models.yaml, grid.yaml
-│   ├── docs/         preregistration*.md, decisions_log.md, model_manifest.md
-│   ├── environment/  Dockerfile
-│   ├── metadata/     metadata.yml
-│   └── results/      pivot_claims.json, classification_metrics.*, stats_tests.json,
-│                     prompt_sensitivity.*, baselines.json, alert_volume.json, tables, hashes
-│
-└── manuscript/                       # Discover Artificial Intelligence package
-    ├── MANUSCRIPT_Discover_compiled.pdf   # compiled manuscript (submission PDF)
-    ├── MANUSCRIPT_Discover.docx           # Word version (same numbering, embedded figures)
-    ├── COVER_LETTER.{tex,pdf,docx}        # cover letter
-    ├── figures/                           # fig1–fig5 (PDF + PNG)
-    └── latex/                             # Springer Nature sn-jnl source (main.tex, .bib, .bbl, .cls, .bst) — compiles PDF + DOCX via build_both.sh
+├── paper/                            # every submission artifact, flat
+│   ├── manuscript_full.{tex,pdf,docx} # manuscript and its Word companion
+│   ├── response_to_reviewers.{tex,pdf}
+│   ├── response_to_editor.{tex,pdf}
+│   ├── cover_letter.{tex,pdf,docx}
+│   ├── reviewer_comments_verbatim.txt # referee and editor text, never edited
+│   └── fig*.{pdf,png}, sn-jnl.cls, references_discover.bib
+├── analysis/                         # the analysis pipeline
+├── capture/                          # live-collection harness (not run to reproduce)
+├── build/                            # build scripts and gates
+├── config, data/, docs/, results/, tests/
+├── reproduce.sh                      # one command, offline, no keys
+├── requirements.txt, environment/Dockerfile
+└── README.md, LICENSE, CITATION.cff, .zenodo.json, REPRODUCIBILITY_DOCUMENTATION.pdf
 ```
 
-Generated artifacts (`.venv/`, `__pycache__/`) are gitignored. Committed analysis outputs live under `capsule/results/`.
+Generated artifacts (`.venv/`, `__pycache__/`) are gitignored. Committed analysis outputs live under `results/`.
 
 ### Reviewer quick start
 
@@ -281,7 +267,7 @@ pip install -r code/requirements.txt
 bash reproduce.sh          # ~1 min, no keys, no cost
 ```
 
-Confirm `capsule/results/classification_metrics.json` and `results/pivot_claims.json` match the Expected Results tables in Section 4, and that the replication check reports byte-identical outputs.
+Confirm `results/classification_metrics.json` and `results/pivot_claims.json` match the Expected Results tables in Section 4, and that the replication check reports byte-identical outputs.
 
 ## 6. License
 

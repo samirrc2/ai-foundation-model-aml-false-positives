@@ -1,0 +1,37 @@
+{
+  "run": "bash reproduce.sh",
+  "manuscript": "paper/manuscript_full.tex",
+  "claims": "results/*.json",
+  "artifacts": [
+    "results/*.json",
+    "results/*.csv",
+    "results/*.md"
+  ],
+  "capsule": {
+    "code": [
+      "analysis",
+      "capture",
+      "build",
+      "reproduce.sh",
+      "requirements.txt"
+    ],
+    "data": [
+      "data",
+      "docs"
+    ],
+    "run": "bash reproduce.sh"
+  },
+  "clone_extras": [],
+  "env": {},
+  "gates": [
+    "python3 build/check_binding.py",
+    "python3 build/check_verbatim.py",
+    "python3 build/check_docx_citations.py"
+  ],
+  "inputs": [
+    "data/capture/runs_full_*.csv",
+    "data/frozen/*.json",
+    "data/battery/*.json"
+  ],
+  "normalize": []
+}

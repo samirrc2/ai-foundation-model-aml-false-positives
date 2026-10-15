@@ -1,0 +1,552 @@
+{
+  "adjacent_tier": {
+    "GPT-4.1-mini -> GPT-4o-mini": {
+      "b": 3,
+      "c": 149,
+      "ci_excludes_zero": true,
+      "cluster_ci95_pp": [
+        25.8389,
+        72.5166
+      ],
+      "family": "OpenAI",
+      "fp_difference_pp": 48.6667,
+      "p_bonferroni3": 6.153e-40,
+      "p_exact": 2.051e-40
+    },
+    "GPT-4o -> GPT-4.1-mini": {
+      "b": 2,
+      "c": 90,
+      "ci_excludes_zero": true,
+      "cluster_ci95_pp": [
+        12.5828,
+        51.1706
+      ],
+      "family": "OpenAI",
+      "fp_difference_pp": 29.3333,
+      "p_bonferroni3": 5.185e-24,
+      "p_exact": 1.728e-24
+    },
+    "Gemini Flash -> Gemini Flash-Lite": {
+      "b": 0,
+      "c": 125,
+      "ci_excludes_zero": true,
+      "cluster_ci95_pp": [
+        19.7324,
+        65.2174
+      ],
+      "family": "Google",
+      "fp_difference_pp": 41.6667,
+      "p_bonferroni3": 1.411e-37,
+      "p_exact": 4.702e-38
+    }
+  },
+  "alert_ratio_range_deployable": [
+    36.1232,
+    196.201
+  ],
+  "calls": {
+    "designed": 12000,
+    "error_rate": 0.0008,
+    "errors": 10,
+    "realized": 12120
+  },
+  "cluster_permutation": {
+    "draws": 2000,
+    "n_at_or_above_observed": 0,
+    "n_strata": 8,
+    "observed": 117.0073,
+    "p": 0.0005,
+    "statistic": "Cochran Q"
+  },
+  "deviation_corrected": "the submitted analysis required a strict majority on legitimate cases, so a 2-2 tie was not counted as a false positive; the tie direction therefore depended on the ground-truth label. D4 specifies ties -> flag for both labels.",
+  "fp_spread_range_pp": [
+    77.6667,
+    85.3333
+  ],
+  "policies": {
+    "label_dependent_as_published": {
+      "cochran_q": {
+        "Q": 131.553,
+        "df": 4,
+        "p": 1.812e-27
+      },
+      "fp_spread_pp": 82.6667,
+      "per_model": {
+        "GPT-4.1-mini": {
+          "fp_rate": 0.2367,
+          "miss_rate": 0.0367,
+          "n_benign": 300,
+          "n_suspicious": 300
+        },
+        "GPT-4o": {
+          "fp_rate": 0.01,
+          "miss_rate": 0.0333,
+          "n_benign": 300,
+          "n_suspicious": 300
+        },
+        "GPT-4o-mini": {
+          "fp_rate": 0.83,
+          "miss_rate": 0.0,
+          "n_benign": 300,
+          "n_suspicious": 300
+        },
+        "Gemini Flash": {
+          "fp_rate": 0.0033,
+          "miss_rate": 0.12,
+          "n_benign": 300,
+          "n_suspicious": 300
+        },
+        "Gemini Flash-Lite": {
+          "fp_rate": 0.2467,
+          "miss_rate": 0.0067,
+          "n_benign": 300,
+          "n_suspicious": 300
+        }
+      },
+      "primary": false
+    },
+    "ties_as_abstention": {
+      "fp_spread_pp": 84.9338,
+      "per_model": {
+        "GPT-4.1-mini": {
+          "fp_rate": 0.2731,
+          "miss_rate": 0.0379,
+          "n_benign": 260,
+          "n_suspicious": 290
+        },
+        "GPT-4o": {
+          "fp_rate": 0.0107,
+          "miss_rate": 0.0351,
+          "n_benign": 280,
+          "n_suspicious": 285
+        },
+        "GPT-4o-mini": {
+          "fp_rate": 0.8527,
+          "miss_rate": 0.0,
+          "n_benign": 292,
+          "n_suspicious": 300
+        },
+        "Gemini Flash": {
+          "fp_rate": 0.0034,
+          "miss_rate": 0.1281,
+          "n_benign": 294,
+          "n_suspicious": 281
+        },
+        "Gemini Flash-Lite": {
+          "fp_rate": 0.3058,
+          "miss_rate": 0.0068,
+          "n_benign": 242,
+          "n_suspicious": 296
+        }
+      },
+      "primary": false
+    },
+    "ties_to_flag_preregistered_D4": {
+      "cochran_q": {
+        "Q": 117.0073,
+        "df": 4,
+        "p": 2.327e-24
+      },
+      "fp_spread_pp": 83.3333,
+      "per_model": {
+        "GPT-4.1-mini": {
+          "fp_rate": 0.37,
+          "miss_rate": 0.0367,
+          "n_benign": 300,
+          "n_suspicious": 300
+        },
+        "GPT-4o": {
+          "fp_rate": 0.0767,
+          "miss_rate": 0.0333,
+          "n_benign": 300,
+          "n_suspicious": 300
+        },
+        "GPT-4o-mini": {
+          "fp_rate": 0.8567,
+          "miss_rate": 0.0,
+          "n_benign": 300,
+          "n_suspicious": 300
+        },
+        "Gemini Flash": {
+          "fp_rate": 0.0233,
+          "miss_rate": 0.12,
+          "n_benign": 300,
+          "n_suspicious": 300
+        },
+        "Gemini Flash-Lite": {
+          "fp_rate": 0.44,
+          "miss_rate": 0.0067,
+          "n_benign": 300,
+          "n_suspicious": 300
+        }
+      },
+      "primary": true
+    },
+    "ties_to_no_flag_strict_majority": {
+      "cochran_q": {
+        "Q": 131.553,
+        "df": 4,
+        "p": 1.812e-27
+      },
+      "fp_spread_pp": 82.6667,
+      "per_model": {
+        "GPT-4.1-mini": {
+          "fp_rate": 0.2367,
+          "miss_rate": 0.07,
+          "n_benign": 300,
+          "n_suspicious": 300
+        },
+        "GPT-4o": {
+          "fp_rate": 0.01,
+          "miss_rate": 0.0833,
+          "n_benign": 300,
+          "n_suspicious": 300
+        },
+        "GPT-4o-mini": {
+          "fp_rate": 0.83,
+          "miss_rate": 0.0,
+          "n_benign": 300,
+          "n_suspicious": 300
+        },
+        "Gemini Flash": {
+          "fp_rate": 0.0033,
+          "miss_rate": 0.1833,
+          "n_benign": 300,
+          "n_suspicious": 300
+        },
+        "Gemini Flash-Lite": {
+          "fp_rate": 0.2467,
+          "miss_rate": 0.02,
+          "n_benign": 300,
+          "n_suspicious": 300
+        }
+      },
+      "primary": false
+    },
+    "unanimity_required": {
+      "cochran_q": {
+        "Q": 123.6903,
+        "df": 4,
+        "p": 8.695e-26
+      },
+      "fp_spread_pp": 77.6667,
+      "per_model": {
+        "GPT-4.1-mini": {
+          "fp_rate": 0.2033,
+          "miss_rate": 0.0867,
+          "n_benign": 300,
+          "n_suspicious": 300
+        },
+        "GPT-4o": {
+          "fp_rate": 0.0033,
+          "miss_rate": 0.1,
+          "n_benign": 300,
+          "n_suspicious": 300
+        },
+        "GPT-4o-mini": {
+          "fp_rate": 0.78,
+          "miss_rate": 0.0,
+          "n_benign": 300,
+          "n_suspicious": 300
+        },
+        "Gemini Flash": {
+          "fp_rate": 0.0033,
+          "miss_rate": 0.19,
+          "n_benign": 300,
+          "n_suspicious": 300
+        },
+        "Gemini Flash-Lite": {
+          "fp_rate": 0.2467,
+          "miss_rate": 0.02,
+          "n_benign": 300,
+          "n_suspicious": 300
+        }
+      },
+      "primary": false
+    }
+  },
+  "prevalence_sweep": [
+    {
+      "alerts": {
+        "GPT-4.1-mini": 370059,
+        "GPT-4o": 76756,
+        "GPT-4o-mini": 856681,
+        "Gemini Flash": 23419,
+        "Gemini Flash-Lite": 440055
+      },
+      "precision_pct": {
+        "GPT-4.1-mini": 0.026,
+        "GPT-4o": 0.1259,
+        "GPT-4o-mini": 0.0117,
+        "Gemini Flash": 0.3758,
+        "Gemini Flash-Lite": 0.0226
+      },
+      "prevalence": 0.0001,
+      "ratio_max_over_min": 36.5806
+    },
+    {
+      "alerts": {
+        "GPT-4.1-mini": 370297,
+        "GPT-4o": 77112,
+        "GPT-4o-mini": 856738,
+        "Gemini Flash": 23762,
+        "Gemini Flash-Lite": 440277
+      },
+      "precision_pct": {
+        "GPT-4.1-mini": 0.1301,
+        "GPT-4o": 0.6268,
+        "GPT-4o-mini": 0.0584,
+        "Gemini Flash": 1.8517,
+        "Gemini Flash-Lite": 0.1128
+      },
+      "prevalence": 0.0005,
+      "ratio_max_over_min": 36.0555
+    },
+    {
+      "alerts": {
+        "GPT-4.1-mini": 370593,
+        "GPT-4o": 77557,
+        "GPT-4o-mini": 856810,
+        "Gemini Flash": 24190,
+        "Gemini Flash-Lite": 440553
+      },
+      "precision_pct": {
+        "GPT-4.1-mini": 0.2599,
+        "GPT-4o": 1.2464,
+        "GPT-4o-mini": 0.1167,
+        "Gemini Flash": 3.6379,
+        "Gemini Flash-Lite": 0.2255
+      },
+      "prevalence": 0.001,
+      "ratio_max_over_min": 35.42
+    },
+    {
+      "alerts": {
+        "GPT-4.1-mini": 371187,
+        "GPT-4o": 78447,
+        "GPT-4o-mini": 856953,
+        "Gemini Flash": 25047,
+        "Gemini Flash-Lite": 441107
+      },
+      "precision_pct": {
+        "GPT-4.1-mini": 0.5191,
+        "GPT-4o": 2.4645,
+        "GPT-4o-mini": 0.2334,
+        "Gemini Flash": 7.0269,
+        "Gemini Flash-Lite": 0.4504
+      },
+      "prevalence": 0.002,
+      "ratio_max_over_min": 34.2143
+    },
+    {
+      "alerts": {
+        "GPT-4.1-mini": 372967,
+        "GPT-4o": 81117,
+        "GPT-4o-mini": 857383,
+        "Gemini Flash": 27617,
+        "Gemini Flash-Lite": 442767
+      },
+      "precision_pct": {
+        "GPT-4.1-mini": 1.2914,
+        "GPT-4o": 5.9585,
+        "GPT-4o-mini": 0.5832,
+        "Gemini Flash": 15.9324,
+        "Gemini Flash-Lite": 1.1217
+      },
+      "prevalence": 0.005,
+      "ratio_max_over_min": 31.0459
+    },
+    {
+      "alerts": {
+        "GPT-4.1-mini": 375933,
+        "GPT-4o": 85567,
+        "GPT-4o-mini": 858100,
+        "Gemini Flash": 31900,
+        "Gemini Flash-Lite": 445533
+      },
+      "precision_pct": {
+        "GPT-4.1-mini": 2.5625,
+        "GPT-4o": 11.2972,
+        "GPT-4o-mini": 1.1654,
+        "Gemini Flash": 27.5862,
+        "Gemini Flash-Lite": 2.2295
+      },
+      "prevalence": 0.01,
+      "ratio_max_over_min": 26.8997
+    }
+  ],
+  "primary_rule": "preregistered decision D4: modal flag over replicates, ties -> flag, label-independent",
+  "single_call_configurations": {
+    "v_fatf|seed0": {
+      "alert_ratio_max_over_min": 36.266,
+      "alert_volume_at_0.1pct": {
+        "GPT-4.1-mini": 403903,
+        "GPT-4o": 94210,
+        "GPT-4o-mini": 876790,
+        "Gemini Flash": 24177,
+        "Gemini Flash-Lite": 440553
+      },
+      "fp_spread_pp": 85.3333,
+      "per_model": {
+        "GPT-4.1-mini": {
+          "fp_rate": 0.4033,
+          "miss_rate": 0.0267
+        },
+        "GPT-4o": {
+          "fp_rate": 0.0933,
+          "miss_rate": 0.03
+        },
+        "GPT-4o-mini": {
+          "fp_rate": 0.8767,
+          "miss_rate": 0.0
+        },
+        "Gemini Flash": {
+          "fp_rate": 0.0233,
+          "miss_rate": 0.1333
+        },
+        "Gemini Flash-Lite": {
+          "fp_rate": 0.44,
+          "miss_rate": 0.0067
+        }
+      }
+    },
+    "v_fatf|seed1": {
+      "alert_ratio_max_over_min": 36.1232,
+      "alert_volume_at_0.1pct": {
+        "GPT-4.1-mini": 390580,
+        "GPT-4o": 80900,
+        "GPT-4o-mini": 873460,
+        "Gemini Flash": 24180,
+        "Gemini Flash-Lite": 440553
+      },
+      "fp_spread_pp": 85.0,
+      "per_model": {
+        "GPT-4.1-mini": {
+          "fp_rate": 0.39,
+          "miss_rate": 0.03
+        },
+        "GPT-4o": {
+          "fp_rate": 0.08,
+          "miss_rate": 0.02
+        },
+        "GPT-4o-mini": {
+          "fp_rate": 0.8733,
+          "miss_rate": 0.0
+        },
+        "Gemini Flash": {
+          "fp_rate": 0.0233,
+          "miss_rate": 0.13
+        },
+        "Gemini Flash-Lite": {
+          "fp_rate": 0.44,
+          "miss_rate": 0.0067
+        }
+      }
+    },
+    "v_terse|seed0": {
+      "alert_ratio_max_over_min": 194.2681,
+      "alert_volume_at_0.1pct": {
+        "GPT-4.1-mini": 237357,
+        "GPT-4o": 7567,
+        "GPT-4o-mini": 806860,
+        "Gemini Flash": 4153,
+        "Gemini Flash-Lite": 247400
+      },
+      "fp_spread_pp": 80.3333,
+      "per_model": {
+        "GPT-4.1-mini": {
+          "fp_rate": 0.2367,
+          "miss_rate": 0.0733
+        },
+        "GPT-4o": {
+          "fp_rate": 0.0067,
+          "miss_rate": 0.0933
+        },
+        "GPT-4o-mini": {
+          "fp_rate": 0.8067,
+          "miss_rate": 0.0
+        },
+        "Gemini Flash": {
+          "fp_rate": 0.0033,
+          "miss_rate": 0.1767
+        },
+        "Gemini Flash-Lite": {
+          "fp_rate": 0.2467,
+          "miss_rate": 0.02
+        }
+      }
+    },
+    "v_terse|seed1": {
+      "alert_ratio_max_over_min": 196.201,
+      "alert_volume_at_0.1pct": {
+        "GPT-4.1-mini": 210710,
+        "GPT-4o": 7573,
+        "GPT-4o-mini": 816850,
+        "Gemini Flash": 4163,
+        "Gemini Flash-Lite": 247400
+      },
+      "fp_spread_pp": 81.3333,
+      "per_model": {
+        "GPT-4.1-mini": {
+          "fp_rate": 0.21,
+          "miss_rate": 0.0803
+        },
+        "GPT-4o": {
+          "fp_rate": 0.0067,
+          "miss_rate": 0.0867
+        },
+        "GPT-4o-mini": {
+          "fp_rate": 0.8167,
+          "miss_rate": 0.0
+        },
+        "Gemini Flash": {
+          "fp_rate": 0.0033,
+          "miss_rate": 0.1667
+        },
+        "Gemini Flash-Lite": {
+          "fp_rate": 0.2467,
+          "miss_rate": 0.02
+        }
+      }
+    }
+  },
+  "tie_census": {
+    "GPT-4.1-mini": {
+      "benign_ties": 40,
+      "suspicious_ties": 10,
+      "valid_calls_per_case": {
+        "3": 1,
+        "4": 599
+      }
+    },
+    "GPT-4o": {
+      "benign_ties": 20,
+      "suspicious_ties": 15,
+      "valid_calls_per_case": {
+        "4": 600
+      }
+    },
+    "GPT-4o-mini": {
+      "benign_ties": 8,
+      "suspicious_ties": 0,
+      "valid_calls_per_case": {
+        "4": 489,
+        "5": 111
+      }
+    },
+    "Gemini Flash": {
+      "benign_ties": 6,
+      "suspicious_ties": 19,
+      "valid_calls_per_case": {
+        "4": 600
+      }
+    },
+    "Gemini Flash-Lite": {
+      "benign_ties": 58,
+      "suspicious_ties": 4,
+      "valid_calls_per_case": {
+        "4": 600
+      }
+    }
+  }
+}

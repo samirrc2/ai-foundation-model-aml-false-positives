@@ -1,0 +1,168 @@
+{
+  "cochran_q": {
+    "Q": 117.0073,
+    "df": 4,
+    "k_models": 5,
+    "n_cases": 300,
+    "p": 2.327e-24
+  },
+  "pairwise_mcnemar": {
+    "GPT-4.1-mini vs GPT-4o-mini": {
+      "b": 3,
+      "c": 149,
+      "p_bonferroni": 2.051e-39,
+      "p_exact": 2.051e-40
+    },
+    "GPT-4.1-mini vs Gemini Flash-Lite": {
+      "b": 53,
+      "c": 74,
+      "p_bonferroni": 0.7553,
+      "p_exact": 0.0755
+    },
+    "GPT-4o vs GPT-4.1-mini": {
+      "b": 2,
+      "c": 90,
+      "p_bonferroni": 1.728e-23,
+      "p_exact": 1.728e-24
+    },
+    "GPT-4o vs GPT-4o-mini": {
+      "b": 0,
+      "c": 234,
+      "p_bonferroni": 7.245e-70,
+      "p_exact": 7.245e-71
+    },
+    "GPT-4o vs Gemini Flash-Lite": {
+      "b": 4,
+      "c": 113,
+      "p_bonferroni": 9.245e-28,
+      "p_exact": 9.245e-29
+    },
+    "Gemini Flash vs GPT-4.1-mini": {
+      "b": 2,
+      "c": 106,
+      "p_bonferroni": 3.628e-28,
+      "p_exact": 3.628e-29
+    },
+    "Gemini Flash vs GPT-4o": {
+      "b": 2,
+      "c": 18,
+      "p_bonferroni": 0.004,
+      "p_exact": 0.0004
+    },
+    "Gemini Flash vs GPT-4o-mini": {
+      "b": 0,
+      "c": 250,
+      "p_bonferroni": 1.105e-74,
+      "p_exact": 1.105e-75
+    },
+    "Gemini Flash vs Gemini Flash-Lite": {
+      "b": 0,
+      "c": 125,
+      "p_bonferroni": 4.702e-37,
+      "p_exact": 4.702e-38
+    },
+    "Gemini Flash-Lite vs GPT-4o-mini": {
+      "b": 12,
+      "c": 137,
+      "p_bonferroni": 4.865e-27,
+      "p_exact": 4.865e-28
+    }
+  },
+  "per_model_fp_miss": {
+    "GPT-4.1-mini": {
+      "fp": 0.37,
+      "miss": 0.0367
+    },
+    "GPT-4o": {
+      "fp": 0.0767,
+      "miss": 0.0333
+    },
+    "GPT-4o-mini": {
+      "fp": 0.8567,
+      "miss": 0.0
+    },
+    "Gemini Flash": {
+      "fp": 0.0233,
+      "miss": 0.12
+    },
+    "Gemini Flash-Lite": {
+      "fp": 0.44,
+      "miss": 0.0067
+    }
+  },
+  "per_typology_miss": {
+    "cash_intensive_front": {
+      "ci": [
+        0.0667,
+        0.1548
+      ],
+      "k": 19,
+      "miss": 0.1027,
+      "n": 185
+    },
+    "funnel_account": {
+      "ci": [
+        0.0,
+        0.0203
+      ],
+      "k": 0,
+      "miss": 0.0,
+      "n": 185
+    },
+    "layering": {
+      "ci": [
+        0.0,
+        0.0198
+      ],
+      "k": 0,
+      "miss": 0.0,
+      "n": 190
+    },
+    "mule_network": {
+      "ci": [
+        0.0,
+        0.0198
+      ],
+      "k": 0,
+      "miss": 0.0,
+      "n": 190
+    },
+    "rapid_passthrough": {
+      "ci": [
+        0.0055,
+        0.0466
+      ],
+      "k": 3,
+      "miss": 0.0162,
+      "n": 185
+    },
+    "shell_layering": {
+      "ci": [
+        0.0,
+        0.0203
+      ],
+      "k": 0,
+      "miss": 0.0,
+      "n": 185
+    },
+    "structuring": {
+      "ci": [
+        0.0009,
+        0.0292
+      ],
+      "k": 1,
+      "miss": 0.0053,
+      "n": 190
+    },
+    "trade_based": {
+      "ci": [
+        0.1401,
+        0.2511
+      ],
+      "k": 36,
+      "miss": 0.1895,
+      "n": 190
+    }
+  },
+  "tie_rule": "preregistered D4 (ties->flag, label-independent), applied to tables AND figures; floats rounded to 4 d.p."
+}

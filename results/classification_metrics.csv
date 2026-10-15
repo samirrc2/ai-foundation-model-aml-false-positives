@@ -1,0 +1,6 @@
+Model,Family,Precision,Recall,Specificity,F1,BalancedAcc,MCC,Accuracy,NPV,FPR,MissRate
+Gemini Flash,Google,97.4,88.0,97.7,92.5,92.8,0.861,92.8,89.1,2.3,12.0
+GPT-4o,OpenAI,92.7,96.7,92.3,94.6,94.5,0.891,94.5,96.5,7.7,3.3
+GPT-4.1-mini,OpenAI,72.2,96.3,63.0,82.6,79.7,0.629,79.7,94.5,37.0,3.7
+Gemini Flash-Lite,Google,69.3,99.3,56.0,81.6,77.7,0.614,77.7,98.8,44.0,0.7
+GPT-4o-mini,OpenAI,53.9,100.0,14.3,70.0,57.2,0.278,57.2,100.0,85.7,0.0

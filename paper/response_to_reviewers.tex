@@ -1,0 +1,706 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{mathptmx}
+\usepackage[margin=1in]{geometry}
+\usepackage[hidelinks]{hyperref}
+\usepackage{enumitem}
+\usepackage{microtype}
+\usepackage{tabularx}
+\usepackage[dvipsnames]{xcolor}
+\definecolor{ReviewerGreen}{HTML}{008000}
+\newcommand{\rvcomment}[1]{{\color{ReviewerGreen}#1}}
+\newcommand{\concern}[1]{\textbf{\color{ReviewerGreen}#1}}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+\setlist[itemize,1]{leftmargin=1.6em,labelsep=0.6em,itemsep=3pt,topsep=3pt,parsep=0pt,
+                    label=\raisebox{-0.15ex}{\large\textbullet}}
+\setlist[itemize,2]{leftmargin=1.4em,labelsep=0.5em,itemsep=2pt,topsep=3pt,parsep=0pt,
+                    label=\textendash}
+\pagestyle{plain}
+\begin{document}
+
+\noindent\begin{tabularx}{\textwidth}{@{}l@{\hspace{1.1em}}X@{}}
+\textbf{Original Manuscript ID:} & be7bd75c-daba-4386-ad14-beac2bbcac64 \\[3pt]
+\textbf{Original Article Title:} & ``AI foundation model choice and false positive variation in Anti Money Laundering transaction screening''
+\end{tabularx}
+
+\vspace{18pt}
+
+\noindent\begin{tabularx}{\textwidth}{@{}l@{\hspace{1.1em}}X@{}}
+\textbf{To:} & Discover Artificial Intelligence Editor \\[3pt]
+\textbf{Re:} & Response to reviewers
+\end{tabularx}
+
+\vspace{16pt}
+Dear Editor,
+
+Thank you for allowing a revision of our manuscript, with an opportunity to address the reviewers' comments.
+
+We are uploading (a) our point-by-point response to the comments (below) (response to reviewers), (b) an updated manuscript with highlighting indicating changes (as ``Highlighted PDF''), and (c) a clean updated manuscript without highlights (``Main Manuscript'').
+
+\vspace{14pt}
+Best regards, \\[22pt]
+Samir Chincholikar \\
+Robin Chawla
+
+\newpage
+
+\vspace{12pt}
+\concern{Editor, Concern \#1}
+
+\concern{Editor comment:}
+
+\rvcomment{``Please address the label-dependent aggregation rule by reporting primary results under a label-independent rule and providing sensitivity analyses under alternative tie policies. Also discuss the limitations of case construct validity and statistical independence assumptions.''}
+
+\rvcomment{-Shiping Wang}
+
+\textbf{Author response:}
+
+\begin{itemize}
+
+\item We agree, and the correction is larger than a change of rule. Decision~D4 as preregistered is already label-independent, and the published analysis deviated from it.
+
+\item The decisions log (\texttt{decisions\_log.md}, D4, 2026-07-15) specifies the per-case decision as the modal replicate decision with ``ties broken toward flag''. The original preregistration repeats this, and the confirmatory preregistration for this paper states ``modal flag over replicates (ties$\rightarrow$flag)'' and then defines a false positive on benign cases by that same rule. No amendment alters it.
+
+\item The implemented benign branch required a strict majority, so a tie was not counted as a false positive. That is a deviation from D4 and it was not disclosed. The suspicious branch followed D4 correctly.
+
+\item The label-independent rule requested here is therefore the preregistered rule, and we have restored it rather than adopted a new one.
+
+\item Under the preregistered rule the false-positive rates are 2.3, 7.7, 37.0, 44.0 and 85.7 percent, a spread of 83.3 pp (95\% CI 71.8--93.7). The deviation understated every false-positive rate; the spread was almost unaffected, at 82.7 pp.
+
+\item The deviation most likely arose at the pivot. D4's stated rationale is that ties toward flag keep the \emph{miss} estimate conservative, which was correct when the estimand was misses. After the estimand became false positives, ties toward flag no longer favoured the conservative direction on that axis, and conservatism appears to have been reapplied per endpoint.
+
+\item Sensitivity: the spread is 77.7 to 85.3 pp across five aggregation rules and four single-call configurations, with identical model ordering in all nine.
+
+\item On construct validity, no expert adjudication or inter-rater check was performed. Labels are correct by construction of the generator only.
+
+\item On independence, the cluster bootstrap over the eight typology strata is now applied to the primary test. A cluster-level permutation test gives p below 0.001, with 0 of 2,000 draws reaching the observed statistic.
+
+\end{itemize}
+
+\textbf{Author action:}
+
+\begin{itemize}
+
+\item Section 2.5 was rewritten to state decision~D4 as preregistered, to report the deviation in the benign branch, and to make the preregistered label-independent rule primary.
+
+\item A deviations subsection was added recording the departure, the date it was detected, and its effect on every affected number.
+
+\item The Appendix~A sentence attributing a label-dependent rule to preregistration was corrected; D4 does not condition on the case label.
+
+\item A new table reports five aggregation rules and four single-call configurations on both the false-positive and miss axes.
+
+\item Section 4.1 gained two limitation paragraphs, one on label construct validity and one on the independence assumptions of the primary tests.
+
+\item Table 4 retains the deviating rule alongside the preregistered rule so that both sets of numbers remain in the record.
+
+\end{itemize}
+
+\vspace{12pt}
+\concern{Reviewer \#1, Concern \#1}
+
+\concern{Reviewer comment:}
+
+\rvcomment{The paper evaluates five foundation LLMs for AML screening, finding false-positive rates ranging from 0.3\% to 83.0\%.}
+
+\rvcomment{Results are reported accurately with appropriate statistical measures.}
+
+\rvcomment{Conclusions are well-founded with clear caveats about synthetic data limitations and hypothetical projections.}
+
+\rvcomment{I recommend that the manuscript be accepted. The study is methodologically sound, results are reported accurately, and conclusions are appropriate.}
+
+\textbf{Author response:}
+
+\begin{itemize}
+
+\item We thank Reviewer 1 for recommending acceptance.
+
+\item The range the reviewer cites, 0.3 to 83.0 percent, is retained as the preregistered result. The new primary rule gives 2.3 to 85.7 percent.
+
+\item The finding the reviewer endorses is unchanged.
+
+\end{itemize}
+
+\textbf{Author action:}
+
+\begin{itemize}
+
+\item No change was required in response to this report.
+
+\end{itemize}
+
+\vspace{12pt}
+\concern{Reviewer \#2, Cover comments}
+
+\concern{Reviewer comment:}
+
+\rvcomment{The paper asks whether the choice of commercial foundation model, rather than the screening task or prompt, materially changes the operating point of an LLM-based AML transaction screener. The authors run five zero-shot foundation models from two providers (three OpenAI, two Google) on an identical, preregistered battery of 600 synthetic transaction cases (300 suspicious across eight FATF-anchored typologies, 300 legitimate ``hard negative'' cases), crossed with two prompt formulations and two random seeds (12,000 calls total). They report a large spread in false-positive rate across models (0.3\%--83.0\%), a monotonic within-provider relationship between model tier and false-positive rate, high cross-model disagreement on legitimate cases (85.7\%), low chance-corrected agreement on misses, and an illustrative $\sim$197-fold difference in projected daily alert volume under a low-prevalence scenario. The paper frames these findings as a model-risk/governance issue rather than a model-capability issue, and supplies a full reproducibility package.}
+
+\rvcomment{This is a carefully designed and quite transparent empirical study. The core idea --- treating foundation-model identity as the independent variable while holding the task and cases fixed, and reframing the result in model-risk-governance terms --- is a useful contribution to a literature that often focuses on identifying the best model. The statistical treatment is appropriate for the paired design, and the reproducibility package is appreciated.}
+
+\rvcomment{I recommend minor revisions, focused mainly on (a) sharpening the originality claim (b) clarifying a few methodological choices that affect the headline numbers, and (c) some robustness check.}
+
+\rvcomment{Please find the comments do be addressed in the uploaded file.}
+
+\textbf{Author response:}
+
+\begin{itemize}
+
+\item We thank Reviewer 2 for the detailed report.
+
+\item One correction to the call count, which is ours. The design specified 12,000 calls; the frozen corpus holds 12,120. 111 GPT-4o-mini cases carry a fifth retried call and one GPT-4.1-mini case carries three after an API error.
+
+\item The manuscript disclosed the retries qualitatively but never gave the realized total.
+
+\end{itemize}
+
+\textbf{Author action:}
+
+\begin{itemize}
+
+\item Section 2.4 now reports the designed count of 12,000 and the realized count of 12,120, with the retry and error breakdown.
+
+\end{itemize}
+
+\vspace{12pt}
+\concern{Reviewer \#2, Concern \#1}
+
+\concern{Reviewer comment:}
+
+\rvcomment{The central claim is credible but should be stated more precisely. The authors state they are ``the first study to control foundation-model identity as the experimental variable in AML transaction screening while fixing the task and transaction cases''. Within AML specifically this is plausible and, to my knowledge, not previously done in this controlled way. However, the general phenomenon being measured --- that different LLMs disagree substantially on identical inputs, and that prompt-induced variance is smaller than model-induced variance --- has precedent in the broader LLM-evaluation literature. I would ask the authors to sharpen the novelty claim to ``first domain-specific, governance-framed controlled measurement of this effect in AML screening'' rather than implying the phenomenon itself is new.}
+
+\textbf{Author response:}
+
+\begin{itemize}
+
+\item We agree and adopt the reviewer's formulation.
+
+\item Cross-model disagreement on identical inputs is established in the LLM-evaluation literature. We should not have implied otherwise.
+
+\item The contribution we claim is the domain-specific, governance-framed controlled measurement in AML screening.
+
+\end{itemize}
+
+\textbf{Author action:}
+
+\begin{itemize}
+
+\item The contribution sentence in Section 1 now claims the first domain-specific, governance-framed controlled measurement of this effect in AML screening.
+
+\item The preceding paragraph now cites the prior LLM-evaluation work that established the general phenomenon.
+
+\item The same narrowing was applied to the abstract and to the first paragraph of the Conclusion.
+
+\end{itemize}
+
+\vspace{12pt}
+\concern{Reviewer \#2, Concern \#2}
+
+\concern{Reviewer comment:}
+
+\rvcomment{The governance reframing is the paper's strongest and most original contribution. Treating model-tier substitution and provider-managed `-latest' aliases as first-class model-risk events, and proposing a standing ``operating-point probe'' as a monitoring control, is a useful and new operationalisation for this domain. This contribution stands on its own even if the underlying ``models disagree a lot'' finding were less novel, and I'd encourage the authors to foreground it even more.}
+
+\textbf{Author response:}
+
+\begin{itemize}
+
+\item We thank the reviewer and agree the reframing should carry more weight in the paper's structure.
+
+\item Foregrounding it also addresses Concern \#1, since the governance operationalisation does not depend on the disagreement phenomenon being new.
+
+\end{itemize}
+
+\textbf{Author action:}
+
+\begin{itemize}
+
+\item The operating-point probe was promoted from a passage in the Discussion to its own numbered subsection, stating the control, its trigger conditions, and what is monitored.
+
+\item Model-tier substitution and provider-managed alias drift are now named as model-risk events in the abstract and the Conclusion.
+
+\item The final paragraph of Section 1 now leads with the governance contribution.
+
+\end{itemize}
+
+\vspace{12pt}
+\concern{Reviewer \#2, Concern \#3}
+
+\concern{Reviewer comment:}
+
+\rvcomment{A natural extension that bears on originality. The study covers only OpenAI and Google models, while the Generative AI declaration notes that Anthropic Claude was used for coding assistance. Given the paper's thesis is about provider dependence and model-swap risk, omitting other providers leaves the ``provider effect vs. tier effect'' distinction slightly underdetermined, a sentence explaining the provider selection (cost, access, or scope reasons) would help.}
+
+\textbf{Author response:}
+
+\begin{itemize}
+
+\item The reviewer is right that the selection was never explained, and our records show the selection was not a two-provider design.
+
+\item A third family was preregistered. The confirmatory grid specified xAI Grok-4.5 alongside the OpenAI and Google models.
+
+\item Two documented decisions reduced it. D17 dropped \texttt{gemini\_pro} for thinking-mode incompatibility and cost; D19 dropped \texttt{xai\_grok} because the xAI account was out of credits. The final grid of five models from two providers is the result of that attrition.
+
+\item The provider question was therefore designed in rather than overlooked, and the loss of the third family is why the provider effect cannot be separated from the tier effect.
+
+\item Anthropic Claude was used only as a coding assistant and was never an evaluated system.
+
+\item The tier effect is still identified within each provider family separately.
+
+\item A related correction belongs here. Section 2.3 states that the model served behind each Google alias is recorded in the archived per-call response metadata. It is not. The capture rows, the probe receipts and the freeze receipts all record only the alias strings \texttt{gemini-flash-latest} and \texttt{gemini-flash-lite-latest}, and no resolved version was captured. The Limitations state the position correctly; the Methods sentence overstated it.
+
+\end{itemize}
+
+\textbf{Author action:}
+
+\begin{itemize}
+
+\item Section 2.1 now reports the preregistered three-family grid and the two decisions that reduced it, with the decision identifiers and dates.
+
+\item A sentence clarifies that Anthropic Claude was a coding assistant and not an evaluated model.
+
+\item The Methods sentence claiming that the resolved Google model version is recorded in the archived metadata was removed and replaced with a statement that only the alias was captured.
+
+\item The Limitations state that the provider main effect cannot be separated from the tier effect, and name a third-provider replication as the natural extension.
+
+\end{itemize}
+
+\vspace{12pt}
+\concern{Reviewer \#2, Concern \#4}
+
+\concern{Reviewer comment:}
+
+\rvcomment{Construct validity of the case battery. The false-positive/miss-rate estimates rest entirely on the correctness of the synthetic labels. The Methods section describes how cases were generated but does not state whether the ``legitimate hard negative'' and ``suspicious'' labels were reviewed or validated by an independent AML domain expert. I'd ask the authors to clarify whether any expert adjudication or inter-rater check was performed on a sample of the battery, and if not, to say so explicitly as a limitation.}
+
+\textbf{Author response:}
+
+\begin{itemize}
+
+\item No expert adjudication and no inter-rater check were performed on any part of the battery.
+
+\item Labels are assigned by the generator at construction time. A case is suspicious because it was built from one of the eight FATF-anchored typology templates, and legitimate because it was built from a hard-negative template.
+
+\item Our rates therefore measure agreement with the generator's construction, not with an expert's assessment of real transactions.
+
+\item We did not commission a sample adjudication during revision. An adjudication by the authors would not be independent.
+
+\end{itemize}
+
+\textbf{Author action:}
+
+\begin{itemize}
+
+\item Section 2.2 now states that labels are true by construction and that no independent expert review or inter-rater reliability check was conducted.
+
+\item Section 4.1 gained a limitation paragraph explaining that the rates are measured against template-defined rather than expert-adjudicated ground truth.
+
+\item An expert-adjudicated subsample is named as required future work.
+
+\end{itemize}
+
+\vspace{12pt}
+\concern{Reviewer \#2, Concern \#5}
+
+\concern{Reviewer comment:}
+
+\rvcomment{The tie-breaking rule in the aggregation procedure (Appendix A, decision D4) deserves more scrutiny. The rule resolves 2--2 replicate splits ``with reference to the known case label'' (a tie counts as not a false positive for benign cases, and counted as caught for suspicious cases). This rule affects 132/1500 (8.8\%) of benign and 48/1500 (3.2\%) of suspicious model-case decisions, which is not negligible relative to some of the reported rates. I would ask for:}
+
+\rvcomment{a breakdown of how many ties occurred per model, since if ties cluster in particular models, the label-referenced tie-break could differentially inflate or deflate that model's reported rate;}
+
+\rvcomment{a sensitivity analysis reporting the headline spread (82.7 pp) and the cross-model Q-test under an alternative, label-agnostic tie rule, to show the qualitative conclusion is not an artifact of D4.}
+
+\textbf{Author response:}
+
+\begin{itemize}
+
+\item Ties do cluster. On legitimate cases the counts are 6 for Gemini Flash, 20 for GPT-4o, 40 for GPT-4.1-mini, 58 for Gemini Flash-Lite and 8 for GPT-4o-mini. On suspicious cases they are 19, 15, 10, 4 and 0.
+
+\item Ties concentrate where a model sits near its own decision boundary. GPT-4o-mini flags almost everything and ties on neither label.
+
+\item The differential effect is real. Applying the label-agnostic rule raises Gemini Flash-Lite by 19.3 pp and GPT-4.1-mini by 13.3 pp, but Gemini Flash by 2.0 pp and GPT-4o-mini by 2.7 pp. The rule compressed the middle of the distribution, not the extremes.
+
+\item The spread is therefore nearly unaffected: 83.3 pp under the label-agnostic rule against 82.7 pp as published. Cochran's Q is 117.0 on 4 df, $p = 2.3\times10^{-24}$, against Q of 131.6 and $p = 1.8\times10^{-27}$.
+
+\item Checking this comment led us to a more serious finding, which we report in full. The label-dependent rule is not what decision~D4 preregisters. D4, the original preregistration and the confirmatory preregistration all specify ties broken toward flag without reference to the case label. The benign branch as implemented required a strict majority, which is an undisclosed deviation.
+
+\item The label-agnostic rule the reviewer asks us to test is therefore the preregistered rule, and its figures are the preregistered figures. The deviation understated every published false-positive rate.
+
+\item One pairwise comparison strengthens under the preregistered rule. Gemini Flash versus GPT-4o was not significant as published after Bonferroni correction; under the preregistered rule it is, at adjusted $p = 4.0\times10^{-3}$.
+
+\end{itemize}
+
+\textbf{Author action:}
+
+\begin{itemize}
+
+\item A new table reports per-model tie counts on both labels with the per-model change in false-positive rate induced by the preregistered rule.
+
+\item The sensitivity table reports the spread and Cochran's Q under five aggregation rules and four single-call configurations.
+
+\item Section 2.5 and a new deviations subsection state decision~D4 as written and record the departure from it.
+
+\item The pairwise McNemar table is now reported under the preregistered rule.
+
+\end{itemize}
+
+\vspace{12pt}
+\concern{Reviewer \#2, Concern \#6}
+
+\concern{Reviewer comment:}
+
+\rvcomment{Statistical independence assumptions. McNemar's test and Cochran's Q assume the 300 legitimate cases are exchangeable/independent units. Since cases are synthetically generated from a shared typology structure, some correlation across cases seems plausible. The authors use cluster bootstrapping over the eight typology strata for the secondary uncertainty estimates but not, as far as I can tell, for the primary McNemar/Cochran tests. Given how strong the effect is ($P = 2\times10^{-27}$), this is unlikely to change the qualitative conclusion, but a brief comment on why case-level inference is appropriate for the primary test would be useful.}
+
+\textbf{Author response:}
+
+\begin{itemize}
+
+\item The reviewer has read the code correctly. The cluster bootstrap was applied to the secondary interval estimates only.
+
+\item Rather than defend case-level inference, we extended the cluster-robust treatment to the primary test. A permutation test resampling the eight strata as clusters gives p below 0.001, with 0 of 2,000 draws reaching the observed statistic under either rule.
+
+\item Adjacent-tier contrasts under the new primary rule are 29.3 pp (95\% CI 12.6--51.2) for GPT-4o to GPT-4.1-mini, 48.7 pp (25.8--72.5) for GPT-4.1-mini to GPT-4o-mini, and 41.7 pp (19.7--65.2) for Gemini Flash to Gemini Flash-Lite. All exclude zero.
+
+\item The intervals are materially wider than case-level inference gives. We report the wider ones.
+
+\item On the p-value the reviewer quotes, we must report a defect in our deposited archive. The manuscript's $2\times10^{-27}$ is correct, but \texttt{stats\_tests.json} records it as 0.0 because the code computes one minus the chi-squared CDF, which underflows. The survival function gives $1.812\times10^{-27}$.
+
+\end{itemize}
+
+\textbf{Author action:}
+
+\begin{itemize}
+
+\item Section 2.6 now states the independence assumption, notes that cases sharing a typology template are not independent, and reports the cluster-level permutation test as the primary inference.
+
+\item Adjacent-tier contrasts are reported with cluster-robust bootstrap intervals over the eight strata.
+
+\item The analysis code was corrected to use the chi-squared survival function. The capsule was re-run and re-hashed.
+
+\end{itemize}
+
+\vspace{12pt}
+\concern{Reviewer \#2, Concern \#7}
+
+\concern{Reviewer comment:}
+
+\rvcomment{``Model tier'' is treated ordinally but tested only descriptively. The paper observes a monotonic FPR decrease with tier within each provider and calls this a ``consistent pattern,''. I'd suggest adding a formal trend test to support the word ``monotonic,'' or otherwise soften ``monotonic'' to ``monotonically decreasing in the two families studied'' (which is closer to what is actually shown with only 2--3 tiers per provider).}
+
+\textbf{Author response:}
+
+\begin{itemize}
+
+\item We take both halves of the suggestion: we add a formal test and soften the wording.
+
+\item We use adjacent-tier paired McNemar tests rather than a Cochran--Armitage trend test. A trend test would treat the same 300 cases as independent groups and overstate the evidence.
+
+\item All three adjacent-tier comparisons run in the predicted direction and are significant after Bonferroni correction. Discordant counts are 2 and 90 for GPT-4o to GPT-4.1-mini, 3 and 149 for GPT-4.1-mini to GPT-4o-mini, and 0 and 125 for Gemini Flash to Gemini Flash-Lite.
+
+\item The ordering holds under D4, under the escalate rule, and in all four single-call configurations.
+
+\end{itemize}
+
+\textbf{Author action:}
+
+\begin{itemize}
+
+\item ``Monotonic'' was replaced by ``monotonically decreasing within each of the two provider families studied'' in the abstract, Section 3.2 and the Conclusion.
+
+\item Adjacent-tier paired McNemar results with cluster-robust interval estimates are reported in Section 3.2, with a sentence explaining why a paired test is preferred to Cochran--Armitage in this design.
+
+\end{itemize}
+
+\vspace{12pt}
+\concern{Reviewer \#2, Concern \#8}
+
+\concern{Reviewer comment:}
+
+\rvcomment{Operational projection is a single point, not a curve. The 197-fold alert-volume claim rests on one prevalence assumption (0.1\%) and one volume assumption (1,000,000/day). The paper is appropriately cautious that this is illustrative, but since alert volume and precision both scale nonlinearly with prevalence, a supplementary figure sweeping prevalence over a plausible range (e.g., 0.01\%--1\%) would let readers see whether the relative ordering of models (and the $\sim$200-fold spread) is stable across the plausible range, or whether it is sensitive to the specific 0.1\% choice.}
+
+\textbf{Author response:}
+
+\begin{itemize}
+
+\item We swept prevalence from 0.01 to 1.0 percent. The sweep separates two things our single point had conflated.
+
+\item The ordering of the five models by alert volume is identical at every prevalence in the range.
+
+\item The magnitude is sensitive. The highest-to-lowest ratio falls from 242.6 at 0.01 percent, through 197.2 at 0.1 percent, to 68.7 at 1.0 percent, because true positives make up more of the queue for the low-false-positive models as prevalence rises.
+
+\item The 197-fold figure belongs to the stated prevalence. The range-wide statement is 69-fold to 243-fold with the ordering unchanged.
+
+\item Precision moves from 2.6 to 72.7 percent for Gemini Flash and from 0.01 to 1.2 percent for GPT-4o-mini over the same range.
+
+\end{itemize}
+
+\textbf{Author action:}
+
+\begin{itemize}
+
+\item A supplementary figure sweeps prevalence from 0.01 to 1.0 percent on a logarithmic axis, with one curve per model for alert volume and a companion panel for precision.
+
+\item Section 3.3 and the abstract now scope the ratio to the stated prevalence and give the range-wide bounds of 69-fold to 243-fold.
+
+\item A sentence records that the model ordering is invariant across the swept range.
+
+\end{itemize}
+
+\vspace{12pt}
+\concern{Reviewer \#2, Concern \#9}
+
+\concern{Reviewer comment:}
+
+\rvcomment{Zero-shot-only scope. This is a deliberate and well-justified design choice (isolating the base-model contribution before task-specific tuning), and the limitation is honestly stated. No change needed, but I'd suggest one added sentence in the Discussion speculating on whether calibration/threshold-tuning would be expected to compress the cross-model spread (since institutions could in principle recalibrate each model to a common operating point) or whether the paper's evidence (e.g., the persistence of ordering across two prompts) suggests the divergence is more structural than a simple decision-threshold shift. This matters for how alarming the governance implication should be considered.}
+
+\textbf{Author response:}
+
+\begin{itemize}
+
+\item The elicitation returns a binary label, not a score. There is no decision threshold to tune without changing the elicitation itself.
+
+\item Recalibrating these screeners to a common operating point is therefore not a post-processing step.
+
+\item The ordering persists across both prompt formulations and all four single-call configurations, and the spread stays between 80.3 and 85.3 pp in every one. A pure threshold shift would be more sensitive to instruction wording.
+
+\item This is not a demonstration that score-level calibration could not compress the spread. A scored elicitation with per-model thresholds is the experiment that would settle it.
+
+\end{itemize}
+
+\textbf{Author action:}
+
+\begin{itemize}
+
+\item The Discussion gained a passage noting that the binary elicitation leaves no threshold to tune, that the persistence of ordering is consistent with structural rather than threshold divergence, and that a scored elicitation is required to settle the question.
+
+\item The governance implication is now stated conditionally.
+
+\end{itemize}
+
+\vspace{12pt}
+\concern{Reviewer \#2, Minor Point \#10}
+
+\concern{Reviewer comment:}
+
+\rvcomment{Please define ``model tier'' operationally in the Methods (currently it is defined via ``provider's contemporaneous capability/product and price positioning,'' which is reasonable but could usefully cite the specific list-price/capability source alongside the models.yaml registry reference).}
+
+\textbf{Author response:}
+
+\begin{itemize}
+
+\item We agree, and verifying the source changed what we can defensibly write.
+
+\item The three OpenAI prices in the archived registry are the published list prices, confirmed against the OpenAI pricing documentation: \$2.50 and \$10.00 per million input and output tokens for GPT-4o, \$0.15 and \$0.60 for GPT-4o-mini, and \$0.40 and \$1.60 for GPT-4.1-mini.
+
+\item The two Google figures in the registry are not list prices. The registry file states that they were set conservatively so the spend cap would bind early, and that the capture code overwrites them with measured per-call costs. They are budgeting placeholders.
+
+\item The Google list prices at the collection date are also not recoverable from the current pricing page, because the models were accessed through \texttt{-latest} aliases, the resolved version was not captured, and the page no longer lists the versions current in July 2026.
+
+\item We will therefore not cite a list price we cannot substantiate for the Google models. Tier is instead defined by each provider's published price positioning, cited for OpenAI, and by the measured per-call cost recorded in the archived ledger, which is reproducible from the deposit for all five models: \$0.002108 for GPT-4o, \$0.000536 for Gemini Flash, \$0.000342 for GPT-4.1-mini, \$0.000148 for Gemini Flash-Lite and \$0.000125 for GPT-4o-mini.
+
+\item The measured costs reproduce the tier ordering used in the paper, within each provider family and without relying on an unverifiable price.
+
+\end{itemize}
+
+\textbf{Author action:}
+
+\begin{itemize}
+
+\item Section 2.1 now gives the operational definition of tier, the verified OpenAI list prices with their source and access date, and the measured per-call costs from the archived ledger for all five models.
+
+\item The registry reference now states that its Google price fields are conservative budgeting placeholders and not list prices.
+
+\item The text repeats that tier is used only within provider families and not as a cross-provider capability scale.
+
+\end{itemize}
+
+\vspace{12pt}
+\concern{Reviewer \#2, Minor Point \#11}
+
+\concern{Reviewer comment:}
+
+\rvcomment{The abstract states ``an 82.7 percentage-point spread'' while the Results also report a 95\% CI of 69.2--95.3 pp for that spread; consider including the CI in the abstract as well, since a $>$25-point CI width is itself informative.}
+
+\textbf{Author response:}
+
+\begin{itemize}
+
+\item We agree that the width is itself a finding.
+
+\item Under the new primary rule the abstract reports 83.3 pp with a 95\% confidence interval of 71.8 to 93.7.
+
+\end{itemize}
+
+\textbf{Author action:}
+
+\begin{itemize}
+
+\item The abstract now reports the spread with its cluster-bootstrap 95\% confidence interval.
+
+\item A clause states that the interval is a cluster bootstrap over eight typology strata, so the width is not read as sampling error over 300 independent cases.
+
+\end{itemize}
+
+\vspace{12pt}
+\concern{Reviewer \#2, Minor Point \#12}
+
+\concern{Reviewer comment:}
+
+\rvcomment{Consider explicitly stating in the Limitations that only two providers/five models were tested, so the paper's own headline ``foundation-model choice'' language should be read as scoped to the evaluated model set, not as a universal claim about all foundation models (the paper mostly does this correctly, but the Conclusion's phrasing is slightly more general than the evidence supports).}
+
+\textbf{Author response:}
+
+\begin{itemize}
+
+\item We agree, including on the Conclusion being the place where the phrasing outruns the evidence.
+
+\item Five models from two providers support a claim about the evaluated set and about the existence of the effect, not about foundation models in general.
+
+\end{itemize}
+
+\textbf{Author action:}
+
+\begin{itemize}
+
+\item The Limitations state that the evidence covers five models from two providers and that the headline language is scoped to the evaluated set.
+
+\item The Conclusion was reworded to replace the general phrasing with the scoped claim, and names the generalisation as a hypothesis for broader replication.
+
+\end{itemize}
+
+\vspace{12pt}
+\concern{Reviewer \#2, Minor Point \#13}
+
+\concern{Reviewer comment:}
+
+\rvcomment{There are quite many typos such as numbers inserted across brackets in many paragraphs. Formatting also could be improved.}
+
+\textbf{Author response:}
+
+\begin{itemize}
+
+\item We have done the pass and can report what we found, which is narrower and more specific than our first reading of this comment.
+
+\item The LaTeX source is clean. A systematic check found no repeated words, no doubled spaces, no mixed British and American spellings, and no inconsistent percentage style.
+
+\item The defects are in the Word file the reviewers received, introduced when the source is converted. There were two kinds.
+
+\item First, in three places a citation sat inside an em-dash aside, so the reference number interrupted the phrase: for example ``a known source of variation in LLM behaviour [38]---each case was tested''. This is the ``numbers inserted across brackets'' the reviewer observed. The three sites were in Section 1, Section 2.3 and Section 2.4.
+
+\item Second, the inline design equation lost its spacing in conversion, rendering as ``5 models$\times$2 prompt formulations$\times$2 seeds$\times$600 cases=12,000 screening calls''.
+
+\item Both are invisible in the compiled PDF, which is why we had not seen them. We now proofread the Word rendering as well as the PDF.
+
+\end{itemize}
+
+\textbf{Author action:}
+
+\begin{itemize}
+
+\item The three citations were moved outside their em-dash asides, so each reference number now precedes the aside rather than interrupting it.
+
+\item The design equation was rewritten as prose, which renders correctly in both the PDF and the Word file.
+
+\item An automated check now rejects any citation falling between two em dashes in the converted Word file; it was tested by reintroducing one defect and confirming it is caught.
+
+\item Numeric formatting, table alignment and thousands separators were made consistent throughout.
+
+\end{itemize}
+
+\vspace{12pt}
+\concern{Reviewer \#2, Recommendation}
+
+\concern{Reviewer comment:}
+
+\rvcomment{Minor revision. The core empirical contribution --- a controlled, paired, preregistered demonstration that foundation-model identity alone produces large, statistically robust shifts in AML screening operating points, reframed as a model-risk governance issue --- is original and well-executed. The requested revisions are addressable without new data collection, since the reproducibility package already contains everything needed to rerun the relevant analyses under alternative assumptions.}
+
+\textbf{Author response:}
+
+\begin{itemize}
+
+\item We confirm the reviewer's expectation. Every revision was carried out by re-analysing the frozen corpus, with no new data collection and no new API calls.
+
+\item The re-analysis re-derives the operating points from the frozen call records without importing the modules used for the original submission, so the recomputed figures are an independent check rather than a re-run.
+
+\end{itemize}
+
+\textbf{Author action:}
+
+\begin{itemize}
+
+\item The reproducibility capsule was extended with the aggregation-sensitivity analysis and re-hashed, so the alternative tie policies are reproducible from the archive.
+
+\end{itemize}
+
+\vspace{12pt}
+\concern{Reviewer \#3, Overall assessment}
+
+\concern{Reviewer comment:}
+
+\rvcomment{This manuscript investigates whether foundation-model choice materially changes the operating point of LLM-based anti-money-laundering transaction screening when the task and transaction cases are held constant. The topic is timely and the controlled cross-model design, paired statistical testing, reproducibility framework, and translation of false-positive rates into operational alert burden are valuable strengths. However, several methodological issues should be addressed before the conclusions can be fully supported, particularly the per-case aggregation procedure used to combine replicate model decisions.}
+
+\textbf{Author response:}
+
+\begin{itemize}
+
+\item We thank Reviewer 3 for identifying the aggregation procedure as the issue on which the conclusions depend. We agree and have made it the central revision.
+
+\item The report states that several methodological issues should be addressed but sets out one major comment, which we answer in full below. We would welcome the opportunity to address any further comments intended to accompany this report.
+
+\end{itemize}
+
+\textbf{Author action:}
+
+\begin{itemize}
+
+\item The actions are those listed against the major comment below.
+
+\end{itemize}
+
+\vspace{12pt}
+\concern{Reviewer \#3, Concern \#1}
+
+\concern{Reviewer comment:}
+
+\rvcomment{Major comment --- label-dependent aggregation rule:}
+
+\rvcomment{The preregistered aggregation rule resolves 2--2 replicate splits differently depending on the known ground-truth label: a tie on a legitimate case is treated as legitimate, whereas a tie on a suspicious case is treated as detected. Although this rule was preregistered and transparently disclosed, it uses information that would not be available in deployment and therefore may produce an optimistically biased evaluation operating point. This is especially important because ties affected a non-trivial number of model--case decisions. I recommend reporting the primary results under a label-independent aggregation rule and providing sensitivity analyses under alternative tie policies, such as treating ties as abstentions, always escalating ties, or analysing each prompt configuration separately. The authors should also clarify whether the headline false-positive and miss rates represent deployable model configurations or an evaluation-only aggregation procedure.}
+
+\textbf{Author response:}
+
+\begin{itemize}
+
+\item We accept the criticism, and investigating it uncovered more than the reviewer could have seen from the paper.
+
+\item The rule is optimistic in exactly the way described: both tie directions favoured the model and the branch was selected by the ground-truth label.
+
+\item It is also not the preregistered rule. Decision~D4, the original preregistration and the confirmatory preregistration for this paper all specify the modal decision with ties broken toward flag, with no reference to the case label. The benign branch as implemented required a strict majority. That is an undisclosed deviation, and we report it as such.
+
+\item The label-independent rule the reviewer recommends is therefore the preregistered rule. We have restored it as primary, which also happens to be the conservative choice on the false-positive axis and corresponds to a real control, namely routing a split panel to a human reviewer.
+
+\item We ran each of the three sensitivity analyses named. Ties as abstentions gives a spread of 84.9 pp on retained cases; always escalating gives 83.3 pp; each prompt configuration separately gives 85.3, 85.0, 80.3 and 81.3 pp. Unanimity gives 77.7 pp. The ordering never changes.
+
+\item On the final question: the four-call aggregate is an evaluation-only construct. No institution would run four calls per transaction and apply a majority rule, so the published rates were not deployable configurations.
+
+\item The deployable quantity is a single call. Across the four single-call configurations the false-positive rate runs from 0.3 to 2.3 percent for Gemini Flash and from 80.7 to 87.7 percent for GPT-4o-mini, with spreads of 80.3 to 85.3 pp.
+
+\item The direction of the bias is worth stating plainly. The deviation understated every false-positive rate, and on the miss axis the preregistered rule raises miss rates from 12.0, 3.3, 3.7, 0.7 and 0.0 percent to 18.3, 8.3, 7.0, 2.0 and 0.0 percent. The paper's central claim, the size of the cross-model spread, is unaffected.
+
+\end{itemize}
+
+\textbf{Author action:}
+
+\begin{itemize}
+
+\item Section 2.5 states decision~D4 as preregistered and makes it primary.
+
+\item A deviations subsection records the departure in the benign branch, when it was detected, and every number it affected.
+
+\item The Appendix~A sentence attributing a label-dependent rule to preregistration was corrected.
+
+\item A new table reports five aggregation rules and four single-call configurations on both axes, covering each requested sensitivity analysis.
+
+\item A new paragraph in Section 3.1 states that the aggregate is an evaluation-only construct and reports the single-call configurations as the deployable operating points.
+
+\item Table 4 retains the deviating rule alongside the preregistered rule.
+
+\end{itemize}
+
+\end{document}

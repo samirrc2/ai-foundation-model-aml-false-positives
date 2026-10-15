@@ -1,0 +1,20 @@
+{
+  "aggregation_sensitivity.json": "c36cb3395f1244559362a704118e0a89e59375e8c56ed772ad84d4b80ca6bdb5",
+  "alert_volume.json": "b260c2e94fb50228935804857e990d70d190d7680aecf971496d01d028b70957",
+  "baselines.json": "36221e6c1a92e14a3cfe1d60042b6ece58d5c0eb55b39e6a6f39789cd55814f8",
+  "classification_metrics.csv": "39daf628b89b366360c2fac5963e343125bca42986bc2b0a2ff7667b4a19ad20",
+  "classification_metrics.json": "a2f9b3dcbcb58c5014483a37eb6c8e0359e68d73de32bc3bd3fe28149fa53786",
+  "figures/fig1_fp_by_model.pdf": "da3c8e23d5e3d6caa4ee1968636f12cadec81772a64ebd071b16a2915147ad5b",
+  "figures/fig2_operating_points.pdf": "9fd68e8b7d537e141d3173be41de60d77412927bd4c947a60f4478ebfa54bc6e",
+  "figures/fig3_alert_volume.pdf": "a806278e992aa1a025316e994a599d3f13ed65d7bf35969f9e690121e3ad402f",
+  "figures/fig4_typology_miss.pdf": "5880dfa33bd575501a97a57e6cd25df1432e9a3a3cb9e064ea99998d288f93b4",
+  "figures/fig5_typology_model_heatmap.pdf": "3db529efa601593469c84a199023b7ee60e8278031bf12ce6644e6580631fff7",
+  "figures/fig6_prevalence_sweep.pdf": "aa16ead1f36ae13964c516cfee6f1384ad44f4847416189c1b8447aa4748ec7c",
+  "metrics_summary.md": "cf42f5fe237dafbe58c09b592715fb6f94d07ff37513db0699a1a2573373beed",
+  "pivot_claims.json": "8782cb5cd6969c00994322bb7236993631c6d74f1a758f772d3b62ebd78aefbf",
+  "prompt_sensitivity.csv": "562d1f0535f65d4a44edf369a3a6d1a36ad6668f3317a5b8e25d2bcd01f416f9",
+  "stats_tests.json": "5b170074456bdf6c0e1759e8441a4aa20b6db2bad18a838bab66f14060d4ae29",
+  "table1_operating_points.csv": "ac8bc5756bbcccbdc49a5b423feaa783eb711d4aff12ee5f557d8889f49587e9",
+  "table2_alert_volume.csv": "429adfd3d424773402a13c59d1a99cca3103afc3d32c3ed3528f3b9aebaa5860",
+  "table5_aggregation_sensitivity.csv": "9f78f94143dad585c84e4798e4aa6179c6620edbedb48ced646f67d5ae8dd418"
+}
