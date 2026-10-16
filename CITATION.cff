@@ -22,12 +22,12 @@ identifiers:
 url: "https://github.com/samirrc2/ai-foundation-model-aml-false-positives"
 license: MIT
 keywords:
-  - anti-money laundering
-  - large language models
-  - false positives
-  - foundation models
-  - transaction monitoring
-  - reproducibility
+  - AML transaction screening
+  - Large language models
+  - AI model risk management
+  - False-positive rates
+  - AI foundation model governance
+  - Financial crime detection
 preferred-citation:
   type: article
   title: "AI foundation model choice and false positive variation in Anti Money Laundering transaction screening"
