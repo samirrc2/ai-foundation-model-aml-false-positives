@@ -109,7 +109,11 @@ def _cochran_q(mat):
     Ri = [sum(row) for row in mat]
     Cbar = sum(Cj) / k
     den = k * sum(Ri) - sum(r * r for r in Ri)
-    Q = ((k - 1) * sum((c - Cbar) ** 2 for c in Cj) / den) if den else 0.0
+    # Cochran's Q = k(k-1) * sum_j (C_j - Cbar)^2 / (k*sum_i R_i - sum_i R_i^2).
+    # The factor k was missing from the numerator, which understated every Q in the submitted
+    # and first-revised analyses by exactly fivefold (k = 5 models). Verified against
+    # statsmodels.stats.contingency_tables.cochrans_q, which agrees to 1e-9 after the fix.
+    Q = (k * (k - 1) * sum((c - Cbar) ** 2 for c in Cj) / den) if den else 0.0
     p = float(_sp.chi2.sf(Q, k - 1)) if _HAVE_SCIPY else None
     return Q, k - 1, p
 
@@ -177,7 +181,9 @@ def run():
         mat = [[rule(votes[m]["benign"][c], "benign") for m in models] for c in bc]
         mat = [row for row in mat if all(v is not None for v in row)]
         Q, df, pq = _cochran_q(mat)
-        entry["cochran_q"] = {"Q": _sig(Q), "df": df, "p": _sig(pq), "n_cases": len(mat)}
+        entry["cochran_q"] = {"Q": _sig(Q), "df": df, "p": _sig(pq), "n_cases": len(mat),
+                              "Q_as_published_understated": _sig(Q / len(models)),
+                              "Q_as_published_note": "the value published at submission and in the first revision, which omitted the factor k from the numerator and is therefore Q/k; retained so the correction is auditable"}
         policies[name] = entry
 
     # ── single-call configurations (no aggregation) ──────────────────────────
@@ -202,7 +208,9 @@ def run():
         sQ, sdf, sp = _cochran_q(smat)
         singles[f"{cfg[0]}|seed{cfg[1]}"] = {
             "per_model": per, "fp_spread_pp": _sig(100 * (max(rates) - min(rates))),
-            "cochran_q": {"Q": _sig(sQ), "df": sdf, "p": _sig(sp), "n_cases": len(smat)},
+            "cochran_q": {"Q": _sig(sQ), "df": sdf, "p": _sig(sp), "n_cases": len(smat),
+                          "Q_as_published_understated": _sig(sQ / len(models)),
+                          "Q_as_published_note": "the value published at submission and in the first revision, which omitted the factor k from the numerator and is therefore Q/k; retained so the correction is auditable"},
             "alert_volume_at_0.1pct": {k: round(v) for k, v in vol.items()},
             "alert_ratio_max_over_min": _sig(max(vol.values()) / min(vol.values()))}
 
@@ -267,6 +275,28 @@ def run():
                       "cases in that stratum",
             "p": _sig((ge + 1) / (DRAWS + 1))}
 
+    # ── sensitivity: restrict the vote to the four DESIGNED prompt-seed cells ─────
+    # D4 defines the vote over valid replicate calls, so the primary analysis uses all of them,
+    # including the 111 duplicated GPT-4o-mini terse/seed-0 calls. This reports what the rates
+    # would be if each (model, case) voted over one call per designed cell instead, so the
+    # manuscript quotes a derived number rather than a hand-computed one.
+    four = {}
+    for m in models:
+        fp = 0
+        for c in bc:
+            seen, ded = set(), []
+            for cfg in sorted(bycfg):
+                k = "benign|" + c
+                if k in bycfg[cfg][m] and cfg not in seen:
+                    seen.add(cfg); ded.append(bycfg[cfg][m][k][0])
+            fp += _tie_to_flag(ded, "benign")
+        four[NICE[m]] = {"fp_rate": _sig(fp / len(bc)), "n_benign": len(bc)}
+    _fr = [four[NICE[m]]["fp_rate"] for m in models]
+    four_cell = {"per_model": four,
+                 "fp_spread_pp": _sig(100 * (max(_fr) - min(_fr))),
+                 "note": ("one call per designed prompt-seed cell; the primary analysis votes over "
+                          "all valid calls, per D4")}
+
     # ── prevalence sweep under the primary rule ──────────────────────────────
     fpr = {m: sum(rule(votes[m]["benign"][c], "benign") for c in bc) / len(bc) for m in models}
     rec = {m: sum(rule(votes[m]["suspicious"][c], "suspicious") for c in sc) / len(sc) for m in models}
@@ -280,6 +310,7 @@ def run():
 
     ratios = [s["ratio_max_over_min"] for s in sweep] + [v["alert_ratio_max_over_min"] for v in singles.values()]
     payload = {
+        "four_designed_cells_sensitivity": four_cell,
         "primary_rule": "preregistered decision D4: modal flag over replicates, ties -> flag, label-independent",
         "deviation_corrected": ("the submitted analysis required a strict majority on legitimate cases, so a 2-2 tie "
                                 "was not counted as a false positive; the tie direction therefore depended on the "

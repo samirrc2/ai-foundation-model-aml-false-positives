@@ -63,7 +63,7 @@ Robin Chawla
 
 \item Under the preregistered rule the false-positive rates are 2.3, 7.7, 37.0, 44.0 and 85.7 percent, a spread of 83.3 pp (95\% CI 71.8--93.7) against 82.7 pp as submitted. The spread is 77.7 to 85.3 pp across five aggregation rules and four single-call configurations, with no reversal of model order in any of the nine.
 
-\item On construct validity, no expert adjudication or inter-rater check was performed: labels are correct by construction of the generator only. On independence, the cluster bootstrap over the eight case-template strata now covers the primary test, where a cluster-level permutation gives $p$ below 0.001 with 0 of 2,000 draws reaching the observed statistic.
+\item On construct validity, no independent AML expert adjudication or inter-rater check was performed; labels reflect the generator-defined case templates. On statistical independence, cluster-bootstrap intervals quantify uncertainty across the eight case-template strata, and a cluster-level permutation procedure tests the global null: none of 2,000 permuted statistics reached the observed value (Monte Carlo $p \approx 0.0005$), alongside the corrected case-level Cochran's $Q = 585.0$ ($p \approx 2.7\times10^{-125}$).
 
 \end{itemize}
 
@@ -135,7 +135,7 @@ Robin Chawla
 
 \item We thank Reviewer 2 for the detailed report. The thirteen numbered comments in the attachment are answered individually below, in the order the attachment gives them.
 
-\item One correction to the call count, which is ours. The design specified 12,000 calls and the frozen corpus holds 12,120: 111 GPT-4o-mini cases carry a fifth retried call and one GPT-4.1-mini case carries three after an interface error. The manuscript disclosed the retries qualitatively but never gave the realized total. The 111 retries were made because the GPT-4o-mini terse-prompt seed-0 pass was re-issued after OpenAI rate limiting interrupted it, so cases that had already returned were called again; the remaining 9 calls are ERROR rows recording the rate-limit failures, which are excluded from the vote.
+\item One correction to the call count, which is ours. The design specified 12,000 calls and the frozen corpus holds 12,120: 111 GPT-4o-mini cases carry a fifth retried call and one GPT-4.1-mini case carries three after an interface error. The manuscript disclosed the retries qualitatively but never gave the realized total. The 111 retries were made because the GPT-4o-mini terse-prompt seed-0 pass was re-issued after OpenAI rate limiting interrupted it, so cases that had already returned were called again; the remaining 9 calls are ERROR rows recording the rate-limit failures, which are excluded from the vote. Restricting the vote to the four designed calls changes one GPT-4o-mini decision (85.7\% to 86.0\%; spread 83.3 to 83.7 pp), reported as a sensitivity analysis in Section 2.2.
 
 \end{itemize}
 
@@ -168,7 +168,7 @@ Robin Chawla
 
 \begin{itemize}
 
-\item The contribution sentence in Section 1 now claims the first preregistered, governance-framed controlled measurement of this effect in AML screening.
+\item The contribution sentence in Section 1 now claims the first preregistered, governance-framed controlled measurement of this effect in AML screening (the reviewer's formulation, narrowed to the preregistered design).
 
 \item Contribution 2 in Section 1 now cites the LLM-evaluation work that established the general phenomenon [26, 39].
 
@@ -220,7 +220,7 @@ Robin Chawla
 
 \item Anthropic Claude appears in the generative-AI declaration solely as a coding assistant and was never an evaluated system. The tier effect remains identified within each provider family separately.
 
-\item A related correction belongs here. Section 2.3 states that the model served behind each Google alias is recorded in the archived per-call metadata. It is not: the capture rows, probe receipts and freeze receipts record only the alias strings. The Limitations state the position correctly and the Methods sentence overstated it.
+\item A related correction belongs here. The submitted Methods stated that the model served behind each Google alias is recorded in the archived per-call metadata. It was not: the capture rows, probe receipts and freeze receipts record only the alias strings. The Limitations state the position correctly and the Methods sentence overstated it.
 
 \end{itemize}
 
@@ -288,7 +288,7 @@ Robin Chawla
 
 \item Ties do cluster. On legitimate cases the counts are 6, 20, 40, 58 and 8 for Gemini Flash, GPT-4o, GPT-4.1-mini, Gemini Flash-Lite and GPT-4o-mini, and on suspicious cases 19, 15, 10, 4 and 0. They concentrate where a model sits near its own decision boundary, so the label-agnostic rule raises Gemini Flash-Lite by 19.3 pp and GPT-4.1-mini by 13.3 pp but Gemini Flash by only 2.0 pp. The deviation compressed the middle of the distribution, not the extremes.
 
-\item The spread is therefore nearly unaffected: 83.3 pp against 82.7 pp, with Cochran's $Q = 117.0$ on 4 df ($p = 2.3\times10^{-24}$) against $Q = 131.6$. One pairwise comparison strengthens: Gemini Flash versus GPT-4o was not significant as submitted after correction and is now significant at adjusted $p = 4.0\times10^{-3}$.
+\item The spread is therefore nearly unaffected: 83.3 pp against 82.7 pp, with Cochran's $Q = 585.0$ on 4 df ($p = 2.7\times10^{-125}$) against a corrected $Q = 657.8$ as submitted (see Concern~\#6). One pairwise comparison strengthens: Gemini Flash versus GPT-4o was not significant as submitted after correction and is now significant at adjusted $p = 4.0\times10^{-3}$.
 
 \item Checking this comment led to a more serious finding, which we report in full. The label-dependent rule is not what decision~D4 preregisters: D4 and both preregistration documents specify ties broken toward \texttt{flag} without reference to the case label, so the benign branch as implemented was an undisclosed deviation. The label-agnostic figures the reviewer asks us to test are the preregistered figures, and the deviation understated every published false-positive rate.
 
@@ -319,11 +319,11 @@ Robin Chawla
 
 \begin{itemize}
 
-\item The reviewer has read the code correctly: the cluster bootstrap was applied to the secondary interval estimates only. Rather than defend case-level inference we extended the cluster-robust treatment to the primary test, where a permutation that applies a single permutation of model labels to all cases within each of the eight case-template strata gives $p$ below 0.001, with 0 of 2,000 draws reaching the observed statistic under either rule.
+\item The reviewer has read the code correctly: the cluster bootstrap was applied to the secondary interval estimates only. Rather than defend case-level inference we extended the cluster-robust treatment to the primary test, where a permutation that applies a single permutation of model labels to all cases within each of the eight case-template strata gives Monte Carlo $p \approx 0.0005$ (plus-one correction) under either rule.
 
 \item Adjacent-tier contrasts under the restored rule are 29.3 pp (95\% CI 12.6--51.2), 48.7 pp (25.8--72.5) and 41.7 pp (19.7--65.2). All exclude zero, and all are materially wider than case-level inference would give, so we report the wider ones.
 
-\item On the $p$-value the reviewer quotes we must report a defect in our own archive. The manuscript's $2\times10^{-27}$ is correct, but \texttt{stats\_tests.json} recorded it as 0.0, because the code computed one minus the chi-squared CDF, which underflows. The survival function gives $1.812\times10^{-27}$.
+\item On the $p$-value the reviewer quotes, the revision audit found two errors in our statistics. First, \texttt{stats\_tests.json} recorded it as 0.0 because the code computed one minus the chi-squared CDF, which underflows. Second, the $Q$ statistic itself was understated fivefold, because the code omitted the factor $k$ from the numerator. Under the preregistered rule the corrected statistic is $Q = 585.0$, $p = 2.7\times10^{-125}$; the submitted $Q = 131.6$ should have been $657.8$. The permutation result is unchanged, because a constant factor does not alter permutation ranks. Both errors understated the evidence; neither changes a conclusion.
 
 \end{itemize}
 
@@ -336,6 +336,8 @@ Robin Chawla
 \item Adjacent-tier contrasts are reported with cluster-robust bootstrap intervals over the eight strata.
 
 \item The analysis code was corrected to use the chi-squared survival function. The capsule was re-run and re-hashed.
+
+\item The Cochran's $Q$ implementation was corrected, all $Q$ values were recomputed from the frozen decisions and cross-checked against an independent implementation, and Section 2.4 records the correction.
 
 \end{itemize}
 
@@ -561,7 +563,7 @@ Robin Chawla
 
 \item We confirm the reviewer's expectation. Every revision was carried out by re-analysing the frozen corpus, with no new data collection and no new interface calls.
 
-\item The re-analysis re-derives the operating points from the frozen call records without importing the modules used for the original submission, so the recomputed figures are an independent check rather than a re-run.
+\item The re-analysis re-derives the operating points from the frozen call records without importing the modules used for the original submission, so the recomputed figures are an independent check rather than a re-run. One error survived that re-derivation: Cochran's $Q$ was understated fivefold in both the submitted and first revised analyses (Concern~\#6). It is now corrected and cross-checked against an independent implementation.
 
 \end{itemize}
 
@@ -613,7 +615,7 @@ Robin Chawla
 
 \item We accept the criticism. The rule used the ground-truth label to choose the tie direction, both directions favoured the model, and that is an evaluation artifact rather than a property of any deployable screener. It is also not the preregistered rule: decision~D4 and both preregistration documents specify ties broken toward \texttt{flag} with no reference to the case label, so the benign branch as implemented was an undisclosed deviation, and we report it as such. We have restored the preregistered rule as primary, which is also the conservative choice on the false-positive axis and corresponds to routing a split panel to a human reviewer.
 
-\item We ran each of the three sensitivity analyses named. Ties as abstentions give a spread of 84.9 pp on retained cases, always escalating gives 83.3 pp, each prompt configuration separately gives 85.3, 85.0, 80.3 and 81.3 pp, and unanimity gives 77.7 pp. No pair of models reverses order.
+\item We ran each of the three sensitivity analyses named. Ties as abstentions give a spread of 84.9 pp on each model's retained cases, with Cochran's $Q$ computed on the 189 cases all five models decided, always escalating gives 83.3 pp, each prompt configuration separately gives 85.3, 85.0, 80.3 and 81.3 pp, and unanimity gives 77.7 pp. No pair of models reverses order.
 
 \item On the final question: the four-call aggregate is an evaluation-only construct, since no institution would issue four calls per transaction and take a majority. The deployable quantity is a single call, where the false-positive rate runs from 0.3 to 2.3 percent for Gemini Flash and from 80.7 to 87.7 percent for GPT-4o-mini. The deviation understated every false-positive rate and left miss rates unchanged. A label-independent strict-majority rule reproduces the submitted false-positive rates but raises miss rates from 12.0, 3.3, 3.7, 0.7 and 0.0 percent to 18.3, 8.3, 7.0, 2.0 and 0.0 percent.
 

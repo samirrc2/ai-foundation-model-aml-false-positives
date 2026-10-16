@@ -5,7 +5,7 @@
 
 | Output | SHA-256 (run 1) | identical? |
 |---|---|---|
-| aggregation_sensitivity.json | `ec286d6b65ba9b08…` | ✓ |
+| aggregation_sensitivity.json | `c900d1720e618c83…` | ✓ |
 | alert_volume.json | `b260c2e94fb50228…` | ✓ |
 | baselines.json | `36221e6c1a92e14a…` | ✓ |
 | classification_metrics.csv | `39daf628b89b3663…` | ✓ |
@@ -19,7 +19,7 @@
 | metrics_summary.md | `cf42f5fe237dafbe…` | ✓ |
 | pivot_claims.json | `8782cb5cd6969c00…` | ✓ |
 | prompt_sensitivity.csv | `562d1f0535f65d4a…` | ✓ |
-| stats_tests.json | `5b170074456bdf6c…` | ✓ |
+| stats_tests.json | `85df3e263cd53275…` | ✓ |
 | table1_operating_points.csv | `ac8bc5756bbcccbd…` | ✓ |
 | table2_alert_volume.csv | `429adfd3d4247734…` | ✓ |
 | table5_aggregation_sensitivity.csv | `9f78f94143dad585…` | ✓ |

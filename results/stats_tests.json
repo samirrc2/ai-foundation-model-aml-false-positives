@@ -1,10 +1,12 @@
 {
   "cochran_q": {
-    "Q": 117.0073,
+    "Q": 585.0364,
+    "Q_as_published_note": "the value published at submission and in the first revision, which omitted the factor k from the numerator and is therefore Q/k; retained so the correction is auditable",
+    "Q_as_published_understated": 117.0073,
     "df": 4,
     "k_models": 5,
     "n_cases": 300,
-    "p": 2.327e-24
+    "p": 2.683e-125
   },
   "pairwise_mcnemar": {
     "GPT-4.1-mini vs GPT-4o-mini": {

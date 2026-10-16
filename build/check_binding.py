@@ -31,6 +31,7 @@ if len(tex) < 20000:
 P = ag["policies"]["ties_to_flag_preregistered_D4"]["per_model"]
 SUB = ag["policies"]["label_dependent_as_published"]["per_model"]
 SC = ag["single_call_configurations"]
+FOUR = ag["four_designed_cells_sensitivity"]
 sub = lambda m: f"{SUB[m]['fp_rate']*100:.1f}"
 sc = lambda c, m: f"{SC[c]['per_model'][m]['fp_rate']*100:.1f}"
 A = pv["A_false_positive"]
@@ -128,6 +129,11 @@ RULES = [
     (r"versus about",                                prec(0.001, "GPT-4o-mini", 2), "precision at 0.1%, 4o-mini"),
     (r"moves the ratio from about",                  hu(sweep[0.0001]["ratio_max_over_min"], 0), "sweep ratio low end"),
     (r"about 37-fold to about",                      hu(sweep[0.01]["ratio_max_over_min"], 0),   "sweep ratio high end", 2),
+    # ---- the four-designed-cells sensitivity, derived rather than hand-computed.
+    (r"gives GPT-4o-mini a false-positive rate of",
+     hu(FOUR["per_model"]["GPT-4o-mini"]["fp_rate"] * 100, 1), "four-cell FP, 4o-mini"),
+    (r"and a cross-model spread of",
+     hu(FOUR["fp_spread_pp"], 1), "four-cell spread"),
     # ---- figure 3 caption, which still carried the pre-restoration 4,200/830,000 volumes.
     (r"changes the queue from about",                "24,000",  "fig3 caption low"),
     (r"from about 24,000 to about",                  "857,000", "fig3 caption high"),

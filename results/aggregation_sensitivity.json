@@ -54,12 +54,38 @@
     "draws": 2000,
     "n_at_or_above_observed": 0,
     "n_strata": 8,
-    "observed": 117.0073,
+    "observed": 585.0364,
     "p": 0.0005,
     "scheme": "one permutation of model labels per typology stratum, applied to all cases in that stratum",
     "statistic": "Cochran Q"
   },
   "deviation_corrected": "the submitted analysis required a strict majority on legitimate cases, so a 2-2 tie was not counted as a false positive; the tie direction therefore depended on the ground-truth label. D4 specifies ties -> flag for both labels.",
+  "four_designed_cells_sensitivity": {
+    "fp_spread_pp": 83.67,
+    "note": "one call per designed prompt-seed cell; the primary analysis votes over all valid calls, per D4",
+    "per_model": {
+      "GPT-4.1-mini": {
+        "fp_rate": 0.37,
+        "n_benign": 300
+      },
+      "GPT-4o": {
+        "fp_rate": 0.0767,
+        "n_benign": 300
+      },
+      "GPT-4o-mini": {
+        "fp_rate": 0.86,
+        "n_benign": 300
+      },
+      "Gemini Flash": {
+        "fp_rate": 0.0233,
+        "n_benign": 300
+      },
+      "Gemini Flash-Lite": {
+        "fp_rate": 0.44,
+        "n_benign": 300
+      }
+    }
+  },
   "fp_spread_range_pp": [
     77.6667,
     85.3333
@@ -67,10 +93,12 @@
   "policies": {
     "label_dependent_as_published": {
       "cochran_q": {
-        "Q": 131.553,
+        "Q": 657.7649,
+        "Q_as_published_note": "the value published at submission and in the first revision, which omitted the factor k from the numerator and is therefore Q/k; retained so the correction is auditable",
+        "Q_as_published_understated": 131.553,
         "df": 4,
         "n_cases": 300,
-        "p": 1.812e-27
+        "p": 4.859e-141
       },
       "fp_spread_pp": 82.6667,
       "per_model": {
@@ -109,10 +137,12 @@
     },
     "ties_as_abstention": {
       "cochran_q": {
-        "Q": 80.4417,
+        "Q": 402.2087,
+        "Q_as_published_note": "the value published at submission and in the first revision, which omitted the factor k from the numerator and is therefore Q/k; retained so the correction is auditable",
+        "Q_as_published_understated": 80.4417,
         "df": 4,
         "n_cases": 189,
-        "p": 1.404e-16
+        "p": 9.27e-86
       },
       "fp_spread_pp": 84.9338,
       "per_model": {
@@ -151,10 +181,12 @@
     },
     "ties_to_flag_preregistered_D4": {
       "cochran_q": {
-        "Q": 117.0073,
+        "Q": 585.0364,
+        "Q_as_published_note": "the value published at submission and in the first revision, which omitted the factor k from the numerator and is therefore Q/k; retained so the correction is auditable",
+        "Q_as_published_understated": 117.0073,
         "df": 4,
         "n_cases": 300,
-        "p": 2.327e-24
+        "p": 2.683e-125
       },
       "fp_spread_pp": 83.3333,
       "per_model": {
@@ -193,10 +225,12 @@
     },
     "ties_to_no_flag_strict_majority": {
       "cochran_q": {
-        "Q": 131.553,
+        "Q": 657.7649,
+        "Q_as_published_note": "the value published at submission and in the first revision, which omitted the factor k from the numerator and is therefore Q/k; retained so the correction is auditable",
+        "Q_as_published_understated": 131.553,
         "df": 4,
         "n_cases": 300,
-        "p": 1.812e-27
+        "p": 4.859e-141
       },
       "fp_spread_pp": 82.6667,
       "per_model": {
@@ -235,10 +269,12 @@
     },
     "unanimity_required": {
       "cochran_q": {
-        "Q": 123.6903,
+        "Q": 618.4516,
+        "Q_as_published_note": "the value published at submission and in the first revision, which omitted the factor k from the numerator and is therefore Q/k; retained so the correction is auditable",
+        "Q_as_published_understated": 123.6903,
         "df": 4,
         "n_cases": 300,
-        "p": 8.695e-26
+        "p": 1.573e-132
       },
       "fp_spread_pp": 77.6667,
       "per_model": {
@@ -398,10 +434,12 @@
         "Gemini Flash-Lite": 440553
       },
       "cochran_q": {
-        "Q": 117.6296,
+        "Q": 588.1479,
+        "Q_as_published_note": "the value published at submission and in the first revision, which omitted the factor k from the numerator and is therefore Q/k; retained so the correction is auditable",
+        "Q_as_published_understated": 117.6296,
         "df": 4,
         "n_cases": 300,
-        "p": 1.713e-24
+        "p": 5.692e-126
       },
       "fp_spread_pp": 85.3333,
       "per_model": {
@@ -437,10 +475,12 @@
         "Gemini Flash-Lite": 440553
       },
       "cochran_q": {
-        "Q": 118.6017,
+        "Q": 593.0085,
+        "Q_as_published_note": "the value published at submission and in the first revision, which omitted the factor k from the numerator and is therefore Q/k; retained so the correction is auditable",
+        "Q_as_published_understated": 118.6017,
         "df": 4,
         "n_cases": 300,
-        "p": 1.062e-24
+        "p": 5.05e-127
       },
       "fp_spread_pp": 85.0,
       "per_model": {
@@ -476,10 +516,12 @@
         "Gemini Flash-Lite": 247400
       },
       "cochran_q": {
-        "Q": 127.4003,
+        "Q": 637.0016,
+        "Q_as_published_note": "the value published at submission and in the first revision, which omitted the factor k from the numerator and is therefore Q/k; retained so the correction is auditable",
+        "Q_as_published_understated": 127.4003,
         "df": 4,
         "n_cases": 300,
-        "p": 1.4e-26
+        "p": 1.518e-136
       },
       "fp_spread_pp": 80.3333,
       "per_model": {
@@ -515,10 +557,12 @@
         "Gemini Flash-Lite": 247400
       },
       "cochran_q": {
-        "Q": 130.8046,
+        "Q": 654.023,
+        "Q_as_published_note": "the value published at submission and in the first revision, which omitted the factor k from the numerator and is therefore Q/k; retained so the correction is auditable",
+        "Q_as_published_understated": 130.8046,
         "df": 4,
         "n_cases": 300,
-        "p": 2.62e-27
+        "p": 3.138e-140
       },
       "fp_spread_pp": 81.3333,
       "per_model": {

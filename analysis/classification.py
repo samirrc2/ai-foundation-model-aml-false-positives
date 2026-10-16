@@ -104,7 +104,11 @@ def _per_case(rows, label, variant=None):
 def cochran_q(mat):
     k = len(mat[0]); Cj = [sum(row[j] for row in mat) for j in range(k)]
     Ri = [sum(row) for row in mat]; Cbar = sum(Cj) / k
-    num = (k - 1) * sum((c - Cbar) ** 2 for c in Cj)
+    # Cochran's Q = k(k-1) * sum_j (C_j - Cbar)^2 / (k*sum_i R_i - sum_i R_i^2).
+    # The factor k was missing from the numerator, which understated every Q in the submitted
+    # and first-revised analyses by exactly fivefold (k = 5 models). Verified against
+    # statsmodels.stats.contingency_tables.cochrans_q, which agrees to 1e-9 after the fix.
+    num = k * (k - 1) * sum((c - Cbar) ** 2 for c in Cj)
     den = k * sum(Ri) - sum(r * r for r in Ri)
     Q = num / den if den else 0.0
     # survival function, not 1-cdf: 1-cdf underflows to 0.0 for Q of this magnitude
@@ -217,7 +221,9 @@ def run():
                        [f"{d['mcc']:.3f}"] + [f"{d[k]*100:.1f}" for k in ("accuracy", "npv", "fpr", "miss_rate")])
     (out / "stats_tests.json").write_text(json.dumps(_round4(
         {"tie_rule": "preregistered D4 (ties->flag, label-independent), applied to tables AND figures; floats rounded to 4 d.p.",
-         "cochran_q": {"Q": Q, "df": df, "p": pq, "n_cases": len(bcases), "k_models": len(models)},
+         "cochran_q": {"Q": Q, "df": df, "p": pq, "n_cases": len(bcases), "k_models": len(models),
+                       "Q_as_published_understated": _round4(Q / len(models)),
+                       "Q_as_published_note": "the value published at submission and in the first revision, which omitted the factor k from the numerator and is therefore Q/k; retained so the correction is auditable"},
          "pairwise_mcnemar": pairs,
          "per_model_fp_miss": {NICE[m]: {"fp": per_model[NICE[m]]["fpr"],
                                          "miss": per_model[NICE[m]]["miss_rate"]} for m in models},
