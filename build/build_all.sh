@@ -33,6 +33,7 @@ echo "== 4. docx companion"
 
 echo "== 5. gates"
 "$PY" build/check_binding.py        | tail -1
+"$PY" build/check_coverage.py       | tail -1
 "$PY" build/check_verbatim.py       | tail -1
 "$PY" build/check_docx_citations.py | tail -1
 "$PY" build/check_docx_parity.py    | tail -1

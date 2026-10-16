@@ -26,6 +26,10 @@ if len(tex) < 20000:
     print(f"COULD NOT CHECK: manuscript only {len(tex)} chars"); sys.exit(2)
 
 P = ag["policies"]["ties_to_flag_preregistered_D4"]["per_model"]
+SUB = ag["policies"]["label_dependent_as_published"]["per_model"]
+SC = ag["single_call_configurations"]
+sub = lambda m: f"{SUB[m]['fp_rate']*100:.1f}"
+sc = lambda c, m: f"{SC[c]['per_model'][m]['fp_rate']*100:.1f}"
 A = pv["A_false_positive"]
 sweep = {s["prevalence"]: s for s in ag["prevalence_sweep"]}
 single = ag["single_call_configurations"]
@@ -63,6 +67,22 @@ RULES = [
     (r"the spread lies between",                      f"{ag['fp_spread_range_pp'][0]:.1f}", "2.x spread range low"),
     (r"spread lies between 77\.7 and",                f"{ag['fp_spread_range_pp'][1]:.1f}", "2.x spread range high", 2),
     (r"The frozen corpus holds",                      f"{ag['calls']['realized']:,}".replace(",", "{,}"), "realized calls"),
+    # The as-submitted rates in the deviation disclosure. Fault injection swapped 0.3 and 1.0
+    # here and every gate passed: both are real printed values, so nothing short of an anchored
+    # rule can see the swap, and these are precisely the numbers a reader checks the deviation
+    # against.
+    (r"raises every false-positive rate---from",      sub("Gemini Flash"),      "as-submitted FP, Gemini Flash"),
+    (r"rate---from 0\.3, ",                           sub("GPT-4o"),            "as-submitted FP, GPT-4o"),
+    (r"from 0\.3, 1\.0, ",                            sub("GPT-4.1-mini"),      "as-submitted FP, GPT-4.1-mini"),
+    (r"from 0\.3, 1\.0, 23\.7, ",                     sub("Gemini Flash-Lite"), "as-submitted FP, Flash-Lite"),
+    (r"0\.3, 1\.0, 23\.7, 24\.7 and ",                sub("GPT-4o-mini"),       "as-submitted FP, GPT-4o-mini"),
+    # The deployable single-call rows of the sensitivity table, which no rule reached: bending
+    # the GPT-4o FATF seed-1 rate to 0.4242 passed every gate.
+    (r"Single call: FATF prompt seed 0\s+& ",          sc("v_fatf|seed0", "Gemini Flash"),  "single call fatf0, Flash"),
+    (r"Single call: FATF prompt seed 0\s+& 2\.3 & ",   sc("v_fatf|seed0", "GPT-4o"),        "single call fatf0, GPT-4o"),
+    (r"Single call: FATF prompt seed 1\s+& 2\.3 & ",   sc("v_fatf|seed1", "GPT-4o"),        "single call fatf1, GPT-4o"),
+    (r"Single call: terse prompt seed 0\s+& ",         sc("v_terse|seed0", "Gemini Flash"),  "single call terse0, Flash"),
+    (r"Single call: terse prompt seed 1\s+& ",         sc("v_terse|seed1", "Gemini Flash"),  "single call terse1, Flash"),
 ]
 
 fails = []
