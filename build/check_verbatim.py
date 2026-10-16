@@ -26,10 +26,14 @@ if len(pdf) < 5000:
 
 # reviewer prose = everything outside headers/banners
 blocks = re.split(r"={10,}", raw)
-sent, skip = [], ("RAW REVIEWER", "Discover Artificial", "Submission be7", "DO NOT EDIT")
+# Banner blocks at the head of the referee file, matched by shape rather than by their
+# literal text: the journal name and the submission identifier do not belong in source
+# that ships in the public archive.
+sent = []
+SKIP = re.compile(r"^(RAW\s|Submission\s|Discover\s|DO NOT EDIT)", re.I)
 for b in blocks:
     b = b.strip()
-    if not b or b.isupper() or any(b.startswith(s) for s in skip): continue
+    if not b or b.isupper() or SKIP.match(b): continue
     for s in re.split(r"(?<=[.;:])\s+", b.replace("\n"," ")):
         s = s.strip()
         # a leading "-" marks the signature line in the referee file
