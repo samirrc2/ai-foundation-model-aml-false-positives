@@ -52,7 +52,7 @@ The artifact enables independent reproduction of the article's computational res
 2. A deterministic analysis pipeline that regenerates the primary false-positive-variance endpoints with cluster-bootstrap and Wilson CIs, the standard per-model classification metrics with paired inferential tests (Cochran's Q, McNemar exact + Bonferroni), the per-typology miss rates, the prompt-sensitivity decomposition, two non-LLM baselines, and the operational alert-volume projection, into `results/`.
 3. Pre-registration, its amendment and pivot, and the append-only decisions log (`docs/`).
 4. The capture harness used for live collection (`capture/`).
-5. The Discover Artificial Intelligence manuscript package (`manuscript/`).
+5. The Discover Artificial Intelligence manuscript package (`paper/`).
 
 **Default workflow (this README):** regenerate all analysis outputs from the frozen dataset. This path requires **no API keys** and incurs **no inference cost**. Re-collecting the 12,000 API calls is optional, incurs cost, and is **not required** to verify the numerical claims in the article.
 
@@ -147,9 +147,9 @@ API credentials for OpenAI and Google Gemini are required **only** for live re-c
 
 ```bash
 git clone https://github.com/samirrc2/ai-foundation-model-aml-false-positives.git
-cd ai-foundation-model-aml-false-positives/capsule
+cd ai-foundation-model-aml-false-positives
 python3 -m venv .venv && source .venv/bin/activate   # Windows: .venv\Scripts\activate
-pip install -r code/requirements.txt
+pip install -r requirements.txt
 bash reproduce.sh
 ```
 
@@ -178,12 +178,16 @@ data/battery/full.jsonl + data/capture/runs_full_*.csv + data/configs/
         │
         ▼
   bash reproduce.sh
-  (→ code/src/reproduce.py: verify integrity → altrisk + classification + baselines + alertvolume
-     → code/src/replication_check.py: byte-identical re-run)
+  (→ analysis/reproduce.py: verify integrity → altrisk + classification + correlated_miss
+     + baselines + alertvolume + aggregation_sensitivity + figures
+     → analysis/replication_check.py: byte-identical re-run)
         │
         ├── results/pivot_claims.json          # false-positive-variance endpoints + CIs
         ├── results/classification_metrics.json # per-model precision/recall/specificity/F1/MCC + Wilson CIs
         ├── results/stats_tests.json            # Cochran's Q + pairwise McNemar (Bonferroni) + per-typology miss
+        ├── results/correlated_miss.json        # Cohen's kappa / Scott's pi / Gwet's AC1 on the miss outcome
+        ├── results/aggregation_sensitivity.json # every aggregation policy + single-call configuration
+        ├── results/prompt_sensitivity.{json,csv} # per-model FP under each prompt variant
         ├── results/baselines.json              # FATF rules + supervised baselines
         ├── results/alert_volume.json           # operational projection at 0.1% prevalence
         ├── results/table1_operating_points.{csv,md}, table2_alert_volume.{csv,md}
@@ -230,7 +234,7 @@ The determinism check must confirm byte-identical results across two independent
 - **Pre-registration and design records:** `docs/preregistration.md`, `preregistration_pivot.md`, `preregistration_amendment.md`, `decisions_log.md`.
 - **Provenance:** every capture is SHA-256-stamped in `data/frozen/*.freeze.json`; the frozen CSVs are the object of record and must not be regenerated.
 - **Tie rule (pre-registered D4):** per-(model, case) decisions are the modal vote over the valid (non-ERROR) replicates. On legitimate cases a 2–2 tie is **not** counted as a false positive (strict majority required); on suspicious cases a 2–2 tie **is** counted as caught. Applied identically to every model, table, and figure.
-- **Manuscript source:** the manuscript is the Springer Nature LaTeX in `manuscript/latex/` (`main.tex` + `references_discover.bib`, 43 references, `sn-basic.bst`, figures fig1–fig5), compiled to `manuscript/MANUSCRIPT_Discover_compiled.pdf` and `manuscript/MANUSCRIPT_Discover.docx` via `manuscript/latex/build_both.sh`.
+- **Manuscript source:** the manuscript is the Springer Nature LaTeX in `paper/` (`paper/manuscript_full.tex` + `paper/references_discover.bib`, 44 cited references, `paper/sn-jnl.cls` and `paper/sn-basic.bst`, figures fig1–fig6), compiled to `paper/manuscript_full.pdf` and `paper/manuscript_full.docx` via `build/build_all.sh`, which also runs every gate.
 - **Issues and support:** GitHub Issues, or the author emails in Section 1.
 
 ### Repository structure
@@ -261,9 +265,9 @@ Generated artifacts (`.venv/`, `__pycache__/`) are gitignored. Committed analysi
 
 ```bash
 git clone https://github.com/samirrc2/ai-foundation-model-aml-false-positives.git
-cd ai-foundation-model-aml-false-positives/capsule
+cd ai-foundation-model-aml-false-positives
 python3 -m venv .venv && source .venv/bin/activate
-pip install -r code/requirements.txt
+pip install -r requirements.txt
 bash reproduce.sh          # ~1 min, no keys, no cost
 ```
 

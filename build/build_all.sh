@@ -28,6 +28,15 @@ echo "== 3. response letter and cover letter"
     [ -f "$f.tex" ] && { for i in 1 2; do run_tex "$f.tex"; done; }
   done )
 
+echo "== 3b. reproducibility document"
+# Compiled here so the PDF cannot drift from its source. It was previously built by hand,
+# which is the same hand-maintained-duplicate problem as a table typed into the manuscript.
+( cd "$(dirname "$0")/.." && for i in 1 2; do run_tex REPRODUCIBILITY_DOCUMENTATION.tex; done )
+RERR=$(grep -cE '^! ' REPRODUCIBILITY_DOCUMENTATION.log 2>/dev/null || true)
+[ "${RERR:-0}" -eq 0 ] || { echo "   FAILED: $RERR TeX errors"
+  grep -nE '^! ' REPRODUCIBILITY_DOCUMENTATION.log | head -5; exit 1; }
+echo "   REPRODUCIBILITY_DOCUMENTATION.pdf rebuilt"
+
 echo "== 4. docx companion"
 "$PY" build/make_docx.py | sed 's/^/   /'
 
@@ -36,7 +45,7 @@ echo "== 5. gates"
 # discarding the rule that failed, and a gate's exit 2 (could not check) must be visible as
 # something other than a pass -- so capture the output, keep the code, and say which it was.
 gate_fail=0
-for g in check_binding check_coverage check_table_agg check_verbatim \
+for g in check_binding check_coverage check_table_agg check_readme check_verbatim \
          check_docx_citations check_docx_parity; do
   out="$("$PY" "build/$g.py" 2>&1)" && rc=0 || rc=$?
   case "$rc" in
@@ -50,7 +59,7 @@ done
 [ "$gate_fail" -eq 0 ] || { echo "GATES FAILED"; exit 1; }
 
 echo "== 6. clean artefacts"
-find paper -maxdepth 1 \( -name "*.aux" -o -name "*.log" -o -name "*.out" -o -name "*.blg" -o -name "*.spl" \) -delete
+find paper . -maxdepth 1 \( -name "*.aux" -o -name "*.log" -o -name "*.out" -o -name "*.blg" -o -name "*.spl" \) -delete
 
 echo "== 7. every deliverable, by content"
 "$PY" - <<'PYX'
