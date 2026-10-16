@@ -1,0 +1,437 @@
+#!/usr/bin/env python3
+"""Mark revision-1 additions in the manuscript, in place, without restructuring it.
+
+Why not latexdiff: three configurations were tried against this document and each failed
+structurally. Markup inside \\cmidrule gave "Paragraph ended before \\@@@cmidrule was complete"
+and a pdflatex that span at 100% CPU until killed; adding those to --append-safecmd moved the
+failure to "Misplaced \\noalign" between \\\\ and \\midrule, the usual booktabs collision; and
+treating tabulars as PICTUREENV compiled cleanly but SILENTLY DROPPED CONTENT -- table captions
+fell from 30 to 11, three section headings vanished, and 156 sentences of the clean manuscript
+were missing from the output. A marked copy that quietly loses two pages is worse than none.
+
+This script inverts the approach. The NEW manuscript is the base and is never restructured:
+nothing is deleted, moved, or re-emitted. Additions are located by diffing against the previous
+version and are wrapped in place. The output therefore contains the final manuscript by
+construction, and check_marked.py verifies that against the clean PDF.
+
+Marking rules:
+  * body prose      -- added word runs wrapped; plain runs highlighted yellow, runs containing
+                       math or commands coloured (soul cannot swallow those)
+  * floats          -- the tabular body is NEVER touched, because that is what broke latexdiff.
+                       A float that is new or whose body changed gets a coloured tag in its
+                       caption instead, so the reviewer is told the table changed and where.
+  * preamble, labels, comments -- never marked.
+
+Usage: python3 mark_changes.py <old.tex> <new.tex> <out.tex>
+"""
+import re
+import sys
+from difflib import SequenceMatcher
+
+PREAMBLE = "\n".join([
+    r"\usepackage{soul}",
+    r"\usepackage{xcolor}",
+    r"\definecolor{HLyellow}{rgb}{1,0.94,0.35}",
+    r"\definecolor{HLink}{rgb}{0.75,0.18,0.04}",
+    r"\usepackage[normalem]{ulem}",
+    r"\sethlcolor{HLyellow}",
+    r"\newcommand{\HLtext}[1]{\texthl{#1}}",
+    r"\newcommand{\HLcode}[1]{\texthl{#1}}",
+    r"\newcommand{\HLdel}[1]{\textcolor{HLink}{\sout{#1}}}",
+    r"\newcommand{\HLtag}[1]{{\color{HLink}\bfseries [#1]~}}",
+    r"\newcommand{\HLhead}[1]{\textcolor{HLink}{#1}}",
+    r"\makeatletter",
+    r"\@ifundefined{pdfstringdefDisableCommands}{}{%",
+    r"  \pdfstringdefDisableCommands{%",
+    r"    \renewcommand{\HLhead}[1]{#1}\renewcommand{\HLcode}[1]{#1}%",
+    r"    \renewcommand{\HLtext}[1]{#1}\renewcommand{\HLdel}[1]{#1}%",
+    r"    \renewcommand{\HLtag}[1]{}}}",
+    r"\makeatother",
+    # The legend is an annotation, not manuscript text. unmark() in check_marked.py strips
+    # \HLlegend whole, so adding it keeps the round-trip exact.
+    r"\newcommand{\HLlegend}{%",
+    r"\par\noindent\fbox{\parbox{0.95\linewidth}{\footnotesize\textbf{Marked copy, revision 1.}"
+    r" Text added since the original submission is \HLtext{highlighted in yellow}."
+    r" Text removed since the original submission is shown as \HLdel{red struck-through text} at the point"
+    r" where it stood. Table and algorithm bodies are reproduced in final form without"
+    r" internal marks. A float that is new or revised is labelled in its caption, e.g."
+    r" \HLtag{New in revision}. Page and float numbering match the clean manuscript.}}\par\vspace{6pt}}",
+    "",
+])
+
+SOUL_UNSAFE = ("$", "\\", "&", "{", "}", "~", "^", "_", "#")
+# environments whose internals must not be touched: this is what broke latexdiff
+NO_TOUCH_ENV = ("tabular", "tabularx", "longtable", "align", "equation", "eqnarray",
+                "verbatim", "lstlisting", "minipage", "thebibliography")
+
+
+def tokenize(s):
+    """Split into tokens where every LaTeX command-with-arguments and every math span is ONE
+    atomic token. A run of added tokens can then never start inside a brace group and end
+    outside it, which is how in-place markup stays balanced."""
+    toks, i, n = [], 0, len(s)
+    while i < n:
+        c = s[i]
+        if c == "%":                                   # comment to end of line
+            j = s.find("\n", i)
+            j = n if j < 0 else j + 1
+            toks.append((s[i:j], False)); i = j
+        elif c == "$":                                 # math span
+            j = i + 2 if s.startswith("$$", i) else i + 1
+            close = "$$" if s.startswith("$$", i) else "$"
+            k = s.find(close, j)
+            k = n if k < 0 else k + len(close)
+            toks.append((s[i:k], False)); i = k
+        elif c == "\\" and i + 1 < n and s[i + 1].isalpha():
+            m = re.match(r"\\[A-Za-z@]+\*?", s[i:])
+            j = i + m.end()
+            while j < n and s[j] in "[{":              # consume options and arguments
+                close = "]" if s[j] == "[" else "}"
+                depth, k = 0, j
+                while k < n:
+                    if s[k] in "[{" and (k == 0 or s[k - 1] != "\\"):
+                        depth += 1
+                    elif s[k] in "]}" and s[k - 1] != "\\":
+                        depth -= 1
+                        if depth == 0:
+                            k += 1; break
+                    k += 1
+                j = k
+            toks.append((s[i:j], False)); i = j
+        elif c == "\\":                                # \\ , \& , \% ...
+            toks.append((s[i:i + 2], False)); i += 2
+        elif c.isspace():
+            m = re.match(r"\s+", s[i:])
+            toks.append((s[i:i + m.end()], None)); i += m.end()
+        else:
+            m = re.match(r"[^\s$%\\]+", s[i:])
+            toks.append((s[i:i + m.end()], True)); i += m.end()
+    return toks
+
+
+# A marked run may not span any of these: \textcolor and \texthl cannot cross a paragraph
+# break, a list item, a sectioning command or an environment boundary.
+RUN_BREAK = re.compile(r"\\\\(?:par|item|section|subsection|subsubsection|paragraph|caption|"
+                       r"label|begin|end|input|include|bibliography|newpage|clearpage|"
+                       r"footnote|footnotetext|maketitle|hline|midrule|toprule|bottomrule|"
+                       r"cmidrule|multicolumn|multirow|\\\\)\b|\\\\\\\\")
+# Only a CLEAN heading is marked: command, one brace group, no \label, no nested braces.
+# (This pattern previously had a doubled backslash, so it matched nothing and every heading
+# fell through to the generic wrapper -- which produced \HLcode{\subsection{..}\label{..}}
+# and "Missing }" / "Too many }'s".)
+HEADING = re.compile(r"^\\(paragraph|subsection|subsubsection|section)(\*?)\{([^{}]*)\}$")
+STRUCTURAL = re.compile(r"\\(?:label|input|begin|end)|\\(?:sub)*section|\\paragraph")
+
+UNMARKED = []          # runs that could not be marked safely; reported, never silent
+
+
+def balanced(t):
+    """True if braces in t are balanced (escaped braces ignored)."""
+    depth = 0
+    for i, c in enumerate(t):
+        if i and t[i - 1] == "\\":
+            continue
+        if c == "{":
+            depth += 1
+        elif c == "}":
+            depth -= 1
+            if depth < 0:
+                return False
+    return depth == 0
+
+
+def wrap_one(core):
+    """Wrap a single safe chunk in the yellow highlight.
+
+    soul cannot swallow mathematics or a command, so a core containing either is split into
+    plain fragments (highlighted) and unsafe fragments (left bare but kept in place). Earlier
+    revisions coloured such a core red instead; red now means DELETED and nothing else, so a
+    red run can never be confused with an addition."""
+    if not any(u in core for u in SOUL_UNSAFE) and len(core) <= 600:
+        return r"\HLtext{" + core + "}"
+    out, buf = [], []
+    for tok, isword in tokenize(core):
+        # "%" must count as unsafe here: _hl strips trailing whitespace, and stripping the
+        # newline that terminates a comment would leave the closing brace commented out
+        # ("File ended while scanning use of \HLtext").
+        unsafe = any(u in tok for u in SOUL_UNSAFE) or tok.lstrip().startswith("%")
+        if unsafe:
+            if buf:
+                out.append(_hl("".join(buf))); buf = []
+            out.append(tok)
+        else:
+            buf.append(tok)
+    if buf:
+        out.append(_hl("".join(buf)))
+    return "".join(out)
+
+
+def _hl(frag):
+    """Highlight one plain fragment, preserving its surrounding space outside the macro."""
+    if not frag.strip():
+        return frag
+    lead = frag[:len(frag) - len(frag.lstrip())]
+    trail = frag[len(frag.rstrip()):]
+    return lead + r"\HLtext{" + frag.strip() + "}" + trail
+
+
+def mark_chunk(txt):
+    """Mark one chunk that contains no run-breaking command. Falls back to plain + a report."""
+    if not txt.strip():
+        return txt, 0
+    lead = txt[:len(txt) - len(txt.lstrip())]
+    trail = txt[len(txt.rstrip()):]
+    core = txt.strip()
+    if not balanced(core):
+        UNMARKED.append(core[:90])
+        return txt, 0
+    return lead + wrap_one(core) + trail, 1
+
+
+def wrap(run):
+    """Mark one maximal run of added tokens, splitting at everything markup cannot cross."""
+    out, n = [], 0
+    for tok, _ in run:
+        t = tok.strip()
+        m = HEADING.match(t)
+        if not m and STRUCTURAL.search(tok):
+            out.append(tok)        # never mark a structural token
+            continue
+        if m:
+            # a wholly new heading: mark its TEXT, not the command, so the heading still works
+            # Colour, not \texthl: soul produces NOTHING inside a sectioning command's
+            # moving argument, and \texthl additionally breaks hyperref's bookmark string.
+            # moving argument, and silently -- the two new \paragraph headings vanished from
+            # the marked PDF while pdflatex reported no error.
+            cmd, star, arg = m.group(1), m.group(2), m.group(3)
+            out.append("\\" + cmd + star + "{" + r"\HLhead{" + arg.strip() + "}" + "}")
+            n += 1
+            continue
+        if RUN_BREAK.search(tok):
+            out.append(tok)                      # emit structural tokens unmarked
+            continue
+        out.append(("\x00", tok))                # mark-eligible
+    # coalesce adjacent eligible tokens, splitting at blank lines
+    res, buf = [], []
+    def flush():
+        nonlocal n
+        if not buf:
+            return
+        txt = "".join(buf); buf.clear()
+        for piece in re.split(r"(\n[ \t]*\n)", txt):
+            if re.fullmatch(r"\n[ \t]*\n", piece or ""):
+                res.append(piece)
+            elif piece:
+                marked, k = mark_chunk(piece)
+                res.append(marked); n += k
+    for item in out:
+        if isinstance(item, tuple):
+            buf.append(item[1])
+        else:
+            flush(); res.append(item)
+    flush()
+    return "".join(res)
+
+
+def body_split(s):
+    """(preamble, body) at \\begin{document}."""
+    k = s.index(r"\begin{document}") + len(r"\begin{document}")
+    return s[:k], s[k:]
+
+
+def protected_spans(body):
+    """Character spans that must not be marked: no-touch environments."""
+    spans = []
+    for env in NO_TOUCH_ENV:
+        for m in re.finditer(r"\\begin\{" + env + r"\*?\}", body):
+            e = re.search(r"\\end\{" + env + r"\*?\}", body[m.start():])
+            if e:
+                spans.append((m.start(), m.start() + e.end()))
+    spans.sort()
+    merged = []
+    for a, b in spans:
+        if merged and a <= merged[-1][1]:
+            merged[-1] = (merged[-1][0], max(merged[-1][1], b))
+        else:
+            merged.append((a, b))
+    return merged
+
+
+# A deleted run is re-inserted into the NEW document, so it must be inert there. Anything
+# structural, or any reference that would resolve against labels the revision no longer has,
+# is skipped and reported rather than struck.
+DEL_FORBIDDEN = re.compile(
+    r"\\(?:begin|end|label|input|include|bibliography|maketitle|documentclass|usepackage|"
+    r"newcommand|renewcommand|def|cite[a-z]*|ref|eqref|pageref|footnote|caption|item|"
+    r"(?:sub)*section|paragraph|hline|toprule|midrule|bottomrule|multicolumn)\b|\\\\")
+SKIPPED_DEL = []        # deleted runs that could not be struck safely; reported, never silent
+
+
+TRIVIAL_DEL = re.compile(r"^[\s,.;:)(\[\]{}]*$")
+N_TRIVIAL = [0]
+
+
+def _del_one(core):
+    if not core or TRIVIAL_DEL.match(core):
+        if core:
+            N_TRIVIAL[0] += 1
+        return None
+    if not balanced(core) or DEL_FORBIDDEN.search(core) or len(core) > 1200:
+        SKIPPED_DEL.append(core[:90])
+        return None
+    return r"\HLdel{" + core + "} "
+
+
+def del_wrap(text):
+    """Strike one deleted run, or return None if it cannot be re-inserted safely.
+
+    Word-level removals are struck too: a reworded sentence otherwise shows new text in yellow
+    with no sign of what it replaced. Only punctuation-only runs are dropped silently.
+
+    The run is split at paragraph breaks first: \textcolor cannot cross one, and after opcode
+    coalescing a single deletion can span several paragraphs ("Paragraph ended before
+    \@textcolor was complete")."""
+    parts = [p for p in re.split(r"\n\s*\n", text) if p.strip()]
+    outs = [d for d in (_del_one(p.strip()) for p in parts) if d]
+    return "".join(outs) if outs else None
+
+
+def coalesce(ops, ok, nk, min_keep=5):
+    """Merge a change region separated only by a few surviving words into one block.
+
+    A word-level diff of a rewritten sentence matches incidental words ("the", "is") and splits
+    the sentence into a dozen fragments, so the marked copy reads
+    "threshold that maximizes do Youden's not expose" -- unusable for a reviewer. Where an
+    equal run is shorter than `min_keep` WORDS and sits between two changes, it is absorbed, so
+    the rewrite shows as one struck phrase followed by one highlighted phrase."""
+    words = lambda seq: sum(1 for t in seq if t.strip() and not t.startswith("\\"))
+    ops = list(ops)
+    out = []
+    for op in ops:
+        tag, i1, i2, j1, j2 = op
+        if (tag == "equal" and out and words(nk[j1:j2]) < min_keep
+                and op is not ops[-1]):
+            nxt = ops[ops.index(op) + 1]
+            if nxt[0] != "equal" and out[-1][0] != "equal":
+                pt, pi1, pi2, pj1, pj2 = out[-1]
+                out[-1] = ("replace", pi1, i2, pj1, j2)
+                continue
+        if out and out[-1][0] in ("replace", "delete", "insert") and tag in ("replace", "delete", "insert"):
+            pt, pi1, pi2, pj1, pj2 = out[-1]
+            if pi2 == i1 and pj2 == j1:
+                out[-1] = ("replace", pi1, i2, pj1, j2)
+                continue
+        out.append(op)
+    return out
+
+
+def mark_prose(old_body, new_body):
+    """One global token diff of the old body against the new one.
+
+    Additions are highlighted where they stand. Deletions are struck through at the point the
+    removed text occupied. A per-segment diff cannot express a deletion at all -- comparing the
+    whole old body against one segment reports most of the document as deleted -- so the diff is
+    global and protected spans are excluded by offset instead.
+    """
+    prot = protected_spans(new_body)
+
+    def in_prot(off):
+        return any(a <= off < b for a, b in prot)
+
+    ot, nt = tokenize(old_body), tokenize(new_body)
+    ok, nk = [t for t, _ in ot], [t for t, _ in nt]
+    noff, acc = [], 0
+    for t in nk:
+        noff.append(acc); acc += len(t)
+
+    sm = SequenceMatcher(None, ok, nk, autojunk=False)
+    out, marked, deleted = [], 0, 0
+    for tag, i1, i2, j1, j2 in coalesce(sm.get_opcodes(), ok, nk):
+        here = noff[j1] if j1 < len(noff) else len(new_body)
+        if tag in ("delete", "replace"):
+            if not in_prot(here):
+                d = del_wrap("".join(ok[i1:i2]))
+                if d:
+                    out.append(d); deleted += 1
+        if tag in ("insert", "replace"):
+            seg = nt[j1:j2]
+            if in_prot(here):
+                out.append("".join(nk[j1:j2]))
+            else:
+                out.append(wrap(seg)); marked += 1
+        elif tag == "equal":
+            out.append("".join(nk[j1:j2]))
+    return "".join(out), marked, deleted
+
+
+def tag_floats(old, new):
+    """Tag each float whose body is new or changed, inside its caption. Tabulars untouched."""
+    def floats(s):
+        out = []
+        for m in re.finditer(r"\\begin\{(table|figure)\*?\}", s):
+            e = re.search(r"\\end\{" + m.group(1) + r"\*?\}", s[m.start():])
+            if e:
+                out.append((m.start(), m.start() + e.end()))
+        return out
+    def key(blk):
+        lb = re.search(r"\\label\{([^}]*)\}", blk)
+        return lb.group(1) if lb else None
+    oldblocks = {key(old[a:b]): re.sub(r"\s+", " ", old[a:b]) for a, b in floats(old)}
+    res, pos, n_new, n_chg = [], 0, 0, 0
+    for a, b in floats(new):
+        blk = new[a:b]; k = key(blk)
+        norm = re.sub(r"\s+", " ", blk)
+        if k not in oldblocks:
+            tag, n_new = "New in revision", n_new + 1
+        elif oldblocks[k] != norm:
+            tag, n_chg = "Revised in revision", n_chg + 1
+        else:
+            tag = None
+        if tag:
+            cm = re.search(r"(\\caption\{)", blk)
+            if cm:
+                blk = blk[:cm.end()] + r"\HLtag{" + tag + "}" + blk[cm.end():]
+        res.append(new[pos:a]); res.append(blk); pos = b
+    res.append(new[pos:])
+    return "".join(res), n_new, n_chg
+
+
+def main():
+    oldp, newp, outp = sys.argv[1], sys.argv[2], sys.argv[3]
+    old = open(oldp, encoding="utf-8").read()
+    new = open(newp, encoding="utf-8").read()
+    _, old_body = body_split(old)
+    pre, new_body = body_split(new)
+
+    body, n_runs, n_del = mark_prose(old_body, new_body)
+    body, n_new, n_chg = tag_floats(old_body, body)
+    assert n_runs > 0, "no additions marked -- is the baseline the same file?"
+    # Emit the legend, don't just define it. The macro existed but was never invoked, so the
+    # tracked copy explained none of its own colours -- a reviewer saw yellow and red with no
+    # key. check_marked.py's unmark() already strips "\n\HLlegend\n" whole, so emitting it
+    # here keeps the round-trip exact.
+    if r"\maketitle" in body:
+        body = body.replace(r"\maketitle", "\\maketitle\n\\HLlegend\n", 1)
+        n_legend = 1
+    else:
+        n_legend = 0
+    out = (pre.replace(r"\begin{document}", PREAMBLE + r"\begin{document}", 1)
+           + body)
+    open(outp, "w", encoding="utf-8").write(out)
+    print(f"   {n_runs} added run(s) highlighted yellow, {n_del} deleted run(s) struck red; "
+          f"{n_new} float(s) tagged new, {n_chg} tagged revised; tabular bodies untouched")
+    if not n_legend:
+        print("   WARNING: no \\maketitle found, legend NOT emitted")
+    if SKIPPED_DEL:
+        print(f"   {len(SKIPPED_DEL)} deleted run(s) NOT struck (structural or a stale reference); "
+              f"{N_TRIVIAL[0]} punctuation-only run(s) dropped:")
+        for u in SKIPPED_DEL[:6]:
+            print(f"     - {u}")
+    if UNMARKED:
+        print(f"   {len(UNMARKED)} run(s) left UNMARKED (unbalanced braces):")
+        for u in UNMARKED[:8]:
+            print(f"     - {u}")
+
+
+if __name__ == "__main__":
+    main()

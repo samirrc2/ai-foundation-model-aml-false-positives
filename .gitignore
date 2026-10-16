@@ -10,3 +10,13 @@ paper/*.spl
 *.aux
 *.log
 *.out
+
+# Tracked-changes intermediates. _marked.tex IS committed (the gates diff it against the
+# manuscript, which is how a stale tracked deliverable is caught); the rest are derived.
+paper/_marked.pdf
+paper/_marked.aux
+paper/_marked.log
+paper/_marked.out
+paper/_marked.bbl
+paper/_marked.blg
+paper/_marked.spl

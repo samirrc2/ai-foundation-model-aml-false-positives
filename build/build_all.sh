@@ -37,7 +37,10 @@ RERR=$(grep -cE '^! ' REPRODUCIBILITY_DOCUMENTATION.log 2>/dev/null || true)
   grep -nE '^! ' REPRODUCIBILITY_DOCUMENTATION.log | head -5; exit 1; }
 echo "   REPRODUCIBILITY_DOCUMENTATION.pdf rebuilt"
 
-echo "== 4. docx companion"
+echo "== 3c. tracked copy (built last among the PDFs: it diffs the final manuscript)"
+bash build/build_highlighted.sh
+
+echo "== 4. docx companions (clean + tracked)"
 "$PY" build/make_docx.py | sed 's/^/   /'
 
 echo "== 5. gates"
@@ -46,7 +49,8 @@ echo "== 5. gates"
 # something other than a pass -- so capture the output, keep the code, and say which it was.
 gate_fail=0
 for g in check_results_fresh check_binding check_coverage check_table_agg check_readme \
-         check_verbatim check_docx_citations check_docx_parity; do
+         check_marked check_tracked_docx check_verbatim check_docx_citations \
+         check_docx_parity; do
   out="$("$PY" "build/$g.py" 2>&1)" && rc=0 || rc=$?
   case "$rc" in
     0) printf '   %-22s PASS  %s\n' "$g" "$(printf '%s' "$out" | tail -1)" ;;
@@ -65,7 +69,8 @@ echo "== 7. every deliverable, by content"
 "$PY" - <<'PYX'
 import re, hashlib, os
 from pypdf import PdfReader
-TARGETS = ["paper/manuscript_full.pdf", "paper/response_to_reviewers.pdf",
+TARGETS = ["paper/manuscript_full.pdf", "paper/manuscript_full_tracked.pdf",
+           "paper/response_to_reviewers.pdf",
            "paper/cover_letter.pdf", "paper/response_to_editor.pdf"]
 for f in TARGETS:
     if not os.path.exists(f):
