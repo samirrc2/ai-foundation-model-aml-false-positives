@@ -32,7 +32,8 @@ for b in blocks:
     if not b or b.isupper() or any(b.startswith(s) for s in skip): continue
     for s in re.split(r"(?<=[.;:])\s+", b.replace("\n"," ")):
         s = s.strip()
-        if len(s) > 45 and not s.startswith("-Shiping") \
+        # a leading "-" marks the signature line in the referee file
+        if len(s) > 45 and not s.startswith("-") \
            and not re.match(r"^(EDITOR|REVIEWER|RAW)\b", s): sent.append(s)
 
 miss = [s for s in sent if norm(s) not in pdf]
