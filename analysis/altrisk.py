@@ -1,4 +1,4 @@
-"""Pivot analysis — "AI foundation model choice and false positive variation in Anti Money Laundering (AML) transaction screening" (model-risk audit of LLM
+"""Pivot analysis — "AI foundation model choice and false positive variation in Anti Money Laundering transaction screening" (model-risk audit of LLM
 AML screening). Pure, $0, reads FROZEN CSVs only. Emits pivot_claims.json with the
 Candidate-A/B/C estimands, each with a cluster-bootstrap CI over strata.
 
@@ -158,7 +158,7 @@ def analyse(subgrid: str, draws: int, seed: int, allow_unfrozen: bool) -> dict:
     return {
         "meta": {
             "paper": "AI foundation model choice and false positive variation in Anti "
-                     "Money Laundering (AML) transaction screening",
+                     "Money Laundering transaction screening",
             "status": "CONFIRMATORY: pre-registered full run over the five foundation "
                       "models (see docs/PREREGISTRATION.md and docs/DECISIONS.md)",
             "subgrid": subgrid, "mode": mt.mode, "config_hash": cfg.config_hash(),

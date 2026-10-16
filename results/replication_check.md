@@ -16,8 +16,8 @@
 | figures/fig4_typology_miss.pdf | `5880dfa33bd57550…` | ✓ |
 | figures/fig5_typology_model_heatmap.pdf | `3db529efa6015934…` | ✓ |
 | figures/fig6_prevalence_sweep.pdf | `aa16ead1f36ae139…` | ✓ |
-| metrics_summary.md | `eae509d0f6ceef5a…` | ✓ |
-| pivot_claims.json | `ec516e840692e737…` | ✓ |
+| metrics_summary.md | `cf42f5fe237dafbe…` | ✓ |
+| pivot_claims.json | `8782cb5cd6969c00…` | ✓ |
 | prompt_sensitivity.csv | `562d1f0535f65d4a…` | ✓ |
 | stats_tests.json | `85df3e263cd53275…` | ✓ |
 | table1_operating_points.csv | `ac8bc5756bbcccbd…` | ✓ |
