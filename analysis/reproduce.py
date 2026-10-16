@@ -30,6 +30,7 @@ import alertvolume as AV   # noqa: E402
 import classification      # noqa: E402
 import aggregation_sensitivity as AS  # noqa: E402
 import figures as FIGS  # noqa: E402
+import correlated_miss as CM  # noqa: E402
 
 DRAWS = 2000
 ANALYSIS_SEED = 4242
@@ -168,6 +169,13 @@ def run(verify: bool = True) -> dict:
     baseline_res = {"rules": {"fp": fp_r, "miss": miss_r},
                     "supervised": {k: {"fp": v[0], "miss": v[1]} for k, v in sup.items()}}
     _write_json(baseline_res, out / "baselines.json")
+
+    # 2b-ii. preregistered secondary analysis: correlated misses across models.
+    # Emitted as its own file because it answers a different question from the headline
+    # (do the models fail together?) and the manuscript quotes three coefficients from it.
+    corr = CM.run(SUBGRID, allowed_models=set(claims["A_false_positive"]["per_model"]))
+    _write_json(corr, out / "correlated_miss.json")
+    summary["n_missed_by_all_models"] = corr["n_missed_by_all_models"]
 
     # 2c. alert-volume projection
     fp_by_model = {m: d["fp_rate"] for m, d in claims["A_false_positive"]["per_model"].items()}

@@ -59,7 +59,10 @@ for f in res:
 s = MS.read_text(encoding="utf-8")
 s = s[s.index(r"\begin{document}"):]
 # strip what is not a reported quantity: comments, labels/refs/cites, paths, tikz, the bib
-s = re.sub(r"%.*", "", s)
+# (?<!\\) matters: this manuscript writes a literal percent as \\%, and "%.*" treated that
+# as a comment and deleted the rest of the line. Everything after an escaped percent sign
+# was therefore never scanned -- a placeholder reintroduced there passed the gate.
+s = re.sub(r"(?<!\\)%.*", "", s)
 for cmd in ("label","ref","eqref","cite","citet","citep","path","texttt","url","includegraphics",
             "input","usepackage","definecolor","newcommand","RenewDocumentCommand","AtBeginDocument",
             "AtEndDocument","bibliography","bibliographystyle","csxdef","pageref"):

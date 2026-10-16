@@ -1,0 +1,118 @@
+{
+  "cohen_kappa": {
+    "max": 0.2599,
+    "mean": 0.0717,
+    "min": -0.0114,
+    "n_defined": 10
+  },
+  "gwet_ac1": {
+    "max": 0.9933,
+    "mean": 0.924,
+    "min": 0.8559,
+    "n_defined": 10
+  },
+  "miss_rate_max": 0.12,
+  "miss_rate_min": 0.0,
+  "n_common_support": 300,
+  "n_missed_by_all_models": 0,
+  "n_missed_by_no_model": 255,
+  "n_models": 5,
+  "n_pairs": 10,
+  "n_suspicious_cases": 300,
+  "pairwise": {
+    "GPT-4.1-mini vs GPT-4o": {
+      "cohen_kappa": 0.2599,
+      "gwet_ac1": 0.9464,
+      "p_observed": 0.95,
+      "scott_pi": 0.2598
+    },
+    "GPT-4.1-mini vs GPT-4o-mini": {
+      "cohen_kappa": 0.0,
+      "gwet_ac1": 0.962,
+      "p_observed": 0.9633,
+      "scott_pi": -0.0187
+    },
+    "GPT-4o vs GPT-4o-mini": {
+      "cohen_kappa": 0.0,
+      "gwet_ac1": 0.9655,
+      "p_observed": 0.9667,
+      "scott_pi": -0.0169
+    },
+    "Gemini Flash vs GPT-4.1-mini": {
+      "cohen_kappa": 0.1659,
+      "gwet_ac1": 0.8559,
+      "p_observed": 0.8767,
+      "scott_pi": 0.1459
+    },
+    "Gemini Flash vs GPT-4o": {
+      "cohen_kappa": 0.2202,
+      "gwet_ac1": 0.868,
+      "p_observed": 0.8867,
+      "scott_pi": 0.1995
+    },
+    "Gemini Flash vs GPT-4o-mini": {
+      "cohen_kappa": 0.0,
+      "gwet_ac1": 0.8647,
+      "p_observed": 0.88,
+      "scott_pi": -0.0638
+    },
+    "Gemini Flash vs Gemini Flash-Lite": {
+      "cohen_kappa": 0.0938,
+      "gwet_ac1": 0.8714,
+      "p_observed": 0.8867,
+      "scott_pi": 0.0448
+    },
+    "Gemini Flash-Lite vs GPT-4.1-mini": {
+      "cohen_kappa": -0.0114,
+      "gwet_ac1": 0.9547,
+      "p_observed": 0.9567,
+      "scott_pi": -0.0221
+    },
+    "Gemini Flash-Lite vs GPT-4o": {
+      "cohen_kappa": -0.0112,
+      "gwet_ac1": 0.9584,
+      "p_observed": 0.96,
+      "scott_pi": -0.0204
+    },
+    "Gemini Flash-Lite vs GPT-4o-mini": {
+      "cohen_kappa": 0.0,
+      "gwet_ac1": 0.9933,
+      "p_observed": 0.9933,
+      "scott_pi": -0.0033
+    }
+  },
+  "per_model": {
+    "GPT-4.1-mini": {
+      "miss_rate": 0.0367,
+      "n_missed": 11
+    },
+    "GPT-4o": {
+      "miss_rate": 0.0333,
+      "n_missed": 10
+    },
+    "GPT-4o-mini": {
+      "miss_rate": 0.0,
+      "n_missed": 0
+    },
+    "Gemini Flash": {
+      "miss_rate": 0.12,
+      "n_missed": 36
+    },
+    "Gemini Flash-Lite": {
+      "miss_rate": 0.0067,
+      "n_missed": 2
+    }
+  },
+  "raw_agreement": {
+    "max": 0.9933,
+    "mean": 0.932,
+    "min": 0.8767,
+    "n_defined": 10
+  },
+  "scott_pi": {
+    "max": 0.2598,
+    "mean": 0.0505,
+    "min": -0.0638,
+    "n_defined": 10
+  }
+}
