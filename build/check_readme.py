@@ -152,6 +152,60 @@ for doc, body in bodies.items():
                             f"NO SUCH PATH  {doc}: `cd .../{parts[1]}` -- no such directory "
                             f"(the repository is flat, there is no sub-directory to enter)")
 
+# The Zenodo description is the deposit's landing page. It quotes headline numbers, no gate
+# saw them, and it was still advertising the uncorrected Cochran's Q (117.0073, p = 2.327e-24)
+# long after the manuscript carried 585.0364 -- a published record contradicting the paper.
+ZEN = ROOT / ".zenodo.json"
+RES = ROOT / "results"
+if ZEN.exists() and RES.is_dir():
+    import glob as _glob
+    pool = set()
+
+    def _walk(o):
+        if isinstance(o, dict):
+            for v in o.values():
+                _walk(v)
+        elif isinstance(o, list):
+            for v in o:
+                _walk(v)
+        elif isinstance(o, (int, float)):
+            for nd in range(0, 7):
+                pool.add(f"{float(o):.{nd}f}".rstrip("0").rstrip("."))
+                pool.add(f"{float(o) * 100:.{nd}f}".rstrip("0").rstrip("."))
+            pool.add(f"{o:g}")
+            pool.add(str(o))
+
+    for _f in _glob.glob(str(RES / "*.json")):
+        try:
+            _walk(json.loads(Path(_f).read_text()))
+        except ValueError:
+            pass
+    desc = json.loads(ZEN.read_text()).get("description", "")
+    nums = re.findall(r"(?<![\w.])\d+(?:[.,]\d+)*(?:e-?\d+)?(?![\w])", desc)
+    unseen = [n for n in dict.fromkeys(nums)
+              if n.replace(",", "") not in pool and n not in pool]
+    checked += len(nums)
+    if unseen:
+        fails.append(f"Zenodo description quotes {len(unseen)} number(s) not in results/: {unseen}")
+
+    # Membership is not enough here. The understated Cochran's Q is deliberately retained in
+    # results/ as an audit trail, so the stale value passes a pool test -- restoring it went
+    # undetected on the first attempt. The statistic the description advertises is therefore
+    # bound to the corrected value, by anchor, the way manuscript figures are.
+    st = RES / "stats_tests.json"
+    if st.exists():
+        want = json.loads(st.read_text())["cochran_q"]
+        m = re.search(r"Cochran's Q \(([\d.]+),\s*p\s*=\s*([^)]+)\)", desc)
+        checked += 1
+        if not m:
+            fails.append("Zenodo description does not state Cochran's Q in the expected form")
+        else:
+            got_q, got_p = m.group(1), m.group(2).strip()
+            if abs(float(got_q) - want["Q"]) > 5e-4:
+                fails.append(f"Zenodo description Cochran's Q is {got_q}, results say {want['Q']}")
+            if got_p != f"{want['p']:g}":
+                fails.append(f"Zenodo description Cochran p is {got_p}, results say {want['p']:g}")
+
 if checked == 0:
     print("COULD NOT CHECK: extracted no paths from the documentation")
     sys.exit(2)
