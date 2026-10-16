@@ -92,11 +92,11 @@ RULES = [
     (r"0\.3, 1\.0, 23\.7, 24\.7 and ",                sub("GPT-4o-mini"),       "as-submitted FP, GPT-4o-mini"),
     # The deployable single-call rows of the sensitivity table, which no rule reached: bending
     # the GPT-4o FATF seed-1 rate to 0.4242 passed every gate.
-    (r"Single call: FATF prompt seed 0\s+& ",          sc("v_fatf|seed0", "Gemini Flash"),  "single call fatf0, Flash"),
-    (r"Single call: FATF prompt seed 0\s+& 2\.3 & ",   sc("v_fatf|seed0", "GPT-4o"),        "single call fatf0, GPT-4o"),
-    (r"Single call: FATF prompt seed 1\s+& 2\.3 & ",   sc("v_fatf|seed1", "GPT-4o"),        "single call fatf1, GPT-4o"),
-    (r"Single call: terse prompt seed 0\s+& ",         sc("v_terse|seed0", "Gemini Flash"),  "single call terse0, Flash"),
-    (r"Single call: terse prompt seed 1\s+& ",         sc("v_terse|seed1", "Gemini Flash"),  "single call terse1, Flash"),
+    (r"Single call: FATF seed 0\s+& ",          sc("v_fatf|seed0", "Gemini Flash"),  "single call fatf0, Flash"),
+    (r"Single call: FATF seed 0\s+& 2\.3 & ",   sc("v_fatf|seed0", "GPT-4o"),        "single call fatf0, GPT-4o"),
+    (r"Single call: FATF seed 1\s+& 2\.3 & ",   sc("v_fatf|seed1", "GPT-4o"),        "single call fatf1, GPT-4o"),
+    (r"Single call: terse seed 0\s+& ",         sc("v_terse|seed0", "Gemini Flash"),  "single call terse0, Flash"),
+    (r"Single call: terse seed 1\s+& ",         sc("v_terse|seed1", "Gemini Flash"),  "single call terse1, Flash"),
     # ---- prompt sensitivity. Three of these five pairs were stale pre-restoration values
     # that survived every gate because the coverage checker was treating "\%" as a LaTeX
     # comment and discarding the rest of the line. Each endpoint is now anchored.

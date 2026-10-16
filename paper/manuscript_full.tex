@@ -275,22 +275,23 @@ The controlled experiment in this study used a synthetic design to measure this 
 
 \begin{table}[t]
 \caption{\textbf{Sensitivity of the false-positive spread to the per-case aggregation rule.} Per-model false-positive rates (\%) on the 300 legitimate cases under five label-independent or label-dependent aggregation policies and under each of the four deployable single-call configurations. The preregistered rule (decision~D4) is the primary analysis. ``Label-dependent (as submitted)'' is the deviation corrected in this revision. Strict majority applied to both labels reproduces the submitted false-positive rates exactly, at the cost of higher miss rates (Section~\ref{sec:agg}). Cochran's $Q$ tests the equality of the five models' false-positive rates under each rule (4 degrees of freedom, $P<10^{-15}$ throughout). In the abstention row, each model's rate uses its own retained cases (294, 280, 260, 242 and 292 for Gemini Flash, GPT-4o, GPT-4.1-mini, Gemini Flash-Lite and GPT-4o-mini); Cochran's $Q$, which requires a decision from every model, uses the 189 legitimate cases on which all five models decided.}\label{tab:agg}
-\begin{tabular}{@{}lrrrrrrr@{}}
+\setlength{\tabcolsep}{4pt}
+\begin{tabular*}{\textwidth}{@{\extracolsep\fill}lrrrrrrr}
 \toprule
-Aggregation rule & G.\ Flash & GPT-4o & 4.1-mini & Flash-Lite & 4o-mini & Spread & Cochran's $Q$ \\
+Aggregation rule & G.\ Flash & GPT-4o & 4.1-mini & Flash-Lite & 4o-mini & Spread & $Q$ \\
 \midrule
-Ties to flag (preregistered D4, primary)  & 2.3 & 7.7 & 37.0 & 44.0 & 85.7 & 83.3 & 585.0 \\
-Ties to no flag (strict majority)         & 0.3 & 1.0 & 23.7 & 24.7 & 83.0 & 82.7 & 657.8 \\
-Ties as abstentions (dropped)             & 0.3 & 1.1 & 27.3 & 30.6 & 85.3 & 84.9 & 402.2 \\
-Unanimity required to flag                & 0.3 & 0.3 & 20.3 & 24.7 & 78.0 & 77.7 & 618.5 \\
-Label-dependent (as submitted)            & 0.3 & 1.0 & 23.7 & 24.7 & 83.0 & 82.7 & 657.8 \\
+Ties to flag (D4, primary)                & 2.3 & 7.7 & 37.0 & 44.0 & 85.7 & 83.3 & 585.0 \\
+Ties to no flag (majority)                & 0.3 & 1.0 & 23.7 & 24.7 & 83.0 & 82.7 & 657.8 \\
+Ties as abstentions                       & 0.3 & 1.1 & 27.3 & 30.6 & 85.3 & 84.9 & 402.2 \\
+Unanimity required                        & 0.3 & 0.3 & 20.3 & 24.7 & 78.0 & 77.7 & 618.5 \\
+Label-dependent (submitted)               & 0.3 & 1.0 & 23.7 & 24.7 & 83.0 & 82.7 & 657.8 \\
 \midrule
-Single call: FATF prompt seed 0           & 2.3 & 9.3 & 40.3 & 44.0 & 87.7 & 85.3 & 588.1 \\
-Single call: FATF prompt seed 1           & 2.3 & 8.0 & 39.0 & 44.0 & 87.3 & 85.0 & 593.0 \\
-Single call: terse prompt seed 0          & 0.3 & 0.7 & 23.7 & 24.7 & 80.7 & 80.3 & 637.0 \\
-Single call: terse prompt seed 1          & 0.3 & 0.7 & 21.0 & 24.7 & 81.7 & 81.3 & 654.0 \\
+Single call: FATF seed 0                  & 2.3 & 9.3 & 40.3 & 44.0 & 87.7 & 85.3 & 588.1 \\
+Single call: FATF seed 1                  & 2.3 & 8.0 & 39.0 & 44.0 & 87.3 & 85.0 & 593.0 \\
+Single call: terse seed 0                 & 0.3 & 0.7 & 23.7 & 24.7 & 80.7 & 80.3 & 637.0 \\
+Single call: terse seed 1                 & 0.3 & 0.7 & 21.0 & 24.7 & 81.7 & 81.3 & 654.0 \\
 \botrule
-\end{tabular}
+\end{tabular*}
 \end{table}
 
 \section*{Appendix A: Per-case endpoint aggregation rule}

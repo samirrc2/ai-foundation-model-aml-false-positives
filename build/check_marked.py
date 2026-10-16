@@ -151,8 +151,8 @@ print(f"  marks: {len(COL)} chars coloured, {yellow:.0f} sq pt highlighted")
 # manuscript_full.tex, so it is genuinely new in this revision rather than assumed to be.
 # Several sit inside Table 5, whose body is deliberately never marked -- they are listed to
 # prove the marked copy still CONTAINS them, which is the content-preservation claim.
-NEW = ["Ties to flag (preregistered D4, primary)", "Label-dependent (as submitted)",
-       "Single call: FATF prompt seed 0", "deployable single-call configurations",
+NEW = ["Ties to flag (D4, primary)", "Label-dependent (submitted)",
+       "Single call: FATF seed 0", "deployable single-call configurations",
        "the deviation corrected in this revision", "36- to 196-fold",
        "Sensitivity of the false-positive spread", "New in revision"]
 # Present verbatim in BOTH versions AND outside every marked span, so any colour on these is a

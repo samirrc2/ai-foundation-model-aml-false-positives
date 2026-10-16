@@ -297,22 +297,23 @@ The controlled experiment in this study used a synthetic design to measure this 
 
 \begin{table}[t]
 \caption{\HLtag{New in revision}\textbf{Sensitivity of the false-positive spread to the per-case aggregation rule.} Per-model false-positive rates (\%) on the 300 legitimate cases under five label-independent or label-dependent aggregation policies and under each of the four deployable single-call configurations. The preregistered rule (decision~D4) is the primary analysis. ``Label-dependent (as submitted)'' is the deviation corrected in this revision. Strict majority applied to both labels reproduces the submitted false-positive rates exactly, at the cost of higher miss rates (Section~\ref{sec:agg}). Cochran's $Q$ tests the equality of the five models' false-positive rates under each rule (4 degrees of freedom, $P<10^{-15}$ throughout). In the abstention row, each model's rate uses its own retained cases (294, 280, 260, 242 and 292 for Gemini Flash, GPT-4o, GPT-4.1-mini, Gemini Flash-Lite and GPT-4o-mini); Cochran's $Q$, which requires a decision from every model, uses the 189 legitimate cases on which all five models decided.}\label{tab:agg}
-\begin{tabular}{@{}lrrrrrrr@{}}
+\setlength{\tabcolsep}{4pt}
+\begin{tabular*}{\textwidth}{@{\extracolsep\fill}lrrrrrrr}
 \toprule
-\HLtext{Aggregation rule} & \HLtext{G.}\ \HLtext{Flash} & \HLtext{GPT-4o} & \HLtext{4.1-mini} & \HLtext{Flash-Lite} & \HLtext{4o-mini} & \HLtext{Spread} & \HLtext{Cochran's} $Q$ \\
+\HLtext{Aggregation rule} & \HLtext{G.}\ \HLtext{Flash} & \HLtext{GPT-4o} & \HLtext{4.1-mini} & \HLtext{Flash-Lite} & \HLtext{4o-mini} & \HLtext{Spread} & $Q$ \\
 \midrule
-\HLtext{Ties to flag (preregistered D4, primary)}  & \HLtext{2.3} & \HLtext{7.7} & \HLtext{37.0} & \HLtext{44.0} & \HLtext{85.7} & \HLtext{83.3} & \HLtext{585.0} \\
-\HLtext{Ties to no flag (strict majority)}         & \HLtext{0.3} & \HLtext{1.0} & \HLtext{23.7} & \HLtext{24.7} & \HLtext{83.0} & \HLtext{82.7} & \HLtext{657.8} \\
-\HLtext{Ties as abstentions (dropped)}             & \HLtext{0.3} & \HLtext{1.1} & \HLtext{27.3} & \HLtext{30.6} & \HLtext{85.3} & \HLtext{84.9} & \HLtext{402.2} \\
-\HLtext{Unanimity required to flag}                & \HLtext{0.3} & \HLtext{0.3} & \HLtext{20.3} & \HLtext{24.7} & \HLtext{78.0} & \HLtext{77.7} & \HLtext{618.5} \\
-\HLtext{Label-dependent (as submitted)}            & \HLtext{0.3} & \HLtext{1.0} & \HLtext{23.7} & \HLtext{24.7} & \HLtext{83.0} & \HLtext{82.7} & \HLtext{657.8} \\
+\HLtext{Ties to flag (D4, primary)}                & \HLtext{2.3} & \HLtext{7.7} & \HLtext{37.0} & \HLtext{44.0} & \HLtext{85.7} & \HLtext{83.3} & \HLtext{585.0} \\
+\HLtext{Ties to no flag (majority)}                & \HLtext{0.3} & \HLtext{1.0} & \HLtext{23.7} & \HLtext{24.7} & \HLtext{83.0} & \HLtext{82.7} & \HLtext{657.8} \\
+\HLtext{Ties as abstentions}                       & \HLtext{0.3} & \HLtext{1.1} & \HLtext{27.3} & \HLtext{30.6} & \HLtext{85.3} & \HLtext{84.9} & \HLtext{402.2} \\
+\HLtext{Unanimity required}                        & \HLtext{0.3} & \HLtext{0.3} & \HLtext{20.3} & \HLtext{24.7} & \HLtext{78.0} & \HLtext{77.7} & \HLtext{618.5} \\
+\HLtext{Label-dependent (submitted)}               & \HLtext{0.3} & \HLtext{1.0} & \HLtext{23.7} & \HLtext{24.7} & \HLtext{83.0} & \HLtext{82.7} & \HLtext{657.8} \\
 \midrule
-\HLtext{Single call: FATF prompt seed 0}           & \HLtext{2.3} & \HLtext{9.3} & \HLtext{40.3} & \HLtext{44.0} & \HLtext{87.7} & \HLtext{85.3} & \HLtext{588.1} \\
-\HLtext{Single call: FATF prompt seed 1}           & \HLtext{2.3} & \HLtext{8.0} & \HLtext{39.0} & \HLtext{44.0} & \HLtext{87.3} & \HLtext{85.0} & \HLtext{593.0} \\
-\HLtext{Single call: terse prompt seed 0}          & \HLtext{0.3} & \HLtext{0.7} & \HLtext{23.7} & \HLtext{24.7} & \HLtext{80.7} & \HLtext{80.3} & \HLtext{637.0} \\
-\HLtext{Single call: terse prompt seed 1}          & \HLtext{0.3} & \HLtext{0.7} & \HLtext{21.0} & \HLtext{24.7} & \HLtext{81.7} & \HLtext{81.3} & \HLtext{654.0} \\
+\HLtext{Single call: FATF seed 0}                  & \HLtext{2.3} & \HLtext{9.3} & \HLtext{40.3} & \HLtext{44.0} & \HLtext{87.7} & \HLtext{85.3} & \HLtext{588.1} \\
+\HLtext{Single call: FATF seed 1}                  & \HLtext{2.3} & \HLtext{8.0} & \HLtext{39.0} & \HLtext{44.0} & \HLtext{87.3} & \HLtext{85.0} & \HLtext{593.0} \\
+\HLtext{Single call: terse seed 0}                 & \HLtext{0.3} & \HLtext{0.7} & \HLtext{23.7} & \HLtext{24.7} & \HLtext{80.7} & \HLtext{80.3} & \HLtext{637.0} \\
+\HLtext{Single call: terse seed 1}                 & \HLtext{0.3} & \HLtext{0.7} & \HLtext{21.0} & \HLtext{24.7} & \HLtext{81.7} & \HLtext{81.3} & \HLtext{654.0} \\
 \botrule
-\end{tabular}
+\end{tabular*}
 \end{table}
 
 \section*{Appendix A: Per-case endpoint aggregation rule}

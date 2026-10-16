@@ -29,15 +29,15 @@ COLS = ["Gemini Flash", "GPT-4o", "GPT-4.1-mini", "Gemini Flash-Lite", "GPT-4o-m
 # Row label as typed -> where its numbers come from. A label the table no longer contains is a
 # failure, not a skip: the row was renamed or deleted and nothing else would notice.
 ROWS = [
-    ("Ties to flag (preregistered D4, primary)", "policies", "ties_to_flag_preregistered_D4"),
-    ("Ties to no flag (strict majority)",        "policies", "ties_to_no_flag_strict_majority"),
-    ("Ties as abstentions (dropped)",            "policies", "ties_as_abstention"),
-    ("Unanimity required to flag",               "policies", "unanimity_required"),
-    ("Label-dependent (as submitted)",           "policies", "label_dependent_as_published"),
-    ("Single call: FATF prompt seed 0",  "single_call_configurations", "v_fatf|seed0"),
-    ("Single call: FATF prompt seed 1",  "single_call_configurations", "v_fatf|seed1"),
-    ("Single call: terse prompt seed 0", "single_call_configurations", "v_terse|seed0"),
-    ("Single call: terse prompt seed 1", "single_call_configurations", "v_terse|seed1"),
+    ("Ties to flag (D4, primary)", "policies", "ties_to_flag_preregistered_D4"),
+    ("Ties to no flag (majority)",        "policies", "ties_to_no_flag_strict_majority"),
+    ("Ties as abstentions",            "policies", "ties_as_abstention"),
+    ("Unanimity required",               "policies", "unanimity_required"),
+    ("Label-dependent (submitted)",           "policies", "label_dependent_as_published"),
+    ("Single call: FATF seed 0",  "single_call_configurations", "v_fatf|seed0"),
+    ("Single call: FATF seed 1",  "single_call_configurations", "v_fatf|seed1"),
+    ("Single call: terse seed 0", "single_call_configurations", "v_terse|seed0"),
+    ("Single call: terse seed 1", "single_call_configurations", "v_terse|seed1"),
 ]
 
 
