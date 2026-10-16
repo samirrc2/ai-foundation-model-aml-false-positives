@@ -20,32 +20,6 @@
 \pagestyle{plain}
 \begin{document}
 
-\noindent\begin{tabularx}{\textwidth}{@{}l@{\hspace{1.1em}}X@{}}
-\textbf{Original Manuscript ID:} & be7bd75c-daba-4386-ad14-beac2bbcac64 \\[3pt]
-\textbf{Original Article Title:} & ``AI foundation model choice and false positive variation in Anti Money Laundering transaction screening''
-\end{tabularx}
-
-\vspace{18pt}
-
-\noindent\begin{tabularx}{\textwidth}{@{}l@{\hspace{1.1em}}X@{}}
-\textbf{To:} & Discover Artificial Intelligence Editor \\[3pt]
-\textbf{Re:} & Response to reviewers
-\end{tabularx}
-
-\vspace{16pt}
-Dear Editor,
-
-Thank you for allowing a revision of our manuscript, with an opportunity to address the reviewers' comments.
-
-We are uploading (a) our point-by-point response to the comments (below) (response to reviewers), (b) an updated manuscript with highlighting indicating changes (as ``Highlighted PDF''), and (c) a clean updated manuscript without highlights (``Main Manuscript'').
-
-\vspace{14pt}
-Best regards, \\[22pt]
-Samir Chincholikar \\
-Robin Chawla
-
-\newpage
-
 \vspace{12pt}
 \concern{Editor, Concern \#1}
 
@@ -104,8 +78,6 @@ Robin Chawla
 
 \item We thank Reviewer 1 for recommending acceptance.
 
-\item The range cited, 0.3 to 83.0 percent, came from a rule that deviated from the preregistration (see Reviewer 3). It is retained in Table 1 as the as-submitted row; the preregistered rule gives 2.3 to 85.7 percent. The finding the reviewer endorses is unchanged.
-
 \end{itemize}
 
 \textbf{Author action:}
@@ -117,7 +89,7 @@ Robin Chawla
 \end{itemize}
 
 \vspace{12pt}
-\concern{Reviewer \#2, Cover comments}
+\concern{Reviewer \#2, Concern \#1}
 
 \concern{Reviewer comment:}
 
@@ -129,29 +101,6 @@ Robin Chawla
 
 \rvcomment{Please find the comments do be addressed in the uploaded file.}
 
-\textbf{Author response:}
-
-\begin{itemize}
-
-\item We thank Reviewer 2 for the detailed report. The thirteen numbered comments in the attachment are answered individually below, in the order the attachment gives them.
-
-\item One correction to the call count, which is ours. The design specified 12,000 calls and the frozen corpus holds 12,120: 111 GPT-4o-mini cases carry a fifth retried call and one GPT-4.1-mini case carries three after an interface error. The manuscript disclosed the retries qualitatively but never gave the realized total. The 111 retries were made because the GPT-4o-mini terse-prompt seed-0 pass was re-issued after OpenAI rate limiting interrupted it, so cases that had already returned were called again; the remaining 9 calls are ERROR rows recording the rate-limit failures, which are excluded from the vote. Restricting the vote to the four designed calls changes one GPT-4o-mini decision (85.7\% to 86.0\%; spread 83.3 to 83.7 pp), reported as a sensitivity analysis in Section 2.2.
-
-\end{itemize}
-
-\textbf{Author action:}
-
-\begin{itemize}
-
-\item Section 2.2 now reports the designed count of 12,000 and the realized count of 12,120, with the retry and error breakdown. Data availability now gives the realized count.
-
-\end{itemize}
-
-\vspace{12pt}
-\concern{Reviewer \#2, Concern \#1}
-
-\concern{Reviewer comment:}
-
 \rvcomment{The central claim is credible but should be stated more precisely. The authors state they are ``the first study to control foundation-model identity as the experimental variable in AML transaction screening while fixing the task and transaction cases''. Within AML specifically this is plausible and, to my knowledge, not previously done in this controlled way. However, the general phenomenon being measured --- that different LLMs disagree substantially on identical inputs, and that prompt-induced variance is smaller than model-induced variance --- has precedent in the broader LLM-evaluation literature. I would ask the authors to sharpen the novelty claim to ``first domain-specific, governance-framed controlled measurement of this effect in AML screening'' rather than implying the phenomenon itself is new.}
 
 \textbf{Author response:}
@@ -161,6 +110,8 @@ Robin Chawla
 \item We agree and adopt the reviewer's formulation. Cross-model disagreement on identical inputs is established in the model-evaluation literature and we should not have implied otherwise.
 
 \item The contribution we claim is the domain-specific, governance-framed controlled measurement in AML screening, together with the translation into alert burden.
+
+\item One correction to the call count, which is ours. The design specified 12,000 calls and the frozen corpus holds 12,120: 111 GPT-4o-mini cases carry a fifth retried call and one GPT-4.1-mini case carries three after an interface error. The manuscript disclosed the retries qualitatively but never gave the realized total. The 111 retries were made because the GPT-4o-mini terse-prompt seed-0 pass was re-issued after OpenAI rate limiting interrupted it, so cases that had already returned were called again; the remaining 9 calls are ERROR rows recording the rate-limit failures, which are excluded from the vote. Restricting the vote to the four designed calls changes one GPT-4o-mini decision (85.7\% to 86.0\%; spread 83.3 to 83.7 pp), reported as a sensitivity analysis in Section 2.2.
 
 \end{itemize}
 
@@ -173,6 +124,8 @@ Robin Chawla
 \item Contribution 2 in Section 1 now cites the LLM-evaluation work that established the general phenomenon [26, 39].
 
 \item The same narrowing was applied to the abstract and to the first paragraph of the Conclusion.
+
+\item Section 2.2 now reports the designed count of 12,000 and the realized count of 12,120, with the retry and error breakdown. Data availability now gives the realized count.
 
 \end{itemize}
 
@@ -561,9 +514,7 @@ Robin Chawla
 
 \begin{itemize}
 
-\item We confirm the reviewer's expectation. Every revision was carried out by re-analysing the frozen corpus, with no new data collection and no new interface calls.
-
-\item The re-analysis re-derives the operating points from the frozen call records without importing the modules used for the original submission, so the recomputed figures are an independent check rather than a re-run. One error survived that re-derivation: Cochran's $Q$ was understated fivefold in both the submitted and first revised analyses (Concern~\#6). It is now corrected and cross-checked against an independent implementation.
+\item We thank Reviewer 2 for the recommendation.
 
 \end{itemize}
 
@@ -576,34 +527,11 @@ Robin Chawla
 \end{itemize}
 
 \vspace{12pt}
-\concern{Reviewer \#3, Overall assessment}
+\concern{Reviewer \#3, Concern \#1}
 
 \concern{Reviewer comment:}
 
 \rvcomment{This manuscript investigates whether foundation-model choice materially changes the operating point of LLM-based anti-money-laundering transaction screening when the task and transaction cases are held constant. The topic is timely and the controlled cross-model design, paired statistical testing, reproducibility framework, and translation of false-positive rates into operational alert burden are valuable strengths. However, several methodological issues should be addressed before the conclusions can be fully supported, particularly the per-case aggregation procedure used to combine replicate model decisions.}
-
-\textbf{Author response:}
-
-\begin{itemize}
-
-\item We thank Reviewer 3 for identifying the aggregation procedure as the issue on which the conclusions depend. We agree and have made it the central revision.
-
-\item The report states that several methodological issues should be addressed but sets out one major comment, which we answer in full below. We would welcome the opportunity to address any further comments intended to accompany this report.
-
-\end{itemize}
-
-\textbf{Author action:}
-
-\begin{itemize}
-
-\item The actions are those listed against the major comment below.
-
-\end{itemize}
-
-\vspace{12pt}
-\concern{Reviewer \#3, Concern \#1}
-
-\concern{Reviewer comment:}
 
 \rvcomment{Major comment --- label-dependent aggregation rule:}
 
@@ -612,6 +540,10 @@ Robin Chawla
 \textbf{Author response:}
 
 \begin{itemize}
+
+\item We thank Reviewer 3 for identifying the aggregation procedure as the issue on which the conclusions depend. We agree and have made it the central revision.
+
+\item The report states that several methodological issues should be addressed but sets out one major comment, which we answer in full below. We would welcome the opportunity to address any further comments intended to accompany this report.
 
 \item We accept the criticism. The rule used the ground-truth label to choose the tie direction, both directions favoured the model, and that is an evaluation artifact rather than a property of any deployable screener. It is also not the preregistered rule: decision~D4 and both preregistration documents specify ties broken toward \texttt{flag} with no reference to the case label, so the benign branch as implemented was an undisclosed deviation, and we report it as such. We have restored the preregistered rule as primary, which is also the conservative choice on the false-positive axis and corresponds to routing a split panel to a human reviewer.
 
