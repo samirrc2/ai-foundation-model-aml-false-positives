@@ -55,6 +55,10 @@ MARK_LEGEND = (
 def build(tex, out_name, tracked=False):
     tex = re.sub(r'\\cite\{([^}]*)\}', cite_repl, tex)
 
+    # pdfTeX-only typesetting directives. pandoc warns "Could not load include file
+    # glyphtounicode.tex" and they affect the PDF text layer, not the docx, so drop them.
+    tex = tex.replace(r"\input{glyphtounicode}", "").replace(r"\pdfgentounicode=1", "")
+
     # --- figures: PDF -> embedded PNG ---
     tex = re.sub(r'\\includegraphics(\[[^\]]*\])?\{(fig[0-9][^}]*)\.pdf\}',
                  lambda m: '\\includegraphics' + (m.group(1) or '') + '{' + m.group(2) + '.png}', tex)

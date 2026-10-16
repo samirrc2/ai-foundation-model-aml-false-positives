@@ -169,10 +169,15 @@ def run():
         rates = [rawfp[m] for m in models]
         entry = {"primary": is_primary, "per_model": per,
                  "fp_spread_pp": _sig(100 * (max(rates) - min(rates)))}
-        if name != "ties_as_abstention":          # Q needs a common case set
-            mat = [[rule(votes[m]["benign"][c], "benign") for m in models] for c in bc]
-            Q, df, p = _cochran_q(mat)
-            entry["cochran_q"] = {"Q": _sig(Q), "df": df, "p": _sig(p)}
+        # Cochran's Q needs complete blocks: every model must have a decision on the case.
+        # Under ties-as-abstention some (model, case) cells are None, so Q is computed on the
+        # cases where all five models decided, and n_cases records how many that leaves. The
+        # row used to be blank, which read as "not applicable" rather than "computed on a
+        # reduced set".
+        mat = [[rule(votes[m]["benign"][c], "benign") for m in models] for c in bc]
+        mat = [row for row in mat if all(v is not None for v in row)]
+        Q, df, pq = _cochran_q(mat)
+        entry["cochran_q"] = {"Q": _sig(Q), "df": df, "p": _sig(pq), "n_cases": len(mat)}
         policies[name] = entry
 
     # ── single-call configurations (no aggregation) ──────────────────────────
@@ -189,8 +194,15 @@ def run():
             per[NICE[m]] = {"fp_rate": _sig(raw[m][0]), "miss_rate": _sig(1 - raw[m][1])}
         rates = [raw[m][0] for m in models]
         vol = {NICE[m]: DAILY_N * (0.001 * raw[m][1] + 0.999 * raw[m][0]) for m in models}
+        # Q on the single call itself: the same heterogeneity test applied to a deployable
+        # configuration rather than to the four-call aggregate.
+        bkeys = sorted(k for k in bycfg[cfg][models[0]] if k.startswith("benign|"))
+        smat = [[bycfg[cfg][m][k][0] for m in models] for k in bkeys]
+        smat = [row for row in smat if all(v is not None for v in row)]
+        sQ, sdf, sp = _cochran_q(smat)
         singles[f"{cfg[0]}|seed{cfg[1]}"] = {
             "per_model": per, "fp_spread_pp": _sig(100 * (max(rates) - min(rates))),
+            "cochran_q": {"Q": _sig(sQ), "df": sdf, "p": _sig(sp), "n_cases": len(smat)},
             "alert_volume_at_0.1pct": {k: round(v) for k, v in vol.items()},
             "alert_ratio_max_over_min": _sig(max(vol.values()) / min(vol.values()))}
 
@@ -231,18 +243,28 @@ def run():
         return _cochran_q([[rule(votes[m]["benign"][c], "benign") for m in models] for c in cs])[0]
     obs = q_on(bc)
     rng = random.Random(99); ge = 0
+    order = list(range(len(models)))
     for _ in range(DRAWS):
-        rs = []
-        for _i in range(len(keys)):
-            rs.extend(by[keys[rng.randrange(len(keys))]])
+        # One permutation of the model labels per stratum, applied to EVERY case in that
+        # stratum. The previous version drew a fresh permutation for each case
+        # (rng.shuffle(row) inside the case loop), which destroys the within-stratum
+        # dependence the test exists to respect: permuting independently within each case
+        # makes the cases exchangeable again and so does not account for clustering. The
+        # bootstrap resampling of strata that wrapped this loop is also gone -- this is a
+        # permutation test, and resampling clusters inside it conflated two procedures.
         mat = []
-        for c in rs:
-            row = [rule(votes[m]["benign"][c], "benign") for m in models]
-            rng.shuffle(row); mat.append(row)
+        for k in keys:
+            pi = order[:]
+            rng.shuffle(pi)
+            for c in by[k]:
+                row = [rule(votes[m]["benign"][c], "benign") for m in models]
+                mat.append([row[i] for i in pi])
         if _cochran_q(mat)[0] >= obs:
             ge += 1
     perm = {"statistic": "Cochran Q", "observed": _sig(obs), "draws": DRAWS,
             "n_strata": len(keys), "n_at_or_above_observed": ge,
+            "scheme": "one permutation of model labels per typology stratum, applied to all "
+                      "cases in that stratum",
             "p": _sig((ge + 1) / (DRAWS + 1))}
 
     # ── prevalence sweep under the primary rule ──────────────────────────────

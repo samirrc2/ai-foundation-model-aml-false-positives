@@ -56,6 +56,7 @@
     "n_strata": 8,
     "observed": 117.0073,
     "p": 0.0005,
+    "scheme": "one permutation of model labels per typology stratum, applied to all cases in that stratum",
     "statistic": "Cochran Q"
   },
   "deviation_corrected": "the submitted analysis required a strict majority on legitimate cases, so a 2-2 tie was not counted as a false positive; the tie direction therefore depended on the ground-truth label. D4 specifies ties -> flag for both labels.",
@@ -68,6 +69,7 @@
       "cochran_q": {
         "Q": 131.553,
         "df": 4,
+        "n_cases": 300,
         "p": 1.812e-27
       },
       "fp_spread_pp": 82.6667,
@@ -106,6 +108,12 @@
       "primary": false
     },
     "ties_as_abstention": {
+      "cochran_q": {
+        "Q": 80.4417,
+        "df": 4,
+        "n_cases": 189,
+        "p": 1.404e-16
+      },
       "fp_spread_pp": 84.9338,
       "per_model": {
         "GPT-4.1-mini": {
@@ -145,6 +153,7 @@
       "cochran_q": {
         "Q": 117.0073,
         "df": 4,
+        "n_cases": 300,
         "p": 2.327e-24
       },
       "fp_spread_pp": 83.3333,
@@ -186,6 +195,7 @@
       "cochran_q": {
         "Q": 131.553,
         "df": 4,
+        "n_cases": 300,
         "p": 1.812e-27
       },
       "fp_spread_pp": 82.6667,
@@ -227,6 +237,7 @@
       "cochran_q": {
         "Q": 123.6903,
         "df": 4,
+        "n_cases": 300,
         "p": 8.695e-26
       },
       "fp_spread_pp": 77.6667,
@@ -386,6 +397,12 @@
         "Gemini Flash": 24177,
         "Gemini Flash-Lite": 440553
       },
+      "cochran_q": {
+        "Q": 117.6296,
+        "df": 4,
+        "n_cases": 300,
+        "p": 1.713e-24
+      },
       "fp_spread_pp": 85.3333,
       "per_model": {
         "GPT-4.1-mini": {
@@ -418,6 +435,12 @@
         "GPT-4o-mini": 873460,
         "Gemini Flash": 24180,
         "Gemini Flash-Lite": 440553
+      },
+      "cochran_q": {
+        "Q": 118.6017,
+        "df": 4,
+        "n_cases": 300,
+        "p": 1.062e-24
       },
       "fp_spread_pp": 85.0,
       "per_model": {
@@ -452,6 +475,12 @@
         "Gemini Flash": 4153,
         "Gemini Flash-Lite": 247400
       },
+      "cochran_q": {
+        "Q": 127.4003,
+        "df": 4,
+        "n_cases": 300,
+        "p": 1.4e-26
+      },
       "fp_spread_pp": 80.3333,
       "per_model": {
         "GPT-4.1-mini": {
@@ -484,6 +513,12 @@
         "GPT-4o-mini": 816850,
         "Gemini Flash": 4163,
         "Gemini Flash-Lite": 247400
+      },
+      "cochran_q": {
+        "Q": 130.8046,
+        "df": 4,
+        "n_cases": 300,
+        "p": 2.62e-27
       },
       "fp_spread_pp": 81.3333,
       "per_model": {

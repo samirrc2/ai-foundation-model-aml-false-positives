@@ -389,6 +389,13 @@ def mark_prose(old_body, new_body):
     return "".join(out), marked, deleted
 
 
+# Floats whose LaTeX block is unchanged but whose PLOTTED DATA changed, because the figure is
+# regenerated from results that moved. tag_floats compares the source block and cannot see
+# inside an included PDF, so these would go untagged while the curve a reader is looking at is
+# different from the one they reviewed. Listed explicitly so the claim stays auditable.
+FORCE_REVISED = {"fig:ops"}
+
+
 def tag_floats(old, new):
     """Tag each float whose body is new or changed, inside its caption. Tabulars untouched."""
     def floats(s):
@@ -408,7 +415,7 @@ def tag_floats(old, new):
         norm = re.sub(r"\s+", " ", blk)
         if k not in oldblocks:
             tag, n_new = "New in revision", n_new + 1
-        elif oldblocks[k] != norm:
+        elif oldblocks[k] != norm or k in FORCE_REVISED:
             tag, n_chg = "Revised in revision", n_chg + 1
         else:
             tag = None

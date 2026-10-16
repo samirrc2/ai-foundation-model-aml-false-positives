@@ -1,6 +1,6 @@
 """Table 5 is a hand-typed duplicate of a generated result. Gate every cell, not a sample.
 
-The aggregation-sensitivity table carries 9 rows x 6 columns = 54 numbers, each of which also
+The aggregation-sensitivity table carries 9 rows x 7 columns = 63 numbers, each of which also
 exists in results/aggregation_sensitivity.json. Anchored binding rules are the right instrument
 for a number in a sentence, but writing 54 of them is unmaintainable, and the previous round of
 fault injection proved the cost of sampling instead: bending a single single-call cell to
@@ -67,7 +67,7 @@ body = re.sub(r"\\(?:top|mid|bottom|cmid)rule\b|\\hline\b", " ", body)
 typed: dict[str, list[str]] = {}
 for line in body.split(r"\\"):
     cells = [c.strip() for c in line.split("&")]
-    if len(cells) == 7 and cells[0] and not cells[0].startswith("\\"):
+    if len(cells) == 8 and cells[0] and not cells[0].startswith("\\"):
         label = re.sub(r"\s+", " ", cells[0].replace("\\ ", " ")).strip()
         typed[label] = cells[1:]
 
@@ -83,11 +83,12 @@ for label, section, key in ROWS:
         continue
     want = [hu(src["per_model"][c]["fp_rate"] * 100) for c in COLS]
     want.append(hu(src["fp_spread_pp"]))
+    want.append(hu(src["cochran_q"]["Q"]))          # added with the Q column
     got = typed[label]
     for col, (w, g) in enumerate(zip(want, got)):
         checked += 1
         if w != g:
-            name = (COLS + ["Spread"])[col]
+            name = (COLS + ["Spread", "Cochran Q"])[col]
             fails.append(f"CELL         '{label}' / {name}: table says {g}, data says {w}")
 
 if checked == 0:
