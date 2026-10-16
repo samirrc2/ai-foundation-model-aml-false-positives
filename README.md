@@ -20,13 +20,13 @@ Large language models (LLMs) are increasingly proposed as anti-money-laundering 
 
 **Main findings:**
 
-- On identical legitimate transactions, per-model false-positive rates span **0.3% → 83.0%** — an 82.7-percentage-point spread (95% CI [69.2, 95.3], cluster bootstrap) — and the five models differ far beyond chance (Cochran's Q = 131.6, df = 4, *P* ≈ 2×10⁻²⁷; pairwise McNemar exact, Bonferroni-corrected: all between-group comparisons significant, the two within-group comparisons not).
-- The models disagree on **85.7%** of legitimate cases (95% CI [75.1, 95.4]).
-- Within each provider, the false-positive rate falls monotonically as model capability (and price) rises: the cheapest models over-flag (83.0%) while their flagship siblings do not (1.0%). In the standard classification view the Matthews correlation coefficient ranges 0.96→0.31 on identical data.
-- Projected to a realistic 0.1% suspicious prevalence over 1,000,000 transactions/day, model choice swings daily alert volume **~4,200 → ~830,000** (~197×), with alert precision collapsing from 20.9% to 0.12%.
+- On identical legitimate transactions, per-model false-positive rates span **2.3% → 85.7%** — an 83.3-percentage-point spread (95% CI [71.8, 93.7], cluster bootstrap) — and the five models differ far beyond chance (Cochran's Q = 585.0, df = 4, *P* ≈ 2.7×10⁻¹²⁵; pairwise McNemar exact, Bonferroni-corrected: 9 of the 10 comparisons significant).
+- The models disagree on **88.7%** of legitimate cases (95% CI [82.2, 95.0]).
+- Within each provider, the false-positive rate falls monotonically as model tier rises: the lower-tier models over-flag (85.7%) while their flagship siblings do not (7.7%). In the standard classification view the Matthews correlation coefficient ranges 0.89→0.28 on identical data.
+- Projected to a realistic 0.1% suspicious prevalence over 1,000,000 transactions/day, model choice swings daily alert volume **~24,190 → ~856,810** (~35×), with alert precision collapsing from 3.6% to 0.12%. Across the four deployable single-call configurations the ratio runs 36- to 196-fold.
 - Shared blind spot: trade-based laundering is missed **18.9%** of the time (95% CI [14.0, 25.1]); structural typologies are caught near-perfectly.
 
-This repository is the frozen dataset and deterministic analysis pipeline that regenerates those numerical results, tables, and figures, plus the Discover Artificial Intelligence manuscript package. Per-case decisions use the pre-registered modal-vote rule (decision D4): on legitimate cases a 2–2 tie is **not** counted as a false positive (strict majority required), and on suspicious cases a 2–2 tie **is** counted as caught. The rule is applied identically to every model, table, and figure.
+This repository is the frozen dataset and deterministic analysis pipeline that regenerates those numerical results, tables, and figures, plus the Discover Artificial Intelligence manuscript package. Per-case decisions use the pre-registered modal-vote rule (decision D4): the modal replicate decision with a 2–2 tie resolved toward **flag** on both labels, independently of the case label. The submitted analysis deviated from D4 on legitimate cases by requiring a strict majority; that deviation is corrected here and retained in Table 1 as the as-submitted row. The rule is applied identically to every model, table, and figure.
 
 ---
 
@@ -190,12 +190,13 @@ data/battery/full.jsonl + data/capture/runs_full_*.csv + data/configs/
         ├── results/prompt_sensitivity.{json,csv} # per-model FP under each prompt variant
         ├── results/baselines.json              # FATF rules + supervised baselines
         ├── results/alert_volume.json           # operational projection at 0.1% prevalence
+        ├── results/table5_aggregation_sensitivity.csv # the nine-row aggregation table
         ├── results/table1_operating_points.{csv,md}, table2_alert_volume.{csv,md}
         ├── results/metrics_summary.md          # human-readable summary
         └── results/output_hashes.json          # SHA-256 of every deterministic output
 ```
 
-The primary estimand is the per-model false-positive rate on the 300 legitimate cases and the cross-model spread (max − min), cluster-bootstrapped over the eight typology strata (2,000 draws, seed 4242). All analysis is a pure, seeded function of the frozen CSVs and produces byte-identical output on every re-run (the replication check proves this).
+The primary estimand is the per-model false-positive rate on the 300 legitimate cases and the cross-model spread (max − min), cluster-bootstrapped over the eight case-template strata (2,000 draws, seed 4242). All analysis is a pure, seeded function of the frozen CSVs and produces byte-identical output on every re-run (the replication check proves this).
 
 ### Expected results
 
@@ -203,20 +204,20 @@ After `bash reproduce.sh`, `results/` must contain the following (Table 1 / Tabl
 
 | Model | Provider | False-positive rate | Miss rate | Precision | Recall | Specificity | F1 | MCC |
 |---|---|--:|--:|--:|--:|--:|--:|--:|
-| Gemini Flash | Google | 0.3% | 12.0% | 99.6% | 88.0% | 99.7% | 93.5% | 0.883 |
-| GPT-4o | OpenAI | 1.0% | 3.3% | 99.0% | 96.7% | 99.0% | 97.8% | 0.957 |
-| GPT-4.1-mini | OpenAI | 23.7% | 3.7% | 80.3% | 96.3% | 76.3% | 87.6% | 0.742 |
-| Gemini Flash-Lite | Google | 24.7% | 0.7% | 80.1% | 99.3% | 75.3% | 88.7% | 0.769 |
-| GPT-4o-mini | OpenAI | 83.0% | 0.0% | 54.6% | 100.0% | 17.0% | 70.7% | 0.305 |
+| Gemini Flash | Google | 2.3% | 12.0% | 97.4% | 88.0% | 97.7% | 92.5% | 0.861 |
+| GPT-4o | OpenAI | 7.7% | 3.3% | 92.7% | 96.7% | 92.3% | 94.6% | 0.891 |
+| GPT-4.1-mini | OpenAI | 37.0% | 3.7% | 72.3% | 96.3% | 63.0% | 82.6% | 0.629 |
+| Gemini Flash-Lite | Google | 44.0% | 0.7% | 69.3% | 99.3% | 56.0% | 81.6% | 0.614 |
+| GPT-4o-mini | OpenAI | 85.7% | 0.0% | 53.9% | 100.0% | 14.3% | 70.0% | 0.278 |
 
 | Quantity | Value |
 |---|---|
-| False-positive spread (max − min) | 82.7 pp (95% CI [69.2, 95.3]) |
-| Cross-model disagreement on legitimate cases | 85.7% (95% CI [75.1, 95.4]) |
-| Overall difference (Cochran's Q, df = 4) | Q = 131.6, *P* ≈ 2×10⁻²⁷ |
+| False-positive spread (max − min) | 83.3 pp (95% CI [71.8, 93.7]) |
+| Cross-model disagreement on legitimate cases | 88.7% (95% CI [82.2, 95.0]) |
+| Overall difference (Cochran's Q, df = 4) | Q = 585.0, *P* ≈ 2.7×10⁻¹²⁵ |
 | Trade-based laundering miss (pooled) | 18.9% (95% CI [14.0, 25.1]) |
 | Prompt-variant decision-flip rate | 7.5% (95% CI [6.9, 8.2]) |
-| Projected daily alerts (1M tx/day @ 0.1%) | ~4,200 → ~830,000 (~197×) |
+| Projected daily alerts (1M tx/day @ 0.1%) | ~24,190 → ~856,810 (~35×) |
 | Rules / supervised baseline (FP / miss) | 12.0% / 11.3%  ·  ~0% / ~0% |
 
 The determinism check must confirm byte-identical results across two independent runs.
@@ -225,7 +226,6 @@ The determinism check must confirm byte-identical results across two independent
 
 - Re-issuing live model API calls (`capture/`)
 - Any inference or API spend
-- Figure regeneration (requires matplotlib; not needed to verify the numbers)
 
 ---
 
@@ -245,6 +245,8 @@ ai-foundation-model-aml-false-positives/
 │
 ├── paper/                            # every submission artifact, flat
 │   ├── manuscript_full.{tex,pdf,docx} # manuscript and its Word companion
+│   ├── manuscript_full_tracked.{pdf,docx} # marked copy: additions yellow, deletions struck red
+│   ├── manuscript_round1_baseline.tex # the submitted version, the diff baseline
 │   ├── response_to_reviewers.{tex,pdf}
 │   ├── response_to_editor.{tex,pdf}
 │   ├── cover_letter.{tex,pdf,docx}
@@ -252,7 +254,11 @@ ai-foundation-model-aml-false-positives/
 │   └── fig*.{pdf,png}, sn-jnl.cls, references_discover.bib
 ├── analysis/                         # the analysis pipeline
 ├── capture/                          # live-collection harness (not run to reproduce)
-├── build/                            # build scripts and gates
+├── build/                            # build scripts and eleven gates, run by build_all.sh
+│                                     #   check_results_fresh, check_journal_requirements,
+│                                     #   check_binding, check_coverage, check_table_agg,
+│                                     #   check_readme, check_marked, check_tracked_docx,
+│                                     #   check_verbatim, check_docx_citations, check_docx_parity
 ├── config, data/, docs/, results/, tests/
 ├── reproduce.sh                      # one command, offline, no keys
 ├── requirements.txt, environment/Dockerfile

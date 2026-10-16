@@ -40,7 +40,7 @@
 
 \item Under the preregistered rule the false-positive rates are 2.3, 7.7, 37.0, 44.0 and 85.7 percent, a spread of 83.3 pp (95\% CI 71.8--93.7) against 82.7 pp as submitted. The spread is 77.7 to 85.3 pp across five aggregation rules and four single-call configurations, with no reversal of model order in any of the nine.
 
-\item On construct validity, no independent AML expert adjudication or inter-rater check was performed; labels reflect the generator-defined case templates. On statistical independence, cluster-bootstrap intervals quantify uncertainty across the eight case-template strata, and a cluster-level permutation procedure tests the global null: none of 2,000 permuted statistics reached the observed value (Monte Carlo $p \approx 0.0005$), alongside the corrected case-level Cochran's $Q = 585.0$ ($p \approx 2.7\times10^{-125}$).
+\item On construct validity, no independent AML expert adjudication or inter-rater check was performed. Labels reflect the generator-defined case templates. On statistical independence, cluster-bootstrap intervals quantify uncertainty across the eight case-template strata, and a cluster-level permutation procedure tests the global null: none of 2,000 permuted statistics reached the observed value (Monte Carlo $p \approx 0.0005$), alongside the corrected case-level Cochran's $Q = 585.0$ ($p \approx 2.7\times10^{-125}$).
 
 \end{itemize}
 
@@ -52,7 +52,7 @@
 
 \item Section 2.3 now records the departure and its effect on every affected number.
 
-\item The Appendix~A sentence attributing a label-dependent rule to preregistration was corrected; D4 does not condition on the case label.
+\item The Appendix~A sentence attributing a label-dependent rule to preregistration was corrected. D4 does not condition on the case label.
 
 \item New Table 1 reports false-positive rates, the spread and Cochran's $Q$ under five aggregation rules and four single-call configurations.
 
@@ -81,6 +81,8 @@
 
 \item We thank Reviewer 1 for recommending acceptance.
 
+\item The false-positive range cited in the original report (0.3\%--83.0\%) was obtained under the subsequently identified aggregation-rule deviation. Restoring the preregistered rule gives 2.3\%--85.7\%. The central conclusion remains unchanged, and the Cochran's $Q$ statistic has also been corrected as described in Reviewer~2, Concern~\#6.
+
 \end{itemize}
 
 \vspace{12pt}
@@ -106,7 +108,7 @@
 
 \item The contribution we claim is the domain-specific, governance-framed controlled measurement in AML screening, together with the translation into alert burden.
 
-\item One correction to the call count, which is ours. The design specified 12,000 calls and the frozen corpus holds 12,120: 111 GPT-4o-mini cases carry a fifth retried call and one GPT-4.1-mini case carries three after an interface error. The manuscript disclosed the retries qualitatively but never gave the realized total. The 111 retries were made because the GPT-4o-mini terse-prompt seed-0 pass was re-issued after OpenAI rate limiting interrupted it, so cases that had already returned were called again; the remaining 9 calls are ERROR rows recording the rate-limit failures, which are excluded from the vote. Restricting the vote to the four designed calls changes one GPT-4o-mini decision (85.7\% to 86.0\%; spread 83.3 to 83.7 pp), reported as a sensitivity analysis in Section 2.2.
+\item One correction to the call count, which is ours. The design specified 12,000 calls and the frozen corpus holds 12,120: 111 GPT-4o-mini cases carry a fifth retried call and one GPT-4.1-mini case carries three after an interface error. The manuscript disclosed the retries qualitatively but never gave the realized total. The 111 retries were made because the GPT-4o-mini terse-prompt seed-0 pass was re-issued after OpenAI rate limiting interrupted it, so cases that had already returned were called again. The remaining 9 calls are ERROR rows recording the rate-limit failures, which are excluded from the vote. Restricting the vote to the four designed calls changes one GPT-4o-mini decision (85.7\% to 86.0\%. Spread 83.3 to 83.7 pp), reported as a sensitivity analysis in Section 2.2.
 
 \end{itemize}
 
@@ -118,7 +120,7 @@
 
 \item Contribution 2 in Section 1 now cites the LLM-evaluation work that established the general phenomenon [26, 39].
 
-\item The same narrowing was applied to the abstract and to the first paragraph of the Conclusion.
+\item The abstract makes no novelty claim. The Conclusion was revised to scope the findings to the evaluated models and provider families.
 
 \item Section 2.2 now reports the designed count of 12,000 and the realized count of 12,120, with the retry and error breakdown. Data availability now gives the realized count.
 
@@ -246,7 +248,7 @@
 
 \begin{itemize}
 
-\item Section 2.3 and Table 5 report per-model tie counts on both labels; Table 1 gives the resulting per-model change in false-positive rate.
+\item Section 2.3 and Table 5 report per-model tie counts on both labels. Table 1 gives the resulting per-model change in false-positive rate.
 
 \item The sensitivity table reports the spread and Cochran's Q under five aggregation rules and four single-call configurations.
 
@@ -271,7 +273,7 @@
 
 \item Adjacent-tier contrasts under the restored rule are 29.3 pp (95\% CI 12.6--51.2), 48.7 pp (25.8--72.5) and 41.7 pp (19.7--65.2). All exclude zero, and all are materially wider than case-level inference would give, so we report the wider ones.
 
-\item On the $p$-value the reviewer quotes, the revision audit found two errors in our statistics. First, \texttt{stats\_tests.json} recorded it as 0.0 because the code computed one minus the chi-squared CDF, which underflows. Second, the $Q$ statistic itself was understated fivefold, because the code omitted the factor $k$ from the numerator. Under the preregistered rule the corrected statistic is $Q = 585.0$, $p = 2.7\times10^{-125}$; the submitted $Q = 131.6$ should have been $657.8$. The permutation result is unchanged, because a constant factor does not alter permutation ranks. The omitted factor understated Cochran's $Q$, while numerical underflow caused the archived $p$-value to be represented as zero rather than as a finite probability. Both errors have been corrected; neither changes the qualitative conclusion.
+\item On the $p$-value the reviewer quotes, the revision audit found two errors in our statistics. First, \texttt{stats\_tests.json} recorded it as 0.0 because the code computed one minus the chi-squared CDF, which underflows. Second, the $Q$ statistic itself was understated fivefold, because the code omitted the factor $k$ from the numerator. Under the preregistered rule the corrected statistic is $Q = 585.0$, $p = 2.7\times10^{-125}$. The submitted $Q = 131.6$ should have been $657.8$. The permutation result is unchanged, because a constant factor does not alter permutation ranks. The omitted factor understated Cochran's $Q$, while numerical underflow caused the archived $p$-value to be represented as zero rather than as a finite probability. Both errors have been corrected. Neither changes the qualitative conclusion.
 
 \end{itemize}
 
@@ -333,7 +335,7 @@
 
 \item The magnitude is sensitive. Under the preregistered rule, the highest-to-lowest ratio is 36.6 at 0.01 percent, 35.4 at 0.1 percent and 26.9 at 1.0 percent, because true positives take a growing share of the queue for low-false-positive models as prevalence rises.
 
-\item The magnitude also depends on the aggregation rule. Under the submitted rule the ratio was 197 at 0.1 percent; it falls to 35 because Gemini Flash's false-positive rate rises from 0.3 to 2.3 percent under the preregistered rule. The four deployable single-call configurations give 36- to 196-fold.
+\item The magnitude also depends on the aggregation rule. Under the submitted rule the ratio was 197 at 0.1 percent. It falls to 35 because Gemini Flash's false-positive rate rises from 0.3 to 2.3 percent under the preregistered rule. The four deployable single-call configurations give 36- to 196-fold.
 
 \item Precision ranges from 0.4 to 27.6 percent for Gemini Flash and from 0.01 to 1.2 percent for GPT-4o-mini.
 
@@ -395,7 +397,7 @@
 
 \item The two Google figures are not list prices. The registry states that they were set conservatively so the spend cap would bind early and are overwritten with measured cost, and the July 2026 list prices are not recoverable because the models were reached through \texttt{-latest} aliases whose resolved versions were not captured.
 
-\item We will not cite a price we cannot substantiate. Tier is defined by published price positioning, cited for OpenAI, and by the measured per-call cost in the archived ledger for all five models, which reproduces the tier ordering from the deposit without relying on an unverifiable figure. Measured cost per call is reported as an expenditure measure and may also reflect differences in token usage; it is not interpreted as a direct measure of model capability or size.
+\item We will not cite a price we cannot substantiate. Tier is defined by published price positioning, cited for OpenAI, and by the measured per-call cost in the archived ledger for all five models, which reproduces the tier ordering from the deposit without relying on an unverifiable figure. Measured cost per call is reported as an expenditure measure and may also reflect differences in token usage. It is not interpreted as a direct measure of model capability or size.
 
 \end{itemize}
 
@@ -490,7 +492,7 @@
 
 \item The design equation was rewritten as prose, which renders correctly in both the PDF and the Word file.
 
-\item An automated check now rejects any citation falling between two em dashes in the converted Word file; it was tested by reintroducing one defect and confirming it is caught.
+\item An automated check now rejects any citation falling between two em dashes in the converted Word file. It was tested by reintroducing one defect and confirming it is caught.
 
 \item Numeric formatting, table alignment and thousands separators were made consistent throughout.
 
@@ -534,9 +536,9 @@
 
 \item We accept the criticism. The rule used the ground-truth label to choose the tie direction, both directions favoured the model, and that is an evaluation artifact rather than a property of any deployable screener. It is also not the preregistered rule: decision~D4 and both preregistration documents specify ties broken toward \texttt{flag} with no reference to the case label, so the benign branch as implemented was an undisclosed deviation, and we report it as such. We have restored the preregistered rule as primary, which is also the conservative choice on the false-positive axis and corresponds to routing a split panel to a human reviewer.
 
-\item We ran each of the three sensitivity analyses named. Ties as abstentions give a spread of 84.9 pp on each model's retained cases, with Cochran's $Q$ computed on the 189 cases all five models decided; recomputed on those 189 cases the spread is 81.5 pp (Appendix~A), always escalating gives 83.3 pp, each prompt configuration separately gives 85.3, 85.0, 80.3 and 81.3 pp, and unanimity gives 77.7 pp. No pair of models reverses order.
+\item We ran each of the three sensitivity analyses named. Ties as abstentions give a spread of 84.9 pp on each model's retained cases, with Cochran's $Q$ computed on the 189 cases all five models decided. Recomputed on those 189 cases the spread is 81.5 pp (Appendix~A), always escalating gives 83.3 pp, each prompt configuration separately gives 85.3, 85.0, 80.3 and 81.3 pp, and unanimity gives 77.7 pp. No pair of models reverses order.
 
-\item On the final question: the four-call aggregate is an evaluation-only construct, since no institution would issue four calls per transaction and take a majority. The deployable quantity is a single call, where the false-positive rate runs from 0.3 to 2.3 percent for Gemini Flash and from 80.7 to 87.7 percent for GPT-4o-mini. The deviation understated every false-positive rate and left miss rates unchanged. A label-independent strict-majority rule reproduces the submitted false-positive rates but raises miss rates from 12.0, 3.3, 3.7, 0.7 and 0.0 percent to 18.3, 8.3, 7.0, 2.0 and 0.0 percent.
+\item On the final question: the four-call aggregate is an evaluation construct rather than an operationally validated multi-call screening configuration. A multi-call implementation is possible but would require separate assessment of cost, latency and screening workflow. The deployable quantity is a single call, where the false-positive rate runs from 0.3 to 2.3 percent for Gemini Flash and from 80.7 to 87.7 percent for GPT-4o-mini. The deviation understated every false-positive rate and left miss rates unchanged. A label-independent strict-majority rule reproduces the submitted false-positive rates but raises miss rates from 12.0, 3.3, 3.7, 0.7 and 0.0 percent to 18.3, 8.3, 7.0, 2.0 and 0.0 percent.
 
 \end{itemize}
 
@@ -552,7 +554,7 @@
 
 \item New Table 1 reports false-positive rates, the spread and Cochran's $Q$ under five aggregation rules and four single-call configurations.
 
-\item Section 2.3 and Appendix~A state that the aggregate is an evaluation-only construct; Table 1 reports the single-call configurations as the deployable operating points.
+\item Section 2.3 and Appendix~A state that the aggregate is an evaluation-only construct. Table 1 reports the single-call configurations as the deployable operating points.
 
 \item Table 1 retains the deviating rule alongside the preregistered rule.
 
