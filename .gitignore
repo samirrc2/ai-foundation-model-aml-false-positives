@@ -20,3 +20,14 @@ paper/_marked.out
 paper/_marked.bbl
 paper/_marked.blg
 paper/_marked.spl
+
+# Peer-review correspondence. These are the submission package, not the reproducibility
+# archive: they contain the referees' verbatim comments, the editor's name and the submission
+# ID, and must never be published to GitHub or archived on Zenodo. They stay on disk.
+paper/reviewer_comments_verbatim.txt
+paper/response_to_reviewers.tex
+paper/response_to_reviewers.pdf
+paper/response_to_editor.tex
+paper/response_to_editor.pdf
+paper/manuscript_round1_baseline.tex
+paper/_marked.tex

@@ -244,14 +244,10 @@ The determinism check must confirm byte-identical results across two independent
 ai-foundation-model-aml-false-positives/
 ├── README.md   LICENSE   CITATION.cff   .gitignore
 │
-├── paper/                            # every submission artifact, flat
+├── paper/                            # manuscript, figures and build inputs
 │   ├── manuscript_full.{tex,pdf,docx} # manuscript and its Word companion
 │   ├── manuscript_full_tracked.{pdf,docx} # marked copy: additions yellow, deletions struck red
-│   ├── manuscript_round1_baseline.tex # the submitted version, the diff baseline
-│   ├── response_to_reviewers.{tex,pdf}
-│   ├── response_to_editor.{tex,pdf}
 │   ├── cover_letter.{tex,pdf,docx}
-│   ├── reviewer_comments_verbatim.txt # referee and editor text, never edited
 │   └── fig*.{pdf,png}, sn-jnl.cls, references_discover.bib
 ├── analysis/                         # the analysis pipeline
 ├── capture/                          # live-collection harness (not run to reproduce)
@@ -268,7 +264,7 @@ ai-foundation-model-aml-false-positives/
 
 Generated artifacts (`.venv/`, `__pycache__/`) are gitignored. Committed analysis outputs live under `results/`.
 
-### Reviewer quick start
+### Quick start
 
 ```bash
 git clone https://github.com/samirrc2/ai-foundation-model-aml-false-positives.git
@@ -278,7 +274,7 @@ pip install -r requirements.txt
 bash reproduce.sh          # ~1 min, no keys, no cost
 ```
 
-Confirm `results/classification_metrics.json` and `results/pivot_claims.json` match the Expected Results tables in Section 4, and that the replication check reports byte-identical outputs.
+`results/classification_metrics.json` and `results/pivot_claims.json` should match the Expected Results tables above, and the replication check should report byte-identical outputs.
 
 ## 6. License
 
