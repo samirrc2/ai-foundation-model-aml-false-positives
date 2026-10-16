@@ -31,10 +31,8 @@
     "python3 build/check_coverage.py",
     "python3 build/check_table_agg.py",
     "python3 build/check_readme.py",
-    "python3 build/check_verbatim.py",
     "python3 build/check_docx_citations.py",
     "python3 build/check_docx_parity.py",
-    "python3 build/check_marked.py",
     "python3 build/check_tracked_docx.py",
     "python3 build/check_letter_parity.py"
   ],
@@ -43,5 +41,12 @@
     "data/frozen/*.json",
     "data/battery/*.json"
   ],
-  "normalize": []
+  "normalize": [],
+  "gates_not_in_clone": {
+    "gates": [
+      "build/check_verbatim.py",
+      "build/check_marked.py"
+    ],
+    "why": "their inputs -- paper/reviewer_comments_verbatim.txt and paper/_marked.tex -- are peer-review correspondence and a build intermediate, deliberately gitignored so they are never published. A clone therefore cannot run them and they correctly exit 2, which would leave inject.py with a non-zero baseline. They still run in build_all.sh, where the files are present on disk."
+  }
 }
