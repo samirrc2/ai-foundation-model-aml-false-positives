@@ -1,8 +1,8 @@
-# AI foundation model choice and false positive variation in Anti Money Laundering transaction screening
+# AI foundation model choice and false positive variation in Anti Money Laundering (AML) transaction screening
 
 Computational artifact for the Discover Artificial Intelligence article:
 
-**AI foundation model choice and false positive variation in Anti Money Laundering transaction screening**
+**AI foundation model choice and false positive variation in Anti Money Laundering (AML) transaction screening**
 
 ---
 
@@ -34,7 +34,7 @@ This repository is the frozen dataset and deterministic analysis pipeline that r
 
 | Field | Value |
 |-------|-------|
-| **Article title** | AI foundation model choice and false positive variation in Anti Money Laundering transaction screening |
+| **Article title** | AI foundation model choice and false positive variation in Anti Money Laundering (AML) transaction screening |
 | **Authors** | Samir Chincholikar, Robin Chawla |
 | **Affiliations** | Independent researchers |
 | **Code repository** | https://github.com/samirrc2/ai-foundation-model-aml-false-positives |

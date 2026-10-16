@@ -226,7 +226,7 @@ def run(verify: bool = True) -> dict:
 
 def _write_metrics_summary(claims, baseline_res, alert_rows, out: Path):
     A = claims["A_false_positive"]
-    lines = ["# Metrics summary — AI foundation model choice and false positive variation in Anti Money Laundering transaction screening", "",
+    lines = ["# Metrics summary — AI foundation model choice and false positive variation in Anti Money Laundering (AML) transaction screening", "",
              f"Models: {', '.join(claims['meta']['models'])}",
              f"Battery: {claims['meta']['n_benign']} benign / {claims['meta']['n_suspicious']} suspicious | "
              f"error rate {claims['meta']['error_rate']}", "",

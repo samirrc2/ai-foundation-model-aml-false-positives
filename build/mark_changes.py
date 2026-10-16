@@ -145,7 +145,11 @@ RUN_BREAK = re.compile(r"\\\\(?:par|item|section|subsection|subsubsection|paragr
 # fell through to the generic wrapper -- which produced \HLcode{\subsection{..}\label{..}}
 # and "Missing }" / "Too many }'s".)
 HEADING = re.compile(r"^\\(paragraph|subsection|subsubsection|section)(\*?)\{([^{}]*)\}$")
-STRUCTURAL = re.compile(r"\\(?:label|input|begin|end)|\\(?:sub)*section|\\paragraph")
+# \title is here for the same reason \section is: wrapping it in soul's \texthl or ulem's
+# \sout breaks inside the title's moving argument -- a changed title produced 16 LaTeX
+# errors in \UL@word and no tracked PDF at all. The title is emitted unmarked; the clean
+# manuscript and the response letter both carry it.
+STRUCTURAL = re.compile(r"\\(?:label|input|begin|end|title)|\\(?:sub)*section|\\paragraph")
 
 UNMARKED = []          # runs that could not be marked safely; reported, never silent
 
@@ -287,7 +291,7 @@ def protected_spans(body):
 # is skipped and reported rather than struck.
 DEL_FORBIDDEN = re.compile(
     r"\\(?:begin|end|label|input|include|bibliography|maketitle|documentclass|usepackage|"
-    r"newcommand|renewcommand|def|cite[a-z]*|ref|eqref|pageref|footnote|caption|item|"
+    r"newcommand|renewcommand|def|title|cite[a-z]*|ref|eqref|pageref|footnote|caption|item|"
     r"(?:sub)*section|paragraph|hline|toprule|midrule|bottomrule|multicolumn)\b|\\\\")
 SKIPPED_DEL = []        # deleted runs that could not be struck safely; reported, never silent
 
