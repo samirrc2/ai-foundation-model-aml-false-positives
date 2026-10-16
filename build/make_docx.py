@@ -95,7 +95,24 @@ def build(tex, out_name, tracked=False):
     return rc
 
 
+# The cover letter's .docx was previously produced by hand and therefore went stale the moment
+# the letter changed -- exactly the hand-maintained duplicate this build exists to prevent.
+def build_letter(stem):
+    src = PAPER / f'{stem}.tex'
+    if not src.exists():
+        print(f'   WARNING: {stem}.tex absent, {stem}.docx NOT rebuilt')
+        return 2
+    tex = src.read_text()
+    tex = tex.replace(r"\input{glyphtounicode}", "").replace(r"\pdfgentounicode=1", "")
+    tmp = f'/tmp/{stem}_docx.tex'
+    open(tmp, 'w').write(tex)
+    rc = subprocess.call(['pandoc', tmp, f'--resource-path={PAPER}', '-o', str(PAPER / f'{stem}.docx')])
+    print(f'   {stem}.docx: pandoc exit {rc}')
+    return rc
+
+
 rc = build(SRC, 'manuscript_full.docx')
+rc |= build_letter('cover_letter')
 marked = PAPER / "_marked.tex"
 if marked.exists():
     rc |= build(marked.read_text(), 'manuscript_full_tracked.docx', tracked=True)

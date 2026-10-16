@@ -66,7 +66,8 @@ else
 fi
 for g in check_results_fresh check_journal_requirements check_binding check_coverage \
          check_table_agg check_readme \
-         check_marked check_tracked_docx check_verbatim check_docx_citations \
+         check_marked check_tracked_docx check_letter_parity check_verbatim \
+         check_docx_citations \
          check_docx_parity; do
   out="$("$PY" "build/$g.py" 2>&1)" && rc=0 || rc=$?
   case "$rc" in
