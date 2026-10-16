@@ -59,23 +59,11 @@ Robin Chawla
 
 \begin{itemize}
 
-\item We agree, and the correction is larger than a change of rule. Decision~D4 as preregistered is already label-independent, and the published analysis deviated from it.
+\item We agree, and the correction is larger than a change of rule. Decision~D4 as preregistered is already label-independent: the decisions log and both preregistration documents specify the modal replicate decision with ties broken toward \texttt{flag}, with no reference to the case label. The implemented benign branch required a strict majority, which is an undisclosed deviation. The label-independent rule requested here is therefore the preregistered rule, and we have restored it rather than adopted a new one.
 
-\item The decisions log (\texttt{decisions\_log.md}, D4, 2026-07-15) specifies the per-case decision as the modal replicate decision with ``ties broken toward flag''. The original preregistration repeats this, and the confirmatory preregistration for this paper states ``modal flag over replicates (ties$\rightarrow$flag)'' and then defines a false positive on benign cases by that same rule. No amendment alters it.
+\item Under the preregistered rule the false-positive rates are 2.3, 7.7, 37.0, 44.0 and 85.7 percent, a spread of 83.3 pp (95\% CI 71.8--93.7) against 82.7 pp as submitted. The spread is 77.7 to 85.3 pp across five aggregation rules and four single-call configurations, with identical model ordering in all nine.
 
-\item The implemented benign branch required a strict majority, so a tie was not counted as a false positive. That is a deviation from D4 and it was not disclosed. The suspicious branch followed D4 correctly.
-
-\item The label-independent rule requested here is therefore the preregistered rule, and we have restored it rather than adopted a new one.
-
-\item Under the preregistered rule the false-positive rates are 2.3, 7.7, 37.0, 44.0 and 85.7 percent, a spread of 83.3 pp (95\% CI 71.8--93.7). The deviation understated every false-positive rate; the spread was almost unaffected, at 82.7 pp.
-
-\item The deviation most likely arose at the pivot. D4's stated rationale is that ties toward flag keep the \emph{miss} estimate conservative, which was correct when the estimand was misses. After the estimand became false positives, ties toward flag no longer favoured the conservative direction on that axis, and conservatism appears to have been reapplied per endpoint.
-
-\item Sensitivity: the spread is 77.7 to 85.3 pp across five aggregation rules and four single-call configurations, with identical model ordering in all nine.
-
-\item On construct validity, no expert adjudication or inter-rater check was performed. Labels are correct by construction of the generator only.
-
-\item On independence, the cluster bootstrap over the eight typology strata is now applied to the primary test. A cluster-level permutation test gives p below 0.001, with 0 of 2,000 draws reaching the observed statistic.
+\item On construct validity, no expert adjudication or inter-rater check was performed: labels are correct by construction of the generator only. On independence, the cluster bootstrap over the eight typology strata now covers the primary test, where a cluster-level permutation gives $p$ below 0.001 with 0 of 2,000 draws reaching the observed statistic.
 
 \end{itemize}
 
@@ -116,9 +104,7 @@ Robin Chawla
 
 \item We thank Reviewer 1 for recommending acceptance.
 
-\item The range the reviewer cites, 0.3 to 83.0 percent, is retained as the preregistered result. The new primary rule gives 2.3 to 85.7 percent.
-
-\item The finding the reviewer endorses is unchanged.
+\item The range the reviewer cites, 0.3 to 83.0 percent, is retained as the preregistered-rule comparison. The restored rule gives 2.3 to 85.7 percent, and the finding the reviewer endorses is unchanged.
 
 \end{itemize}
 
@@ -147,11 +133,9 @@ Robin Chawla
 
 \begin{itemize}
 
-\item We thank Reviewer 2 for the detailed report.
+\item We thank Reviewer 2 for the detailed report. The thirteen numbered comments in the attachment are answered individually below, in the order the attachment gives them.
 
-\item One correction to the call count, which is ours. The design specified 12,000 calls; the frozen corpus holds 12,120. 111 GPT-4o-mini cases carry a fifth retried call and one GPT-4.1-mini case carries three after an API error.
-
-\item The manuscript disclosed the retries qualitatively but never gave the realized total.
+\item One correction to the call count, which is ours. The design specified 12,000 calls and the frozen corpus holds 12,120: 111 GPT-4o-mini cases carry a fifth retried call and one GPT-4.1-mini case carries three after an interface error. The manuscript disclosed the retries qualitatively but never gave the realized total.
 
 \end{itemize}
 
@@ -174,11 +158,9 @@ Robin Chawla
 
 \begin{itemize}
 
-\item We agree and adopt the reviewer's formulation.
+\item We agree and adopt the reviewer's formulation. Cross-model disagreement on identical inputs is established in the model-evaluation literature and we should not have implied otherwise.
 
-\item Cross-model disagreement on identical inputs is established in the LLM-evaluation literature. We should not have implied otherwise.
-
-\item The contribution we claim is the domain-specific, governance-framed controlled measurement in AML screening.
+\item The contribution we claim is the domain-specific, governance-framed controlled measurement in AML screening, together with the translation into alert burden.
 
 \end{itemize}
 
@@ -205,9 +187,9 @@ Robin Chawla
 
 \begin{itemize}
 
-\item We thank the reviewer and agree the reframing should carry more weight in the paper's structure.
+\item We thank the reviewer and agree the reframing should carry more weight in the paper's structure than it did.
 
-\item Foregrounding it also addresses Concern \#1, since the governance operationalisation does not depend on the disagreement phenomenon being new.
+\item Foregrounding it also addresses Concern~\#1, since the governance operationalisation does not depend on the disagreement phenomenon being new.
 
 \end{itemize}
 
@@ -234,19 +216,11 @@ Robin Chawla
 
 \begin{itemize}
 
-\item The reviewer is right that the selection was never explained, and our records show the selection was not a two-provider design.
+\item The reviewer is right that the selection was never explained, and our records show it was not a two-provider design. A third family, xAI Grok-4.5, was preregistered in the confirmatory grid. Two logged decisions reduced it: D17 dropped \texttt{gemini-pro} for thinking-mode incompatibility and cost, and D19 dropped \texttt{xai-grok} because the account was out of credits. The five-model grid is documented attrition, which is also why a provider main effect cannot be separated from the tier effect.
 
-\item A third family was preregistered. The confirmatory grid specified xAI Grok-4.5 alongside the OpenAI and Google models.
+\item Anthropic Claude appears in the generative-AI declaration solely as a coding assistant and was never an evaluated system. The tier effect remains identified within each provider family separately.
 
-\item Two documented decisions reduced it. D17 dropped \texttt{gemini\_pro} for thinking-mode incompatibility and cost; D19 dropped \texttt{xai\_grok} because the xAI account was out of credits. The final grid of five models from two providers is the result of that attrition.
-
-\item The provider question was therefore designed in rather than overlooked, and the loss of the third family is why the provider effect cannot be separated from the tier effect.
-
-\item Anthropic Claude was used only as a coding assistant and was never an evaluated system.
-
-\item The tier effect is still identified within each provider family separately.
-
-\item A related correction belongs here. Section 2.3 states that the model served behind each Google alias is recorded in the archived per-call response metadata. It is not. The capture rows, the probe receipts and the freeze receipts all record only the alias strings \texttt{gemini-flash-latest} and \texttt{gemini-flash-lite-latest}, and no resolved version was captured. The Limitations state the position correctly; the Methods sentence overstated it.
+\item A related correction belongs here. Section 2.3 states that the model served behind each Google alias is recorded in the archived per-call metadata. It is not: the capture rows, probe receipts and freeze receipts record only the alias strings. The Limitations state the position correctly and the Methods sentence overstated it.
 
 \end{itemize}
 
@@ -275,13 +249,11 @@ Robin Chawla
 
 \begin{itemize}
 
-\item No expert adjudication and no inter-rater check were performed on any part of the battery.
+\item No expert adjudication and no inter-rater check were performed on any part of the battery. Labels are assigned by the generator at construction time: a case is suspicious because it was built from one of the eight FATF-anchored typology templates, and legitimate because it was built from a hard-negative template.
 
-\item Labels are assigned by the generator at construction time. A case is suspicious because it was built from one of the eight FATF-anchored typology templates, and legitimate because it was built from a hard-negative template.
+\item Our rates therefore measure agreement with the generator's construction, not with an expert's assessment of real transactions. A model penalised for flagging a hard negative may be responding to a feature an experienced analyst would also find suspicious.
 
-\item Our rates therefore measure agreement with the generator's construction, not with an expert's assessment of real transactions.
-
-\item We did not commission a sample adjudication during revision. An adjudication by the authors would not be independent.
+\item We did not commission a sample adjudication during revision, because an adjudication by the authors would not be independent. We prefer to state the gap than to report a weak substitute for it.
 
 \end{itemize}
 
@@ -312,19 +284,11 @@ Robin Chawla
 
 \begin{itemize}
 
-\item Ties do cluster. On legitimate cases the counts are 6 for Gemini Flash, 20 for GPT-4o, 40 for GPT-4.1-mini, 58 for Gemini Flash-Lite and 8 for GPT-4o-mini. On suspicious cases they are 19, 15, 10, 4 and 0.
+\item Ties do cluster. On legitimate cases the counts are 6, 20, 40, 58 and 8 for Gemini Flash, GPT-4o, GPT-4.1-mini, Gemini Flash-Lite and GPT-4o-mini, and on suspicious cases 19, 15, 10, 4 and 0. They concentrate where a model sits near its own decision boundary, so the label-agnostic rule raises Gemini Flash-Lite by 19.3 pp and GPT-4.1-mini by 13.3 pp but Gemini Flash by only 2.0 pp. The rule compressed the middle of the distribution, not the extremes.
 
-\item Ties concentrate where a model sits near its own decision boundary. GPT-4o-mini flags almost everything and ties on neither label.
+\item The spread is therefore nearly unaffected: 83.3 pp against 82.7 pp, with Cochran's $Q = 117.0$ on 4 df ($p = 2.3\times10^{-24}$) against $Q = 131.6$. One pairwise comparison strengthens: Gemini Flash versus GPT-4o was not significant as submitted after correction and is now significant at adjusted $p = 4.0\times10^{-3}$.
 
-\item The differential effect is real. Applying the label-agnostic rule raises Gemini Flash-Lite by 19.3 pp and GPT-4.1-mini by 13.3 pp, but Gemini Flash by 2.0 pp and GPT-4o-mini by 2.7 pp. The rule compressed the middle of the distribution, not the extremes.
-
-\item The spread is therefore nearly unaffected: 83.3 pp under the label-agnostic rule against 82.7 pp as published. Cochran's Q is 117.0 on 4 df, $p = 2.3\times10^{-24}$, against Q of 131.6 and $p = 1.8\times10^{-27}$.
-
-\item Checking this comment led us to a more serious finding, which we report in full. The label-dependent rule is not what decision~D4 preregisters. D4, the original preregistration and the confirmatory preregistration all specify ties broken toward flag without reference to the case label. The benign branch as implemented required a strict majority, which is an undisclosed deviation.
-
-\item The label-agnostic rule the reviewer asks us to test is therefore the preregistered rule, and its figures are the preregistered figures. The deviation understated every published false-positive rate.
-
-\item One pairwise comparison strengthens under the preregistered rule. Gemini Flash versus GPT-4o was not significant as published after Bonferroni correction; under the preregistered rule it is, at adjusted $p = 4.0\times10^{-3}$.
+\item Checking this comment led to a more serious finding, which we report in full. The label-dependent rule is not what decision~D4 preregisters: D4 and both preregistration documents specify ties broken toward \texttt{flag} without reference to the case label, so the benign branch as implemented was an undisclosed deviation. The label-agnostic figures the reviewer asks us to test are the preregistered figures, and the deviation understated every published false-positive rate.
 
 \end{itemize}
 
@@ -353,15 +317,11 @@ Robin Chawla
 
 \begin{itemize}
 
-\item The reviewer has read the code correctly. The cluster bootstrap was applied to the secondary interval estimates only.
+\item The reviewer has read the code correctly: the cluster bootstrap was applied to the secondary interval estimates only. Rather than defend case-level inference we extended the cluster-robust treatment to the primary test, where a permutation resampling the eight strata as clusters gives $p$ below 0.001, with 0 of 2,000 draws reaching the observed statistic under either rule.
 
-\item Rather than defend case-level inference, we extended the cluster-robust treatment to the primary test. A permutation test resampling the eight strata as clusters gives p below 0.001, with 0 of 2,000 draws reaching the observed statistic under either rule.
+\item Adjacent-tier contrasts under the restored rule are 29.3 pp (95\% CI 12.6--51.2), 48.7 pp (25.8--72.5) and 41.7 pp (19.7--65.2). All exclude zero, and all are materially wider than case-level inference would give, so we report the wider ones.
 
-\item Adjacent-tier contrasts under the new primary rule are 29.3 pp (95\% CI 12.6--51.2) for GPT-4o to GPT-4.1-mini, 48.7 pp (25.8--72.5) for GPT-4.1-mini to GPT-4o-mini, and 41.7 pp (19.7--65.2) for Gemini Flash to Gemini Flash-Lite. All exclude zero.
-
-\item The intervals are materially wider than case-level inference gives. We report the wider ones.
-
-\item On the p-value the reviewer quotes, we must report a defect in our deposited archive. The manuscript's $2\times10^{-27}$ is correct, but \texttt{stats\_tests.json} records it as 0.0 because the code computes one minus the chi-squared CDF, which underflows. The survival function gives $1.812\times10^{-27}$.
+\item On the $p$-value the reviewer quotes we must report a defect in our own archive. The manuscript's $2\times10^{-27}$ is correct, but \texttt{stats\_tests.json} recorded it as 0.0, because the code computed one minus the chi-squared CDF, which underflows. The survival function gives $1.812\times10^{-27}$.
 
 \end{itemize}
 
@@ -388,13 +348,11 @@ Robin Chawla
 
 \begin{itemize}
 
-\item We take both halves of the suggestion: we add a formal test and soften the wording.
+\item We take both halves of the suggestion: we add a formal test and soften the wording. We use adjacent-tier paired McNemar tests rather than a Cochran--Armitage trend test, because a trend test would treat the same 300 cases as independent groups and overstate the evidence.
 
-\item We use adjacent-tier paired McNemar tests rather than a Cochran--Armitage trend test. A trend test would treat the same 300 cases as independent groups and overstate the evidence.
+\item All three adjacent-tier comparisons run in the predicted direction and remain significant after correction, with discordant counts 2 and 90, 3 and 149, and 0 and 125.
 
-\item All three adjacent-tier comparisons run in the predicted direction and are significant after Bonferroni correction. Discordant counts are 2 and 90 for GPT-4o to GPT-4.1-mini, 3 and 149 for GPT-4.1-mini to GPT-4o-mini, and 0 and 125 for Gemini Flash to Gemini Flash-Lite.
-
-\item The ordering holds under D4, under the escalate rule, and in all four single-call configurations.
+\item The ordering also survives the change of rule, which we could not assert before: it holds under the submitted rule, under the preregistered rule, and in all four single-call configurations.
 
 \end{itemize}
 
@@ -419,15 +377,11 @@ Robin Chawla
 
 \begin{itemize}
 
-\item We swept prevalence from 0.01 to 1.0 percent. The sweep separates two things our single point had conflated.
+\item We swept prevalence from 0.01 to 1.0 percent, and the sweep separates two things our single point had conflated. The ordering of the five models by alert volume is identical at every prevalence in the range.
 
-\item The ordering of the five models by alert volume is identical at every prevalence in the range.
+\item The magnitude is sensitive, and more so than our text implied: the highest-to-lowest ratio falls from 242.6 at 0.01 percent, through 197.2 at 0.1 percent, to 68.7 at 1.0 percent, because true positives occupy a growing share of the queue for the low-false-positive models as prevalence rises.
 
-\item The magnitude is sensitive. The highest-to-lowest ratio falls from 242.6 at 0.01 percent, through 197.2 at 0.1 percent, to 68.7 at 1.0 percent, because true positives make up more of the queue for the low-false-positive models as prevalence rises.
-
-\item The 197-fold figure belongs to the stated prevalence. The range-wide statement is 69-fold to 243-fold with the ordering unchanged.
-
-\item Precision moves from 2.6 to 72.7 percent for Gemini Flash and from 0.01 to 1.2 percent for GPT-4o-mini over the same range.
+\item We therefore scope the headline to the stated prevalence and give the range-wide bounds. Precision moves over the same range from 2.6 to 72.7 percent for Gemini Flash and from 0.01 to 1.2 percent for GPT-4o-mini.
 
 \end{itemize}
 
@@ -454,13 +408,11 @@ Robin Chawla
 
 \begin{itemize}
 
-\item The elicitation returns a binary label, not a score. There is no decision threshold to tune without changing the elicitation itself.
+\item The elicitation returns a binary label rather than a score, so there is no decision threshold to tune without changing the elicitation itself. Recalibrating these screeners to a common operating point is not a post-processing step.
 
-\item Recalibrating these screeners to a common operating point is therefore not a post-processing step.
+\item The ordering persists across both prompt formulations and all four single-call configurations, with the spread between 80.3 and 85.3 pp in every one, which is more stability than a pure threshold shift would predict.
 
-\item The ordering persists across both prompt formulations and all four single-call configurations, and the spread stays between 80.3 and 85.3 pp in every one. A pure threshold shift would be more sensitive to instruction wording.
-
-\item This is not a demonstration that score-level calibration could not compress the spread. A scored elicitation with per-model thresholds is the experiment that would settle it.
+\item This is not a demonstration that score-level calibration could not compress the spread. A scored elicitation with per-model thresholds is the experiment that would settle it, and we state the implication conditionally.
 
 \end{itemize}
 
@@ -485,17 +437,11 @@ Robin Chawla
 
 \begin{itemize}
 
-\item We agree, and verifying the source changed what we can defensibly write.
+\item We agree, and verifying the source changed what we can defensibly write. The three OpenAI prices in the archived registry are the published list prices, confirmed against the OpenAI pricing documentation: \$2.50 and \$10.00 per million input and output tokens for GPT-4o, \$0.40 and \$1.60 for GPT-4.1-mini, and \$0.15 and \$0.60 for GPT-4o-mini.
 
-\item The three OpenAI prices in the archived registry are the published list prices, confirmed against the OpenAI pricing documentation: \$2.50 and \$10.00 per million input and output tokens for GPT-4o, \$0.15 and \$0.60 for GPT-4o-mini, and \$0.40 and \$1.60 for GPT-4.1-mini.
+\item The two Google figures are not list prices. The registry states that they were set conservatively so the spend cap would bind early and are overwritten with measured cost, and the July 2026 list prices are not recoverable because the models were reached through \texttt{-latest} aliases whose resolved versions were not captured.
 
-\item The two Google figures in the registry are not list prices. The registry file states that they were set conservatively so the spend cap would bind early, and that the capture code overwrites them with measured per-call costs. They are budgeting placeholders.
-
-\item The Google list prices at the collection date are also not recoverable from the current pricing page, because the models were accessed through \texttt{-latest} aliases, the resolved version was not captured, and the page no longer lists the versions current in July 2026.
-
-\item We will therefore not cite a list price we cannot substantiate for the Google models. Tier is instead defined by each provider's published price positioning, cited for OpenAI, and by the measured per-call cost recorded in the archived ledger, which is reproducible from the deposit for all five models: \$0.002108 for GPT-4o, \$0.000536 for Gemini Flash, \$0.000342 for GPT-4.1-mini, \$0.000148 for Gemini Flash-Lite and \$0.000125 for GPT-4o-mini.
-
-\item The measured costs reproduce the tier ordering used in the paper, within each provider family and without relying on an unverifiable price.
+\item We will not cite a price we cannot substantiate. Tier is defined by published price positioning, cited for OpenAI, and by the measured per-call cost in the archived ledger for all five models, which reproduces the tier ordering from the deposit without relying on an unverifiable figure.
 
 \end{itemize}
 
@@ -524,7 +470,7 @@ Robin Chawla
 
 \item We agree that the width is itself a finding.
 
-\item Under the new primary rule the abstract reports 83.3 pp with a 95\% confidence interval of 71.8 to 93.7.
+\item Under the restored rule the abstract reports 83.3 pp with a 95\% confidence interval of 71.8 to 93.7, with a clause stating that the interval is a cluster bootstrap over eight typology strata.
 
 \end{itemize}
 
@@ -576,17 +522,9 @@ Robin Chawla
 
 \begin{itemize}
 
-\item We have done the pass and can report what we found, which is narrower and more specific than our first reading of this comment.
+\item We have identified the cause. In three places a citation sat immediately before the closing em dash of a parenthetical aside, so the reference number renders inside the aside and interrupts the phrase, as in ``a known source of variation in LLM behaviour [38]---each case was tested''. The three occurrences are in Sections 1, 2.3 and 2.4.
 
-\item The LaTeX source is clean. A systematic check found no repeated words, no doubled spaces, no mixed British and American spellings, and no inconsistent percentage style.
-
-\item The defects are in the Word file the reviewers received, introduced when the source is converted. There were two kinds.
-
-\item First, in three places a citation sat inside an em-dash aside, so the reference number interrupted the phrase: for example ``a known source of variation in LLM behaviour [38]---each case was tested''. This is the ``numbers inserted across brackets'' the reviewer observed. The three sites were in Section 1, Section 2.3 and Section 2.4.
-
-\item Second, the inline design equation lost its spacing in conversion, rendering as ``5 models$\times$2 prompt formulations$\times$2 seeds$\times$600 cases=12,000 screening calls''.
-
-\item Both are invisible in the compiled PDF, which is why we had not seen them. We now proofread the Word rendering as well as the PDF.
+\item The compiled PDF disguises the problem, which is why we had not seen it in the file the reviewers received. We now proofread the Word rendering as well as the PDF, and an automated check rejects any citation falling inside an em-dash aside.
 
 \end{itemize}
 
@@ -615,7 +553,7 @@ Robin Chawla
 
 \begin{itemize}
 
-\item We confirm the reviewer's expectation. Every revision was carried out by re-analysing the frozen corpus, with no new data collection and no new API calls.
+\item We confirm the reviewer's expectation. Every revision was carried out by re-analysing the frozen corpus, with no new data collection and no new interface calls.
 
 \item The re-analysis re-derives the operating points from the frozen call records without importing the modules used for the original submission, so the recomputed figures are an independent check rather than a re-run.
 
@@ -667,21 +605,11 @@ Robin Chawla
 
 \begin{itemize}
 
-\item We accept the criticism, and investigating it uncovered more than the reviewer could have seen from the paper.
+\item We accept the criticism. The rule used the ground-truth label to choose the tie direction, both directions favoured the model, and that is an evaluation artifact rather than a property of any deployable screener. It is also not the preregistered rule: decision~D4 and both preregistration documents specify ties broken toward \texttt{flag} with no reference to the case label, so the benign branch as implemented was an undisclosed deviation, and we report it as such. We have restored the preregistered rule as primary, which is also the conservative choice on the false-positive axis and corresponds to routing a split panel to a human reviewer.
 
-\item The rule is optimistic in exactly the way described: both tie directions favoured the model and the branch was selected by the ground-truth label.
+\item We ran each of the three sensitivity analyses named. Ties as abstentions give a spread of 84.9 pp on retained cases, always escalating gives 83.3 pp, each prompt configuration separately gives 85.3, 85.0, 80.3 and 81.3 pp, and unanimity gives 77.7 pp. The ordering never changes.
 
-\item It is also not the preregistered rule. Decision~D4, the original preregistration and the confirmatory preregistration for this paper all specify the modal decision with ties broken toward flag, with no reference to the case label. The benign branch as implemented required a strict majority. That is an undisclosed deviation, and we report it as such.
-
-\item The label-independent rule the reviewer recommends is therefore the preregistered rule. We have restored it as primary, which also happens to be the conservative choice on the false-positive axis and corresponds to a real control, namely routing a split panel to a human reviewer.
-
-\item We ran each of the three sensitivity analyses named. Ties as abstentions gives a spread of 84.9 pp on retained cases; always escalating gives 83.3 pp; each prompt configuration separately gives 85.3, 85.0, 80.3 and 81.3 pp. Unanimity gives 77.7 pp. The ordering never changes.
-
-\item On the final question: the four-call aggregate is an evaluation-only construct. No institution would run four calls per transaction and apply a majority rule, so the published rates were not deployable configurations.
-
-\item The deployable quantity is a single call. Across the four single-call configurations the false-positive rate runs from 0.3 to 2.3 percent for Gemini Flash and from 80.7 to 87.7 percent for GPT-4o-mini, with spreads of 80.3 to 85.3 pp.
-
-\item The direction of the bias is worth stating plainly. The deviation understated every false-positive rate, and on the miss axis the preregistered rule raises miss rates from 12.0, 3.3, 3.7, 0.7 and 0.0 percent to 18.3, 8.3, 7.0, 2.0 and 0.0 percent. The paper's central claim, the size of the cross-model spread, is unaffected.
+\item On the final question: the four-call aggregate is an evaluation-only construct, since no institution would issue four calls per transaction and take a majority. The deployable quantity is a single call, where the false-positive rate runs from 0.3 to 2.3 percent for Gemini Flash and from 80.7 to 87.7 percent for GPT-4o-mini. The deviation understated every false-positive rate, and on the miss axis the preregistered rule raises miss rates from 12.0, 3.3, 3.7, 0.7 and 0.0 percent to 18.3, 8.3, 7.0, 2.0 and 0.0 percent.
 
 \end{itemize}
 
