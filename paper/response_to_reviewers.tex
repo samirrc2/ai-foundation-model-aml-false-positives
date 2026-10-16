@@ -77,7 +77,7 @@ Robin Chawla
 
 \item The Appendix~A sentence attributing a label-dependent rule to preregistration was corrected; D4 does not condition on the case label.
 
-\item A new table reports five aggregation rules and four single-call configurations on both the false-positive and miss axes.
+\item New Table 1 reports false-positive rates, the spread and Cochran's $Q$ under five aggregation rules and four single-call configurations.
 
 \item Section 4.2 gained two limitation paragraphs, one on label construct validity and one on the independence assumptions of the primary tests.
 
@@ -168,7 +168,7 @@ Robin Chawla
 
 \begin{itemize}
 
-\item The contribution sentence in Section 1 now claims the first domain-specific, governance-framed controlled measurement of this effect in AML screening.
+\item The contribution sentence in Section 1 now claims the first preregistered, governance-framed controlled measurement of this effect in AML screening.
 
 \item Contribution 2 in Section 1 now cites the LLM-evaluation work that established the general phenomenon [26, 39].
 
@@ -331,7 +331,7 @@ Robin Chawla
 
 \begin{itemize}
 
-\item Section 2.4 now states the independence assumption, notes that cases sharing a typology template are not independent, and reports the cluster-level permutation test as the primary inference.
+\item Section 2.4 now states the independence assumption, notes that cases sharing a case template are not independent, and reports the cluster-level permutation test as the primary inference.
 
 \item Adjacent-tier contrasts are reported with cluster-robust bootstrap intervals over the eight strata.
 
@@ -474,7 +474,7 @@ Robin Chawla
 
 \item We agree that the width is itself a finding.
 
-\item Under the restored rule the abstract reports 83.3 pp with a 95\% confidence interval of 71.8 to 93.7, with a clause stating that the interval is a cluster bootstrap over eight typology strata.
+\item Under the restored rule the abstract reports 83.3 pp with a 95\% confidence interval of 71.8 to 93.7, with a clause stating that the interval is a cluster bootstrap over eight case-template strata.
 
 \end{itemize}
 
@@ -484,7 +484,7 @@ Robin Chawla
 
 \item The abstract now reports the spread with its cluster-bootstrap 95\% confidence interval.
 
-\item A clause states that the interval is a cluster bootstrap over eight typology strata, so the width is not read as sampling error over 300 independent cases.
+\item A clause states that the interval is a cluster bootstrap over eight case-template strata, so the width is not read as sampling error over 300 independent cases.
 
 \end{itemize}
 
@@ -526,7 +526,7 @@ Robin Chawla
 
 \begin{itemize}
 
-\item We have identified the cause. In three places a citation sat immediately before the closing em dash of a parenthetical aside, so the reference number renders inside the aside and interrupts the phrase, as in ``a known source of variation in LLM behaviour [39]---each case was tested''. The three occurrences are in Sections 1, 2.2 and 2.4.
+\item We identified two causes: misplaced citations (below) and lost en dashes (last action). In three places a citation sat immediately before the closing em dash of a parenthetical aside, so the reference number renders inside the aside and interrupts the phrase, as in ``a known source of variation in LLM behaviour [39]---each case was tested''. The three occurrences are in Sections 1, 2.2 and 2.4.
 
 \item The defect is masked in the compiled PDF but visible in the Word rendering, which is why we missed it. We now proofread the Word rendering as well as the PDF, and an automated check rejects any citation falling inside an em-dash aside.
 
@@ -613,7 +613,7 @@ Robin Chawla
 
 \item We accept the criticism. The rule used the ground-truth label to choose the tie direction, both directions favoured the model, and that is an evaluation artifact rather than a property of any deployable screener. It is also not the preregistered rule: decision~D4 and both preregistration documents specify ties broken toward \texttt{flag} with no reference to the case label, so the benign branch as implemented was an undisclosed deviation, and we report it as such. We have restored the preregistered rule as primary, which is also the conservative choice on the false-positive axis and corresponds to routing a split panel to a human reviewer.
 
-\item We ran each of the three sensitivity analyses named. Ties as abstentions give a spread of 84.9 pp on retained cases, always escalating gives 83.3 pp, each prompt configuration separately gives 85.3, 85.0, 80.3 and 81.3 pp, and unanimity gives 77.7 pp. The ordering never changes.
+\item We ran each of the three sensitivity analyses named. Ties as abstentions give a spread of 84.9 pp on retained cases, always escalating gives 83.3 pp, each prompt configuration separately gives 85.3, 85.0, 80.3 and 81.3 pp, and unanimity gives 77.7 pp. No pair of models reverses order.
 
 \item On the final question: the four-call aggregate is an evaluation-only construct, since no institution would issue four calls per transaction and take a majority. The deployable quantity is a single call, where the false-positive rate runs from 0.3 to 2.3 percent for Gemini Flash and from 80.7 to 87.7 percent for GPT-4o-mini. The deviation understated every false-positive rate and left miss rates unchanged. A label-independent strict-majority rule reproduces the submitted false-positive rates but raises miss rates from 12.0, 3.3, 3.7, 0.7 and 0.0 percent to 18.3, 8.3, 7.0, 2.0 and 0.0 percent.
 
