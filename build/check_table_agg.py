@@ -33,7 +33,7 @@ ROWS = [
     ("Ties to no flag (strict majority)",        "policies", "ties_to_no_flag_strict_majority"),
     ("Ties as abstentions",            "policies", "ties_as_abstention"),
     ("Unanimity required",               "policies", "unanimity_required"),
-    ("Label-dependent (submitted)",           "policies", "label_dependent_as_published"),
+    ("Label-dependent tie rule",           "policies", "label_dependent_as_published"),
     ("Single call: FATF seed 0",  "single_call_configurations", "v_fatf|seed0"),
     ("Single call: FATF seed 1",  "single_call_configurations", "v_fatf|seed1"),
     ("Single call: terse seed 0", "single_call_configurations", "v_terse|seed0"),

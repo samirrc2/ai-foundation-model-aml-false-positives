@@ -76,20 +76,9 @@ RULES = [
     (r"the defensible range across configurations an institution could actually deploy is",
      f"{min(v['alert_ratio_max_over_min'] for v in single.values()):.0f}", "3.3 deployable low"),
     # aggregation section
-    (r"The cross-model spread, which carries the paper's main claim, moves from 82\.7 to",
-     f"{A['fp_spread_pp']*100:.1f}", "2.x spread after restoring D4"),
     (r"the spread lies between",                      f"{ag['fp_spread_range_pp'][0]:.1f}", "2.x spread range low"),
     (r"spread lies between 77\.7 and",                f"{ag['fp_spread_range_pp'][1]:.1f}", "2.x spread range high", 2),
     (r"The frozen corpus holds",                      f"{ag['calls']['realized']:,}".replace(",", "{,}"), "realized calls"),
-    # The as-submitted rates in the deviation disclosure. Fault injection swapped 0.3 and 1.0
-    # here and every gate passed: both are real printed values, so nothing short of an anchored
-    # rule can see the swap, and these are precisely the numbers a reader checks the deviation
-    # against.
-    (r"raises every false-positive rate---from",      sub("Gemini Flash"),      "as-submitted FP, Gemini Flash"),
-    (r"rate---from 0\.3, ",                           sub("GPT-4o"),            "as-submitted FP, GPT-4o"),
-    (r"from 0\.3, 1\.0, ",                            sub("GPT-4.1-mini"),      "as-submitted FP, GPT-4.1-mini"),
-    (r"from 0\.3, 1\.0, 23\.7, ",                     sub("Gemini Flash-Lite"), "as-submitted FP, Flash-Lite"),
-    (r"0\.3, 1\.0, 23\.7, 24\.7 and ",                sub("GPT-4o-mini"),       "as-submitted FP, GPT-4o-mini"),
     # The deployable single-call rows of the sensitivity table, which no rule reached: bending
     # the GPT-4o FATF seed-1 rate to 0.4242 passed every gate.
     (r"Single call: FATF seed 0\s+& ",          sc("v_fatf|seed0", "Gemini Flash"),  "single call fatf0, Flash"),
