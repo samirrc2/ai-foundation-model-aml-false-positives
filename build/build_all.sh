@@ -52,6 +52,18 @@ echo "== 5. gates"
 # discarding the rule that failed, and a gate's exit 2 (could not check) must be visible as
 # something other than a pass -- so capture the output, keep the code, and say which it was.
 gate_fail=0
+# Citations first: it is the only gate that can see a reference resolving to the wrong paper.
+# With --online it resolves every DOI at doi.org; with no network it reports NOT CHECKED
+# rather than passing.
+cout="$("$PY" "$HOME/.claude/skills/con1/scripts/check_citations.py" \
+        --manuscript paper/manuscript_full.tex --bib paper/references_discover.bib \
+        --exemptions build/citation_exemptions.json --online 2>&1)" && crc=0 || crc=$?
+if [ "$crc" -eq 0 ]; then
+  printf '   %-22s PASS  %s\n' "citations" "$(printf '%s' "$cout" | tail -1)"
+else
+  printf '   %-22s FAIL (exit %s)\n' "citations" "$crc"; printf '%s\n' "$cout" | sed 's/^/      /'
+  gate_fail=1
+fi
 for g in check_results_fresh check_journal_requirements check_binding check_coverage \
          check_table_agg check_readme \
          check_marked check_tracked_docx check_verbatim check_docx_citations \

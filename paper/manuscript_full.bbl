@@ -13,7 +13,7 @@ Al-Hashedi KG, Magalingam P (2021) Financial fraud detection applying data minin
 Alshatri N, Ghannam S, Hussain FK (2026) Intelligent data-driven models for the accurate multi-factor prediction of carbon credit prices. Discov Artif Intell 6:571. \doi{10.1007/s44163-026-00894-0}
 
 \bibitem[{Altman et~al.(2023)Altman, Blanu{\v s}a, von Niederh{\"a}usern, Egressy, Anghel, and Atasu}]{altman}
-Altman E, Blanu{\v s}a J, von Niederh{\"a}usern L, et~al (2023) Realistic synthetic financial transactions for anti-money laundering models. In: Adv. Neural Inf. Process. Syst.
+Altman E, Blanu{\v s}a J, von Niederh{\"a}usern L, et~al (2023) Realistic synthetic financial transactions for anti-money laundering models. In: Adv. Neural Inf. Process. Syst., \doi{10.52202/075280-1300}
 
 \bibitem[{Bekkaye et~al.(2025)Bekkaye, Oukhouya, Zari, and Guerbaz}]{disc-bekkaye}
 Bekkaye C, Oukhouya H, Zari T, et~al (2025) Generative hybrid models for fraud detection in auto insurance with a comparative analysis of {VAE}, {GAN}, and diffusion approaches. Discov Artif Intell 5:313. \doi{10.1007/s44163-025-00574-5}
@@ -49,13 +49,13 @@ Deprez B, Wei W, Verbeke W, et~al (2025) Advances in continual graph learning fo
 Efron B (1979) Bootstrap methods: another look at the jackknife. Ann Stat 7:1--26. \doi{10.1214/aos/1176344552}
 
 \bibitem[{{European Parliament and Council}(2024)}]{aiact}
-{European Parliament and Council} (2024) Regulation (eu) 2024/1689 laying down harmonised rules on artificial intelligence (artificial intelligence act)
+{European Parliament and Council} (2024) Regulation (eu) 2024/1689 laying down harmonised rules on artificial intelligence (artificial intelligence act). \urlprefix\url{https://eur-lex.europa.eu/eli/reg/2024/1689/oj}
 
 \bibitem[{{Financial Action Task Force}(2012)}]{fatf-recs}
-{Financial Action Task Force} (2012) International standards on combating money laundering and the financing of terrorism and proliferation: The {FATF} recommendations. Tech. rep., FATF, updated 2023
+{Financial Action Task Force} (2012) International standards on combating money laundering and the financing of terrorism and proliferation: The {FATF} recommendations. Tech. rep., FATF, \urlprefix\url{https://www.fatf-gafi.org/en/publications/Fatfrecommendations/Fatf-recommendations.html}, updated 2023
 
 \bibitem[{{Financial Action Task Force}(2021)}]{fatf-datapooling}
-{Financial Action Task Force} (2021) Stocktake on data pooling, collaborative analytics and data protection. Tech. rep., FATF
+{Financial Action Task Force} (2021) Stocktake on data pooling, collaborative analytics and data protection. Tech. rep., FATF, \urlprefix\url{https://www.fatf-gafi.org/en/publications/Digitaltransformation/Data-pooling-collaborative-analytics-data-protection.html}
 
 \bibitem[{Gebru et~al.(2021)}]{datasheets}
 Gebru T, et~al (2021) Datasheets for datasets. Commun ACM 64:86--92. \doi{10.1145/3458723}
@@ -64,7 +64,7 @@ Gebru T, et~al (2021) Datasheets for datasets. Commun ACM 64:86--92. \doi{10.114
 Goecks LS, Korzenowski AL, Terra~Neto PG, et~al (2022) Anti-money laundering and financial fraud detection: a systematic literature review. Intell Syst Account Finance Manag 29:71--85. \doi{10.1002/isaf.1509}
 
 \bibitem[{{Google}(2026)}]{google-models}
-{Google} (2026) Gemini {API} models --- google {AI} for developers documentation. Https://ai.google.dev/gemini-api/docs/models
+{Google} (2026) Gemini {API} models --- google {AI} for developers documentation. \urlprefix\url{https://ai.google.dev/gemini-api/docs/models}, https://ai.google.dev/gemini-api/docs/models
 
 \bibitem[{Gwet(2008)}]{gwet}
 Gwet KL (2008) Computing inter-rater reliability and its variance in the presence of high agreement. Br J Math Stat Psychol 61:29--48. \doi{10.1348/000711006X126600}
@@ -97,7 +97,7 @@ Mitchell M, et~al (2019) Model cards for model reporting. In: Proc. ACM Conf. Fa
 Najem R, Bahnasse A, Talea M (2026) A hybrid prophet-based framework for multimodal forecasting with market sentiment signals. Discov Artif Intell 6:383. \doi{10.1007/s44163-026-00866-4}
 
 \bibitem[{{National Institute of Standards and Technology}(2023)}]{nistrmf}
-{National Institute of Standards and Technology} (2023) Artificial intelligence risk management framework (ai rmf 1.0). Tech. rep., NIST, nIST AI 100-1
+{National Institute of Standards and Technology} (2023) Artificial intelligence risk management framework (ai rmf 1.0). Tech. rep., NIST, \doi{10.6028/NIST.AI.100-1}, nIST AI 100-1
 
 \bibitem[{{OpenAI}(2026{\natexlab{a}})}]{openai-models}
 {OpenAI} (2026{\natexlab{a}}) Models --- {OpenAI} {API} documentation. Https://platform.openai.com/docs/models
@@ -106,7 +106,7 @@ Najem R, Bahnasse A, Talea M (2026) A hybrid prophet-based framework for multimo
 {OpenAI} (2026{\natexlab{b}}) Pricing --- {OpenAI} {API} documentation. Https://developers.openai.com/api/docs/pricing, accessed 13 October 2026
 
 \bibitem[{Oztas et~al.(2023)}]{samld}
-Oztas B, et~al (2023) Enhancing anti-money laundering through a synthetic transaction monitoring dataset ({SAML-D}). In: Proc. IEEE Int. Conf. e-Business Engineering
+Oztas B, et~al (2023) Enhancing anti-money laundering: Development of a synthetic transaction monitoring dataset ({SAML-D}). In: Proc. IEEE Int. Conf. e-Business Engineering, \doi{10.1109/ICEBE59045.2023.00028}
 
 \bibitem[{Pedregosa et~al.(2011)}]{sklearn}
 Pedregosa F, et~al (2011) Scikit-learn: machine learning in {Python}. J Mach Learn Res 12:2825--2830. Preprint at https://arxiv.org/abs/1201.0490
@@ -124,7 +124,7 @@ Ribeiro MT, Singh S, Guestrin C (2016) ``{W}hy should {I} trust you?'': explaini
 Sclar M, Choi Y, Tsvetkov Y, et~al (2024) Quantifying language models' sensitivity to spurious features in prompt design. In: Int. Conf. Learning Representations, preprint at https://arxiv.org/abs/2310.11324
 
 \bibitem[{{United Nations Office on Drugs and Crime}(2011)}]{unodc}
-{United Nations Office on Drugs and Crime} (2011) Estimating illicit financial flows resulting from drug trafficking and other transnational organized crimes. Tech. rep., UNODC
+{United Nations Office on Drugs and Crime} (2011) Estimating illicit financial flows resulting from drug trafficking and other transnational organized crimes. Tech. rep., UNODC, \urlprefix\url{https://www.unodc.org/documents/data-and-analysis/Studies/Illicit_financial_flows_2011_web.pdf}
 
 \bibitem[{Weber et~al.(2018)Weber, Chen, Suzumura, Pareja, Ma, Kanezashi, Kaler, Leiserson, and Schardl}]{weber2018}
 Weber M, Chen J, Suzumura T, et~al (2018) Scalable graph learning for anti-money laundering: a first look. Preprint at https://arxiv.org/abs/1812.00076

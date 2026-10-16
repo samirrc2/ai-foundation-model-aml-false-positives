@@ -25,6 +25,7 @@
   "env": {},
   "gates": [
     "python3 build/check_results_fresh.py",
+    "python3 /Users/samirchincholikar/.claude/skills/con1/scripts/check_citations.py --manuscript paper/manuscript_full.tex --bib paper/references_discover.bib --exemptions build/citation_exemptions.json",
     "python3 build/check_journal_requirements.py",
     "python3 build/check_binding.py",
     "python3 build/check_coverage.py",

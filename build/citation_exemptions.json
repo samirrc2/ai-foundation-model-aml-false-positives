@@ -1,0 +1,17 @@
+{
+ "lime": "Title mismatch is ACM metadata truncation, not an error. The ACM Digital Library registers the short title \"Why Should I Trust You?\"; the article's full title includes the subtitle \"Explaining the Predictions of Any Classifier\". DOI 10.1145/2939672.2939778 resolves to the correct KDD 2016 paper.",
+ "accountability": "Title mismatch is ACM metadata truncation. ACM registers \"Closing the AI accountability gap\" without the subtitle \"Defining an end-to-end framework for internal algorithmic auditing\". DOI 10.1145/3351095.3372873 resolves to the correct FAT* 2020 paper.",
+ "parrots": "Title mismatch is ACM metadata truncation. ACM registers \"On the Dangers of Stochastic Parrots\" without the subtitle \"Can Language Models Be Too Big?\". DOI 10.1145/3442188.3445922 resolves to the correct FAccT 2021 paper.",
+ "promptsens": "ICLR proceedings do not mint DOIs. The entry carries no link field, though the arXiv preprint exists; adding it would strengthen the entry. Identified by author, venue, year and full title.",
+ "srguidance": "Carries its link in the `note` field, which renders in the reference list but which check_citations.py does not inspect. Not a missing identifier.",
+ "openai-models": "Carries its link in the `note` field, which renders in the reference list but which check_citations.py does not inspect. Not a missing identifier.",
+ "openai-pricing": "Carries its link in the `note` field, which renders in the reference list but which check_citations.py does not inspect. Not a missing identifier.",
+ "sklearn": "Carries its link in the `note` field, which renders in the reference list but which check_citations.py does not inspect. Not a missing identifier.",
+ "fewshot": "Carries its link in the `note` field, which renders in the reference list but which check_citations.py does not inspect. Not a missing identifier.",
+ "foundation": "Carries its link in the `note` field, which renders in the reference list but which check_citations.py does not inspect. Not a missing identifier.",
+ "helm": "Carries its link in the `note` field, which renders in the reference list but which check_citations.py does not inspect. Not a missing identifier.",
+ "shap": "Carries its link in the `note` field, which renders in the reference list but which check_citations.py does not inspect. Not a missing identifier.",
+ "weber2018": "Carries its link in the `note` field, which renders in the reference list but which check_citations.py does not inspect. Not a missing identifier.",
+ "amlsim": "Carries its link in the `note` field, which renders in the reference list but which check_citations.py does not inspect. Not a missing identifier.",
+ "homogenization": "Carries its link in the `note` field, which renders in the reference list but which check_citations.py does not inspect. Not a missing identifier."
+}
