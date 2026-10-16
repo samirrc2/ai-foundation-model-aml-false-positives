@@ -38,7 +38,7 @@ This repository is the frozen dataset and deterministic analysis pipeline that r
 | **Authors** | Samir Chincholikar, Robin Chawla |
 | **Affiliations** | Independent researchers |
 | **Code repository** | https://github.com/samirrc2/ai-foundation-model-aml-false-positives |
-| **Persistent DOI** | minted on Zenodo at archive time |
+| **Persistent DOI** | [10.5281/zenodo.23424852](https://doi.org/10.5281/zenodo.23424852) (concept DOI, resolves to the latest version) |
 | **Contact** | Samir Chincholikar: samir.chincholikar@gmail.com; Robin Chawla: robin.chawla.cse14@iitbhu.ac.in |
 | **ORCID** | Samir Chincholikar: https://orcid.org/0009-0007-2779-3492; Robin Chawla: https://orcid.org/0009-0007-2807-3948 |
 
@@ -60,7 +60,8 @@ The artifact enables independent reproduction of the article's computational res
 
 ## Zenodo
 
-This artifact is archived on Zenodo as a plain source release. There is no container image and
+This artifact is archived on Zenodo as a plain source release, under the concept DOI
+[10.5281/zenodo.23424852](https://doi.org/10.5281/zenodo.23424852), which always resolves to the most recent version. There is no container image and
 no compute capsule: the repository is flat, and everything reproduces from the frozen data with
 a single command.
 

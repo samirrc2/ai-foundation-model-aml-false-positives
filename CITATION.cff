@@ -17,7 +17,7 @@ authors:
 repository-code: "https://github.com/samirrc2/ai-foundation-model-aml-false-positives"
 identifiers:
   - type: doi
-    value: "[Zenodo DOI minted at archive time]"
+    value: "10.5281/zenodo.23424852"
     description: "Zenodo archive"
 url: "https://github.com/samirrc2/ai-foundation-model-aml-false-positives"
 license: MIT
