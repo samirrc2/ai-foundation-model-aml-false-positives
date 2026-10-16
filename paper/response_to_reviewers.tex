@@ -1,4 +1,7 @@
 \documentclass[11pt]{article}
+\usepackage{lmodern}% scalable T1 font: without it pdfTeX falls back to Type3 bitmaps,
+\usepackage{cmap}%     whose glyphs carry no Unicode mapping, so dashes and ligatures
+%                       come out of the PDF text layer as raw encoding slots.
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{mathptmx}
