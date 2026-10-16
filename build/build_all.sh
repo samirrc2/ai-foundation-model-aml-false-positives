@@ -48,7 +48,8 @@ echo "== 5. gates"
 # discarding the rule that failed, and a gate's exit 2 (could not check) must be visible as
 # something other than a pass -- so capture the output, keep the code, and say which it was.
 gate_fail=0
-for g in check_results_fresh check_binding check_coverage check_table_agg check_readme \
+for g in check_results_fresh check_journal_requirements check_binding check_coverage \
+         check_table_agg check_readme \
          check_marked check_tracked_docx check_verbatim check_docx_citations \
          check_docx_parity; do
   out="$("$PY" "build/$g.py" 2>&1)" && rc=0 || rc=$?
