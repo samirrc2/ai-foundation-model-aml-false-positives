@@ -275,6 +275,23 @@ def run():
                       "cases in that stratum",
             "p": _sig((ge + 1) / (DRAWS + 1))}
 
+    # ── abstention on the COMMON retained subset ─────────────────────────────────
+    # Under ties-as-abstention each model keeps a different set of cases, so the headline
+    # spread compares five rates estimated on five different subsets. This recomputes all
+    # five on the cases every model retained, which is the like-for-like comparison, and is
+    # reported alongside the model-specific figure rather than replacing it.
+    _ab = lambda v: None if 2 * sum(v) == len(v) else (1 if 2 * sum(v) > len(v) else 0)
+    common = [c for c in bc if all(_ab(votes[m]["benign"][c]) is not None for m in models)]
+    cm = {NICE[m]: _sig(sum(_ab(votes[m]["benign"][c]) for c in common) / len(common))
+          for m in models} if common else {}
+    _cr = [cm[NICE[m]] for m in models] if common else [0]
+    abstention_common = {
+        "n_cases": len(common),
+        "per_model_fp_rate": cm,
+        "fp_spread_pp": _sig(100 * (max(_cr) - min(_cr))),
+        "note": ("all five rates on the cases every model retained; the headline abstention row "
+                 "uses each model's own retained cases, so its spread compares different subsets")}
+
     # ── sensitivity: restrict the vote to the four DESIGNED prompt-seed cells ─────
     # D4 defines the vote over valid replicate calls, so the primary analysis uses all of them,
     # including the 111 duplicated GPT-4o-mini terse/seed-0 calls. This reports what the rates
@@ -310,6 +327,7 @@ def run():
 
     ratios = [s["ratio_max_over_min"] for s in sweep] + [v["alert_ratio_max_over_min"] for v in singles.values()]
     payload = {
+        "abstention_common_subset": abstention_common,
         "four_designed_cells_sensitivity": four_cell,
         "primary_rule": "preregistered decision D4: modal flag over replicates, ties -> flag, label-independent",
         "deviation_corrected": ("the submitted analysis required a strict majority on legitimate cases, so a 2-2 tie "

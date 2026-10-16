@@ -323,7 +323,7 @@ Robin Chawla
 
 \item Adjacent-tier contrasts under the restored rule are 29.3 pp (95\% CI 12.6--51.2), 48.7 pp (25.8--72.5) and 41.7 pp (19.7--65.2). All exclude zero, and all are materially wider than case-level inference would give, so we report the wider ones.
 
-\item On the $p$-value the reviewer quotes, the revision audit found two errors in our statistics. First, \texttt{stats\_tests.json} recorded it as 0.0 because the code computed one minus the chi-squared CDF, which underflows. Second, the $Q$ statistic itself was understated fivefold, because the code omitted the factor $k$ from the numerator. Under the preregistered rule the corrected statistic is $Q = 585.0$, $p = 2.7\times10^{-125}$; the submitted $Q = 131.6$ should have been $657.8$. The permutation result is unchanged, because a constant factor does not alter permutation ranks. Both errors understated the evidence; neither changes a conclusion.
+\item On the $p$-value the reviewer quotes, the revision audit found two errors in our statistics. First, \texttt{stats\_tests.json} recorded it as 0.0 because the code computed one minus the chi-squared CDF, which underflows. Second, the $Q$ statistic itself was understated fivefold, because the code omitted the factor $k$ from the numerator. Under the preregistered rule the corrected statistic is $Q = 585.0$, $p = 2.7\times10^{-125}$; the submitted $Q = 131.6$ should have been $657.8$. The permutation result is unchanged, because a constant factor does not alter permutation ranks. The omitted factor understated Cochran's $Q$, while numerical underflow caused the archived $p$-value to be represented as zero rather than as a finite probability. Both errors have been corrected; neither changes the qualitative conclusion.
 
 \end{itemize}
 
@@ -416,7 +416,7 @@ Robin Chawla
 
 \item The elicitation returns a binary label rather than a score, so there is no decision threshold to tune without changing the elicitation itself. Recalibrating these screeners to a common operating point is not a post-processing step.
 
-\item The ordering persists across both prompt formulations and all four single-call configurations, with the spread between 80.3 and 85.3 pp in every one, which is more stability than a pure threshold shift would predict.
+\item The ordering remains stable across the four tested prompt--seed configurations, demonstrating that the observed divergence is not specific to one configuration. However, the binary-output design cannot determine whether calibrated score thresholds would substantially reduce the differences.
 
 \item This is not a demonstration that score-level calibration could not compress the spread. A scored elicitation with per-model thresholds is the experiment that would settle it, and we state the implication conditionally.
 
@@ -426,7 +426,7 @@ Robin Chawla
 
 \begin{itemize}
 
-\item The Discussion gained a passage noting that the binary elicitation leaves no threshold to tune, that the persistence of ordering is consistent with structural rather than threshold divergence, and that a scored elicitation is required to settle the question.
+\item The Discussion gained a passage noting that the binary elicitation leaves no threshold to tune, that the persistence of ordering demonstrates stability across configurations without identifying the underlying cause, and that a scored elicitation is required to settle the question.
 
 \item The governance implication is now stated conditionally.
 
@@ -447,7 +447,7 @@ Robin Chawla
 
 \item The two Google figures are not list prices. The registry states that they were set conservatively so the spend cap would bind early and are overwritten with measured cost, and the July 2026 list prices are not recoverable because the models were reached through \texttt{-latest} aliases whose resolved versions were not captured.
 
-\item We will not cite a price we cannot substantiate. Tier is defined by published price positioning, cited for OpenAI, and by the measured per-call cost in the archived ledger for all five models, which reproduces the tier ordering from the deposit without relying on an unverifiable figure.
+\item We will not cite a price we cannot substantiate. Tier is defined by published price positioning, cited for OpenAI, and by the measured per-call cost in the archived ledger for all five models, which reproduces the tier ordering from the deposit without relying on an unverifiable figure. Measured cost per call is reported as an expenditure measure and may also reflect differences in token usage; it is not interpreted as a direct measure of model capability or size.
 
 \end{itemize}
 
@@ -615,7 +615,7 @@ Robin Chawla
 
 \item We accept the criticism. The rule used the ground-truth label to choose the tie direction, both directions favoured the model, and that is an evaluation artifact rather than a property of any deployable screener. It is also not the preregistered rule: decision~D4 and both preregistration documents specify ties broken toward \texttt{flag} with no reference to the case label, so the benign branch as implemented was an undisclosed deviation, and we report it as such. We have restored the preregistered rule as primary, which is also the conservative choice on the false-positive axis and corresponds to routing a split panel to a human reviewer.
 
-\item We ran each of the three sensitivity analyses named. Ties as abstentions give a spread of 84.9 pp on each model's retained cases, with Cochran's $Q$ computed on the 189 cases all five models decided, always escalating gives 83.3 pp, each prompt configuration separately gives 85.3, 85.0, 80.3 and 81.3 pp, and unanimity gives 77.7 pp. No pair of models reverses order.
+\item We ran each of the three sensitivity analyses named. Ties as abstentions give a spread of 84.9 pp on each model's retained cases, with Cochran's $Q$ computed on the 189 cases all five models decided; recomputed on those 189 cases the spread is 81.5 pp (Appendix~A), always escalating gives 83.3 pp, each prompt configuration separately gives 85.3, 85.0, 80.3 and 81.3 pp, and unanimity gives 77.7 pp. No pair of models reverses order.
 
 \item On the final question: the four-call aggregate is an evaluation-only construct, since no institution would issue four calls per transaction and take a majority. The deployable quantity is a single call, where the false-positive rate runs from 0.3 to 2.3 percent for Gemini Flash and from 80.7 to 87.7 percent for GPT-4o-mini. The deviation understated every false-positive rate and left miss rates unchanged. A label-independent strict-majority rule reproduces the submitted false-positive rates but raises miss rates from 12.0, 3.3, 3.7, 0.7 and 0.0 percent to 18.3, 8.3, 7.0, 2.0 and 0.0 percent.
 

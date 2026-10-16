@@ -5,7 +5,7 @@
 
 | Output | SHA-256 (run 1) | identical? |
 |---|---|---|
-| aggregation_sensitivity.json | `c900d1720e618c83…` | ✓ |
+| aggregation_sensitivity.json | `31e4ebe53d0a889f…` | ✓ |
 | alert_volume.json | `b260c2e94fb50228…` | ✓ |
 | baselines.json | `36221e6c1a92e14a…` | ✓ |
 | classification_metrics.csv | `39daf628b89b3663…` | ✓ |

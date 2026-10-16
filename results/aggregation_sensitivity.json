@@ -1,4 +1,16 @@
 {
+  "abstention_common_subset": {
+    "fp_spread_pp": 81.48,
+    "n_cases": 189,
+    "note": "all five rates on the cases every model retained; the headline abstention row uses each model's own retained cases, so its spread compares different subsets",
+    "per_model_fp_rate": {
+      "GPT-4.1-mini": 0.2169,
+      "GPT-4o": 0.0053,
+      "GPT-4o-mini": 0.8148,
+      "Gemini Flash": 0.0,
+      "Gemini Flash-Lite": 0.2804
+    }
+  },
   "adjacent_tier": {
     "GPT-4.1-mini -> GPT-4o-mini": {
       "b": 3,
