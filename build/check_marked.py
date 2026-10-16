@@ -161,7 +161,7 @@ NEW = ["Ties to flag (D4, primary)", "Label-dependent (submitted)",
 # which is correctly struck in red -- so that phrase is coloured for a legitimate reason and is
 # useless as an anchor. These five were verified to sit in prose marking never touched.
 OLD = ["Unlike the OpenAI identifiers, the Google aliases did not expose an immutable",
-       "no human participants, no proprietary records, and no live model access",
+       "an alias can alter the model underlying an application",
        "an alias can alter the model underlying an application",
        "openly available in the public GitHub repository",
        "The study uses only synthetic data"]

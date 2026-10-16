@@ -25,7 +25,11 @@ ERR=$(grep -cE '^! ' paper/manuscript_full.log || true)
 echo "== 3. response letter and cover letter"
 ( cd paper
   for f in response_to_reviewers cover_letter response_to_editor; do
-    [ -f "$f.tex" ] && { for i in 1 2; do run_tex "$f.tex"; done; }
+    if [ -f "$f.tex" ]; then
+      for i in 1 2; do run_tex "$f.tex"; done
+    else
+      echo "   MISSING: paper/$f.tex" >&2; exit 1
+    fi
   done )
 
 echo "== 3b. reproducibility document"
