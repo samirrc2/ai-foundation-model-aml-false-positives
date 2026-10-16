@@ -30,7 +30,7 @@ COLS = ["Gemini Flash", "GPT-4o", "GPT-4.1-mini", "Gemini Flash-Lite", "GPT-4o-m
 # failure, not a skip: the row was renamed or deleted and nothing else would notice.
 ROWS = [
     ("Ties to flag (D4, primary)", "policies", "ties_to_flag_preregistered_D4"),
-    ("Ties to no flag (majority)",        "policies", "ties_to_no_flag_strict_majority"),
+    ("Ties to no flag (strict majority)",        "policies", "ties_to_no_flag_strict_majority"),
     ("Ties as abstentions",            "policies", "ties_as_abstention"),
     ("Unanimity required",               "policies", "unanimity_required"),
     ("Label-dependent (submitted)",           "policies", "label_dependent_as_published"),
