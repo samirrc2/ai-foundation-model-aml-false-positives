@@ -64,6 +64,12 @@ SOUL_UNSAFE = ("$", "\\", "&", "{", "}", "~", "^", "_", "#")
 NO_TOUCH_ENV = ("tabular", "tabularx", "longtable", "align", "equation", "eqnarray",
                 "verbatim", "lstlisting", "minipage", "thebibliography")
 
+# Commands whose braced argument is ORDINARY PROSE and must be diffed like body text. Without
+# this the tokenizer swallows "\abstract{...}" as one atomic token, so the abstract -- the
+# first thing an editor reads, and substantially rewritten in this revision -- came through
+# the marked copy with no marks at all while every other section was marked correctly.
+PROSE_ARG = ("abstract",)
+
 
 def tokenize(s):
     """Split into tokens where every LaTeX command-with-arguments and every math span is ONE
@@ -84,6 +90,25 @@ def tokenize(s):
             toks.append((s[i:k], False)); i = k
         elif c == "\\" and i + 1 < n and s[i + 1].isalpha():
             m = re.match(r"\\[A-Za-z@]+\*?", s[i:])
+            name = m.group(0)[1:].rstrip("*")
+            if name in PROSE_ARG and i + m.end() < n and s[i + m.end()] == "{":
+                # Emit the opening "\abstract{" and the matching "}" as structural tokens and
+                # tokenize the prose between them, so a run can be marked inside the argument
+                # while the braces stay balanced.
+                open_end = i + m.end() + 1
+                depth, k = 1, open_end
+                while k < n and depth:
+                    if s[k] == "{" and s[k - 1] != "\\":
+                        depth += 1
+                    elif s[k] == "}" and s[k - 1] != "\\":
+                        depth -= 1
+                    k += 1
+                if depth == 0:
+                    toks.append((s[i:open_end], False))
+                    toks.extend(tokenize(s[open_end:k - 1]))
+                    toks.append(("}", False))
+                    i = k
+                    continue
             j = i + m.end()
             while j < n and s[j] in "[{":              # consume options and arguments
                 close = "]" if s[j] == "[" else "}"
