@@ -36,11 +36,11 @@
 
 \begin{itemize}
 
-\item We agree, and the correction is larger than a change of rule. Decision~D4 as preregistered is already label-independent: the decisions log and both preregistration documents specify the modal replicate decision with ties broken toward \texttt{flag}, with no reference to the case label. The implemented benign branch required a strict majority, which is an undisclosed deviation. The label-independent rule requested here is therefore the preregistered rule, and we have restored it rather than adopted a new one.
+\item We agree. Preregistered decision~D4 is label-independent, with ties resolved toward \texttt{flag}. The submitted analysis instead applied strict majority to legitimate cases, an undisclosed deviation that we have corrected.
 
-\item Under the preregistered rule the false-positive rates are 2.3, 7.7, 37.0, 44.0 and 85.7 percent, a spread of 83.3 pp (95\% CI 71.8--93.7) against 82.7 pp as submitted. The spread is 77.7 to 85.3 pp across five aggregation rules and four single-call configurations, with no reversal of model order in any of the nine.
+\item Under D4, false-positive rates are 2.3\%, 7.7\%, 37.0\%, 44.0\% and 85.7\%, giving an 83.3-percentage-point spread (95\% CI 71.8--93.7), versus 82.7 points as submitted. Across nine aggregation and single-call analyses, spreads range from 77.7 to 85.3 points without reversal of model ordering.
 
-\item On construct validity, no independent AML expert adjudication or inter-rater check was performed. Labels reflect the generator-defined case templates. On statistical independence, cluster-bootstrap intervals quantify uncertainty across the eight case-template strata, and a cluster-level permutation procedure tests the global null: none of 2,000 permuted statistics reached the observed value (Monte Carlo $p \approx 0.0005$), alongside the corrected case-level Cochran's $Q = 585.0$ ($p \approx 2.7\times10^{-125}$).
+\item Synthetic labels were not independently adjudicated. To address case dependence, we added cluster-bootstrap intervals and a cluster-level permutation test (Monte Carlo $p \approx 0.0005$), alongside corrected case-level Cochran's $Q = 585.0$ ($p \approx 2.7\times10^{-125}$).
 
 \end{itemize}
 
@@ -48,17 +48,15 @@
 
 \begin{itemize}
 
-\item Section 2.3 was rewritten to state decision~D4 as preregistered, to report the deviation in the benign branch, and to make the preregistered label-independent rule primary.
+\item Section 2.3: Restored preregistered D4 and disclosed the deviation and its numerical consequences.
 
-\item Section 2.3 now records the departure and its effect on every affected number.
+\item Section 2.4: Clarified independence assumptions, cluster-level inference and corrected Cochran's $Q$.
 
-\item The Appendix~A sentence attributing a label-dependent rule to preregistration was corrected. D4 does not condition on the case label.
+\item Section 4.2: Expanded construct-validity and statistical-independence limitations.
 
-\item New Table 1 reports false-positive rates, the spread and Cochran's $Q$ under five aggregation rules and four single-call configurations.
+\item Appendix~A: Corrected the preregistered aggregation-rule description.
 
-\item Section 4.2 gained two limitation paragraphs, one on label construct validity and one on the independence assumptions of the primary tests.
-
-\item Table 1 retains the deviating rule alongside the preregistered rule so that both sets of numbers remain in the record.
+\item Table 1: Added aggregation and single-call sensitivity results, retaining the submitted-rule comparison.
 
 \end{itemize}
 
@@ -81,7 +79,7 @@
 
 \item We thank Reviewer 1 for recommending acceptance.
 
-\item The false-positive range cited in the original report (0.3\%--83.0\%) was obtained under the subsequently identified aggregation-rule deviation. Restoring the preregistered rule gives 2.3\%--85.7\%. The central conclusion remains unchanged, and the Cochran's $Q$ statistic has also been corrected as described in Reviewer~2, Concern~\#6.
+\item The original 0.3\%--83.0\% false-positive range reflected the aggregation-rule deviation. Restoring D4 gives 2.3\%--85.7\%, and the central conclusion remains unchanged. The Cochran's $Q$ correction is detailed under Reviewer~2, Concern~\#6.
 
 \end{itemize}
 
@@ -104,11 +102,11 @@
 
 \begin{itemize}
 
-\item We agree and adopt the reviewer's formulation. Cross-model disagreement on identical inputs is established in the model-evaluation literature and we should not have implied otherwise.
+\item We agree. Cross-model disagreement is established in broader LLM evaluation. Our contribution is its preregistered, governance-framed measurement in AML screening and translation into operational alert burden.
 
-\item The contribution we claim is the domain-specific, governance-framed controlled measurement in AML screening, together with the translation into alert burden.
+\item We also corrected the call count: 12,000 planned versus 12,120 archived calls, including 111 duplicate valid GPT-4o-mini calls and nine logged error calls. One GPT-4.1-mini case had only three valid calls.
 
-\item One correction to the call count, which is ours. The design specified 12,000 calls and the frozen corpus holds 12,120: 111 GPT-4o-mini cases carry a fifth retried call and one GPT-4.1-mini case carries three after an interface error. The manuscript disclosed the retries qualitatively but never gave the realized total. The 111 retries were made because the GPT-4o-mini terse-prompt seed-0 pass was re-issued after OpenAI rate limiting interrupted it, so cases that had already returned were called again. The remaining 9 calls are ERROR rows recording the rate-limit failures, which are excluded from the vote. Restricting the vote to the four designed calls changes one GPT-4o-mini decision (85.7\% to 86.0\%. Spread 83.3 to 83.7 pp), reported as a sensitivity analysis in Section 2.2.
+\item Restricting voting to the four designed calls changes one GPT-4o-mini decision (FPR 85.7\% to 86.0\%, spread 83.3 to 83.7 points), without changing the conclusion.
 
 \end{itemize}
 
@@ -116,13 +114,13 @@
 
 \begin{itemize}
 
-\item The contribution sentence in Section 1 now claims the first preregistered, governance-framed controlled measurement of this effect in AML screening (the reviewer's formulation, narrowed to the preregistered design).
+\item Section 1: Narrowed the originality claim and cited broader LLM-evaluation work [26, 39].
 
-\item Contribution 2 in Section 1 now cites the LLM-evaluation work that established the general phenomenon [26, 39].
+\item Section 2.2: Documented realized call counts, retry handling and four-cell sensitivity.
 
-\item The abstract makes no novelty claim. The Conclusion was revised to scope the findings to the evaluated models and provider families.
+\item Section 5: Scoped conclusions to the evaluated models and provider families.
 
-\item Section 2.2 now reports the designed count of 12,000 and the realized count of 12,120, with the retry and error breakdown.
+\item Data availability: Updated the archived call count to 12,120.
 
 \end{itemize}
 
@@ -137,9 +135,7 @@
 
 \begin{itemize}
 
-\item We thank the reviewer and agree the reframing should carry more weight in the paper's structure than it did.
-
-\item Foregrounding it also addresses Concern~\#1, since the governance operationalisation does not depend on the disagreement phenomenon being new.
+\item We agree that model governance deserves greater prominence. Model substitution and provider-managed alias redirection are now foregrounded as model-risk events, with a standing operating-point probe proposed for monitoring.
 
 \end{itemize}
 
@@ -147,11 +143,11 @@
 
 \begin{itemize}
 
-\item The operating-point probe was promoted from a passage in the Discussion to its own numbered subsection, stating the control, its trigger conditions, and what is monitored.
+\item Section 1: Moved the governance contribution to first position.
 
-\item Model-tier substitution and provider-managed alias drift are now named as model-risk events in the abstract and the Conclusion.
+\item Section 4.1: Added a dedicated operating-point-probe subsection covering triggers, monitored quantities and validation.
 
-\item The governance contribution is now listed first among the contributions in Section 1.
+\item Abstract and Section 5: Foregrounded model substitution and alias-redirection risks.
 
 \end{itemize}
 
@@ -166,11 +162,11 @@
 
 \begin{itemize}
 
-\item The reviewer is right that the selection was never explained, and our records show it was not a two-provider design. A third family, xAI Grok-4.5, was preregistered in the confirmatory grid. Two logged decisions reduced it: D17 dropped \texttt{gemini-pro} for thinking-mode incompatibility and cost, and D19 dropped \texttt{xai-grok} because the account was out of credits. The five-model grid is documented attrition. Because tier is defined only within providers, a provider main effect cannot be separated from the tier effect.
+\item The preregistered grid included xAI Grok-4.5. Decision D17 excluded Gemini Pro for thinking-mode incompatibility and cost, and D19 excluded Grok because credits were exhausted. The final five-model grid reflects documented attrition, limiting separation of provider and tier effects.
 
-\item Anthropic Claude appears in the generative-AI declaration solely as a coding assistant and was never an evaluated system. The tier effect remains identified within each provider family separately.
+\item Anthropic Claude was used only for coding assistance, not evaluation.
 
-\item A related correction belongs here. The submitted Methods stated that the model served behind each Google alias is recorded in the archived per-call metadata. It was not: the capture rows, probe receipts and freeze receipts record only the alias strings. The Limitations state the position correctly and the Methods sentence overstated it.
+\item We also corrected the Google metadata description: the archive records alias strings, not the concrete model versions served behind them.
 
 \end{itemize}
 
@@ -178,15 +174,13 @@
 
 \begin{itemize}
 
-\item Section 2.2 now reports the preregistered three-family grid and the two decisions that reduced it (D17, D19).
+\item Section 2.2: Documented the original three-provider grid and D17/D19 attrition.
 
-\item A sentence clarifies that Anthropic Claude was a coding assistant and not an evaluated model.
+\item Section 2.2: Clarified Claude's coding-only role and corrected Google alias metadata.
 
-\item The Methods sentence claiming that the resolved Google model version is recorded in the archived metadata was removed and replaced with a statement that only the alias was captured.
+\item Section 4.2: Clarified provider--tier confounding and the need for third-provider replication.
 
-\item The Limitations state that the provider main effect cannot be separated from the tier effect, and name a third-provider replication as the natural extension.
-
-\item Section 2.2 now states that, for the Google models, only the alias string was captured and the resolved model version cannot be recovered.
+\item Data availability: Specified that Google served-model fields contain aliases only.
 
 \end{itemize}
 
@@ -201,11 +195,11 @@
 
 \begin{itemize}
 
-\item No expert adjudication and no inter-rater check were performed on any part of the battery. Labels are assigned by the generator at construction time: a case is suspicious because it was built from one of the eight FATF-anchored typology templates, and legitimate because it was built from a hard-negative template.
+\item No independent AML expert adjudication or inter-rater assessment was performed. Labels were assigned by construction using FATF-anchored suspicious typologies and legitimate hard-negative templates.
 
-\item Our rates therefore measure agreement with the generator's construction, not with an expert's assessment of real transactions. A model penalised for flagging a hard negative may be responding to a feature an experienced analyst would also find suspicious.
+\item Reported error rates therefore measure agreement with template-defined labels, not expert-adjudicated transaction risk. A model may flag a hard negative for reasons an analyst would also consider suspicious.
 
-\item We did not commission a sample adjudication during revision, because an adjudication by the authors would not be independent. We prefer to state the gap than to report a weak substitute for it.
+\item We did not substitute author adjudication for independent review. An expert-adjudicated subsample is identified as future work.
 
 \end{itemize}
 
@@ -213,11 +207,9 @@
 
 \begin{itemize}
 
-\item Section 2.1 now states that labels are true by construction and that no independent expert review or inter-rater reliability check was conducted.
+\item Section 2.1: Documented generator-defined labels and the absence of independent adjudication.
 
-\item Section 4.2 gained a limitation paragraph explaining that the rates are measured against template-defined rather than expert-adjudicated ground truth.
-
-\item An expert-adjudicated subsample is named as required future work.
+\item Section 4.2: Added construct-validity limitations and the need for expert-adjudicated evaluation.
 
 \end{itemize}
 
@@ -236,11 +228,11 @@
 
 \begin{itemize}
 
-\item Ties do cluster. On legitimate cases the counts are 6, 20, 40, 58 and 8 for Gemini Flash, GPT-4o, GPT-4.1-mini, Gemini Flash-Lite and GPT-4o-mini, and on suspicious cases 19, 15, 10, 4 and 0. They concentrate where a model sits near its own decision boundary, so the label-agnostic rule raises Gemini Flash-Lite by 19.3 pp and GPT-4.1-mini by 13.3 pp but Gemini Flash by only 2.0 pp. The deviation compressed the middle of the distribution, not the extremes.
+\item Ties are unevenly distributed. Legitimate-case counts are 6, 20, 40, 58 and 8 across the five models, and suspicious-case counts are 19, 15, 10, 4 and 0. Restoring D4 increases false-positive rates most for the middle models, by 13.3 and 19.3 percentage points.
 
-\item The spread is therefore nearly unaffected: 83.3 pp against 82.7 pp, with Cochran's $Q = 585.0$ on 4 df ($p = 2.7\times10^{-125}$) against a corrected $Q = 657.8$ as submitted (see Concern~\#6). One pairwise comparison strengthens: Gemini Flash versus GPT-4o was not significant as submitted after correction and is now significant at adjusted $p = 4.0\times10^{-3}$.
+\item The spread changes from 82.7 to 83.3 points. Corrected Cochran's $Q$ is 585.0 (4 df, $p \approx 2.7\times10^{-125}$), versus 657.8 under the submitted rule. Gemini Flash versus GPT-4o also becomes significant after Bonferroni correction ($p = 0.004$).
 
-\item Checking this comment led to a more serious finding, which we report in full. The label-dependent rule is not what decision~D4 preregisters: D4 and both preregistration documents specify ties broken toward \texttt{flag} without reference to the case label, so the benign branch as implemented was an undisclosed deviation. The label-agnostic figures the reviewer asks us to test are the preregistered figures, and the deviation understated every published false-positive rate.
+\item Crucially, D4 was already preregistered as label-independent. The submitted legitimate-case rule was an undisclosed implementation deviation, now corrected and retained for sensitivity comparison.
 
 \end{itemize}
 
@@ -248,13 +240,15 @@
 
 \begin{itemize}
 
-\item Section 2.3 and Table 5 report per-model tie counts on both labels. Table 1 gives the resulting per-model change in false-positive rate.
+\item Section 2.3: Restored D4 and documented the deviation and per-model tie effects.
 
-\item The sensitivity table reports the spread and Cochran's Q under five aggregation rules and four single-call configurations.
+\item Section 2.4: Corrected Cochran's $Q$ calculations.
 
-\item Section 2.3 states decision~D4 as written and records the departure from it.
+\item Table 1: Reported sensitivity results across five aggregation rules and four single-call configurations.
 
-\item The pairwise McNemar table is now reported under the preregistered rule.
+\item Table 3: Updated paired McNemar comparisons under D4.
+
+\item Table 5: Documented per-model tie counts and preregistered aggregation.
 
 \end{itemize}
 
@@ -269,11 +263,11 @@
 
 \begin{itemize}
 
-\item The reviewer has read the code correctly: the cluster bootstrap was applied to the secondary interval estimates only. Rather than defend case-level inference we extended the cluster-robust treatment to the primary test, where a permutation that applies a single permutation of model labels to all cases within each of the eight case-template strata gives Monte Carlo $p \approx 0.0005$ (plus-one correction) under either rule.
+\item We agree that cases sharing synthetic templates may be dependent. A cluster-level permutation test applying one model-label permutation per stratum gives Monte Carlo $p \approx 0.0005$ under either aggregation rule.
 
-\item Adjacent-tier contrasts under the restored rule are 29.3 pp (95\% CI 12.6--51.2), 48.7 pp (25.8--72.5) and 41.7 pp (19.7--65.2). All exclude zero, and all are materially wider than case-level inference would give, so we report the wider ones.
+\item Cluster-bootstrap intervals for adjacent-tier differences are 29.3 points (95\% CI 12.6--51.2), 48.7 (25.8--72.5) and 41.7 (19.7--65.2). All exclude zero, although inference remains approximate with eight clusters.
 
-\item On the $p$-value the reviewer quotes, the revision audit found two errors in our statistics. First, \texttt{stats\_tests.json} recorded it as 0.0 because the code computed one minus the chi-squared CDF, which underflows. Second, the $Q$ statistic itself was understated fivefold, because the code omitted the factor $k$ from the numerator. Under the preregistered rule the corrected statistic is $Q = 585.0$, $p = 2.7\times10^{-125}$. The submitted $Q = 131.6$ should have been $657.8$. The permutation result is unchanged, because a constant factor does not alter permutation ranks. The omitted factor understated Cochran's $Q$, while numerical underflow caused the archived $p$-value to be represented as zero rather than as a finite probability. Both errors have been corrected. Neither changes the qualitative conclusion.
+\item The audit also identified an omitted factor of five in Cochran's $Q$ and chi-square tail-probability underflow. Corrected primary $Q = 585.0$ ($p \approx 2.7\times10^{-125}$), and submitted-rule $Q = 657.8$. Both errors were corrected without changing the qualitative conclusion or permutation ranking.
 
 \end{itemize}
 
@@ -281,13 +275,13 @@
 
 \begin{itemize}
 
-\item Section 2.4 now states the independence assumption, notes that cases sharing a case template are not independent, and reports the cluster-level permutation test as the primary inference.
+\item Section 2.4: Clarified dependence assumptions and cluster-level permutation inference.
 
-\item Adjacent-tier contrasts are reported with cluster-robust bootstrap intervals over the eight strata.
+\item Section 2.4: Documented the corrected $Q$ calculation and its independent verification.
 
-\item The analysis code was corrected to use the chi-squared survival function. The capsule was re-run and re-hashed.
+\item Section 3.2: Added cluster-bootstrap intervals for adjacent-tier contrasts.
 
-\item The Cochran's $Q$ implementation was corrected, all $Q$ values were recomputed from the frozen decisions and cross-checked against an independent implementation, and Section 2.4 records the correction.
+\item Reproducibility package: Corrected $Q$ and chi-square survival-function calculations, and regenerated and rehashed outputs.
 
 \end{itemize}
 
@@ -302,11 +296,9 @@
 
 \begin{itemize}
 
-\item We take both halves of the suggestion: we add a formal test and soften the wording. We use adjacent-tier paired McNemar tests rather than a Cochran--Armitage trend test, because a trend test would treat the same 300 cases as independent groups and overstate the evidence.
+\item We added adjacent-tier paired McNemar tests rather than a Cochran--Armitage test, which would not respect the repeated-case design. All three contrasts remain significant after correction, with discordant counts of 2/90, 3/149 and 0/125.
 
-\item All three adjacent-tier comparisons run in the predicted direction and remain significant after correction, with discordant counts 2 and 90, 3 and 149, and 0 and 125.
-
-\item The ordering also survives the change of rule, which we could not assert before: it holds under the submitted rule, under the preregistered rule, and in all four single-call configurations.
+\item The ordering holds within both evaluated provider families under the submitted rule, restored D4 and all four single-call configurations. Monotonicity claims are now restricted to these families.
 
 \end{itemize}
 
@@ -314,9 +306,11 @@
 
 \begin{itemize}
 
-\item ``Monotonic'' is now qualified as holding within each of the two provider families studied, in the abstract, Section 3.2 and the Conclusion.
+\item Section 3.2: Added adjacent-tier paired tests and cluster-bootstrap intervals.
 
-\item Adjacent-tier paired McNemar results with cluster-robust interval estimates are reported in Section 3.2, with a sentence explaining why a paired test is preferred to Cochran--Armitage in this design.
+\item Section 3.2: Explained the paired-test choice and qualified monotonicity.
+
+\item Abstract and Section 5: Restricted tier-ordering claims to the two evaluated provider families.
 
 \end{itemize}
 
@@ -331,13 +325,11 @@
 
 \begin{itemize}
 
-\item We swept prevalence from 0.01 to 1.0 percent. The ordering of the five models by alert volume is identical at every prevalence.
+\item We swept suspicious-activity prevalence from 0.01\% to 1.0\%. Model ordering remains invariant, while the highest-to-lowest alert ratio under D4 is 36.6, 35.4 and 26.9 at 0.01\%, 0.1\% and 1.0\% respectively.
 
-\item The magnitude is sensitive. Under the preregistered rule, the highest-to-lowest ratio is 36.6 at 0.01 percent, 35.4 at 0.1 percent and 26.9 at 1.0 percent, because true positives take a growing share of the queue for low-false-positive models as prevalence rises.
+\item At 0.1\% prevalence, the submitted-rule ratio of approximately 197 falls to approximately 35 under D4, and the four single-call configurations yield 36- to 196-fold differences.
 
-\item The magnitude also depends on the aggregation rule. Under the submitted rule the ratio was 197 at 0.1 percent. It falls to 35 because Gemini Flash's false-positive rate rises from 0.3 to 2.3 percent under the preregistered rule. The four deployable single-call configurations give 36- to 196-fold.
-
-\item Precision ranges from 0.4 to 27.6 percent for Gemini Flash and from 0.01 to 1.2 percent for GPT-4o-mini.
+\item Projected precision ranges from approximately 0.4\%--27.6\% for Gemini Flash and 0.01\%--1.2\% for GPT-4o-mini across the sweep.
 
 \end{itemize}
 
@@ -345,11 +337,11 @@
 
 \begin{itemize}
 
-\item New Fig. 4 sweeps prevalence from 0.01 to 1.0 percent on a logarithmic axis, with alert volume per model and a companion precision panel.
+\item Section 3.3: Added prevalence-dependent alert-volume and precision comparisons.
 
-\item Section 3.3 scopes the ratio to its prevalence and configuration, gives the swept range (27- to 37-fold), and states that the model ordering is invariant.
+\item Figure 4: Added the 0.01\%--1.0\% prevalence sweep and precision panel.
 
-\item The abstract reports 36- to 196-fold across deployable configurations and about 35-fold under the preregistered aggregate.
+\item Abstract: Distinguished the 36- to 196-fold single-call range from the approximately 35-fold D4 result.
 
 \end{itemize}
 
@@ -364,11 +356,9 @@
 
 \begin{itemize}
 
-\item The elicitation returns a binary label rather than a score, so there is no decision threshold to tune without changing the elicitation itself. Recalibrating these screeners to a common operating point is not a post-processing step.
+\item The evaluated interface returns binary decisions rather than calibrated scores, so threshold adjustment would require changing the elicitation procedure.
 
-\item The ordering remains stable across the four tested prompt--seed configurations, demonstrating that the observed divergence is not specific to one configuration. However, the binary-output design cannot determine whether calibrated score thresholds would substantially reduce the differences.
-
-\item This is not a demonstration that score-level calibration could not compress the spread. A scored elicitation with per-model thresholds is the experiment that would settle it, and we state the implication conditionally.
+\item Model ordering persists across all four prompt--seed configurations, but this cannot establish whether score calibration would compress the spread. A scored evaluation with model-specific thresholds is needed to test that possibility.
 
 \end{itemize}
 
@@ -376,9 +366,9 @@
 
 \begin{itemize}
 
-\item The Discussion gained a passage noting that the binary elicitation leaves no threshold to tune, that the persistence of ordering demonstrates stability across configurations without identifying the underlying cause, and that a scored elicitation is required to settle the question.
+\item Section 4: Clarified binary-output calibration limitations and configuration stability.
 
-\item The governance implication is now stated conditionally.
+\item Section 4: Made the governance interpretation conditional on the evaluated elicitation procedure.
 
 \end{itemize}
 
@@ -393,11 +383,11 @@
 
 \begin{itemize}
 
-\item We agree, and verifying the source changed what we can defensibly write. The three OpenAI prices in the archived registry are the published list prices, confirmed against the OpenAI pricing documentation: \$2.50 and \$10.00 per million input and output tokens for GPT-4o, \$0.40 and \$1.60 for GPT-4.1-mini, and \$0.15 and \$0.60 for GPT-4o-mini.
+\item We clarified tier using within-provider price positioning. OpenAI list prices per million input/output tokens are \$2.50/\$10.00 for GPT-4o, \$0.40/\$1.60 for GPT-4.1-mini and \$0.15/\$0.60 for GPT-4o-mini.
 
-\item The two Google figures are not list prices. The registry states that they were set conservatively so the spend cap would bind early and are overwritten with measured cost, and the July 2026 list prices are not recoverable because the models were reached through \texttt{-latest} aliases whose resolved versions were not captured.
+\item Google's archived price fields are budgeting placeholders, not verified historical list prices, and the concrete versions behind the July 2026 aliases were not recorded.
 
-\item We will not cite a price we cannot substantiate. Tier is defined by published price positioning, cited for OpenAI, and by the measured per-call cost in the archived ledger for all five models, which reproduces the tier ordering from the deposit without relying on an unverifiable figure. Measured cost per call is reported as an expenditure measure and may also reflect differences in token usage. It is not interpreted as a direct measure of model capability or size.
+\item Archived per-call expenditure corroborates within-provider ordering but also reflects token usage, and is not treated as a direct measure of capability or model size.
 
 \end{itemize}
 
@@ -405,11 +395,11 @@
 
 \begin{itemize}
 
-\item Section 2.4 now gives the operational definition of tier, the verified OpenAI list prices with their source and access date, and the measured per-call costs from the archived ledger for all five models.
+\item Section 2.4: Defined tier and cited verified OpenAI pricing.
 
-\item The registry reference now states that its Google price fields are conservative budgeting placeholders and not list prices.
+\item Section 2.4: Distinguished Google budgeting placeholders from historical list prices.
 
-\item The text repeats that tier is used only within provider families and not as a cross-provider capability scale.
+\item Section 2.4: Added measured per-call costs and restricted comparisons to within-provider families.
 
 \end{itemize}
 
@@ -424,9 +414,7 @@
 
 \begin{itemize}
 
-\item We agree that the width is itself a finding.
-
-\item Under the restored rule the abstract reports 83.3 pp with a 95\% confidence interval of 71.8 to 93.7, with a clause stating that the interval is a cluster bootstrap over eight case-template strata.
+\item We agree. The revised abstract reports the D4 spread of 83.3 percentage points with its 95\% cluster-bootstrap confidence interval of 71.8--93.7 points, based on eight case-template strata.
 
 \end{itemize}
 
@@ -434,9 +422,7 @@
 
 \begin{itemize}
 
-\item The abstract now reports the spread with its cluster-bootstrap 95\% confidence interval.
-
-\item A clause states that the interval is a cluster bootstrap over eight case-template strata, so the width is not read as sampling error over 300 independent cases.
+\item Abstract: Added the corrected spread, confidence interval and cluster-bootstrap specification.
 
 \end{itemize}
 
@@ -451,9 +437,7 @@
 
 \begin{itemize}
 
-\item We agree, including on the Conclusion being the place where the phrasing outruns the evidence.
-
-\item Five models from two providers support a claim about the evaluated set and about the existence of the effect, not about foundation models in general.
+\item We agree. Five models from two providers establish a substantial effect within the evaluated set, not a universal property of foundation models. Broader generalization requires replication.
 
 \end{itemize}
 
@@ -461,9 +445,9 @@
 
 \begin{itemize}
 
-\item The Limitations state that the evidence covers five models from two providers and that the headline language is scoped to the evaluated set.
+\item Section 4.2: Limited generalizability to five models and two providers.
 
-\item The Conclusion was reworded to replace the general phrasing with the scoped claim, and names the generalisation as a hypothesis for broader replication.
+\item Section 5: Scoped the Conclusion and called for broader replication.
 
 \end{itemize}
 
@@ -478,9 +462,9 @@
 
 \begin{itemize}
 
-\item We identified two causes: misplaced citations (below) and lost en dashes (last action). In three places a citation sat immediately before the closing em dash of a parenthetical aside, so the reference number renders inside the aside and interrupts the phrase, as in ``a known source of variation in LLM behaviour [39]---each case was tested''. The three occurrences are in Sections 1, 2.2 and 2.4.
+\item We identified misplaced citations within em-dash asides and missing Unicode mappings for dashes and ligatures as sources of the formatting defects.
 
-\item The defect is masked in the compiled PDF but visible in the Word rendering, which is why we missed it. We now proofread the Word rendering as well as the PDF, and an automated check rejects any citation falling inside an em-dash aside.
+\item We corrected citation placement, standardized formatting and introduced a tested automated check for citation placement in the converted Word document.
 
 \end{itemize}
 
@@ -488,15 +472,15 @@
 
 \begin{itemize}
 
-\item The three citations were moved outside their em-dash asides, so each reference number now precedes the aside rather than interrupting it.
+\item Sections 1, 2.2 and 2.4: Corrected citation placement around em-dash asides.
 
-\item The design equation was rewritten as prose, which renders correctly in both the PDF and the Word file.
+\item Section 2.2: Replaced the design equation with prose.
 
-\item An automated check now rejects any citation falling between two em dashes in the converted Word file. It was tested by reintroducing one defect and confirming it is caught.
+\item Document-wide: Standardized numeric formatting, thousands separators and table alignment.
 
-\item Numeric formatting, table alignment and thousands separators were made consistent throughout.
+\item Word export: Added and tested automated citation-placement checks.
 
-\item En dashes in numeric ranges were lost in the PDF text layer, so ``[1.1--4.7]'' read as ``[1.14.7]''. The PDF now embeds Unicode mappings for dashes and ligatures.
+\item PDF export: Corrected Unicode mappings for dashes and ligatures.
 
 \end{itemize}
 
@@ -511,7 +495,7 @@
 
 \begin{itemize}
 
-\item We thank Reviewer 2 for the recommendation.
+\item We thank Reviewer 2 for recommending minor revision.
 
 \end{itemize}
 
@@ -530,15 +514,11 @@
 
 \begin{itemize}
 
-\item We thank Reviewer 3 for identifying the aggregation procedure as the issue on which the conclusions depend. We agree and have made it the central revision.
+\item We thank Reviewer 3 for identifying the central aggregation issue. The submitted label-dependent rule was an undisclosed deviation from preregistered D4, which specifies ties-to-flag without consulting ground truth. We restored D4 as primary and disclosed the deviation.
 
-\item The report states that several methodological issues should be addressed but sets out one major comment, which we answer in full below. We would welcome the opportunity to address any further comments intended to accompany this report.
+\item Sensitivity analyses confirm robustness: abstentions yield spreads of 84.9 points on model-specific retained cases and 81.5 on the common 189-case subset, ties-to-flag gives 83.3, unanimity 77.7, and the four single-call configurations 85.3, 85.0, 80.3 and 81.3 points. No model ordering reverses.
 
-\item We accept the criticism. The rule used the ground-truth label to choose the tie direction, both directions favoured the model, and that is an evaluation artifact rather than a property of any deployable screener. It is also not the preregistered rule: decision~D4 and both preregistration documents specify ties broken toward \texttt{flag} with no reference to the case label, so the benign branch as implemented was an undisclosed deviation, and we report it as such. We have restored the preregistered rule as primary, which is also the conservative choice on the false-positive axis and corresponds to routing a split panel to a human reviewer.
-
-\item We ran each of the three sensitivity analyses named. Ties as abstentions give a spread of 84.9 pp on each model's retained cases, with Cochran's $Q$ computed on the 189 cases all five models decided. Recomputed on those 189 cases the spread is 81.5 pp (Appendix~A), always escalating gives 83.3 pp, each prompt configuration separately gives 85.3, 85.0, 80.3 and 81.3 pp, and unanimity gives 77.7 pp. No pair of models reverses order.
-
-\item On the final question: the four-call aggregate is an evaluation construct rather than an operationally validated multi-call screening configuration. A multi-call implementation is possible but would require separate assessment of cost, latency and screening workflow. The deployable quantity is a single call, where the false-positive rate runs from 0.3 to 2.3 percent for Gemini Flash and from 80.7 to 87.7 percent for GPT-4o-mini. The deviation understated every false-positive rate and left miss rates unchanged. A label-independent strict-majority rule reproduces the submitted false-positive rates but raises miss rates from 12.0, 3.3, 3.7, 0.7 and 0.0 percent to 18.3, 8.3, 7.0, 2.0 and 0.0 percent.
+\item The four-call aggregate is an evaluation construct, with single-call results reported separately. The deviation understated false-positive rates without changing miss rates, and a label-independent strict majority reproduces the submitted false-positive rates but raises miss rates to 18.3\%, 8.3\%, 7.0\%, 2.0\% and 0.0\%.
 
 \end{itemize}
 
@@ -546,17 +526,15 @@
 
 \begin{itemize}
 
-\item Section 2.3 states decision~D4 as preregistered and makes it primary.
+\item Section 2.3: Restored D4 and disclosed the original deviation and its numerical consequences.
 
-\item Section 2.3 records the departure in the benign branch and every number it affected.
+\item Section 2.3: Distinguished evaluation aggregation from operational deployment.
 
-\item The Appendix~A sentence attributing a label-dependent rule to preregistration was corrected.
+\item Table 1: Reported alternative aggregation and single-call sensitivity results.
 
-\item New Table 1 reports false-positive rates, the spread and Cochran's $Q$ under five aggregation rules and four single-call configurations.
+\item Appendix~A: Corrected the D4 description and added the 189-case common-sample abstention analysis.
 
-\item Section 2.3 and Appendix~A state that the aggregate is an evaluation-only construct. Table 1 reports the single-call configurations as the deployable operating points.
-
-\item Table 1 retains the deviating rule alongside the preregistered rule.
+\item Table 1 and Appendix~A: Retained the submitted-rule comparison and clarified abstention denominators.
 
 \end{itemize}
 
