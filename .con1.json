@@ -26,8 +26,10 @@
   "gates": [
     "python3 build/check_binding.py",
     "python3 build/check_coverage.py",
+    "python3 build/check_table_agg.py",
     "python3 build/check_verbatim.py",
-    "python3 build/check_docx_citations.py"
+    "python3 build/check_docx_citations.py",
+    "python3 build/check_docx_parity.py"
   ],
   "inputs": [
     "data/capture/runs_full_*.csv",

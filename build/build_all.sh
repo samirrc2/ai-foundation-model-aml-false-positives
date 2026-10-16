@@ -32,11 +32,22 @@ echo "== 4. docx companion"
 "$PY" build/make_docx.py | sed 's/^/   /'
 
 echo "== 5. gates"
-"$PY" build/check_binding.py        | tail -1
-"$PY" build/check_coverage.py       | tail -1
-"$PY" build/check_verbatim.py       | tail -1
-"$PY" build/check_docx_citations.py | tail -1
-"$PY" build/check_docx_parity.py    | tail -1
+# Run every gate and report by name. "| tail -1" alone would print a summary line while
+# discarding the rule that failed, and a gate's exit 2 (could not check) must be visible as
+# something other than a pass -- so capture the output, keep the code, and say which it was.
+gate_fail=0
+for g in check_binding check_coverage check_table_agg check_verbatim \
+         check_docx_citations check_docx_parity; do
+  out="$("$PY" "build/$g.py" 2>&1)" && rc=0 || rc=$?
+  case "$rc" in
+    0) printf '   %-22s PASS  %s\n' "$g" "$(printf '%s' "$out" | tail -1)" ;;
+    2) printf '   %-22s SKIPPED (could not check)\n' "$g"; printf '%s\n' "$out" | sed 's/^/      /'
+       gate_fail=1 ;;
+    *) printf '   %-22s FAIL (exit %s)\n' "$g" "$rc"; printf '%s\n' "$out" | sed 's/^/      /'
+       gate_fail=1 ;;
+  esac
+done
+[ "$gate_fail" -eq 0 ] || { echo "GATES FAILED"; exit 1; }
 
 echo "== 6. clean artefacts"
 find paper -maxdepth 1 \( -name "*.aux" -o -name "*.log" -o -name "*.out" -o -name "*.blg" -o -name "*.spl" \) -delete
