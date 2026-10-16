@@ -6,18 +6,14 @@
 \usepackage{multirow}
 \usepackage{amsmath,amssymb,amsfonts}
 \usepackage{booktabs}
-% The body was being set in Type3 BITMAP fonts (30 of them): with [T1]{fontenc} and no
-% scalable T1 Computer Modern installed, pdfTeX falls back to Metafont bitmaps. Type3
-% glyphs are rasterised images with no Unicode mapping, so every dash and ligature came
-% out of the PDF text layer as its raw encoding slot -- an en dash as 0x15, giving
-% ``71.893.7'' for ``71.8--93.7''. Latin Modern is a scalable Type1 T1 font and fixes
-% the cause; cmap then emits the ToUnicode CMap.
+% Latin Modern is a scalable Type1 T1 font. Without it pdfTeX falls back to Metafont
+% bitmaps, whose glyphs carry no Unicode mapping, so dashes and ligatures do not survive
+% copying out of the PDF text layer. cmap emits the ToUnicode CMap.
 \usepackage{lmodern}
 \usepackage{cmap}% must precede fontenc: emits the ToUnicode CMap for Type1 fonts
 \usepackage[T1]{fontenc}
-% Without these the PDF text layer carries no Unicode mapping for the dash glyphs, so
-% copying a range out of the PDF gives ``71.893.7'' instead of ``71.8--93.7'' -- the
-% defect Reviewer 2 reported. \pdfgentounicode makes pdfTeX emit the ToUnicode map.
+% \pdfgentounicode makes pdfTeX emit the ToUnicode map, so numeric ranges and ligatures
+% copy out of the PDF correctly.
 \input{glyphtounicode}
 \pdfgentounicode=1
 
@@ -115,7 +111,7 @@ Because foundation models and commercial interfaces can be updated or retired by
 
 Each (model, case) pair carries four valid calls by design, two prompt formulations crossed with two seeds. Preregistered decision~D4 reduces them to one decision per case by the modal replicate decision, with ties broken toward \texttt{flag}. The rule is stated in the decisions log and repeated in both preregistration documents, and it makes no reference to the ground-truth label of the case. That label-independent rule is the primary rule throughout this paper. Ties are not uniformly distributed: on legitimate cases they number 6, 20, 40, 58 and 8 for Gemini Flash, GPT-4o, GPT-4.1-mini, Gemini Flash-Lite and GPT-4o-mini respectively, and on suspicious cases 19, 15, 10, 4 and 0. They concentrate where a model sits near its own decision boundary, so the rule affects the middle of the distribution more than its extremes.
 
-Because the choice of rule is consequential, the results are reported under four further label-independent policies and under each deployable single-call configuration (Table~\ref{tab:agg}). Across all nine analyses the spread lies between 77.7 and 85.3 percentage points and no pair of models reverses order.
+Because the choice of rule is consequential, the results are reported under four further tie policies and under each deployable single-call configuration (Table~\ref{tab:agg}). Across all nine analyses the spread lies between 77.7 and 85.3 percentage points and no pair of models reverses order.
 
 Two further points follow. First, the four-call aggregate is an evaluation construct rather than an operationally validated multi-call screening configuration. A multi-call implementation is possible but would require separate assessment of cost, latency and screening workflow. The deployable quantity is a single call, and those configurations are reported alongside the aggregate. Second, a label-independent rule that resolves ties by strict majority on both labels reproduces the label-dependent false-positive rates exactly but raises miss rates from 12.0, 3.3, 3.7, 0.7 and 0.0\% to 18.3, 8.3, 7.0, 2.0 and 0.0\%. Those rates are therefore attainable without reference to the label, at a cost on the miss axis.
 
@@ -253,7 +249,7 @@ A further limitation concerns the validity of the labels themselves. Every false
 
 A related limitation concerns the inference. Cochran's $Q$ and the exact McNemar test treat the 300 legitimate cases as exchangeable units, and cases drawn from a shared case template are not independent. The cluster-level permutation test and the cluster-robust intervals reported in Section~\ref{sec:fpspread} and Section~\ref{sec:tier} are the safeguards against this, and they are materially wider than case-level inference would give. The case-level $P$-values are retained only for comparability with the preregistered plan.
 
-The aggregation rule is a further qualification. Results are reported under four further label-independent policies and each deployable single-call configuration (Table~\ref{tab:agg}). The cross-model spread lies between 77.7 and 85.3 percentage points under all nine, so the central claim does not rest on the choice, but the per-model rates and the alert-volume ratio do depend on it and should always be quoted with the rule that produced them.
+The aggregation rule is a further qualification. Results are reported under four further tie policies and each deployable single-call configuration (Table~\ref{tab:agg}). The cross-model spread lies between 77.7 and 85.3 percentage points under all nine, so the central claim does not rest on the choice, but the per-model rates and the alert-volume ratio do depend on it and should always be quoted with the rule that produced them.
 
 Finally, the operational projection assumes a suspicious-activity prevalence of 0.1\% and a volume of one million transactions per day. These values illustrate a low-prevalence scenario and are not intended as empirical estimates for financial institutions broadly. The numerical alert volumes should therefore not be interpreted as predictions for any individual bank. They show how false-positive operating points scale under low-prevalence conditions in which false alarms dominate the analyst queue.
 
