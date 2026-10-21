@@ -85,7 +85,14 @@ def build(tex, out_name, tracked=False):
     # returned by the journal, so the byline is rebuilt here and asserted after the build.
     byline = build_byline(tex)
     abstract = re.search(r'\\abstract\{(.*?)\}\s*\\keywords', tex, re.S).group(1).strip()
-    keywords = re.search(r'\\keywords\{([^}]*)\}', tex).group(1).strip()
+    # LAST \keywords, not the first. In _marked.tex the marking tool splices the superseded
+    # round-1 list into the abstract wrapped in \HLdel{}, so the FIRST \keywords is the deleted
+    # one: re.search put round-1 keywords in the tracked .docx while the PDF showed the current
+    # list. The live declaration is always the last one.
+    kw_all = re.findall(r'\\keywords\{([^}]*)\}', tex)
+    if not kw_all:
+        sys.exit('ERROR: no \\keywords found in the manuscript source')
+    keywords = kw_all[-1].strip()
     block = ('\\maketitle\n\n' + byline + '\\section*{Abstract}\n' + abstract +
              '\n\n\\noindent\\textbf{Keywords:} ' + keywords + '\n')
     tex = tex.replace('\\maketitle', block, 1)
