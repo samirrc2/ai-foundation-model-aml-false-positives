@@ -68,7 +68,7 @@ for g in check_results_fresh check_journal_requirements check_binding check_cove
          check_table_agg check_readme \
          check_marked check_tracked_docx check_letter_parity check_verbatim \
          check_docx_citations \
-         check_docx_parity; do
+         check_docx_parity check_docx_byline; do
   out="$("$PY" "build/$g.py" 2>&1)" && rc=0 || rc=$?
   case "$rc" in
     0) printf '   %-22s PASS  %s\n' "$g" "$(printf '%s' "$out" | tail -1)" ;;

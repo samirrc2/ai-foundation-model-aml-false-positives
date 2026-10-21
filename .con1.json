@@ -33,6 +33,7 @@
     "python3 build/check_readme.py",
     "python3 build/check_docx_citations.py",
     "python3 build/check_docx_parity.py",
+    "python3 build/check_docx_byline.py",
     "python3 build/check_tracked_docx.py",
     "python3 build/check_letter_parity.py"
   ],
